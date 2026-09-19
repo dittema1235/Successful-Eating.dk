@@ -1,4 +1,5 @@
 import { site, formatPrice } from '../data/site';
+import consolidated from '../data/consolidated-articles.json';
 
 export function GET() {
   return new Response(
@@ -18,6 +19,7 @@ export function GET() {
 - [Hvad er madro?](https://www.successfuleating.dk/madro-biblioteket/hvad-er-madro)
 - [Overspisning om aftenen](https://www.successfuleating.dk/madro-biblioteket/overspisning-om-aftenen)
 - [ADHD og overspisning](https://www.successfuleating.dk/madro-biblioteket/adhd-og-overspisning)
+${consolidated.map((a) => `- [${a.title}](${site.url}/madro-biblioteket/${a.slug})`).join('\n')}
 - [Artikelarkiv](https://www.successfuleating.dk/blog): Historiske artikler med oprindelige datoer. Ældre tilbud er ikke nødvendigvis aktuelle.
 
 Indholdet er generel information, ikke en individuel vurdering. Behandlingsresultater og vægttab garanteres ikke. llms.txt er en indholdsoversigt, ikke dokumentation for synlighed i AI-tjenester.

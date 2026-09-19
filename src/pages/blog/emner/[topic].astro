@@ -3,11 +3,13 @@ import Layout from '../../../layouts/Layout.astro';
 import ArchiveCard from '../../../components/ArchiveCard.astro';
 import { topics } from '../../../data/topics';
 import posts from '../../../data/archive.json';
+import { articles } from '../../../data/articles';
 export function getStaticPaths() {
   return topics.map((topic) => ({ params: { topic: topic.slug }, props: { topic } }));
 }
 const { topic } = Astro.props;
 const related = posts.filter((p) => p.topic === topic.slug);
+const guides = articles.filter((p) => p.topic === topic.slug);
 ---
 
 <Layout
@@ -42,6 +44,24 @@ const related = posts.filter((p) => p.topic === topic.slug);
   </section>
   <section class="section">
     <div class="container">
+      {guides.length > 0 && (
+        <div class="library-feature" style="margin-top:0;margin-bottom:50px">
+          <h2 style="margin-bottom:30px">Guides til emnet</h2>
+          <div class="archive-list">
+            {guides.map((p) => (
+              <article class="archive-item">
+                <h3>
+                  <a href={`/madro-biblioteket/${p.slug}`}>{p.title}</a>
+                </h3>
+                <p>{p.description}</p>
+                <a class="text-link" href={`/madro-biblioteket/${p.slug}`}>
+                  Læs artiklen →
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
       <h2 style="margin-bottom:30px">Fra artikelarkivet</h2>
       <div class="archive-list">
         {related.map((post) => (

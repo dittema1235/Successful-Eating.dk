@@ -1,10 +1,11 @@
 ---
 import Icon from './Icon.astro';
 import { articles } from '../data/articles';
+const { limit = articles.length } = Astro.props;
 ---
 
 <div class="article-grid">
-  {articles.map((a) => (
+  {articles.slice(0, limit).map((a) => (
     <article class="article-card">
       <a href={`/madro-biblioteket/${a.slug}`}>
         <div class={`article-illustration tone-${a.tone}`} aria-hidden="true">

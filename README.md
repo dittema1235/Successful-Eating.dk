@@ -37,7 +37,7 @@ GitHub Pages kan også servere HTML/CSS/JS, men behandler **ikke** Cloudflares `
 ## Indhold og integrationer
 
 - To behandlingssider: `/forloebet` og `/kropsglaede`.
-- 565 blogartikler på deres oprindelige adresser, 6 bevarede biblioteksadresser, 6 emnehubs og et søgbart arkiv.
+- 555 historiske blogartikler på deres oprindelige adresser. 10 udpegede indlæg er samlet i 5 nye kildeunderbyggede artikler med individuelle 301-viderestillinger. Alle 565 gamle blogadresser har dermed fortsat et relevant mål. Desuden 6 bevarede biblioteksadresser, 6 emnehubs og søgning.
 - Kontaktoplysninger og eksterne booking-/checkout-links: `src/data/site.ts`.
 - Forløb: **4.499 kr. inklusive en gratis forsamtale**, med fuld tilbagebetaling ved dårligt match ved forsamtalen. Direkte betaling hos det eksisterende systeme.io-checkout. Alternativt: **50 minutters forsamtale til 645 kr.**, som modregnes ved efterfølgende deltagelse (restbeløb 3.854 kr.).
 - Sæt `PUBLIC_CONSULTATION_BOOKING_URL` til det verificerede eksterne booking-/betalingslink for forsamtalen. Uden linket tilbyder siden tydeligt en e-mailforespørgsel, hvor tid og betaling aftales med Ditte. Ingen booking eller betaling simuleres lokalt.

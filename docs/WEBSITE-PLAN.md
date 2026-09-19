@@ -33,13 +33,13 @@ Nye hovedsider: `/`, `/forloebet`, `/kropsglaede`, `/om-ditte`, `/resultater`, `
 | Uklar personidentitet | Stabil Person/Organization-graf, fuldt navn, `/om-ditte`, krydslink til psykologpraksis og LinkedIn | Fagprofiler kan suppleres efter verifikation |
 | Påstande uden tilstrækkelig dokumentation | Nye introduktioner med korte svar og NICE-kilder; de udpegede problemudsagn er nedtonet/fjernet | Faglig gennemlæsning af nyt indhold og resten af arkivet |
 | Resultatprocenter uden metode | `/resultater` forklarer begrænsningerne; procenterne bruges ikke i salgstekst | Ejer kan senere levere komplette data og metode |
-| Omfattende gammelt arkiv | 565 artikel-URL'er bevaret, 6 emneindgange, søgning, datoer og fulde forfatternavne | Konsolidér kun efter konkret indholds- og trafikvurdering |
+| Omfattende gammelt arkiv | 555 artikel-URL'er bevaret; 10 konkrete indlæg samlet i 5 artikler med 301; 6 emneindgange, søgning og datoer | Konsolidér kun efter konkret indholds- og trafikvurdering |
 | Mobil/hastighed ikke målt i rapport | Statisk HTML, lokal font, responsive billeder, minimal JavaScript; mobil- og tilgængelighedstest | Feltdata efter lancering |
 | Samtykke | Lokalt hostet Silktide, dansk tekst, afvist statistik/marketing som standard | Tilknyt eventuelle måleværktøjer og opdatér oplysninger, før aktivering |
 
 ## Bevidste valg i forhold til rapporterne
 
-- Den detaljerede rapport omtaler flere steder cirka 150 blogindlæg. Det aktuelle sitemap indeholdt **565**; alle er importeret og bevaret. Automatisk sammenlægning alene ud fra nul klik ville være en unødvendig risiko. De seks emnehubs er klar til en senere redaktionel konsolidering.
+- Den detaljerede rapport omtaler flere steder cirka 150 blogindlæg. Det aktuelle sitemap indeholdt **565**; alle er importeret. Efter ejerens godkendelse er 10 konkret gennemgåede indlæg samlet i fem nye artikler; 555 bevarer deres adresser. De 10 gamle URL'er får relevante 301-mål. Automatisk sammenlægning alene ud fra nul klik ville være en unødvendig risiko. De seks emnehubs er klar til en senere redaktionel konsolidering.
 - De seks gamle biblioteks-URL'er er bevaret og teksterne redaktionelt tilpasset. Nye introduktioner er mærket som redaktionelt indhold, ikke som en foretaget klinisk kvalitetssikring.
 - FAQ anvendes for forståelighed. llms.txt er en lille, ajourført oversigt, ikke en påstået genvej til AI-synlighed.
 - Momsstatus afgøres ikke af ordvalg eller schema-type. Rapportens anbefaling om at undgå undervisnings-/vægttabssprog er omsat til tydelig beskrivelse af behandling; selve klassifikationen og vilkårene er ejerens rådgivers opgave.

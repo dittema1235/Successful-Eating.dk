@@ -14,7 +14,7 @@ export const topics = [
     description: 'Om tankerne, følelserne og pladsen til mere ro i hverdagen.',
     intro:
       'Madstøj er et hverdagsudtryk for tilbagevendende tanker om mad. Trøstespisning beskriver, at mad bruges i forbindelse med følelser. Ingen af begreberne er i sig selv en diagnose. Det er især mønstrets omfang og betydning for din trivsel, der er relevant at undersøge.',
-    guide: '/madro-biblioteket/hvad-er-madro',
+    guide: '/madro-biblioteket/troestespisning',
     service: '/forloebet',
   },
   {
@@ -23,7 +23,7 @@ export const topics = [
     description: 'Nuanceret viden om trang, restriktioner og oplevelsen af kontroltab.',
     intro:
       'En stærk trang til sødt kan føles som afhængighed, men oplevelsen alene afgør ikke, hvad der ligger bag. Sult, restriktioner, vaner og følelsesmæssig belastning kan være relevante at undersøge. Dyrestudier om belønningssystemet kan ikke i sig selv dokumentere sukkerafhængighed hos mennesker.',
-    guide: '/madro-biblioteket/hvad-er-madro',
+    guide: '/madro-biblioteket/tanker-og-spisning',
     service: '/forloebet',
   },
   {
@@ -50,7 +50,7 @@ export const topics = [
     description: 'Plads til fællesskab og fleksibilitet, når rammerne ændrer sig.',
     intro:
       'Højtider og ferier kan ændre både rutiner og forventninger omkring mad. Det kan være hjælpsomt at tænke på dine behov og rammer på forhånd, uden at gøre dagen til en prøve, du skal bestå. Du må gerne spise, mærke efter og vælge igen.',
-    guide: '/madro-biblioteket/overspisning-om-aftenen',
+    guide: '/madro-biblioteket/julefrokost-uden-madstress',
     service: '/forloebet',
   },
 ];

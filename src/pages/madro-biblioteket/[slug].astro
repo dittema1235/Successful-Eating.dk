@@ -9,6 +9,7 @@ export function getStaticPaths() {
 }
 const { article } = Astro.props;
 const url = `${site.url}/madro-biblioteket/${article.slug}`;
+const related = articles.filter((a) => article.related?.includes(a.slug));
 const schema = {
   '@type': 'Article',
   '@id': `${url}#article`,
@@ -19,6 +20,8 @@ const schema = {
   publisher: { '@id': `${site.url}/#organization` },
   inLanguage: 'da-DK',
   citation: article.sources.map((s) => s.url),
+  ...(article.published ? { datePublished: article.published } : {}),
+  ...(article.updated ? { dateModified: article.updated } : {}),
 };
 ---
 
@@ -48,6 +51,8 @@ const schema = {
         <p class="intro">{article.description}</p>
         <p class="small muted" style="margin-top:24px">
           Redaktion: Successful Eating · Generel information med faglige kilder
+          {article.updated &&
+            ` · Opdateret ${new Date(article.updated).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Copenhagen' })}`}
         </p>
       </div>
     </header>
@@ -73,6 +78,21 @@ const schema = {
             eller behandling. Læs om{' '}
             <a href="/om-ditte">Ditte Munch-Andersen og den faglige tilgang</a>.
           </p>
+          {related.length > 0 && (
+            <section>
+              <h2>Læs videre</h2>
+              <ul>
+                {related.map((a) => (
+                  <li>
+                    <a href={`/madro-biblioteket/${a.slug}`}>{a.title}</a>
+                  </li>
+                ))}
+              </ul>
+              <p>
+                <a href="/resultater">Læs om behandlingsmetode og resultater</a>.
+              </p>
+            </section>
+          )}
         </div>
         <aside class="facts-card">
           <span class="eyebrow">FRA VIDEN TIL STØTTE</span>

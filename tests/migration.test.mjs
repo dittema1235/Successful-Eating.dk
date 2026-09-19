@@ -5,13 +5,16 @@ import { load } from 'cheerio';
 const posts = JSON.parse(await readFile('src/data/archive.json', 'utf8'));
 const inventory = JSON.parse(await readFile('docs/legacy-url-inventory.json', 'utf8'));
 const library = JSON.parse(await readFile('src/data/library-pages.json', 'utf8'));
-test('all public blog URLs survive migration, including the reported traffic leaders', () => {
+const migrations = JSON.parse(await readFile('src/data/article-migrations.json', 'utf8'));
+const consolidated = JSON.parse(await readFile('src/data/consolidated-articles.json', 'utf8'));
+test('all old blog URLs retain an article or a relevant permanent redirect; traffic leaders keep their URL', () => {
   const originals = inventory.urls.filter((u) => /^\/blog\/\d/.test(new URL(u).pathname));
-  assert.equal(posts.length, originals.length);
+  assert.equal(posts.length + migrations.length, originals.length);
   assert.equal(new Set(posts.map((p) => p.slug)).size, posts.length);
   for (const url of originals)
     assert.ok(
-      posts.some((p) => p.slug === decodeURIComponent(new URL(url).pathname).slice(1)),
+      posts.some((p) => p.slug === decodeURIComponent(new URL(url).pathname).slice(1)) ||
+        migrations.some((m) => m.source === decodeURIComponent(new URL(url).pathname)),
       url,
     );
   for (const id of [
@@ -53,12 +56,32 @@ test('imported content contains no old forms, executable scripts, event handlers
 test('flagged legacy claims and weight-focused acquisition links are removed', () => {
   const p = (id) => posts.find((p) => p.slug.includes(`/${id}-`));
   assert.ok(!p('50419').body.includes('Louise'));
-  assert.ok(!p('50416').body.includes('Undersøgelser viser'));
+  const christmas = consolidated.find((p) => p.slug === 'julefrokost-uden-madstress');
+  assert.ok(christmas);
+  assert.ok(!JSON.stringify(christmas).includes('Undersøgelser viser'));
   assert.ok(!p('50257').body.includes('2%'));
   for (const id of ['50249', '50253', '50636']) {
     assert.equal(p(id).salesCta, false);
     assert.ok(!/href="[^"]*(forloebet|checkout|products)/.test(p(id).body));
   }
+});
+test('retired articles disappear from listings/search and have exact, one-hop replacement rules', async () => {
+  const index = JSON.parse(await readFile('public/search-index.json', 'utf8'));
+  const rules = (await readFile('public/_redirects', 'utf8')).split('\n').map((l) => l.trim());
+  const targets = new Set(consolidated.map((p) => '/madro-biblioteket/' + p.slug));
+  assert.equal(new Set(migrations.map((m) => m.source)).size, migrations.length);
+  for (const { source, target } of migrations) {
+    assert.ok(targets.has(target), `Missing replacement: ${target}`);
+    assert.ok(!posts.some((p) => '/' + p.slug === source), source);
+    assert.ok(!index.some((p) => '/' + p.slug === source), source);
+    assert.equal(rules.filter((r) => r === `${source} ${target} 301`).length, 1, source);
+    assert.ok(!migrations.some((m) => m.source === target), `Redirect chain: ${source}`);
+  }
+  for (const target of targets)
+    assert.ok(
+      index.some((p) => '/' + p.slug === target),
+      target,
+    );
 });
 test('both current offers and every old sitemap URL have a concrete migration destination', async () => {
   const rules = (await readFile('public/_redirects', 'utf8'))

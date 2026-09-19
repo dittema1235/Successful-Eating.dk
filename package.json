@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
-    "build": "astro check && astro build",
+    "build": "npm run prepare:archive && astro check && astro build",
+    "prepare:archive": "node scripts/prepare-archive.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "test": "node --test tests/*.test.mjs",
     "check:site": "node scripts/check-site.mjs",

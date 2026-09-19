@@ -1,4 +1,22 @@
-export const articles = [
+import consolidated from './consolidated-articles.json';
+export interface Article {
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+  word: string;
+  tone: string;
+  readTime: string;
+  sections: { heading: string; text: string }[];
+  sources: { label: string; url: string }[];
+  service: string;
+  serviceLabel: string;
+  topic?: string;
+  published?: string;
+  updated?: string;
+  related?: string[];
+}
+export const articles: Article[] = [
   {
     slug: 'hvad-er-madro',
     title: 'Hvad er madro – og hvordan finder du den?',
@@ -127,4 +145,5 @@ export const articles = [
     service: '/forloebet',
     serviceLabel: 'Læs om behandling af overspisning',
   },
+  ...consolidated,
 ];

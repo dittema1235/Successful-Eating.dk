@@ -1,0 +1,52 @@
+[
+  {
+    "source": "/blog/50506-sandheden-om-troestespisning",
+    "target": "/madro-biblioteket/troestespisning",
+    "reason": "Kort teaser erstattet af grundig artikel om trøstespisning."
+  },
+  {
+    "source": "/blog/63606-foel-panik-spis-kan-du-berolige-dig-selv",
+    "target": "/madro-biblioteket/troestespisning",
+    "reason": "Kort salgstekst og kategorisk forklaring om følelsesregulering erstattet."
+  },
+  {
+    "source": "/blog/50259-er-du-et-madoere-eller-kan-du-bare-ikke",
+    "target": "/madro-biblioteket/troestespisning",
+    "reason": "Rapportens anbefaling: genbrug refleksioner om madøre-identitet i trøstespisning."
+  },
+  {
+    "source": "/blog/50258-boerneportioner-ogsaa-til-de-voksne-tak",
+    "target": "/madro-biblioteket/sult-maethed-og-portionsstoerrelser",
+    "reason": "Rapportens anbefaling: saml portionsrefleksioner i tematisk artikel."
+  },
+  {
+    "source": "/blog/50416-foerstehjaelp-til-julefrokosten",
+    "target": "/madro-biblioteket/julefrokost-uden-madstress",
+    "reason": "Rapportens anbefaling: saml julefrokostartikler uden usikre forskningspåstande."
+  },
+  {
+    "source": "/blog/50255-strategier-til-at-nyde-julefrokosterne",
+    "target": "/madro-biblioteket/julefrokost-uden-madstress",
+    "reason": "Julefrokostråd samlet og renset for vægtfokus og rigide mængderegler."
+  },
+  {
+    "source": "/blog/50374-rygrad-som-en-regnorm",
+    "target": "/madro-biblioteket/tanker-og-spisning",
+    "reason": "Rapportens anbefaling: udfas gammel salgstekst og bastante viljestyrke-/afhængighedsforklaringer."
+  },
+  {
+    "source": "/blog/50487-video-dine-tanker-om-mad-vedligeholder",
+    "target": "/madro-biblioteket/tanker-og-spisning",
+    "reason": "Udløbet rabat og videoteaser erstattet af selvstændig artikel om tankemønstre."
+  },
+  {
+    "source": "/blog/50321-ved-du-hvad-din-vaegt-er-et-symptom-paa",
+    "target": "/madro-biblioteket/tanker-og-spisning",
+    "reason": "Påstand om tanker som årsagen til overvægt erstattet af nuanceret forklaring."
+  },
+  {
+    "source": "/blog/56446-jeg-har-tabt-mig-15-kg-paa-6-mdr",
+    "target": "/madro-biblioteket/madro-og-vaegt",
+    "reason": "Vægttabsudtalelse og resultatløfte erstattet af information om realistiske behandlingsmål."
+  }
+]

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import migrations from '../../src/data/article-migrations.json' with { type: 'json' };
 
 test('homepage, course journey and accessible layout', async ({ page }) => {
   const errors: string[] = [];
@@ -50,6 +51,31 @@ test('search covers the entire archive and handles no results', async ({ page })
   await page.getByLabel('Emne', { exact: true }).selectOption('adhd');
   await expect(page.locator('#search-count')).toContainText('fundet i hele arkivet');
   expect(await page.locator('#archive-results article').count()).toBeGreaterThan(0);
+});
+test('consolidated articles preserve old links and replace retired search results', async ({
+  page,
+  request,
+}) => {
+  const sitemap = await (await request.get('/sitemap-0.xml')).text();
+  for (const { source, target } of migrations) {
+    const response = await request.get(source, { maxRedirects: 0 });
+    expect(response.status(), source).toBe(301);
+    expect(response.headers().location, source).toBe(target);
+    const replacement = await request.get(target, { maxRedirects: 0 });
+    expect(replacement.status(), target).toBe(200);
+    expect(await replacement.text()).toContain(`href="https://www.successfuleating.dk${target}"`);
+    expect(sitemap).not.toContain(`https://www.successfuleating.dk${source}<`);
+    expect(sitemap).toContain(`https://www.successfuleating.dk${target}<`);
+  }
+  await page.goto(migrations[0].source);
+  await expect(page).toHaveURL(new RegExp(migrations[0].target));
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Trøstespisning');
+  await page.goto('/blog');
+  await page.getByLabel('Søg i alle artikler').fill('julefrokost');
+  await expect(page.locator('#archive-results')).toContainText('Julefrokost uden madstress');
+  for (const { source } of migrations) {
+    await expect(page.locator(`#archive-results a[href="${source}"]`)).toHaveCount(0);
+  }
 });
 test('search failure is recoverable', async ({ page }) => {
   await page.route('**/search-index.json', (route) => route.abort());
@@ -116,6 +142,8 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
     '/kontakt',
     '/madro-biblioteket',
     '/sulteneller',
+    '/madro-biblioteket/troestespisning',
+    '/madro-biblioteket/madro-og-vaegt',
   ]) {
     await page.goto(url);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), url).toBe(
@@ -137,6 +165,8 @@ test.describe('without JavaScript', () => {
     await page.locator('.hero a.button').click();
     await page.getByRole('link', { name: 'Læs om forløbet', exact: true }).click();
     await expect(page).toHaveURL(/forloebet/);
-    await expect(page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first()).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first(),
+    ).toBeVisible();
   });
 });

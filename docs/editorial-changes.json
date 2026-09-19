@@ -4,11 +4,57 @@
     "change": "Louise-citat fjernet; udokumenterede fysiologiske råd omskrevet."
   },
   {
-    "slug": "blog/50416-foerstehjaelp-til-julefrokosten",
-    "change": "Usikre buffet-/portionsstudier erstattet med tydeligt praktiske forslag."
-  },
-  {
     "slug": "blog/50257-saadan-oedelaegger-nye-kropsidealer-din",
     "change": "Udokumenteret 2 %-påstand fjernet."
+  },
+  {
+    "slug": "blog/50506-sandheden-om-troestespisning",
+    "change": "Kort teaser erstattet af grundig artikel om trøstespisning.",
+    "redirect": "/madro-biblioteket/troestespisning"
+  },
+  {
+    "slug": "blog/63606-foel-panik-spis-kan-du-berolige-dig-selv",
+    "change": "Kort salgstekst og kategorisk forklaring om følelsesregulering erstattet.",
+    "redirect": "/madro-biblioteket/troestespisning"
+  },
+  {
+    "slug": "blog/50259-er-du-et-madoere-eller-kan-du-bare-ikke",
+    "change": "Rapportens anbefaling: genbrug refleksioner om madøre-identitet i trøstespisning.",
+    "redirect": "/madro-biblioteket/troestespisning"
+  },
+  {
+    "slug": "blog/50258-boerneportioner-ogsaa-til-de-voksne-tak",
+    "change": "Rapportens anbefaling: saml portionsrefleksioner i tematisk artikel.",
+    "redirect": "/madro-biblioteket/sult-maethed-og-portionsstoerrelser"
+  },
+  {
+    "slug": "blog/50416-foerstehjaelp-til-julefrokosten",
+    "change": "Rapportens anbefaling: saml julefrokostartikler uden usikre forskningspåstande.",
+    "redirect": "/madro-biblioteket/julefrokost-uden-madstress"
+  },
+  {
+    "slug": "blog/50255-strategier-til-at-nyde-julefrokosterne",
+    "change": "Julefrokostråd samlet og renset for vægtfokus og rigide mængderegler.",
+    "redirect": "/madro-biblioteket/julefrokost-uden-madstress"
+  },
+  {
+    "slug": "blog/50374-rygrad-som-en-regnorm",
+    "change": "Rapportens anbefaling: udfas gammel salgstekst og bastante viljestyrke-/afhængighedsforklaringer.",
+    "redirect": "/madro-biblioteket/tanker-og-spisning"
+  },
+  {
+    "slug": "blog/50487-video-dine-tanker-om-mad-vedligeholder",
+    "change": "Udløbet rabat og videoteaser erstattet af selvstændig artikel om tankemønstre.",
+    "redirect": "/madro-biblioteket/tanker-og-spisning"
+  },
+  {
+    "slug": "blog/50321-ved-du-hvad-din-vaegt-er-et-symptom-paa",
+    "change": "Påstand om tanker som årsagen til overvægt erstattet af nuanceret forklaring.",
+    "redirect": "/madro-biblioteket/tanker-og-spisning"
+  },
+  {
+    "slug": "blog/56446-jeg-har-tabt-mig-15-kg-paa-6-mdr",
+    "change": "Vægttabsudtalelse og resultatløfte erstattet af information om realistiske behandlingsmål.",
+    "redirect": "/madro-biblioteket/madro-og-vaegt"
   }
 ]
