@@ -10,12 +10,20 @@
 - Produktionsgren: `main`.
 - Build command: `npm run build`.
 - Output directory: `dist`.
-- Node: `22` (mindst 22.12).
+- Node: `22` (mindst 22.12), valgt via den committed `.nvmrc`. Hvis Cloudflare har en manuel `NODE_VERSION`-variabel, skal den være `22`, ikke `20`.
+- Root directory: repository-roden (lad feltet være tomt).
+- Framework preset: `Astro` eller `None` med ovenstående build/output. Vælg et **Pages**-projekt, ikke en Worker.
 - Ingen hemmelige miljøvariabler er påkrævet.
 - Valgfri `PUBLIC_CONSULTATION_BOOKING_URL`: verificeret ekstern HTTPS-side til 50 minutters forsamtale til 645 kr. Uden den bruges en tydelig e-mailforespørgsel.
 - Valgfri `PUBLIC_GUIDE_SIGNUP_URL`: en verificeret ekstern HTTPS-side til guide/nyhedsbrev. Må ikke pege på sitets egen `/sulteneller`.
 
 Behold det gamle site, mens det nye afprøves på Pages-adressen. En egentlig preview-distribution bør sætte `X-Robots-Tag: noindex` på `*.pages.dev` via hostingkonfiguration; produktionssiderne skal være indekserbare. Canonical peger allerede på det endelige domæne. Bekræft www/apex-redirect én gang på Cloudflare; undgå kæder.
+
+## Hvis GitHub viser “Deploy Astro site to Pages” som fejlet
+
+Det workflow udgiver på GitHub Pages og er separat fra Cloudflare Pages. Den konstaterede fejl i run `35459429821` var `Node.js v20.20.2 is not supported by Astro`, fordi skabelonen valgte Node 20. Workflowet bruger nu `.nvmrc` (Node 22) og hele `npm run build`. Det kører kun manuelt; den planlagte automatiske udgivelse sker gennem Cloudflares Git-integration. GitHubs `Verify static website` fortsætter ved hvert push.
+
+I Cloudflare: Åbn **Workers & Pages**, opret et **Pages**-projekt, og forbind `dittema1235/Successful-Eating.dk`. Brug `main`, `npm run build` og `dist`. Test Pages-adressen før domæneskift. En fejl i Cloudflare skal læses i det pågældende projekts buildlog; GitHub Pages-loggen beskriver en anden udgivelsesvej. Node-advarsler om selve GitHub Actions og meddelelsen om Ubuntu-image er ikke den konstaterede buildfejl.
 
 ## Konkrete punkter før domæneskift
 
