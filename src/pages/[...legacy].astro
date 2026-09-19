@@ -62,7 +62,9 @@ const schema = {
               {post.published
                 ? `Oprindeligt udgivet ${new Date(post.published).toLocaleDateString('da-DK', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Europe/Copenhagen' })}`
                 : 'Fra artikelarkivet'}
-              {post.editorialUpdated ? ' · Redaktionelt tilpasset 19. september 2026' : ''}
+              {post.editorialUpdated
+                ? ` · Redaktionelt tilpasset ${new Date(post.editorialUpdated).toLocaleDateString('da-DK', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Europe/Copenhagen' })}`
+                : ''}
             </span>
           </div>
         </div>
@@ -74,7 +76,7 @@ const schema = {
           <div class="callout" style="margin-top:0">
             <p>
               {revisedLibrary
-                ? 'En redaktionelt tilpasset introduktion fra Madro-biblioteket.'
+                ? 'Redaktionelt opdateret med kilder og forslag til videre hjælp. Generel information erstatter ikke en individuel vurdering.'
                 : 'Fra Dittes artikelarkiv. Artiklen afspejler tidspunktet, den blev skrevet på. Ældre tilbud og beskrivelser er ikke nødvendigvis aktuelle.'}{' '}
               Find opdaterede introduktioner i{' '}
               <a href="/madro-biblioteket" style="text-decoration:underline">

@@ -5,7 +5,7 @@ export const topics = [
     description: 'Forstå sult, vaner og de situationer, hvor spisningen bliver svær.',
     intro:
       'Overspisning kan have flere forklaringer. For nogle spiller restriktioner og lange pauser mellem måltider ind; for andre har følelser, vaner eller belastninger betydning. Ved tilbagevendende kontroltab er en faglig vurdering relevant.',
-    guide: '/madro-biblioteket/overspisning-om-aftenen',
+    guide: '/blog/101752-saadan-stopper-du-med-at-overspise-om',
     service: '/forloebet',
   },
   {
@@ -23,7 +23,7 @@ export const topics = [
     description: 'Nuanceret viden om trang, restriktioner og oplevelsen af kontroltab.',
     intro:
       'En stærk trang til sødt kan føles som afhængighed, men oplevelsen alene afgør ikke, hvad der ligger bag. Sult, restriktioner, vaner og følelsesmæssig belastning kan være relevante at undersøge. Dyrestudier om belønningssystemet kan ikke i sig selv dokumentere sukkerafhængighed hos mennesker.',
-    guide: '/madro-biblioteket/tanker-og-spisning',
+    guide: '/blog/59762-sukkerafhaengighed-eller-afhaengighed-af-mad',
     service: '/forloebet',
   },
   {
@@ -41,7 +41,7 @@ export const topics = [
     description: 'Mere forståelse for selvkritik, skam og dit forhold til kroppen.',
     intro:
       'Tanker og følelser om kroppen kan påvirke både spisning, relationer og de ting, du har lyst til at gøre. Kropsaccept handler her om at arbejde med belastningen og finde mere handlefrihed. Du behøver ikke føle dig positiv over for din krop hele tiden.',
-    guide: '/kropsglaede',
+    guide: '/blog/50565-hvordan-vil-det-vaere-at-hade-din-krop',
     service: '/kropsglaede',
   },
   {

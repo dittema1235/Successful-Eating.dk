@@ -127,3 +127,15 @@ Disse afhængigheder stopper ikke arbejdet med resten af indholdet. Der angives 
 Grundlag: de to brugerleverede rapporter, `SEO-GEO-successfuleating.pdf` og `successfuleating-SEO-GEO-samlet-rapport.pdf`, især afsnittene om migrering, URL-prioritering, emneklynger og måling; ejerens efterfølgende præciseringer; det faktiske repository og screeningslisten fra 19. september 2026.
 
 Se også [den oprindelige websiteplan](WEBSITE-PLAN.md), [udført redaktionel oprydning](REDAKTION.md), [lancering](LANCERING.md) og [verifikation](VERIFIKATION.md). Rapportens skøn over cirka 150 gamle artikler erstattes af den faktiske inventarliste på 565 oprindelige URL'er. Private rapporter og rå Search Console-data publiceres ikke i repository.
+
+## Udført: første redaktionelle indholdsrunde, 19. september 2026
+
+- De 10 prioriterede artikler er omskrevet på eksisterende URL'er med forskellige søgeformål, direkte svar, konkrete forslag, kilder og videre hjælp. Publiceringsdatoerne er bevaret; opdateringer har redaktionel afsender og separat ændringsdato. Dette er ikke Dittes kliniske godkendelse.
+- Fem yderligere indlæg er samlet: 116291 → hovedartikel om skyld; 116119 og 92036 → trøstespisningsguiden; 89451 og 89212 → madro og vægt. Brugbare pointer er indarbejdet; udløbne tilbud og generalisering af kunders vægttab er fjernet fra disse tekster.
+- Den nye aftenintroduktion er samlet i den eksisterende 101752-artikel med en direkte 301. Emneside og llms.txt henviser direkte til originaladressen.
+- I alt er nu 15 oprindelige blogindlæg erstattet med relevante 301'er, og 550 originale blogadresser har fortsat en artikel. Beslutninger findes i `editorial-decisions.json`; publiceringsrettelser vedligeholdes i `src/data/editorial-overrides.json`. Originalimporten er bevaret.
+- Sukkerartiklerne henviser til Westwater et al. (2016), DOI 10.1007/s00394-016-1229-6, med tydelig afgrænsning af dyreforsøg og menneskelig evidens. Abstract verificeret via Europe PMC. Kliniske behandlingsafsnit bygger på NICE NG69. Ingen systematisk litteraturgennemgang påstås.
+
+Restarbejde: De øvrige kampagne- og faglige signalkandidater samt det resterende arkiv skal stadig gennemgås manuelt i de planlagte portioner. Den oprindelige screeningsfil ovenfor er en baseline og skal ikke læses som en liste over færdigbehandlede URL'er. En fuld faglig godkendelse, produktionskontrol og måling kræver fortsat Ditte og de relevante adgange. Korte artikler er ikke automatisk kandidater til sletning.
+
+Validering af den isolerede Git-version: build og Astro check bestået; 7 indholds-/migrationstests og 22 browsertests bestået på desktop/mobil, inklusive uden JavaScript. Sitekontrol: 605 HTML-sider, 604 sitemap-URL'er, 54 redirectregler og ingen fundne fejl. Viderestillinger er afprøvet i den lokale statiske server; faktisk produktionshosting er ikke verificeret i denne runde.

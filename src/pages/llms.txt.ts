@@ -17,7 +17,7 @@ export function GET() {
 ## Viden
 - [Madro-biblioteket](https://www.successfuleating.dk/madro-biblioteket)
 - [Hvad er madro?](https://www.successfuleating.dk/madro-biblioteket/hvad-er-madro)
-- [Overspisning om aftenen](https://www.successfuleating.dk/madro-biblioteket/overspisning-om-aftenen)
+- [Overspisning om aftenen](https://www.successfuleating.dk/blog/101752-saadan-stopper-du-med-at-overspise-om)
 - [ADHD og overspisning](https://www.successfuleating.dk/madro-biblioteket/adhd-og-overspisning)
 ${consolidated.map((a) => `- [${a.title}](${site.url}/madro-biblioteket/${a.slug})`).join('\n')}
 - [Artikelarkiv](https://www.successfuleating.dk/blog): Historiske artikler med oprindelige datoer. Ældre tilbud er ikke nødvendigvis aktuelle.

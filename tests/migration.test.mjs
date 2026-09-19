@@ -68,7 +68,10 @@ test('flagged legacy claims and weight-focused acquisition links are removed', (
 test('retired articles disappear from listings/search and have exact, one-hop replacement rules', async () => {
   const index = JSON.parse(await readFile('public/search-index.json', 'utf8'));
   const rules = (await readFile('public/_redirects', 'utf8')).split('\n').map((l) => l.trim());
-  const targets = new Set(consolidated.map((p) => '/madro-biblioteket/' + p.slug));
+  const targets = new Set([
+    ...consolidated.map((p) => '/madro-biblioteket/' + p.slug),
+    ...posts.map((p) => '/' + p.slug),
+  ]);
   assert.equal(new Set(migrations.map((m) => m.source)).size, migrations.length);
   for (const { source, target } of migrations) {
     assert.ok(targets.has(target), `Missing replacement: ${target}`);

@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-19",
+  "scope": "Første redaktionelle indholdsrunde; ikke faglig godkendelse eller fuld arkivgennemgang.",
+  "decisions": [
+    {
+      "source": "/blog/101752-saadan-stopper-du-med-at-overspise-om",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/59618-hjaelp-til-overspisning",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/59762-sukkerafhaengighed-eller-afhaengighed-af-mad",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50527-hvad-sker-der-i-hjernen-naar-du-spiser",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50375-aedeflip-madorgier-og-overspisninger-er",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50318-er-du-bange-for-at-foele-sult",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50601-det-alkoholikere-og-sukkerafhaengige-har",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/56441-men-kan-jeg-saa-aldrig-gaa-all-in-paa",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50507-hvis-skyld-er-det",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/50565-hvordan-vil-det-vaere-at-hade-din-krop",
+      "action": "rewrite-keep-url",
+      "reason": "Prioriteret selvstændig søgeintention. Direkte svar, praktiske afgrænsede forslag, kilder og videre hjælp; historiske bastante udsagn og tilbud erstattet.",
+      "clinicalReview": "Afventer Ditte"
+    },
+    {
+      "source": "/blog/116291-er-skam-den-manglende-brik-i-dit",
+      "target": "/blog/50507-hvis-skyld-er-det",
+      "reason": "Samlet med hovedartikel om skyld og skam. Skellet mellem hændelse og selvfordømmelse bevaret; udokumenterede hormonforklaringer og nytårsrabat fjernet.",
+      "action": "merge-301"
+    },
+    {
+      "source": "/blog/116119-det-der-foeles-som-svaghed-er-ofte-noget",
+      "target": "/madro-biblioteket/troestespisning",
+      "reason": "Samlet om følelsesmæssig spisning. Gradvis opbygning af andre støttemuligheder bevaret; gammel pris, bonus og kategoriske forklaringer fjernet.",
+      "action": "merge-301"
+    },
+    {
+      "source": "/blog/92036-leder-du-efter-tilfredsstillelse-alle-de",
+      "target": "/madro-biblioteket/troestespisning",
+      "reason": "Samlet om behov og trøstespisning. Øvelse med situation, behov og støtte bevaret; udløbet rabat og automatisk vægtforklaring fjernet.",
+      "action": "merge-301"
+    },
+    {
+      "source": "/blog/89451-lise-knaekkede-vaegtkoden",
+      "target": "/madro-biblioteket/madro-og-vaegt",
+      "reason": "Resultathistorie erstattet af relevant vægtguide med afgrænsning af individuelle erfaringer. Kilo-/tidspåstand og ubegrænset tilfredshedsgaranti genpubliceres ikke.",
+      "action": "merge-301"
+    },
+    {
+      "source": "/blog/89212-hvordan-kristina-fik-success-med-sit",
+      "target": "/madro-biblioteket/madro-og-vaegt",
+      "reason": "Kort resultatkampagne samlet med vægtguide. Følelsesmæssig spisning omtales uden at generalisere en kundes vægttab.",
+      "action": "merge-301"
+    }
+  ]
+}

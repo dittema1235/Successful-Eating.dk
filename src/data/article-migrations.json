@@ -48,5 +48,30 @@
     "source": "/blog/56446-jeg-har-tabt-mig-15-kg-paa-6-mdr",
     "target": "/madro-biblioteket/madro-og-vaegt",
     "reason": "Vægttabsudtalelse og resultatløfte erstattet af information om realistiske behandlingsmål."
+  },
+  {
+    "source": "/blog/116291-er-skam-den-manglende-brik-i-dit",
+    "target": "/blog/50507-hvis-skyld-er-det",
+    "reason": "Samlet med hovedartikel om skyld og skam. Skellet mellem hændelse og selvfordømmelse bevaret; udokumenterede hormonforklaringer og nytårsrabat fjernet."
+  },
+  {
+    "source": "/blog/116119-det-der-foeles-som-svaghed-er-ofte-noget",
+    "target": "/madro-biblioteket/troestespisning",
+    "reason": "Samlet om følelsesmæssig spisning. Gradvis opbygning af andre støttemuligheder bevaret; gammel pris, bonus og kategoriske forklaringer fjernet."
+  },
+  {
+    "source": "/blog/92036-leder-du-efter-tilfredsstillelse-alle-de",
+    "target": "/madro-biblioteket/troestespisning",
+    "reason": "Samlet om behov og trøstespisning. Øvelse med situation, behov og støtte bevaret; udløbet rabat og automatisk vægtforklaring fjernet."
+  },
+  {
+    "source": "/blog/89451-lise-knaekkede-vaegtkoden",
+    "target": "/madro-biblioteket/madro-og-vaegt",
+    "reason": "Resultathistorie erstattet af relevant vægtguide med afgrænsning af individuelle erfaringer. Kilo-/tidspåstand og ubegrænset tilfredshedsgaranti genpubliceres ikke."
+  },
+  {
+    "source": "/blog/89212-hvordan-kristina-fik-success-med-sit",
+    "target": "/madro-biblioteket/madro-og-vaegt",
+    "reason": "Kort resultatkampagne samlet med vægtguide. Følelsesmæssig spisning omtales uden at generalisere en kundes vægttab."
   }
 ]

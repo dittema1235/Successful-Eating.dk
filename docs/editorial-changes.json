@@ -1,7 +1,47 @@
 [
   {
+    "slug": "blog/101752-saadan-stopper-du-med-at-overspise-om",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/59762-sukkerafhaengighed-eller-afhaengighed-af-mad",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/59618-hjaelp-til-overspisning",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/56441-men-kan-jeg-saa-aldrig-gaa-all-in-paa",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/50601-det-alkoholikere-og-sukkerafhaengige-har",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/50565-hvordan-vil-det-vaere-at-hade-din-krop",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/50527-hvad-sker-der-i-hjernen-naar-du-spiser",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/50507-hvis-skyld-er-det",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
     "slug": "blog/50419-slaa-benene-op-jeg-mener-det",
     "change": "Louise-citat fjernet; udokumenterede fysiologiske råd omskrevet."
+  },
+  {
+    "slug": "blog/50375-aedeflip-madorgier-og-overspisninger-er",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
+  },
+  {
+    "slug": "blog/50318-er-du-bange-for-at-foele-sult",
+    "change": "Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer."
   },
   {
     "slug": "blog/50257-saadan-oedelaegger-nye-kropsidealer-din",
@@ -55,6 +95,31 @@
   {
     "slug": "blog/56446-jeg-har-tabt-mig-15-kg-paa-6-mdr",
     "change": "Vægttabsudtalelse og resultatløfte erstattet af information om realistiske behandlingsmål.",
+    "redirect": "/madro-biblioteket/madro-og-vaegt"
+  },
+  {
+    "slug": "blog/116291-er-skam-den-manglende-brik-i-dit",
+    "change": "Samlet med hovedartikel om skyld og skam. Skellet mellem hændelse og selvfordømmelse bevaret; udokumenterede hormonforklaringer og nytårsrabat fjernet.",
+    "redirect": "/blog/50507-hvis-skyld-er-det"
+  },
+  {
+    "slug": "blog/116119-det-der-foeles-som-svaghed-er-ofte-noget",
+    "change": "Samlet om følelsesmæssig spisning. Gradvis opbygning af andre støttemuligheder bevaret; gammel pris, bonus og kategoriske forklaringer fjernet.",
+    "redirect": "/madro-biblioteket/troestespisning"
+  },
+  {
+    "slug": "blog/92036-leder-du-efter-tilfredsstillelse-alle-de",
+    "change": "Samlet om behov og trøstespisning. Øvelse med situation, behov og støtte bevaret; udløbet rabat og automatisk vægtforklaring fjernet.",
+    "redirect": "/madro-biblioteket/troestespisning"
+  },
+  {
+    "slug": "blog/89451-lise-knaekkede-vaegtkoden",
+    "change": "Resultathistorie erstattet af relevant vægtguide med afgrænsning af individuelle erfaringer. Kilo-/tidspåstand og ubegrænset tilfredshedsgaranti genpubliceres ikke.",
+    "redirect": "/madro-biblioteket/madro-og-vaegt"
+  },
+  {
+    "slug": "blog/89212-hvordan-kristina-fik-success-med-sit",
+    "change": "Kort resultatkampagne samlet med vægtguide. Følelsesmæssig spisning omtales uden at generalisere en kundes vægttab.",
     "redirect": "/madro-biblioteket/madro-og-vaegt"
   }
 ]

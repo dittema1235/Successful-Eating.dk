@@ -58,50 +58,6 @@ export const articles: Article[] = [
     serviceLabel: 'Psykologisk behandling af overspisning',
   },
   {
-    slug: 'overspisning-om-aftenen',
-    title: 'Hvorfor overspiser jeg om aftenen?',
-    category: 'Forstå dine mønstre',
-    description:
-      'Sult, træthed og følelser kan spille sammen. Forstå mønstret med mere nysgerrighed og mindre skyld.',
-    word: 'en pause.',
-    tone: 'sand',
-    readTime: '5 min.',
-    sections: [
-      {
-        heading: 'Det korte svar',
-        text: 'Overspisning om aftenen kan hænge sammen med blandt andet utilstrækkelig mad tidligere på dagen, træthed, stress og indlærte vaner. Tilbagevendende episoder med kontroltab og betydelig belastning bør vurderes fagligt. Behandlingen afhænger af, hvad der vedligeholder mønstret hos den enkelte.',
-      },
-      {
-        heading: 'Har der været plads til mad i løbet af dagen?',
-        text: 'Hvis du springer måltider over eller spiser for lidt, kan du være meget sulten om aftenen. I behandling af overspisning indgår ofte arbejde med regelmæssige måltider og mellemmåltider. Det konkrete behov skal passe til dig; der findes ikke en universel kostplan, som løser alle spisemønstre.',
-      },
-      {
-        heading: 'Hvad sker der, når dagen slutter?',
-        text: 'For nogle bliver aftenen det første tidspunkt, hvor de mærker træthed eller svære følelser. Mad kan blive en velkendt måde at håndtere situationen på. Det er en mulig sammenhæng, ikke en forklaring på alle overspisninger. Spørg nysgerrigt: Hvad skete der inden, og hvad havde jeg brug for?',
-      },
-      {
-        heading: 'Tre små ting at lægge mærke til',
-        text: 'Se på rytmen i dagens måltider. Læg mærke til situationer, hvor trangen ofte opstår. Overvej, om du mangler noget praktisk: tilgængelig mad, en pause eller støtte fra andre. Brug observationerne til at forstå dine behov frem for at opstille flere forbud.',
-      },
-      {
-        heading: 'Efter en svær aften',
-        text: 'Forsøg at undgå at kompensere med faste eller nye stramme regler dagen efter. Det kan vedligeholde en cirkel af sult og overspisning. Vend så vidt muligt tilbage til regelmæssig spisning. Ved gentagne episoder eller ubehag er det relevant at tale med egen læge eller en psykolog med viden om spiseforstyrrelser.',
-      },
-      {
-        heading: 'Overspisning eller BED?',
-        text: 'At spise mere end planlagt er ikke i sig selv en diagnose. Binge eating disorder (BED) indebærer tilbagevendende overspisning med kontroltab og betydelig belastning. En diagnose kræver en faglig vurdering, hvor også andre symptomer og dit helbred indgår.',
-      },
-    ],
-    sources: [
-      {
-        label: 'NICE NG69: Behandling af binge eating disorder',
-        url: 'https://www.nice.org.uk/guidance/ng69/chapter/Recommendations#treating-binge-eating-disorder',
-      },
-    ],
-    service: '/forloebet',
-    serviceLabel: 'Læs om hjælp til overspisning',
-  },
-  {
     slug: 'adhd-og-overspisning',
     title: 'ADHD og overspisning: når hverdagen spiller med',
     category: 'ADHD & spisning',

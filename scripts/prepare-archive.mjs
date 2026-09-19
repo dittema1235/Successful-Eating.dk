@@ -3,8 +3,18 @@ import { load } from 'cheerio';
 const posts = JSON.parse(await readFile('src/data/legacy-posts.json', 'utf8'));
 const migrations = JSON.parse(await readFile('src/data/article-migrations.json', 'utf8'));
 const consolidated = JSON.parse(await readFile('src/data/consolidated-articles.json', 'utf8'));
+const overrides = JSON.parse(await readFile('src/data/editorial-overrides.json', 'utf8'));
+const overrideMap = new Map(overrides.map((p) => [p.slug, p]));
+if (
+  overrideMap.size !== overrides.length ||
+  overrides.some((p) => !posts.some((o) => o.slug === p.slug))
+)
+  throw Error('Invalid editorial override');
 const redirects = new Map(migrations.map(({ source, target }) => [source, target]));
-const targets = new Set(consolidated.map(({ slug }) => `/madro-biblioteket/${slug}`));
+const targets = new Set([
+  ...consolidated.map(({ slug }) => `/madro-biblioteket/${slug}`),
+  ...posts.filter((p) => !redirects.has('/' + p.slug)).map((p) => '/' + p.slug),
+]);
 if (redirects.size !== migrations.length) throw Error('Duplicate article migration source');
 for (const { source, target } of migrations) {
   if (!posts.some((p) => '/' + p.slug === source) || !targets.has(target))
@@ -98,6 +108,14 @@ for (const post of posts) {
       /<a[^>]*href="[^"]*93eba51f9293bb403a4cb568f4b691a0[^"]*"[^>]*>([\s\S]*?)<\/a>/g,
       '$1',
     );
+  if (overrideMap.has(post.slug)) {
+    Object.assign(post, overrideMap.get(post.slug));
+    edits.push({
+      slug: post.slug,
+      change:
+        'Redaktionelt omskrevet med direkte svar, kilder og afgrænsning. URL bevaret; faglig godkendelse afventer.',
+    });
+  }
   if (post.description.length > 160)
     post.description = post.description.slice(0, 157).replace(/\s+\S*$/, '') + '…';
 }
