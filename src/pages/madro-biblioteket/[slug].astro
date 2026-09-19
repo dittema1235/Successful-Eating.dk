@@ -66,6 +66,7 @@ const schema = {
             </section>
           ))}
           <h2>Kilder og videre læsning</h2>
+          {article.sourceNote && <p class="sources">{article.sourceNote}</p>}
           <ul class="sources">
             {article.sources.map((source) => (
               <li>

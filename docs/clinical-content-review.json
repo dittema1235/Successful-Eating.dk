@@ -1,0 +1,217 @@
+{
+  "date": "2026-09-19",
+  "reviewer": "AI-assisteret redaktionel gennemgang (Codex)",
+  "scope": "10 omskrevne blogartikler og 5 sammenlagte guides. Ikke det øvrige arkiv, alle servicesider eller de to øvrige biblioteksintroduktioner.",
+  "method": "Kontrol af centrale faglige udsagn mod angivne kilder, afgrænsning af praktiske forslag, årsagspåstande, diagnoser og behandlingsløfter. Rettelser indarbejdet. Ingen systematisk litteraturgennemgang.",
+  "personalApprovalByDitte": false,
+  "remaining": "Dittes personlige tilslutning til teksten og vurdering af eget tilbud kan ikke bekræftes af Codex. Klinisk effekt af Successful Eating er ikke verificeret.",
+  "sources": [
+    {
+      "id": "nice-bed",
+      "url": "https://www.nice.org.uk/guidance/ng69/chapter/Recommendations#treating-binge-eating-disorder",
+      "type": "Britisk klinisk retningslinje",
+      "read": "Afsnit 1.4.1–1.4.9 læst på kildesiden",
+      "supports": "Guidet selvhjælp, CBT-ED, regelmæssig spisning, udløsere og kropsbillede; vægttab er ikke terapimål i sig selv. Dokumenterer ikke Successful Eatings effekt."
+    },
+    {
+      "id": "nice-assessment",
+      "url": "https://www.nice.org.uk/guidance/ng69/chapter/Recommendations",
+      "type": "Britisk klinisk retningslinje",
+      "read": "Afsnit 1.2.6 og 1.10.3–1.10.8 kontrolleret",
+      "supports": "Symptomer ved vurdering, kompensation og behov for akut medicinsk hjælp ved alvorlig fysisk påvirkning."
+    },
+    {
+      "id": "niddk-bed",
+      "url": "https://www.niddk.nih.gov/health-information/weight-management/binge-eating-disorder/definition-facts",
+      "type": "Officiel patientinformation",
+      "read": "Hele sidens tekst læst; kildens reviewdato maj 2021",
+      "supports": "Kontroltab, hyppighed/varighed, belastning, forskel fra bulimi; ikke en selvtest."
+    },
+    {
+      "id": "niddk-weight",
+      "url": "https://www.niddk.nih.gov/health-information/weight-management/adult-overweight-obesity/factors-affecting-weight-health",
+      "type": "Officiel patientinformation",
+      "read": "Hele sidens tekst læst; kildens reviewdato maj 2023",
+      "supports": "Vægt påvirkes af blandt andet vaner, omgivelser, søvn, medicin, helbred og gener."
+    },
+    {
+      "id": "westwater-2016",
+      "url": "https://doi.org/10.1007/s00394-016-1229-6",
+      "type": "Forskningsoversigt",
+      "read": "Abstract verificeret via Europe PMC",
+      "supports": "Forfatternes konklusion om begrænset evidens for sukkerafhængighed hos mennesker og betydningen af periodisk adgang i dyreforsøg; ikke alene dækkende for nyere forskning."
+    },
+    {
+      "id": "gearhardt-2023",
+      "url": "https://doi.org/10.1136/bmj-2023-075354",
+      "type": "Faglig analyse; ikke klinisk retningslinje",
+      "read": "Fuld hovedtekst via Europe PMC PMC10561019 og rettelse PMC10644904 læst",
+      "supports": "Argumenter for afhængighedslignende indtag af nogle UPF; åbne mekanisme- og behandlingsspørgsmål. Rettelsen vedrører en referencehenvisning."
+    },
+    {
+      "id": "berridge-2009",
+      "url": "https://doi.org/10.1016/j.coph.2008.12.014",
+      "type": "Neurovidenskabelig oversigt",
+      "read": "Abstract via Europe PMC; fuldtekst-endpoint fejlede. Kun abstraktets skelnen anvendt.",
+      "supports": "Skelnen mellem liking, wanting og læring; ikke grundlag for at sidestille mad og rusmidler."
+    }
+  ],
+  "articles": [
+    {
+      "url": "/blog/101752-saadan-stopper-du-med-at-overspise-om",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Regelmæssig spisning og flere mulige udløsere afgrænset til individuel vurdering. Afteneksempler er forslag, ikke universelle årsagsforklaringer.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "7897140397d36016b9e1620d114afc9a19764d4d2efa6529bcf8e23a95595201"
+    },
+    {
+      "url": "/blog/59618-hjaelp-til-overspisning",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Præciseret rækkefølge og format for NICE-behandling. Britisk guideline adskilt fra danske tilbud og fra det private produkt. Tilføjet tydelig vej ved fysisk påvirkning. Priser bygger på ejeren, ikke kliniske kilder.",
+      "sourceIds": [
+        "nice-bed",
+        "nice-assessment"
+      ],
+      "contentSha256": "55b7ca7e548cb596101fba4fc995e04dc0d0df36573e6011428efb45963cf1a7"
+    },
+    {
+      "url": "/blog/59762-sukkerafhaengighed-eller-afhaengighed-af-mad",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "2016-oversigt suppleret med nyere argumentation om UPF. Sukker alene, madafhængighed og BED adskilt; ingen selvdiagnose eller universelt afholdenhedskrav.",
+      "sourceIds": [
+        "westwater-2016",
+        "gearhardt-2023",
+        "niddk-bed",
+        "nice-bed"
+      ],
+      "contentSha256": "2c8787937b1b660631d4e7ad4fd9d4c147a1d83de744962bd62ac8fc2363d11a"
+    },
+    {
+      "url": "/blog/50527-hvad-sker-der-i-hjernen-naar-du-spiser",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Belønningsbegreber kildeunderbygget. Nyere UPF-perspektiv tilføjet uden at ligestille mad med heroin eller hævde en simpel dopaminårsag.",
+      "sourceIds": [
+        "westwater-2016",
+        "gearhardt-2023",
+        "berridge-2009"
+      ],
+      "contentSha256": "cffb54efd02e1456d63a40f4e26e291f52074ae378ac4cc88da14dfa65aa48a2"
+    },
+    {
+      "url": "/blog/50375-aedeflip-madorgier-og-overspisninger-er",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Definition suppleret med hyppighed/varighed og præcis kilde. Tærsklen fremstilles ikke som nødvendig for at søge hjælp; kompensation skal oplyses.",
+      "sourceIds": [
+        "niddk-bed",
+        "nice-bed"
+      ],
+      "contentSha256": "1b26cad189717a927b2b8578a933066091e6df2e959c4d33bcc7c0caa400436c"
+    },
+    {
+      "url": "/blog/50318-er-du-bange-for-at-foele-sult",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Ingen anbefaling om at udholde sult. Praktisk forudsigelighed og individualiseret struktur; diabetes og fysiske symptomer kræver lægelig vurdering.",
+      "sourceIds": [
+        "nice-bed",
+        "nice-assessment"
+      ],
+      "contentSha256": "650275847d5bbb37af41c3082527ed05afebe8d78a929a029f9c7edc4e65443f"
+    },
+    {
+      "url": "/blog/50601-det-alkoholikere-og-sukkerafhaengige-har",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Nyere afhængighedsperspektiv indarbejdet. Social lighed er ikke diagnostisk lighed; ingen råd om selvbehandling af alkoholproblemer.",
+      "sourceIds": [
+        "westwater-2016",
+        "gearhardt-2023",
+        "nice-bed"
+      ],
+      "contentSha256": "c73c1e528d0a501558e57b5cf6d280105d6d7a285b8d551ba4b0904239c4995a"
+    },
+    {
+      "url": "/blog/56441-men-kan-jeg-saa-aldrig-gaa-all-in-paa",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Fleksible hverdagsforslag uden vægtløfte. Tilføjet forrang for medicinsk kost-/behandlingsplan.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "e4c4f475c958ecb2c79f990fe7021ca5885dda1273501f6257242748fcc23fcd"
+    },
+    {
+      "url": "/blog/50507-hvis-skyld-er-det",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Skyld og skam beskrives uden biologisk kausalløfte. Omformuleringer er eksempler, ikke valideret selvstændig terapi.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "3412238452dca7ed94c50002d597db6790bba40f09551fa3e069756b30cb18a8"
+    },
+    {
+      "url": "/blog/50565-hvordan-vil-det-vaere-at-hade-din-krop",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Kropsbillede kan være behandlingsfokus ved BED. Generelle selvomsorgsforslag adskilt fra klinisk effektpåstand.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "ae3d7970be9a2bfdf8575781f76017aba80434e829a956a5324ea2577d8fd70f"
+    },
+    {
+      "url": "/madro-biblioteket/troestespisning",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Følelsesmæssig spisning ikke ligestillet med diagnose; sult og følelser kan sameksistere. Øvelser og støttevalg tydeligt afgrænset.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "25caf175198cb624b16f372ce26056b9c3a1c20f329dbedc6b43666c80acf758"
+    },
+    {
+      "url": "/madro-biblioteket/sult-maethed-og-portionsstoerrelser",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Måltidsstruktur prioriteres ved uklare signaler. Fjernet generelt børneråd fra voksenguide; aftalt støtte til behandling har forrang.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "172a3ec42124a8dfe329ddb0482bf468a186b7928a0183266f570d2c6dc5b492"
+    },
+    {
+      "url": "/madro-biblioteket/julefrokost-uden-madstress",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Ingen arbitrære portionsregler eller faste. Buffetforslag er ikke fremstillet som afprøvet behandling.",
+      "sourceIds": [
+        "nice-bed"
+      ],
+      "contentSha256": "41ac4553f1e0c9b23f17c77f8d4ff4914156e2ad3cf47b95b110a396696d3515"
+    },
+    {
+      "url": "/madro-biblioteket/tanker-og-spisning",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Tanker fremstilles som én mulig faktor, ikke eneste årsag til vægt eller overspisning. Registrering er frivillig refleksion uden effektgaranti.",
+      "sourceIds": [
+        "nice-bed",
+        "niddk-weight"
+      ],
+      "contentSha256": "403b81013904158bb2112bf5fa5adb484851bb786d3bb11395c137c310ba704d"
+    },
+    {
+      "url": "/madro-biblioteket/madro-og-vaegt",
+      "status": "Kildebaseret redaktionel kvalitetssikring udført",
+      "assessment": "Vægtmål, behandling og testimonials afgrænset. Gentagelse samlet; ingen garanti eller ekstrapolation af kunders kiloresultater.",
+      "sourceIds": [
+        "nice-bed",
+        "niddk-weight"
+      ],
+      "contentSha256": "881faf7ab25752ac043199cf3f56ed9bb92eaa0ac1f83cb3e1fe0e5cfe062a19"
+    }
+  ],
+  "validation": {
+    "build": "Astro check og statisk build bestået",
+    "contentTests": 7,
+    "browserTests": 26,
+    "pagesChecked": 605,
+    "siteFailures": 0,
+    "reviewIntegrity": "Alle 15 indholdshashes matcher; kildereferencer, NICE-ankre og publicerede lokale sider kontrolleret.",
+    "production": "Produktionsdomænet ikke verificeret i denne runde."
+  }
+}

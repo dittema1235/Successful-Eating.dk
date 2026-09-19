@@ -55,7 +55,8 @@
       "tanker-og-spisning"
     ],
     "service": "/forloebet",
-    "serviceLabel": "Læs om psykologisk behandling"
+    "serviceLabel": "Læs om psykologisk behandling",
+    "sourceNote": "NICE-kilden handler om behandling af diagnosticeret BED og er en britisk retningslinje. Hverdagsforslagene her er refleksioner for voksne, ikke hver især dokumenterede behandlingsmetoder. Følger du en kost- eller behandlingsplan, har dine individuelle aftaler forrang."
   },
   {
     "slug": "sult-maethed-og-portionsstoerrelser",
@@ -91,7 +92,7 @@
       },
       {
         "heading": "Spisning sammen med andre",
-        "text": "Du må gerne sige “jeg tager måske mere senere” eller “jeg har lyst til lidt mere”, uden at forsvare det. Kommentarer om store og små portioner kan gøre et almindeligt måltid unødigt svært. Overvej at bede dine nærmeste om at lade din tallerken være dit ansvar. Når der er børn ved bordet, kan du samtidig undgå at gøre portionsstørrelse til en præstation eller knytte den til kroppens udseende."
+        "text": "Du må gerne sige “jeg tager måske mere senere” eller “jeg har lyst til lidt mere”, uden at forsvare det. Kommentarer om store og små portioner kan gøre et almindeligt måltid unødigt svært. Overvej at bede dine nærmeste om at undgå kommentarer om din tallerken. Hvis nogen hjælper dig med at følge en behandlingsplan, så aftal med behandleren, hvordan støtten ved måltiderne skal foregå."
       },
       {
         "heading": "Søg støtte, hvis måltiderne bliver en kamp",
@@ -109,7 +110,8 @@
       "troestespisning"
     ],
     "service": "/forloebet",
-    "serviceLabel": "Læs om psykologisk behandling"
+    "serviceLabel": "Læs om psykologisk behandling",
+    "sourceNote": "NICE-kilden handler om behandling af diagnosticeret BED og er en britisk retningslinje. Hverdagsforslagene her er refleksioner for voksne, ikke hver især dokumenterede behandlingsmetoder. Følger du en kost- eller behandlingsplan, har dine individuelle aftaler forrang."
   },
   {
     "slug": "julefrokost-uden-madstress",
@@ -163,7 +165,8 @@
       "troestespisning"
     ],
     "service": "/forloebet",
-    "serviceLabel": "Læs om psykologisk behandling"
+    "serviceLabel": "Læs om psykologisk behandling",
+    "sourceNote": "NICE-kilden handler om behandling af diagnosticeret BED og er en britisk retningslinje. Hverdagsforslagene her er refleksioner for voksne, ikke hver især dokumenterede behandlingsmetoder. Følger du en kost- eller behandlingsplan, har dine individuelle aftaler forrang."
   },
   {
     "slug": "tanker-og-spisning",
@@ -221,7 +224,8 @@
       "madro-og-vaegt"
     ],
     "service": "/forloebet",
-    "serviceLabel": "Læs om psykologisk behandling"
+    "serviceLabel": "Læs om psykologisk behandling",
+    "sourceNote": "NICE-kilden handler om behandling af diagnosticeret BED og er en britisk retningslinje. Hverdagsforslagene her er refleksioner for voksne, ikke hver især dokumenterede behandlingsmetoder. Følger du en kost- eller behandlingsplan, har dine individuelle aftaler forrang."
   },
   {
     "slug": "madro-og-vaegt",
@@ -241,7 +245,7 @@
       },
       {
         "heading": "Hvorfor en vægttabshistorie ikke er en prognose",
-        "text": "En beretning om at have tabt et bestemt antal kilo kan virke overbevisende. Men uden viden om personens udgangspunkt, andre ændringer, helbred og opfølgning kan historien ikke dokumentere effekten af et behandlingsforløb. Selv en korrekt gengivet oplevelse er ikke et løfte til andre. Derfor bruger vi ikke tidligere deltageres vægttab som målestok for, om du vil få gavn af Successful Eating."
+        "text": "En beretning om at have tabt et bestemt antal kilo kan virke overbevisende. Men uden viden om personens udgangspunkt, andre ændringer, helbred og opfølgning kan historien ikke dokumentere effekten af et behandlingsforløb. Selv en korrekt gengivet oplevelse er ikke et løfte til andre. Derfor bruger vi ikke tidligere deltageres vægttab som målestok for, om du vil få gavn af Successful Eating. For at vurdere effekten af et forløb kræves systematiske data om blandt andet deltagere, metode og opfølgning; udvalgte kundehistorier er ikke tilstrækkelige."
       },
       {
         "heading": "Hvad kan være meningsfulde mål?",
@@ -262,10 +266,6 @@
       {
         "heading": "Brug forsamtalen til at afstemme forventninger",
         "text": "Spørg gerne, hvad behandlingen omfatter, hvilke mål der passer til dine behov, og hvornår anden hjælp kan være mere relevant. Det er også vigtigt at forstå pris og vilkår, før du beslutter dig. Vi vurderer, om tilbuddet er det rette match; en forsamtale er ikke en garanti for et bestemt behandlingsresultat. Du kan læse om metoden og om, hvorfor personlige erfaringer og spørgeskematal ikke i sig selv dokumenterer effekt, på siden om resultater."
-      },
-      {
-        "heading": "Hvad kan en kundehistorie fortælle?",
-        "text": "En enkelt persons vægtændring siger ikke, hvad du kan forvente af et forløb. For at vurdere behandlingens virkning kræves mere end udvalgte erfaringer: blandt andet viden om metode, deltagere og opfølgning. Historier om bestemte kilo på få uger er derfor ikke et løfte eller et behandlingsmål her. Spørg i stedet, hvordan dine spisemønstre og din trivsel bliver vurderet, og hvad der sker, hvis hjælpen ikke passer til dig."
       }
     ],
     "sources": [
@@ -283,6 +283,7 @@
       "tanker-og-spisning"
     ],
     "service": "/kropsglaede",
-    "serviceLabel": "Læs om kropsaccept"
+    "serviceLabel": "Læs om kropsaccept",
+    "sourceNote": "NICE-kilden handler om behandling af diagnosticeret BED og er en britisk retningslinje. Hverdagsforslagene her er refleksioner for voksne, ikke hver især dokumenterede behandlingsmetoder. Følger du en kost- eller behandlingsplan, har dine individuelle aftaler forrang."
   }
 ]

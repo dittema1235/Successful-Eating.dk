@@ -4,6 +4,12 @@ Dato: 19. september 2026. Udgangspunkt: websiteversion `cd412dd`. Dette er næst
 
 Målet er flere relevante besøgende, bedre forståelse af behandlingen og flere kvalificerede henvendelser og tilmeldinger. En teknisk score på 100 eller en bestemt tekstlængde er ikke slutmålet. Placeringer, trafikstigninger og omtale i AI-svar kan ikke garanteres.
 
+## Opdatering: kildebaseret kvalitetssikring udført
+
+De 10 omskrevne artikler og fem sammenlagte guides er nu gennemgået mod kliniske retningslinjer, officiel patientinformation og udvalgte forskningsartikler. Rettelser er indarbejdet. Se vurdering pr. URL, præcise kilder og afgrænsninger i [clinical-content-review.json](clinical-content-review.json).
+
+Den delegerede kontrol af disse 15 teksters centrale faglige udsagn er dermed udført som AI-assisteret redaktionel kvalitetssikring. Den registreres ikke som Dittes personlige godkendelse. Hendes tilslutning til teksten og vurdering af eget tilbud er ikke bekræftet. Booking, guideintegration, checkout og resten af arkivgennemgangen er separate åbne opgaver.
+
 ## Status ved start
 
 - Udført: statisk website, metadata, canonical, schema, sitemap, mobiltilpasning og tekniske tests.

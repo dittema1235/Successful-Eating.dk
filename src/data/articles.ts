@@ -9,6 +9,7 @@ export interface Article {
   readTime: string;
   sections: { heading: string; text: string }[];
   sources: { label: string; url: string }[];
+  sourceNote?: string;
   service: string;
   serviceLabel: string;
   topic?: string;
