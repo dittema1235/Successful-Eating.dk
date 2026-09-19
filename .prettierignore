@@ -1,0 +1,11 @@
+node_modules
+dist
+.astro
+.research
+.artifact-drafts
+src/data/*.json
+src/data/original-terms.html
+docs/*-snapshots.json
+docs/legacy-*.json
+public/vendor
+package-lock.json

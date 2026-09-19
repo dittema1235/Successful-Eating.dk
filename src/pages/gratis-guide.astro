@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Gratis guide til mere madro | Successful Eating"
+  description="Hent guiden Sulten – eller bare mentalt træt? af psykolog Ditte Munch-Andersen. Få konkrete refleksioner til de svære eftermiddage og tilmeld dig nyhedsbrevet."
+  breadcrumbs={[{ name: 'Gratis guide', url: '/gratis-guide' }]}
+>
+  <section class="page-hero tone-peach">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Brødkrummer">
+        <a href="/">Forside</a>
+        <span>/</span>
+        <span>Gratis guide</span>
+      </nav>
+      <span class="eyebrow">ET LILLE SKRIDT TIL MERE FORSTÅELSE</span>
+      <h1>
+        Sulten – eller bare
+        <br />
+        <em>mentalt træt?</em>
+      </h1>
+      <p class="intro">
+        En gratis guide fra psykolog Ditte Munch-Andersen til dig, der kender eftermiddage på
+        autopilot. Et sted at begynde, når du gerne vil forstå din spisning bedre.
+      </p>
+      <div class="actions">
+        <a
+          class="button"
+          href={site.guide}
+          data-event="guide_signup_click"
+          data-location="guide_page"
+        >
+          Få den gratis guide <Icon name="northeast" size={18} />
+        </a>
+      </div>
+      <p class="hero-note">Vælg dit næste skridt på guidens side · Helt gratis</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content-grid">
+      <div class="prose">
+        <h2>En lille plan til en lang dag</h2>
+        <p>
+          Måske ved du meget om mad, men oplever alligevel, at dine valg bliver svære sidst på
+          dagen. Guiden inviterer dig til at stoppe op og være nysgerrig på, hvad der sker – med
+          enkle refleksioner og forslag til en pause.
+        </p>
+        <h2>I guiden møder du</h2>
+        <ul>
+          <li>Spørgsmål, der hjælper dig med at lægge mærke til sult, træthed og dine behov.</li>
+          <li>En lille plan til de øjeblikke, hvor du ellers let går på autopilot.</li>
+          <li>En pauseøvelse, du kan afprøve i din hverdag.</li>
+        </ul>
+        <p>
+          Guiden er inspiration og erstatter ikke måltider, en faglig vurdering eller behandling.
+          Sult må gerne mødes med mad. Hvis du har tilbagevendende overspisning eller et belastende
+          forhold til mad, kan <a href="/forloebet">psykologisk hjælp til overspisning</a> være et
+          relevant næste skridt.
+        </p>
+        <h2>Sådan får du guiden</h2>
+        <p>
+          Tryk på tilmeldingsknappen. På guidens side kan du se, hvordan du får den tilsendt. En
+          eventuel tilmelding til nyhedsbrevet sker særskilt og med tydelig information om, hvad du
+          siger ja til.
+        </p>
+        <a
+          class="button"
+          href={site.guide}
+          data-event="guide_signup_click"
+          data-location="guide_body"
+        >
+          Ja tak, send mig guiden <Icon name="northeast" size={17} />
+        </a>
+      </div>
+      <aside class="facts-card tone-sage">
+        <Icon name="leaf" size={35} />
+        <h2 style="margin-top:20px">Mere end en guide?</h2>
+        <p class="small">
+          Du behøver ikke stå alene, hvis maden fylder meget. Læs om psykologisk behandling af
+          overspisning.
+        </p>
+        <a class="text-link" style="margin-top:22px" href="/forloebet">
+          Se behandlingsforløbet <Icon size={16} />
+        </a>
+      </aside>
+    </div>
+  </section>
+</Layout>

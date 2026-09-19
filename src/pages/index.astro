@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Courses from '../components/Courses.astro';
+import Guide from '../components/Guide.astro';
+import Articles from '../components/Articles.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Overspisning og madro | Psykolog Ditte Munch-Andersen"
+  description="Få hjælp til overspisning og madstøj hos psykolog Ditte Munch-Andersen. Psykologiske behandlingsforløb online i hele Danmark. Book en gratis afklaring på 15 minutter."
+>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow eyebrow-dot">FRA OVERSPISNING TIL MADRO</span>
+          <h1>
+            Mindre madstøj.
+            <br />
+            Mere plads
+            <br />
+            til <em>livet.</em>
+          </h1>
+          <p class="intro">
+            Når mad fylder mere, end du har lyst til, behøver du ikke stå alene. Få psykologisk
+            hjælp til at forstå dine mønstre og finde mere ro omkring maden.
+          </p>
+          <div class="actions">
+            <a href="#forloeb" class="button">
+              Find dit forløb <Icon size={17} />
+            </a>
+            <a href="/gratis-guide" class="text-link" data-event="guide_click" data-location="hero">
+              Begynd med en gratis guide <Icon size={16} />
+            </a>
+          </div>
+          <p class="hero-note">
+            <Icon name="check" size={14} /> Ingen nye madregler. Plads til hele dig.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <img
+            class="hero-photo"
+            src="/images/ditte-portrait.webp"
+            srcset="/images/ditte-portrait-small.webp 500w, /images/ditte-portrait.webp 900w"
+            sizes="(max-width: 700px) 90vw, 46vw"
+            alt="Psykolog Ditte Munch-Andersen smiler i sin klinik"
+            width="900"
+            height="1600"
+            fetchpriority="high"
+          />
+          <div class="hero-stamp" aria-hidden="true">
+            <span>MERE MADRO</span>
+            <Icon name="leaf" size={29} />
+            <span>MERE LIV</span>
+          </div>
+          <div class="portrait-label">
+            <div class="label-icon">
+              <Icon name="shield" size={21} />
+            </div>
+            <div>
+              <strong>Ditte Munch-Andersen</strong>
+              <span>Klinisk psykolog · Mere end 20 års erfaring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#genkendelse" class="hero-bottom">
+        <Icon size={17} /> En ny begyndelse, i dit tempo
+      </a>
+    </div>
+  </section>
+  <div class="trust-strip">
+    <div class="container trust-inner">
+      <div class="trust-item">
+        <Icon name="shield" size={25} />
+        <div>
+          <strong>Klinisk psykolog</strong>
+          <span>Faglighed med mennesket i centrum</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <Icon name="globe" size={25} />
+        <div>
+          <strong>Online i hele Danmark</strong>
+          <span>Hjælp, der passer ind i dit liv</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <Icon name="heart" size={25} />
+        <div>
+          <strong>Dig – frem for flere madregler</strong>
+          <span>Fokus på trivsel og dine spisemønstre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="section" id="genkendelse">
+    <div class="container understand-grid">
+      <div>
+        <span class="eyebrow">MÅSKE KENDER DU DET</span>
+        <h2>
+          Du har prøvet at tage dig sammen.
+          <br />
+          <em>Nu må du få hjælp.</em>
+        </h2>
+        <p class="intro">
+          Mad, tanker, dårlig samvittighed. Og et løfte til dig selv om, at i morgen bliver
+          anderledes. Det kan være udmattende – og du fortjener at blive mødt med forståelse.
+        </p>
+      </div>
+      <div>
+        <div class="feeling">
+          <span class="number">01</span>
+          <div>
+            <h3>Tankerne om mad holder aldrig helt fri</h3>
+            <p>
+              Hvad må du spise? Har du spist for meget? Madtankerne tager plads fra det liv, du
+              gerne vil leve.
+            </p>
+          </div>
+        </div>
+        <div class="feeling">
+          <span class="number">02</span>
+          <div>
+            <h3>Du spiser videre, selvom du gerne vil stoppe</h3>
+            <p>
+              Måske især når dagen er slut, og du endelig er alene. Bagefter kommer selvkritikken.
+            </p>
+          </div>
+        </div>
+        <div class="feeling">
+          <span class="number">03</span>
+          <div>
+            <h3>Du er træt af at starte forfra</h3>
+            <p>
+              Du har ikke brug for endnu et perfekt regelsæt. Du har brug for at forstå, hvad der
+              sker for dig.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Courses />
+  <Guide />
+  <section class="section">
+    <div class="container about-grid">
+      <div class="about-visual">
+        <img
+          src="/images/ditte-underviser.webp"
+          alt="Ditte Munch-Andersen underviser ved en tavle"
+          loading="lazy"
+          width="685"
+          height="586"
+        />
+        <div class="about-caption">Faglighed med plads til dig.</div>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">MENNESKET BAG SUCCESSFUL EATING</span>
+        <h2>
+          Hej, jeg er Ditte.
+          <br />
+          Psykolog. Og på din side.
+        </h2>
+        <p class="intro">
+          Jeg ved, hvor meget et svært forhold til mad kan fylde. I min praksis møder jeg mennesker,
+          der er trætte af at kæmpe – og som længes efter mere frihed i hverdagen.
+        </p>
+        <p class="intro">
+          Som klinisk psykolog hjælper jeg dig med at undersøge de mønstre, der holder dig fast.
+          Nysgerrigt, konkret og med respekt for det liv, du står i.
+        </p>
+        <ul class="checklist">
+          <li>
+            <Icon name="check" size={16} /> Cand.psych. fra Københavns Universitet, 2004
+          </li>
+          <li>
+            <Icon name="check" size={16} /> Erfaring med kognitiv og metakognitiv terapi
+          </li>
+          <li>
+            <Icon name="check" size={16} /> Psykologisk behandling online i hele Danmark
+          </li>
+        </ul>
+        <a href="/om-ditte" class="text-link">
+          Lær mig og min tilgang at kende <Icon size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="testimonial">
+    <div class="container">
+      <span class="eyebrow">EN DELTAGERS OPLEVELSE</span>
+      <div class="quote-mark" aria-hidden="true">
+        “
+      </div>
+      <blockquote>
+        Allerede inden for de første par uger kunne jeg mærke en kæmpe forskel i min spisning og
+        ikke mindst en større madro i hovedet.
+      </blockquote>
+      <p class="quote-author">Maria · Tidligere deltager i Successful Eating</p>
+      <p class="quote-note">
+        Citat fra det tidligere website. Oplevelser og resultater er individuelle.
+      </p>
+      <a href={site.trustpilot} class="text-link">
+        Læs anmeldelser på Trustpilot <Icon name="northeast" size={15} />
+      </a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">VIDEN KAN VÆRE ET FØRSTE SKRIDT</span>
+          <h2>En lille smule mere forståelse.</h2>
+        </div>
+        <a href="/madro-biblioteket" class="text-link">
+          Gå på opdagelse i biblioteket <Icon size={17} />
+        </a>
+      </div>
+      <Articles />
+    </div>
+  </section>
+  <FAQ />
+  <CTA />
+</Layout>

@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="wordmark">
+        <Icon name="leaf" size={30} />
+        <span>successful eating.</span>
+      </a>
+      <p>
+        Mere ro omkring maden.
+        <br />
+        Mere plads til at være dig.
+      </p>
+      <span class="footer-signature">Ditte Munch-Andersen</span>
+      <p class="small">Klinisk psykolog · Cand.psych., 2004</p>
+    </div>
+    <div>
+      <h2>Find din vej</h2>
+      <a href="/forloebet">Successful Eating</a>
+      <a href="/kropsglaede">Kropsaccept</a>
+      <a href="/resultater">Metode & resultater</a>
+      <a href="/gratis-guide">Gratis guide</a>
+    </div>
+    <div>
+      <h2>Lær os at kende</h2>
+      <a href="/om-ditte">Om Ditte</a>
+      <a href="/madro-biblioteket">Madro-biblioteket</a>
+      <a href="/blog">Alle artikler</a>
+      <a href={site.login}>
+        Log ind på dit forløb <Icon name="northeast" size={13} />
+      </a>
+    </div>
+    <div>
+      <h2>Lad os tale sammen</h2>
+      <a href="/kontakt">Kontakt & gratis afklaring</a>
+      <a href={`mailto:${site.email}`} data-event="email_click">
+        {site.email}
+      </a>
+      {site.phone && <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>}
+      <p>
+        {site.address}
+        <br />
+        {site.city}
+      </p>
+      <a href="https://www.instagram.com/psykolog_dittema" rel="me">
+        Instagram <Icon name="northeast" size={13} />
+      </a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>
+      © {new Date().getFullYear()} Successful Eating · CVR {site.cvr}
+    </span>
+    <div>
+      <a href="/privatliv">Privatliv & cookies</a>
+      <a href="/handelsbetingelser">Handelsbetingelser</a>
+    </div>
+    <span>Med faglighed. Og menneskelighed.</span>
+  </div>
+</footer>

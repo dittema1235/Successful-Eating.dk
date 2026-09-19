@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  post: { slug: string; title: string; description: string; published?: string | null };
+}
+const { post } = Astro.props;
+---
+
+<article class="archive-item">
+  {post.published && (
+    <time datetime={post.published}>
+      {new Date(post.published).toLocaleDateString('da-DK', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'Europe/Copenhagen',
+      })}
+    </time>
+  )}
+  <h2>
+    <a href={`/${post.slug}`}>{post.title}</a>
+  </h2>
+  <p>{post.description}</p>
+  <a class="text-link" href={`/${post.slug}`}>
+    Læs artiklen <Icon size={15} />
+  </a>
+</article>

@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/site';
+---
+
+<section class="section courses-section" id="forloeb">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">DIN VEJ TIL MERE MADRO</span>
+        <h2>
+          Forskellige behov.
+          <br />
+          Samme omsorg for dig.
+        </h2>
+      </div>
+      <p class="intro">
+        Du skal ikke passe ned i en bestemt kasse. Find den støtte, der giver mening for dig og dit
+        liv.
+      </p>
+    </div>
+    <div class="course-grid">
+      {services.map((s) => (
+        <article class="course-card">
+          <div class="course-top">
+            <div class={`course-icon tone-${s.tone}`}>
+              <Icon name={s.icon} size={29} />
+            </div>
+            <span class="course-tag">{s.tag}</span>
+          </div>
+          <span class="eyebrow">{s.eyebrow}</span>
+          <h3>{s.title}</h3>
+          <p>{s.intro}</p>
+          <ul class="checklist">
+            {s.features.map((f) => (
+              <li>
+                <Icon name="check" size={16} />
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={`/${s.slug}`}
+            class="text-link"
+            data-event="service_click"
+            data-location={s.slug}
+          >
+            Læs om {s.slug === 'kropsglaede' ? 'kropsaccept' : 'forløbet'} <Icon size={18} />
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="course-help">
+      I tvivl om, hvad der passer til dig? <a href="/kontakt">Lad os finde ud af det sammen.</a>
+    </p>
+  </div>
+</section>

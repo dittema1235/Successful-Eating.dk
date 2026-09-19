@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Siden blev ikke fundet | Successful Eating"
+  description="Siden findes ikke på denne adresse. Find dit forløb, gå til Madro-biblioteket, eller kontakt Successful Eating."
+  noindex
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">404 · SIDEN BLEV IKKE FUNDET</span>
+      <h1>
+        Lad os finde
+        <br />
+        <em>en anden vej.</em>
+      </h1>
+      <p class="intro" style="margin-top:25px">
+        Siden kan være flyttet, eller der kan være en fejl i adressen. Du kan stadig finde vej til
+        viden og hjælp her.
+      </p>
+      <div class="actions">
+        <a href="/" class="button">
+          Til forsiden <Icon size={17} />
+        </a>
+        <a href="/madro-biblioteket" class="text-link">
+          Find viden om madro <Icon size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

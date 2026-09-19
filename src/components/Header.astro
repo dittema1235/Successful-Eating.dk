@@ -1,0 +1,76 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+---
+
+<div class="announcement">
+  <span>Psykologisk hjælp til overspisning</span>
+  <span class="announcement-divider">·</span>
+  <span>Online i hele Danmark</span>
+</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="/" aria-label="Successful Eating – forside">
+      <span class="brand-icon">
+        <Icon name="leaf" size={30} />
+      </span>
+      <span>
+        successful eating<span class="brand-dot">.</span>
+        <small>PSYKOLOG DITTE MUNCH-ANDERSEN</small>
+      </span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">
+      <span>Menu</span>
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+    <nav id="main-nav" aria-label="Hovednavigation">
+      <a
+        href="/#forloeb"
+        aria-current={['/forloebet', '/kropsglaede'].includes(path) ? 'page' : undefined}
+      >
+        Find dit forløb
+      </a>
+      <a
+        href="/madro-biblioteket"
+        aria-current={
+          path.startsWith('/madro-biblioteket') || path.startsWith('/blog') ? 'page' : undefined
+        }
+      >
+        Madro-biblioteket
+      </a>
+      <a href="/om-ditte" aria-current={path === '/om-ditte' ? 'page' : undefined}>
+        Om Ditte
+      </a>
+      <a
+        href={site.booking}
+        class="button button-small"
+        data-event="booking_click"
+        data-location="header"
+      >
+        Gratis afklaring <Icon name="northeast" size={16} />
+      </a>
+    </nav>
+  </div>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#main-nav');
+  const close = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+  };
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      close();
+      toggle.focus();
+    }
+  });
+  matchMedia('(min-width: 1001px)').addEventListener('change', close);
+</script>

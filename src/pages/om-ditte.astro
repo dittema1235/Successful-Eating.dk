@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Om psykolog Ditte Munch-Andersen | Successful Eating"
+  description="Mød Ditte Munch-Andersen, klinisk psykolog og grundlægger af Successful Eating. Læs om faglig baggrund, behandlingstilgang og klinikken i Helsingør."
+  breadcrumbs={[{ name: 'Om Ditte', url: '/om-ditte' }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Brødkrummer">
+        <a href="/">Forside</a>
+        <span>/</span>
+        <span>Om Ditte</span>
+      </nav>
+      <span class="eyebrow">FAGLIGHED MED PLADS TIL DIG</span>
+      <h1>
+        Du er et menneske.
+        <br />
+        <em>Ikke et mønster, der skal fikses.</em>
+      </h1>
+      <p class="intro">
+        Jeg hedder Ditte Munch-Andersen. Jeg er klinisk psykolog og mennesket bag Successful Eating.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content-grid">
+      <div class="prose">
+        <h2>Forståelse før forandring</h2>
+        <p>
+          Et svært forhold til mad kan være ensomt. Måske har du gjort dig umage igen og igen, uden
+          at få den ro, du længes efter. I mit arbejde er det vigtigt at skabe et rum, hvor vi kan
+          undersøge det svære uden at gøre det til endnu en anledning til selvkritik.
+        </p>
+        <p>
+          Jeg arbejder med overspisning, madstøj og spisemønstre med afsæt i psykologisk behandling.
+          Vi ser på det, der vedligeholder vanskelighederne i din hverdag, og på hvilke skridt der
+          er relevante for dig.
+        </p>
+        <h2>Min faglige baggrund</h2>
+        <ul>
+          <li>Cand.psych. fra Københavns Universitet, 2004.</li>
+          <li>Mere end 20 års erfaring som psykolog.</li>
+          <li>Erfaring med kognitiv adfærdsterapi (CBT) og metakognitiv terapi (MCT).</li>
+          <li>Grundlægger af Successful Eating.</li>
+          <li>Klinik på Hovedvagtsstræde 2C i Helsingør og samtaler online.</li>
+        </ul>
+        <h2>Min tilgang</h2>
+        <p>
+          Vi skal forstå din situation, før vi vælger redskaberne. Derfor bygger et
+          behandlingsforløb på en individuel vurdering. Målet er at arbejde med din trivsel og dit
+          forhold til mad – uden løfter om et bestemt vægttab eller et garanteret resultat.
+        </p>
+        <p>
+          Hvis et andet tilbud er mere relevant, taler vi om det. Du skal have hjælp, der passer til
+          dine behov.
+        </p>
+        <h2>Faglige kilder og ærlighed om viden</h2>
+        <p>
+          På hjemmesiden skelner vi mellem generel information, personlige oplevelser og behandling.
+          De korte introduktioner i <a href="/madro-biblioteket">Madro-biblioteket</a> henviser til
+          faglige retningslinjer. En klients oplevelse kan ikke forudsige dit resultat.
+        </p>
+        <p>
+          Ældre artikler er samlet i <a href="/blog">artikelarkivet</a> med deres oprindelige
+          datoer. De er ikke nødvendigvis udtryk for de aktuelle tilbud eller den nyeste faglige
+          viden.
+        </p>
+        <h2>Her kan du også finde mig</h2>
+        <p>
+          <a href="https://www.dittemunchandersen.dk/">Min psykologpraksis i Helsingør</a>
+          <br />
+          <a href="https://linkedin.com/in/ditte-munch-andersen-a0943">Faglig profil på LinkedIn</a>
+        </p>
+      </div>
+      <aside>
+        <img
+          class="author-photo"
+          src="/images/ditte-portrait.webp"
+          alt="Ditte Munch-Andersen, klinisk psykolog"
+          width="900"
+          height="1600"
+        />
+        <p class="small muted" style="margin-top:18px">
+          Ditte Munch-Andersen
+          <br />
+          Cand.psych., Københavns Universitet, 2004
+        </p>
+        <a
+          class="button"
+          style="margin-top:23px"
+          href={site.booking}
+          data-event="booking_click"
+          data-location="about"
+        >
+          Lad os tale sammen <Icon name="northeast" size={17} />
+        </a>
+      </aside>
+    </div>
+  </section>
+  <CTA />
+</Layout>

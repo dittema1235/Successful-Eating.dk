@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArchiveCard from '../../components/ArchiveCard.astro';
+import { topics } from '../../data/topics';
+import posts from '../../data/archive.json';
+import type { GetStaticPaths } from 'astro';
+export const getStaticPaths = (({ paginate }) =>
+  paginate(posts, { pageSize: 24 })) satisfies GetStaticPaths;
+const { page } = Astro.props;
+const current = page.currentPage;
+const title =
+  current === 1
+    ? 'Viden om madro og overspisning | Successful Eating-bloggen'
+    : `Artikelarkiv – side ${current} | Successful Eating`;
+---
+
+<Layout
+  title={title}
+  description={`Find artikler om overspisning, madstøj, sukkertrang, kropsbillede og ADHD. Søg i artikelarkivet hos psykolog Ditte Munch-Andersen.${current > 1 ? ` Side ${current}.` : ''}`}
+  breadcrumbs={[{ name: 'Artikelarkiv', url: current === 1 ? '/blog' : `/blog/${current}` }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Brødkrummer">
+        <a href="/">Forside</a>
+        <span>/</span>
+        <span>Artikelarkiv</span>
+      </nav>
+      <span class="eyebrow">VIDEN, ERFARINGER & NYE PERSPEKTIVER</span>
+      <h1>
+        Find ord for det,
+        <br />
+        <em>der fylder hos dig.</em>
+      </h1>
+      <p class="intro">
+        Gå på opdagelse i artikler fra Ditte Munch-Andersens arkiv. Du kan også begynde med de korte
+        introduktioner i{' '}
+        <a href="/madro-biblioteket" style="text-decoration:underline">
+          Madro-biblioteket
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="topic-links">
+        {topics.map((t) => (
+          <a href={`/blog/emner/${t.slug}`}>{t.title}</a>
+        ))}
+      </div>
+      <form class="filter-bar" role="search" id="archive-search">
+        <div class="filter-field">
+          <label for="article-query">Søg i alle artikler</label>
+          <input
+            type="search"
+            id="article-query"
+            placeholder="Fx madstøj, sukkertrang eller ADHD"
+            autocomplete="off"
+          />
+        </div>
+        <div class="filter-field" style="max-width:300px">
+          <label for="article-topic">Emne</label>
+          <select id="article-topic">
+            <option value="">Alle emner</option>
+            {topics.map((t) => (
+              <option value={t.slug}>{t.title}</option>
+            ))}
+          </select>
+        </div>
+        <button class="button" type="submit">
+          Søg
+        </button>
+      </form>
+      <p class="filter-count" id="search-count" role="status" aria-live="polite">
+        Viser {page.start + 1}–{page.end + 1} af {page.total} artikler · Side {current} af{' '}
+        {page.lastPage}
+      </p>
+      <div class="archive-list" id="archive-results">
+        {page.data.map((post) => (
+          <ArchiveCard post={post} />
+        ))}
+      </div>
+      <p class="archive-empty" id="search-empty" hidden>
+        Ingen artikler matcher din søgning. Prøv et andet ord eller vælg alle emner.
+      </p>
+      <nav class="pagination" aria-label="Sider i artikelarkivet" id="archive-pagination">
+        {page.url.prev && (
+          <a href={page.url.prev} aria-label="Forrige side">
+            ←
+          </a>
+        )}
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1)
+          .filter((n) => n === 1 || n === page.lastPage || Math.abs(n - current) <= 2)
+          .map((n) => (
+            <a
+              href={n === 1 ? '/blog' : `/blog/${n}`}
+              aria-current={n === current ? 'page' : undefined}
+            >
+              {n}
+            </a>
+          ))}
+        {page.url.next && (
+          <a href={page.url.next} aria-label="Næste side">
+            →
+          </a>
+        )}
+      </nav>
+      <p class="small muted" style="margin-top:35px">
+        Historiske artikler viser deres oprindelige udgivelsesdato. Ældre beskrivelser og personlige
+        erfaringer er ikke nødvendigvis udtryk for aktuelle tilbud eller den nyeste viden.
+      </p>
+    </div>
+  </section>
+  <script>
+    type Entry = {
+      slug: string;
+      title: string;
+      description: string;
+      topic: string;
+      published: string | null;
+    };
+    const form = document.querySelector<HTMLFormElement>('#archive-search')!;
+    const input = document.querySelector<HTMLInputElement>('#article-query')!;
+    const select = document.querySelector<HTMLSelectElement>('#article-topic')!;
+    const results = document.querySelector<HTMLElement>('#archive-results')!;
+    const count = document.querySelector<HTMLElement>('#search-count')!;
+    const pagination = document.querySelector<HTMLElement>('#archive-pagination')!;
+    const empty = document.querySelector<HTMLElement>('#search-empty')!;
+    const original = results.innerHTML,
+      originalCount = count.textContent;
+    let entries: Promise<Entry[]> | undefined;
+    let revision = 0;
+    async function search() {
+      const currentRevision = ++revision,
+        q = input.value.trim().toLocaleLowerCase('da'),
+        topic = select.value;
+      if (!q && !topic) {
+        results.innerHTML = original;
+        count.textContent = originalCount;
+        pagination.hidden = false;
+        empty.hidden = true;
+        return;
+      }
+      count.textContent = 'Søger i arkivet …';
+      try {
+        entries ??= fetch('/search-index.json').then((r) => {
+          if (!r.ok) throw Error();
+          return r.json();
+        });
+        const all = await entries;
+        if (currentRevision !== revision) return;
+        const matches = all.filter(
+          (p) =>
+            (!topic || p.topic === topic) &&
+            (!q || (p.title + ' ' + p.description).toLocaleLowerCase('da').includes(q)),
+        );
+        const fragment = document.createDocumentFragment();
+        for (const p of matches) {
+          const article = document.createElement('article');
+          article.className = 'archive-item';
+          const h = document.createElement('h2'),
+            a = document.createElement('a');
+          a.href = '/' + p.slug;
+          a.textContent = p.title;
+          h.append(a);
+          const description = document.createElement('p');
+          description.textContent = p.description;
+          const link = document.createElement('a');
+          link.className = 'text-link';
+          link.href = a.href;
+          link.textContent = 'Læs artiklen →';
+          article.append(h, description, link);
+          fragment.append(article);
+        }
+        results.replaceChildren(fragment);
+        count.textContent = `${matches.length} ${matches.length === 1 ? 'artikel' : 'artikler'} fundet i hele arkivet`;
+        pagination.hidden = true;
+        empty.hidden = matches.length > 0;
+      } catch {
+        entries = undefined;
+        count.textContent =
+          'Søgningen kunne ikke indlæses. Prøv igen, eller brug emnerne og siderne nedenfor.';
+        pagination.hidden = false;
+      }
+    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      void search();
+    });
+    select.addEventListener('change', () => void search());
+    let timer: ReturnType<typeof setTimeout>;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(search, 200);
+    });
+  </script>
+</Layout>

@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import Icon from '../../components/Icon.astro';
+import { articles } from '../../data/articles';
+import { site } from '../../data/site';
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+const { article } = Astro.props;
+const url = `${site.url}/madro-biblioteket/${article.slug}`;
+const schema = {
+  '@type': 'Article',
+  '@id': `${url}#article`,
+  headline: article.title,
+  description: article.description,
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  author: { '@id': `${site.url}/#organization` },
+  publisher: { '@id': `${site.url}/#organization` },
+  inLanguage: 'da-DK',
+  citation: article.sources.map((s) => s.url),
+};
+---
+
+<Layout
+  title={`${article.title} | Successful Eating`}
+  description={article.description}
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Madro-biblioteket', url: '/madro-biblioteket' },
+    { name: article.title, url: `/madro-biblioteket/${article.slug}` },
+  ]}
+>
+  <article>
+    <header class={`page-hero tone-${article.tone}`}>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Brødkrummer">
+          <a href="/">Forside</a>
+          <span>/</span>
+          <a href="/madro-biblioteket">Madro-biblioteket</a>
+          <span>/</span>
+          <span>{article.category}</span>
+        </nav>
+        <span class="eyebrow">
+          {article.category} · {article.readTime} læsning
+        </span>
+        <h1>{article.title}</h1>
+        <p class="intro">{article.description}</p>
+        <p class="small muted" style="margin-top:24px">
+          Redaktion: Successful Eating · Generel information med faglige kilder
+        </p>
+      </div>
+    </header>
+    <div class="section">
+      <div class="container content-grid">
+        <div class="prose">
+          {article.sections.map((section, index) => (
+            <section class={index === 0 ? 'callout' : ''}>
+              <h2>{section.heading}</h2>
+              <p>{section.text}</p>
+            </section>
+          ))}
+          <h2>Kilder og videre læsning</h2>
+          <ul class="sources">
+            {article.sources.map((source) => (
+              <li>
+                <a href={source.url}>{source.label}</a>
+              </li>
+            ))}
+          </ul>
+          <p class="sources">
+            Teksten er generel information og kan ikke erstatte individuel rådgivning, udredning
+            eller behandling. Læs om{' '}
+            <a href="/om-ditte">Ditte Munch-Andersen og den faglige tilgang</a>.
+          </p>
+        </div>
+        <aside class="facts-card">
+          <span class="eyebrow">FRA VIDEN TIL STØTTE</span>
+          <h2>Du må gerne få hjælp.</h2>
+          <p class="small muted">
+            Hvis du genkender dig selv, kan en uforpligtende afklaring være et sted at begynde.
+          </p>
+          <a
+            class="button"
+            style="margin-top:23px"
+            href={site.booking}
+            data-event="booking_click"
+            data-location="article"
+          >
+            Book gratis afklaring <Icon name="northeast" size={17} />
+          </a>
+          <a class="text-link" style="margin-top:24px" href={article.service}>
+            {article.serviceLabel} <Icon size={16} />
+          </a>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <CTA />
+</Layout>

@@ -1,0 +1,158 @@
+---
+import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/fraunces';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+}
+const {
+  title,
+  description,
+  image = '/images/social-card.jpg',
+  schema,
+  noindex = false,
+  breadcrumbs = [],
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', site.url).href;
+const personId = `${site.url}/om-ditte#person`;
+const orgId = `${site.url}/#organization`;
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': orgId,
+    name: site.name,
+    url: site.url,
+    email: site.email,
+    logo: `${site.url}/favicon.svg`,
+    founder: { '@id': personId },
+    taxID: site.cvr,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address,
+      postalCode: '3000',
+      addressLocality: 'Helsingør',
+      addressCountry: 'DK',
+    },
+    ...(site.phone ? { telephone: site.phone } : {}),
+  },
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: site.person,
+    url: `${site.url}/om-ditte`,
+    jobTitle: 'Klinisk psykolog',
+    image: `${site.url}/images/ditte-portrait.webp`,
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Københavns Universitet' },
+    worksFor: { '@id': orgId },
+    sameAs: [
+      'https://www.dittemunchandersen.dk/',
+      'https://linkedin.com/in/ditte-munch-andersen-a0943',
+    ],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${site.url}/#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: 'da-DK',
+    publisher: { '@id': orgId },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'da-DK',
+    isPartOf: { '@id': `${site.url}/#website` },
+  },
+  ...(breadcrumbs.length
+    ? [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [{ name: 'Forside', url: '/' }, ...breadcrumbs].map((b, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: b.name,
+            item: new URL(b.url, site.url).href,
+          })),
+        },
+      ]
+    : []),
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+];
+---
+
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
+    />
+    <meta name="theme-color" content="#f8f6f0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:locale" content="da_DK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, site.url).href} />
+    <meta
+      property="og:image:alt"
+      content="Successful Eating – mere ro omkring maden med psykolog Ditte Munch-Andersen"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, site.url).href} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll(
+        '<',
+        '\\u003c',
+      )}
+    ></script>
+    <link rel="stylesheet" href="/vendor/silktide-consent-manager.css" />
+    <script is:inline src="/vendor/silktide-consent-manager.js" defer></script>
+    <script is:inline src="/consent.js" defer></script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#indhold">
+      Spring til indhold
+    </a>
+    <Header />
+    <main id="indhold">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // No network analytics. Only non-personal UI events; consent choices are local.
+      // A consented analytics integration can listen for se:conversion. Never send health data.
+      document.addEventListener('click', (event) => {
+        const link = (event.target as Element).closest<HTMLElement>('[data-event]');
+        if (link)
+          window.dispatchEvent(
+            new CustomEvent('se:conversion', {
+              detail: { event: link.dataset.event, location: link.dataset.location || 'page' },
+            }),
+          );
+      });
+    </script>
+  </body>
+</html>

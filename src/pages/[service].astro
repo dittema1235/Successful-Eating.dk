@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import { site, services } from '../data/site';
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
+}
+const { service } = Astro.props;
+const body = service.slug === 'kropsglaede';
+const title = body
+  ? 'Kropsaccept: individuel psykologisk behandling | Successful Eating'
+  : 'Behandling af overspisning (BED) online | Successful Eating';
+const heading = body
+  ? 'Mindre kropskritik. Mere plads til at være dig.'
+  : 'Psykologisk hjælp til overspisning. Og til dig.';
+const schema = {
+  '@type': 'Service',
+  '@id': `${site.url}/${service.slug}#service`,
+  name: service.title,
+  description: service.intro,
+  provider: { '@id': `${site.url}/#organization` },
+  areaServed: { '@type': 'Country', name: 'Danmark' },
+  serviceType: body
+    ? 'Individuel psykologisk behandling med fokus på kropsaccept'
+    : 'Kognitiv behandling af overspisning',
+  url: `${site.url}/${service.slug}`,
+};
+---
+
+<Layout
+  title={title}
+  description={`${service.intro} Online i hele Danmark hos psykolog Ditte Munch-Andersen.`}
+  schema={schema}
+  breadcrumbs={[{ name: service.title, url: `/${service.slug}` }]}
+>
+  <section class={`page-hero tone-${service.tone}`}>
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Brødkrummer">
+        <a href="/">Forside</a>
+        <span>/</span>
+        <span>{service.title}</span>
+      </nav>
+      <span class="eyebrow">{service.tag} · Online i hele Danmark</span>
+      <h1>{heading}</h1>
+      <p class="intro">{service.intro}</p>
+      <div class="actions">
+        <a
+          href={body ? site.booking : site.checkout}
+          class="button"
+          data-event={body ? 'booking_click' : 'checkout_click'}
+          data-location={service.slug}
+        >
+          {body ? 'Book en gratis afklaring' : 'Se pris og tilmelding'}{' '}
+          <Icon name="northeast" size={18} />
+        </a>
+        <a href="#om-forloebet" class="text-link">
+          Læs om behandlingen <Icon size={17} />
+        </a>
+      </div>
+      <p class="hero-note">
+        {body
+          ? '15 minutters gratis afklaring · Plads til dine spørgsmål'
+          : 'Forløbet indledes med en individuel klinisk forsamtale'}
+      </p>
+    </div>
+  </section>
+  <section class="section" id="om-forloebet">
+    <div class="container content-grid">
+      <div class="prose">
+        <h2>{body ? 'Et andet forhold til din krop' : 'Du skal ikke finde vej alene.'}</h2>
+        <p>
+          {body
+            ? 'Når spejlet, tøjet eller tankerne om din krop bliver en daglig kamp, kan det påvirke både din trivsel og de ting, du har lyst til at gøre. Et individuelt behandlingsforløb giver plads til at undersøge selvkritik, skam og de mønstre, der vedligeholder ubehaget.'
+            : 'Hvis overspisning, selvkritik og tanker om mad fylder i din hverdag, kan psykologisk behandling være relevant. Vi undersøger sammen, hvad der udløser og vedligeholder dine mønstre, og arbejder med kognitive redskaber, som kan bruges i dit eget liv.'}
+        </p>
+        <h2>Hvem er tilbuddet relevant for?</h2>
+        <p>
+          Tilbuddet er til dig, der oplever, at{' '}
+          {body ? 'tanker om din krop og dit udseende' : 'overspisning og tanker om mad'} påvirker
+          din trivsel. Du behøver ikke kunne forklare alt på forhånd.
+        </p>
+        <ul>
+          {body ? (
+            <>
+              <li>Du bruger meget opmærksomhed på at vurdere eller kontrollere din krop.</li>
+              <li>
+                Skam og selvkritik får dig til at undgå situationer, du gerne ville deltage i.
+              </li>
+              <li>
+                Du ønsker støtte til at arbejde med dit kropsbillede, uden at vægttab bliver målet.
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                Du oplever tilbagevendende overspisning eller føler, at du mister kontrollen over
+                din spisning.
+              </li>
+              <li>Madregler, skyld eller bekymringer tager meget af din opmærksomhed.</li>
+              <li>
+                Du ønsker støtte til at forstå dine mønstre og afprøve andre måder at håndtere dem
+                på.
+              </li>
+            </>
+          )}
+        </ul>
+        <h2>Det arbejder vi med</h2>
+        <p>
+          Tilgangen tager afsæt i kognitiv adfærdsterapi. Vi ser på samspillet mellem tanker,
+          følelser, handlinger og din hverdag. Indholdet tilpasses efter en vurdering af dine behov.
+        </p>
+        {body ? (
+          <>
+            <p>
+              Behandlingen foregår én til én med Ditte. Vi undersøger blandt andet, hvordan
+              kropskritik påvirker dine handlinger, og arbejder med terapeutiske øvelser mellem
+              samtalerne. Formålet er mindre belastning og mere handlefrihed i dit liv.
+            </p>
+            <p>
+              Det er ikke et krav, at du skal elske din krop eller føle dig positiv hele tiden. Vi
+              tager udgangspunkt i det, der er svært for dig, og finder realistiske skridt.
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              Successful Eating er et otte ugers behandlingsforløb med personlig behandlerkontakt.
+              Digitale oplæg og terapeutiske øvelser understøtter arbejdet i samtalerne.
+            </p>
+            <ul>
+              <li>
+                En individuel klinisk forsamtale, hvor vi vurderer, om behandlingen er det rette
+                match.
+              </li>
+              <li>
+                Fire live online gruppebehandlinger med højst seks deltagere. Samtalerne optages
+                ikke.
+              </li>
+              <li>Otte psykologiske moduler som støtte til behandlingen.</li>
+              <li>Korte, daglige terapeutiske øvelser, der kan afprøves i din hverdag.</li>
+              <li>Materiale til vedligeholdelse og tilbagefaldsforebyggelse efter forløbet.</li>
+            </ul>
+            <p>
+              Har du ADHD, kan udfordringer med struktur og impulser indgå i vurderingen. Der er
+              ikke et separat ADHD-forløb. Læs mere om{' '}
+              <a href="/madro-biblioteket/adhd-og-overspisning">ADHD og overspisning</a>.
+            </p>
+          </>
+        )}
+        <h2>Pris, indhold og opstart</h2>
+        {body ? (
+          <p>
+            Kontakt Ditte for en aktuel samlet pris og beskrivelse af dit individuelle forløb,
+            herunder antal samtaler, varighed og eventuelle tilkøb. Du får oplysningerne, før du
+            beslutter dig. Forløbet indledes med en klinisk forsamtale.
+          </p>
+        ) : (
+          <>
+            <p>
+              Den aktuelle samlede pris, betalingsmuligheder og vilkår fremgår af tilmeldingssiden
+              hos systeme.io. Den individuelle kliniske forsamtale er inkluderet. Læs oplysningerne
+              igennem, før du tilmelder dig.
+            </p>
+            <p>
+              Behandlingen starter efter forsamtalen, når vi har vurderet, at den passer til din
+              situation. Ved manglende behandlingsmatch gælder vilkårene om tilbagebetaling på
+              tilmeldingssiden.
+            </p>
+            <a
+              class="button"
+              href={site.checkout}
+              data-event="checkout_click"
+              data-location="service_body"
+            >
+              Se pris og tilmelding <Icon name="northeast" size={17} />
+            </a>
+          </>
+        )}
+        <div class="callout">
+          <p>
+            <strong>Har du spørgsmål først?</strong> Du kan booke en gratis afklaring på 15
+            minutter. Den er til praktiske spørgsmål og næste skridt. Afklaringen er ikke den
+            kliniske forsamtale og erstatter ikke en faglig vurdering.
+          </p>
+        </div>
+        <h2>Mulighed for tilskud</h2>
+        <p>
+          Der kan være mulighed for tilskud til psykologsamtaler gennem Sygeforsikringen “danmark”
+          eller en privat sundhedsforsikring. Det afhænger blandt andet af dine vilkår og den
+          faglige vurdering. Kontakt din forsikring før tilmelding; tilskud kan ikke garanteres.
+        </p>
+        <h2>Den rette hjælp til din situation</h2>
+        <p>
+          {body
+            ? 'Stærk kropskritik kan indgå i forskellige psykiske vanskeligheder. Derfor begynder behandlingen med en individuel vurdering.'
+            : 'En overspisning er ikke i sig selv en diagnose. Gentagne episoder med kontroltab og betydelig belastning kan være tegn på binge eating disorder (BED) eller andre vanskeligheder, som kræver faglig vurdering.'}{' '}
+          Hvis anden eller mere specialiseret hjælp er relevant, taler vi om det.
+        </p>
+        <p>
+          Har du fysiske symptomer, opkastning, udtalt restriktiv spisning eller er bekymret for dit
+          helbred, bør du også kontakte din egen læge. Generel information kan ikke erstatte en
+          individuel vurdering.
+        </p>
+        <p class="sources">
+          Fagligt udgangspunkt:{' '}
+          <a href="https://www.nice.org.uk/guidance/ng69">
+            NICE's retningslinje for spiseforstyrrelser
+          </a>
+          . Retningslinjen dokumenterer ikke en bestemt effekt af Successful Eating. Læs om{' '}
+          <a href="/resultater">metode og resultater</a>.
+        </p>
+      </div>
+      <aside class="facts-card" aria-label="Kort om tilbuddet">
+        <span class="eyebrow">PRAKTISK & OVERSKUELIGT</span>
+        <h2>{service.title}</h2>
+        <dl>
+          <dt>Behandler</dt>
+          <dd>
+            <a href="/om-ditte">Ditte Munch-Andersen, klinisk psykolog</a>
+          </dd>
+          <dt>Format</dt>
+          <dd>
+            {body ? 'Individuelle samtaler online' : 'Live online behandling · Maks. 6 i gruppen'}
+          </dd>
+          <dt>Målgruppe</dt>
+          <dd>{service.tag}</dd>
+          <dt>Varighed</dt>
+          <dd>{body ? 'Aftales ved den kliniske forsamtale' : '8 uger'}</dd>
+          <dt>Samlet pris</dt>
+          <dd>
+            {body
+              ? 'Oplyses før aftale'
+              : `${site.treatmentPrice.toLocaleString('da-DK')} kr. ved samlet betaling`}
+          </dd>
+          <dt>Før behandling</dt>
+          <dd>Individuel klinisk forsamtale</dd>
+        </dl>
+        <a
+          class="button"
+          href={body ? site.booking : site.checkout}
+          data-event={body ? 'booking_click' : 'checkout_click'}
+          data-location="service_facts"
+        >
+          {body ? 'Lad os tale sammen' : 'Se pris og tilmelding'}{' '}
+          <Icon name="northeast" size={17} />
+        </a>
+        <p class="small muted">
+          {body
+            ? 'Gratis afklaring: 15 minutter. Ingen tilmelding til et betalt forløb.'
+            : 'Tilmelding og betaling håndteres hos systeme.io.'}
+        </p>
+      </aside>
+    </div>
+  </section>
+  <section class="section courses-section">
+    <div class="container">
+      <span class="eyebrow">SÅDAN KOMMER DU I GANG</span>
+      <h2>
+        Fra første spørgsmål
+        <br />
+        til dit næste skridt.
+      </h2>
+      <div class="steps">
+        <div>
+          <div class="step-number">01</div>
+          <h3>Få overblik</h3>
+          <p>
+            Læs om behandlingen og vilkårene. Du er velkommen til at spørge Ditte, hvis du er i
+            tvivl.
+          </p>
+        </div>
+        <div>
+          <div class="step-number">02</div>
+          <h3>En klinisk forsamtale</h3>
+          <p>Vi undersøger dine behov og vurderer sammen, om behandlingen er det rette match.</p>
+        </div>
+        <div>
+          <div class="step-number">03</div>
+          <h3>Behandling med støtte</h3>
+          <p>
+            Ved et behandlingsmatch aftaler vi rammerne og går i gang. Der er plads til at lære og
+            øve sig.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FAQ />
+  <CTA />
+</Layout>

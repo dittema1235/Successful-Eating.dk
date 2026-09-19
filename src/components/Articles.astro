@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { articles } from '../data/articles';
+---
+
+<div class="article-grid">
+  {articles.map((a) => (
+    <article class="article-card">
+      <a href={`/madro-biblioteket/${a.slug}`}>
+        <div class={`article-illustration tone-${a.tone}`} aria-hidden="true">
+          <span class="illustration-word">{a.word}</span>
+        </div>
+        <span class="eyebrow">
+          {a.category} · {a.readTime} læsning
+        </span>
+        <h3>{a.title}</h3>
+        <p>{a.description}</p>
+        <span class="text-link">
+          Læs artiklen <Icon size={16} />
+        </span>
+      </a>
+    </article>
+  ))}
+</div>
