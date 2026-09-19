@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import { site } from '../data/site';
 const path = Astro.url.pathname;
 ---
 
@@ -43,12 +42,12 @@ const path = Astro.url.pathname;
         Om Ditte
       </a>
       <a
-        href={site.booking}
+        href="/forloebet#priser"
         class="button button-small"
-        data-event="booking_click"
+        data-event="pricing_click"
         data-location="header"
       >
-        Gratis afklaring <Icon name="northeast" size={16} />
+        Se pris & opstart <Icon size={16} />
       </a>
     </nav>
   </div>

@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
 ---
 
 <Layout
@@ -94,11 +93,11 @@ import { site } from '../data/site';
         <a
           class="button"
           style="margin-top:23px"
-          href={site.booking}
-          data-event="booking_click"
+          href="/kontakt"
+          data-event="contact_click"
           data-location="about"
         >
-          Lad os tale sammen <Icon name="northeast" size={17} />
+          Lad os tale sammen <Icon size={17} />
         </a>
       </aside>
     </div>

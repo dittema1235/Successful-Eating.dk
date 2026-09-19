@@ -39,7 +39,8 @@ GitHub Pages kan også servere HTML/CSS/JS, men behandler **ikke** Cloudflares `
 - To behandlingssider: `/forloebet` og `/kropsglaede`.
 - 565 blogartikler på deres oprindelige adresser, 6 bevarede biblioteksadresser, 6 emnehubs og et søgbart arkiv.
 - Kontaktoplysninger og eksterne booking-/checkout-links: `src/data/site.ts`.
-- Direkte betaling hos det eksisterende systeme.io-checkout. Gratis afklaring hos den eksisterende Google-kalender. Ingen booking eller betaling simuleres lokalt.
+- Forløb: **4.499 kr. inklusive en gratis forsamtale**, med fuld tilbagebetaling ved dårligt match ved forsamtalen. Direkte betaling hos det eksisterende systeme.io-checkout. Alternativt: **50 minutters forsamtale til 645 kr.**, som modregnes ved efterfølgende deltagelse (restbeløb 3.854 kr.).
+- Sæt `PUBLIC_CONSULTATION_BOOKING_URL` til det verificerede eksterne booking-/betalingslink for forsamtalen. Uden linket tilbyder siden tydeligt en e-mailforespørgsel, hvor tid og betaling aftales med Ditte. Ingen booking eller betaling simuleres lokalt.
 - `/sulteneller` bevarer guidens adresse. Sæt `PUBLIC_GUIDE_SIGNUP_URL` til en verificeret ekstern tilmeldingsside for automatisk guide/nyhedsbrev. Uden den er den tydelige fallback en **e-mailanmodning**, som ikke automatisk tilmelder nogen.
 - Silktide Consent Manager er hostet lokalt med dansk tekst. Statistik og marketing er afvist som standard. Der er aktuelt ingen eksterne trackere; cookievalg kan åbnes med ikonet. Slå først automatisk banner til, hvis samtykkekrævende tjenester tilføjes.
 - `se:conversion` er lokale, anonyme klik-events, som en senere samtykkestyret integration kan lytte til. De er **ikke** booking-/købsbekræftelser og sender ingen netværkskald.

@@ -4,17 +4,17 @@ Udarbejdet 19. september 2026. Gælder det nye statiske website i `dittema1235/S
 
 ## Grundlag og prioritering
 
-Planen kombinerer **SEO-GEO-successfuleating.pdf** (8 sider, offentlig stikprøve) og **successfuleating-SEO-GEO-samlet-rapport.pdf** (47 sider, inklusive byggebeslutninger og rapporterede Search Console-data). Den detaljerede rapports seneste byggebeslutninger bruges ved konflikter. Search Console-tal gengives ikke som selvstændigt verificerede målinger; direkte adgang til Search Console var ikke tilgængelig.
+Planen kombinerer **SEO-GEO-successfuleating.pdf** (8 sider, offentlig stikprøve) og **successfuleating-SEO-GEO-samlet-rapport.pdf** (47 sider, inklusive byggebeslutninger og rapporterede Search Console-data). Den detaljerede rapports seneste byggebeslutninger bruges ved konflikter; ejerens efterfølgende præcisering af pris og forsamtaler 19. september 2026 har forrang. Search Console-tal gengives ikke som selvstændigt verificerede målinger; direkte adgang til Search Console var ikke tilgængelig.
 
 De to behandlingsforløb er overspisning/BED og kropsaccept. ADHD indgår som et videnstema og mulig hensyntagen i behandling; det markedsføres ikke som et separat forløb. Successful Eating har nationalt fokus og synligt samarbejde med den lokale psykologpraksis. Der er ikke bygget bysider eller lokale placeringspåstande.
 
 ## Mål og brugerrejser
 
-1. Besøgende, der søger behandling: forside/artikel → relevant behandling → aktuelle vilkår og checkout eller afklaring.
-2. Besøgende, der er i tvivl: problemgenkendelse → metode og faglig profil → gratis praktisk afklaring på 15 minutter.
+1. Besøgende, der søger behandling: forside/artikel → relevant behandling → forløb til 4.499 kr. inkl. gratis forsamtale → fuld tilbagebetaling, hvis forløbet ved forsamtalen vurderes som et dårligt match.
+2. Besøgende, der er i tvivl: problemgenkendelse → metode og faglig profil → 50 minutters forsamtale til 645 kr. → ved efterfølgende deltagelse modregnes 645 kr., så restbeløbet er 3.854 kr.
 3. Besøgende, der vil begynde forsigtigt: viden/guide → `/sulteneller` → e-mailanmodning eller ekstern samtykkestyret tilmelding.
 
-Gratis afklaring adskilles tydeligt fra den kliniske forsamtale. Det aktuelle checkout er fælles kilde til prisen for overspisningsforløbet. Den synlige pris på 4.499 kr. blev verificeret i checkout og lagres ét sted i site-data. Priser kopieres ikke til Product-schema. Kropsaccept har et enkelt tilbud og tydelig opfordring til at få de konkrete rammer oplyst.
+Begge købsveje vises samlet på forsiden og behandlingssiden, med pris, garanti og modregning før klik. Priser og varighed er bekræftet af ejeren og lagres i site-data; llms.txt genereres fra samme kilde. Den tidligere gratis 15-minutters afklaring er fjernet fra den aktive brugerrejse. Forsamtalen har en tydelig e-mailforespørgsel, indtil et verificeret eksternt booking-/betalingslink er konfigureret. Priser kopieres ikke til Product-schema. Kropsaccept har et enkelt tilbud og tydelig opfordring til at få de konkrete rammer oplyst.
 
 ## Design og indhold
 
@@ -27,7 +27,7 @@ Nye hovedsider: `/`, `/forloebet`, `/kropsglaede`, `/om-ditte`, `/resultater`, `
 | Fund | Implementering | Rest før domæneskift |
 | --- | --- | --- |
 | Tre telefonnumre | +45 71 41 59 69 fra den detaljerede rapport samles i site-data, footer, kontakt, schema og llms.txt | Koordinér eksterne profiler og det andet domæne |
-| Modstridende priser/varighed | Aktuelt systeme.io-checkout linkes direkte; ingen duplikerede priser eller Product-schema. Otte uger efter aktuelt checkout | Afstem forsamtalens varighed, prisplaner og vilkår hos udbyderen |
+| Modstridende priser/varighed | To ejerbekræftede købsveje, central prisdata, eksplicit tilbagebetaling og modregning. Otte uger efter aktuelt checkout | Tilknyt betalt forsamtale og afstem ekstern checkout, modregning og vilkår |
 | Forkert forsidetitel og manglende descriptions | Centrale sider har unikke HTML-titler, beskrivelser, identiske OG-titler og kanoniske adresser | Search Console URL Inspection efter lancering |
 | Hovedsider uden sitemap og kategorier mod noindex | Automatisk sitemap fra faktiske HTML-sider; emnehubs med egen canonical; gamle kategorier får redirects | Kontrollér Googles valgte canonical efter skift |
 | Uklar personidentitet | Stabil Person/Organization-graf, fuldt navn, `/om-ditte`, krydslink til psykologpraksis og LinkedIn | Fagprofiler kan suppleres efter verifikation |
@@ -43,7 +43,7 @@ Nye hovedsider: `/`, `/forloebet`, `/kropsglaede`, `/om-ditte`, `/resultater`, `
 - De seks gamle biblioteks-URL'er er bevaret og teksterne redaktionelt tilpasset. Nye introduktioner er mærket som redaktionelt indhold, ikke som en foretaget klinisk kvalitetssikring.
 - FAQ anvendes for forståelighed. llms.txt er en lille, ajourført oversigt, ikke en påstået genvej til AI-synlighed.
 - Momsstatus afgøres ikke af ordvalg eller schema-type. Rapportens anbefaling om at undgå undervisnings-/vægttabssprog er omsat til tydelig beskrivelse af behandling; selve klassifikationen og vilkårene er ejerens rådgivers opgave.
-- Den oprindelige `/terms` er videreført som anmodet i rapporten. Et tydeligt supplement beskriver den nye hjemmesides faktiske cookie-/databrug. De eksisterende vilkårs uoverensstemmelser er registreret i lanceringsvejledningen.
+- Den oprindelige `/terms` er videreført med målrettet opdatering af pris og forsamtaler efter ejerens præcisering. Den modstridende 30-minuttersangivelse for den inkluderede samtale er fjernet; kun den særskilt købte forsamtale angives som 50 minutter. Et tydeligt supplement beskriver den nye hjemmesides faktiske cookie-/databrug. De eksisterende vilkårs uoverensstemmelser er registreret i lanceringsvejledningen.
 - Domænegenkøb, DNS-ændringer, ændring af tredjepartsprofiler og udsendelse af e-mails er ikke udført som led i repository-opgaven.
 
 ## Måling efter lancering

@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
-import { site, services } from '../data/site';
+import PurchaseOptions from '../components/PurchaseOptions.astro';
+import { site, services, formatPrice } from '../data/site';
 export function getStaticPaths() {
   return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
 }
@@ -31,7 +32,11 @@ const schema = {
 
 <Layout
   title={title}
-  description={`${service.intro} Online i hele Danmark hos psykolog Ditte Munch-Andersen.`}
+  description={
+    body
+      ? `${service.intro} Online i hele Danmark hos psykolog Ditte Munch-Andersen.`
+      : `Online behandling af overspisning hos psykolog Ditte Munch-Andersen. ${formatPrice(site.treatmentPrice)} inkl. forsamtale. Alle pengene tilbage ved et dårligt match ved forsamtalen.`
+  }
   schema={schema}
   breadcrumbs={[{ name: service.title, url: `/${service.slug}` }]}
 >
@@ -47,13 +52,12 @@ const schema = {
       <p class="intro">{service.intro}</p>
       <div class="actions">
         <a
-          href={body ? site.booking : site.checkout}
+          href={body ? '/kontakt' : '#priser'}
           class="button"
-          data-event={body ? 'booking_click' : 'checkout_click'}
+          data-event={body ? 'contact_click' : 'pricing_click'}
           data-location={service.slug}
         >
-          {body ? 'Book en gratis afklaring' : 'Se pris og tilmelding'}{' '}
-          <Icon name="northeast" size={18} />
+          {body ? 'Tal med Ditte om kropsaccept' : 'Se pris og de to muligheder'} <Icon size={18} />
         </a>
         <a href="#om-forloebet" class="text-link">
           Læs om behandlingen <Icon size={17} />
@@ -61,11 +65,12 @@ const schema = {
       </div>
       <p class="hero-note">
         {body
-          ? '15 minutters gratis afklaring · Plads til dine spørgsmål'
-          : 'Forløbet indledes med en individuel klinisk forsamtale'}
+          ? 'Individuelle rammer · Plads til dine spørgsmål'
+          : `${formatPrice(site.treatmentPrice)} inkl. gratis forsamtale · Eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`}
       </p>
     </div>
   </section>
+  {!body && <PurchaseOptions />}
   <section class="section" id="om-forloebet">
     <div class="container content-grid">
       <div class="prose">
@@ -159,14 +164,17 @@ const schema = {
         ) : (
           <>
             <p>
-              Den aktuelle samlede pris, betalingsmuligheder og vilkår fremgår af tilmeldingssiden
-              hos systeme.io. Den individuelle kliniske forsamtale er inkluderet. Læs oplysningerne
-              igennem, før du tilmelder dig.
+              Forløbet koster {formatPrice(site.treatmentPrice)} inklusive en gratis individuel
+              klinisk forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du
+              alle pengene tilbage.
             </p>
             <p>
-              Behandlingen starter efter forsamtalen, når vi har vurderet, at den passer til din
-              situation. Ved manglende behandlingsmatch gælder vilkårene om tilbagebetaling på
-              tilmeldingssiden.
+              Du kan også starte med at købe en forsamtale på {site.consultationMinutes} minutter
+              til {formatPrice(site.consultationPrice)}. Vælger du efterfølgende at deltage i
+              forløbet, modregnes hele beløbet. Du betaler da{' '}
+              {formatPrice(site.treatmentPrice - site.consultationPrice)}
+              mere – {formatPrice(site.treatmentPrice)} i alt. Behandlingen starter efter
+              forsamtalen, når vi har vurderet, at den passer til din situation.
             </p>
             <a
               class="button"
@@ -174,15 +182,14 @@ const schema = {
               data-event="checkout_click"
               data-location="service_body"
             >
-              Se pris og tilmelding <Icon name="northeast" size={17} />
+              Køb forløbet · {formatPrice(site.treatmentPrice)} <Icon name="northeast" size={17} />
             </a>
           </>
         )}
         <div class="callout">
           <p>
-            <strong>Har du spørgsmål først?</strong> Du kan booke en gratis afklaring på 15
-            minutter. Den er til praktiske spørgsmål og næste skridt. Afklaringen er ikke den
-            kliniske forsamtale og erstatter ikke en faglig vurdering.
+            <strong>Har du praktiske spørgsmål først?</strong> Du er velkommen til at
+            <a href="/kontakt">kontakte Ditte</a> om indhold, opstart og rammer.
           </p>
         </div>
         <h2>Mulighed for tilskud</h2>
@@ -239,17 +246,17 @@ const schema = {
         </dl>
         <a
           class="button"
-          href={body ? site.booking : site.checkout}
-          data-event={body ? 'booking_click' : 'checkout_click'}
+          href={body ? '/kontakt' : site.checkout}
+          data-event={body ? 'contact_click' : 'checkout_click'}
           data-location="service_facts"
         >
-          {body ? 'Lad os tale sammen' : 'Se pris og tilmelding'}{' '}
+          {body ? 'Lad os tale sammen' : `Køb forløbet · ${formatPrice(site.treatmentPrice)}`}{' '}
           <Icon name="northeast" size={17} />
         </a>
         <p class="small muted">
           {body
-            ? 'Gratis afklaring: 15 minutter. Ingen tilmelding til et betalt forløb.'
-            : 'Tilmelding og betaling håndteres hos systeme.io.'}
+            ? 'Kontakt Ditte for pris og individuelle rammer.'
+            : 'Gratis forsamtale inkluderet. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.'}
         </p>
       </aside>
     </div>

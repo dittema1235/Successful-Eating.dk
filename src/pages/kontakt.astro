@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
+import { site, consultation, formatPrice } from '../data/site';
 ---
 
 <Layout
   title="Kontakt psykolog Ditte Munch-Andersen | Successful Eating"
-  description="Book en gratis afklarende samtale på 15 minutter, eller skriv til Ditte Munch-Andersen. Psykologisk hjælp online og på Hovedvagtsstræde 2C i Helsingør."
+  description={`Kontakt psykolog Ditte Munch-Andersen. Start med en forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}, som modregnes, hvis du vælger Successful Eating.`}
   breadcrumbs={[{ name: 'Kontakt', url: '/kontakt' }]}
 >
   <section class="page-hero">
@@ -33,17 +33,37 @@ import { site } from '../data/site';
       <div class="contact-grid">
         <article class="contact-card contact-main">
           <Icon name="clock" size={30} />
-          <h2>En gratis afklaring</h2>
+          <h2>Begynd med en forsamtale</h2>
           <p>
-            15 uforpligtende minutter til dine spørgsmål og en snak om, hvad der kunne være dit
-            næste skridt. Du vælger en ledig tid i kalenderen.
+            {site.consultationMinutes} minutter med Ditte til {formatPrice(site.consultationPrice)}.
+            Sammen undersøger I dine behov og vurderer, om Successful Eating passer til dig. Vælger
+            du efterfølgende forløbet, modregnes hele beløbet i prisen på
+            {formatPrice(site.treatmentPrice)}.
           </p>
-          <a class="button" href={site.booking} data-event="booking_click" data-location="contact">
-            Find en tid i kalenderen <Icon name="northeast" size={17} />
+          <a
+            class="button"
+            href={consultation.href}
+            data-event={
+              consultation.online
+                ? 'consultation_booking_click'
+                : 'consultation_request_email_click'
+            }
+            data-location="contact"
+          >
+            {consultation.online
+              ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
+              : 'Aftal forsamtale via e-mail'}{' '}
+            <Icon name="northeast" size={17} />
           </a>
           <p class="contact-note">
-            Booking åbner i Google Kalender. Den gratis afklaring er ikke en klinisk vurdering eller
-            behandling.
+            {consultation.online
+              ? 'Du fortsætter til booking og betaling.'
+              : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
+          </p>
+          <p class="contact-note">
+            Køber du hele forløbet fra start, er forsamtalen gratis og inkluderet. Du får alle
+            pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.
+            <a href="/forloebet#priser">Se de to muligheder.</a>
           </p>
         </article>
         <article class="contact-card">

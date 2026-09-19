@@ -6,12 +6,13 @@ import Guide from '../components/Guide.astro';
 import Articles from '../components/Articles.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
-import { site } from '../data/site';
+import PurchaseOptions from '../components/PurchaseOptions.astro';
+import { site, formatPrice } from '../data/site';
 ---
 
 <Layout
   title="Overspisning og madro | Psykolog Ditte Munch-Andersen"
-  description="Få hjælp til overspisning og madstøj hos psykolog Ditte Munch-Andersen. Psykologiske behandlingsforløb online i hele Danmark. Book en gratis afklaring på 15 minutter."
+  description={`Psykologisk hjælp til overspisning online hos Ditte Munch-Andersen. Forløb til ${formatPrice(site.treatmentPrice)} inkl. forsamtale, eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}.`}
 >
   <section class="hero">
     <div class="container">
@@ -146,6 +147,7 @@ import { site } from '../data/site';
     </div>
   </section>
   <Courses />
+  <PurchaseOptions />
   <Guide />
   <section class="section">
     <div class="container about-grid">

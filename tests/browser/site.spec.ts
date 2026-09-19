@@ -63,13 +63,29 @@ test('search failure is recoverable', async ({ page }) => {
 });
 test('booking, checkout and guide have honest working destinations', async ({ page }) => {
   await page.goto('/forloebet');
-  const buy = page.getByRole('link', { name: 'Se pris og tilmelding' }).first();
+  const buy = page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first();
   await expect(buy).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
-  await page.goto('/kontakt');
-  await expect(page.getByRole('link', { name: 'Find en tid i kalenderen' })).toHaveAttribute(
+  const options = page.locator('#priser');
+  await expect(options).toContainText('Alle pengene tilbage ved et dårligt match');
+  await expect(options).toContainText('645 kr. / 50 minutter');
+  await expect(options).toContainText('3.854 kr. mere');
+  await expect(options).toContainText('4.499 kr. i alt');
+  await expect(options.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
     'href',
-    'https://calendar.app.google/BFPj4aAbpdadtkB28',
+    /^mailto:hello@successfuleating.com\?subject=/,
   );
+  await expect(options).toContainText('et klik er ikke en booking');
+  await page.goto('/kontakt');
+  await expect(page.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
+    'href',
+    /^mailto:hello@successfuleating.com\?subject=/,
+  );
+  await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
+  await page.goto('/terms');
+  await expect(page.locator('main')).toContainText('50 minutter, 645 kr.');
+  await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
+  await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.854 kr.');
+  await expect(page.locator('main')).not.toContainText('30-minutters');
   await page.goto('/sulteneller');
   const request = page.getByRole('link', { name: 'Bed om guiden via e-mail' });
   await expect(request).toHaveAttribute('href', /^mailto:hello@successfuleating.com\?subject=/);
@@ -119,6 +135,6 @@ test('content and acquisition routes work without JavaScript', async ({ browser 
   await page.locator('.hero a.button').click();
   await page.getByRole('link', { name: 'Læs om forløbet', exact: true }).click();
   await expect(page).toHaveURL(/forloebet/);
-  await expect(page.getByRole('link', { name: 'Se pris og tilmelding' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first()).toBeVisible();
   await context.close();
 });

@@ -1,0 +1,167 @@
+---
+import Icon from './Icon.astro';
+import { site, consultation, formatPrice } from '../data/site';
+---
+
+<section class="section purchase-section" id="priser" aria-labelledby="purchase-heading">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">SUCCESSFUL EATING · PRIS & OPSTART</span>
+        <h2 id="purchase-heading">To måder at tage det første skridt.</h2>
+      </div>
+      <p class="intro">
+        Begynd med hele forløbet eller med en forsamtale. Begge veje giver plads til at finde ud af,
+        om behandlingen passer til dig.
+      </p>
+    </div>
+    <div class="purchase-grid">
+      <article class="purchase-card purchase-primary">
+        <span class="eyebrow">FORLØB MED FORSAMTALE</span>
+        <h3>Start på Successful Eating</h3>
+        <p class="purchase-price">{formatPrice(site.treatmentPrice)}</p>
+        <p>
+          Otte ugers psykologisk behandling online. En individuel forsamtale er gratis og inkluderet
+          i prisen.
+        </p>
+        <div class="purchase-highlight">
+          <Icon name="shield" size={23} />
+          <p>
+            <strong>Alle pengene tilbage ved et dårligt match.</strong> Vurderes forløbet ved
+            forsamtalen ikke at passe til dig, får du hele det indbetalte beløb tilbage.
+          </p>
+        </div>
+        <a
+          class="button"
+          href={site.checkout}
+          data-event="checkout_click"
+          data-location="purchase_options"
+        >
+          Køb forløbet · {formatPrice(site.treatmentPrice)} <Icon name="northeast" size={17} />
+        </a>
+        <p class="small muted">Du fortsætter til betaling hos systeme.io.</p>
+      </article>
+      <article class="purchase-card">
+        <span class="eyebrow">FORSAMTALE FØRST</span>
+        <h3>Find ud af, hvad der passer til dig</h3>
+        <p class="purchase-price">
+          {formatPrice(site.consultationPrice)} <span>/ {site.consultationMinutes} minutter</span>
+        </p>
+        <p>
+          En individuel klinisk forsamtale med Ditte, hvor I undersøger dine behov og vurderer, om
+          forløbet er det rette næste skridt.
+        </p>
+        <div class="purchase-highlight">
+          <Icon name="check" size={23} />
+          <p>
+            <strong>Beløbet modregnes, hvis du vælger forløbet.</strong> Du betaler derefter{' '}
+            {formatPrice(site.treatmentPrice - site.consultationPrice)} mere – altså{' '}
+            {formatPrice(site.treatmentPrice)} i alt.
+          </p>
+        </div>
+        <a
+          class="button"
+          href={consultation.href}
+          data-event={
+            consultation.online ? 'consultation_booking_click' : 'consultation_request_email_click'
+          }
+          data-location="purchase_options"
+        >
+          {consultation.online
+            ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
+            : 'Aftal forsamtale via e-mail'}{' '}
+          <Icon name="northeast" size={17} />
+        </a>
+        <p class="small muted">
+          {consultation.online
+            ? 'Du fortsætter til booking og betaling.'
+            : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
+        </p>
+      </article>
+    </div>
+    <p class="purchase-terms">
+      Læs <a href="/terms">handelsbetingelserne</a>, eller <a href="/kontakt">kontakt Ditte</a>,
+      hvis du har spørgsmål.
+    </p>
+  </div>
+</section>
+
+<style>
+  .purchase-section {
+    background: var(--paper);
+    scroll-margin-top: 110px;
+  }
+  .section-heading h2 {
+    max-width: 600px;
+  }
+  .purchase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+  .purchase-card {
+    padding: clamp(25px, 3vw, 44px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .purchase-primary {
+    background: var(--sage);
+  }
+  .purchase-card h3 {
+    font-size: clamp(27px, 3vw, 35px);
+    line-height: 1.15;
+  }
+  .purchase-price {
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--green);
+    line-height: 1.2;
+  }
+  .purchase-price span {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .purchase-highlight {
+    display: flex;
+    gap: 13px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    margin-bottom: auto;
+  }
+  .purchase-highlight :global(svg) {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .purchase-highlight p {
+    font-size: 15px;
+  }
+  .purchase-highlight strong {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .purchase-card .button {
+    align-self: flex-start;
+    text-align: center;
+  }
+  .purchase-terms {
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .purchase-terms a {
+    text-decoration: underline;
+  }
+  @media (max-width: 700px) {
+    .purchase-grid {
+      grid-template-columns: 1fr;
+    }
+    .purchase-card .button {
+      width: 100%;
+    }
+  }
+</style>
