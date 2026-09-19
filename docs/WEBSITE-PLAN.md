@@ -52,6 +52,10 @@ Brug gennemført booking, godkendt lead og gennemført køb som resultater. Klik
 
 Saml en baseline fra Search Console før skiftet. Følg vigtige URL'er, ikke-brand-forespørgsler, indeksering og 404-fejl de første uger. Undersøg LCP/INP/CLS i feltdata, når der er nok trafik. Hold de samme AI-spørgsmål og registreringsmetoder ved gentagelser; ingen garanti for citation eller placering.
 
+## Næste arbejdsrunde
+
+Den konkrete rækkefølge, de første 10 artikler, den fulde screeningsliste og kriterier for næste SEO/GEO-runde findes i [SEO-GEO-ARBEJDSPLAN.md](SEO-GEO-ARBEJDSPLAN.md). Arbejdsplanen erstatter de generelle tidsangivelser nedenfor som operationel prioritering.
+
 ## Opfølgning
 
 - Før skift: guideintegration, pris-/vilkårskonsistens, faglig gennemgang, staging og redirects.

@@ -49,6 +49,8 @@ GitHub Pages kan også servere HTML/CSS/JS, men behandler **ikke** Cloudflares `
 
 Unikke titler, descriptions, canonical, Open Graph, lokale skrifttyper, responsive WebP-billeder, sitemap, robots.txt, stabil Person/Organization-identitet, Service-schema og artikelmetadata er bygget ind. Centrale artikler begynder med korte svar og kildehenvisninger. FAQ er til læserne; der loves hverken rich results eller AI-citationer.
 
+Den næste indholdsrunde er planlagt i [SEO/GEO-arbejdsplanen](docs/SEO-GEO-ARBEJDSPLAN.md), med en screeningsliste for alle 555 tilbageværende artikler.
+
 Planen bygger på begge brugerleverede PDF-rapporter fra 19. september 2026. Se [website- og SEO-plan](docs/WEBSITE-PLAN.md), [lancering](docs/LANCERING.md) og [redaktionel gennemgang](docs/REDAKTION.md).
 
 `src/data/legacy-posts.json` bevarer det rensede kildeindhold. `scripts/prepare-archive.mjs` laver publiceringsversion og søgeindeks med dokumenterede rettelser. En ny offentlig import kræver først de originale sitemap-/HTML-kilder; en almindelig build er fuldt reproducerbar fra Git og har ingen afhængighed af Simplero.
