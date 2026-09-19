@@ -12,10 +12,24 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(scan.violations).toEqual([]);
   await page.locator('.hero a.button').click();
+  await expect(page).toHaveURL(/\/forloebet$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Behandling af overspisning online',
+  );
+  await expect(page.locator('#det-faar-du')).toContainText('4 live gruppesamtaler');
+  await page.getByRole('link', { name: 'Se pris og tilmelding', exact: true }).click();
+  await expect(page.locator('#priser')).toBeInViewport();
+  await expect(
+    page.locator('#priser').getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }),
+  ).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Find den rette hjælp', exact: true }).click();
   await expect(page.locator('#forloeb')).toBeInViewport();
   await page.getByRole('link', { name: 'Læs om kropsaccept' }).click();
   await expect(page).toHaveURL(/kropsglaede/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre kropskritik');
+  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/kontakt');
+  await expect(page.locator('.closing-cta')).not.toContainText('4.499');
   expect(errors).toEqual([]);
 });
 test('menu, keyboard and FAQ work', async ({ page, isMobile }) => {
@@ -52,6 +66,28 @@ test('search covers the entire archive and handles no results', async ({ page })
   await expect(page.locator('#search-count')).toContainText('fundet i hele arkivet');
   expect(await page.locator('#archive-results article').count()).toBeGreaterThan(0);
 });
+test('search handles Danish typos, ranks results and keeps topic filters', async ({ page }) => {
+  await page.goto('/blog');
+  const query = page.getByLabel('Søg i alle artikler');
+  const results = page.locator('#archive-results');
+  await query.fill('overspisnig');
+  await expect(results).toContainText('Hjælp til overspisning');
+  await expect(page.locator('#search-count')).toContainText('Bedste match først');
+
+  await query.fill('sukertrang');
+  await expect(results).toContainText('ADHD hos kvinder: Derfor får du sukkertrang om aftenen');
+  await page.getByLabel('Emne', { exact: true }).selectOption('adhd');
+  await expect(results.locator('article')).toHaveCount(2);
+  await expect(results).toContainText('ADHD hos kvinder: Derfor får du sukkertrang om aftenen');
+  await expect(results).not.toContainText('Hvad lærer du på');
+
+  await page.getByLabel('Emne', { exact: true }).selectOption('');
+  await query.fill('De der kærestekilo');
+  await expect(results.locator('h2').first()).toHaveText('De der kærestekilo');
+  await query.clear();
+  await expect(page.locator('#archive-pagination')).toBeVisible();
+  await expect(results.locator('article')).toHaveCount(24);
+});
 test('consolidated articles preserve old links and replace retired search results', async ({
   page,
   request,
@@ -84,11 +120,55 @@ test('search failure is recoverable', async ({ page }) => {
   await expect(page.locator('#search-count')).toContainText('kunne ikke indlæses');
   await expect(page.locator('#archive-pagination')).toBeVisible();
   await page.unroute('**/search-index.json');
-  await page.getByRole('button', { name: 'Søg', exact: true }).click();
+  await page.locator('#archive-search').getByRole('button', { name: 'Søg', exact: true }).click();
   await expect(page.locator('#search-count')).toContainText('fundet i hele arkivet');
+});
+test('header search is visible across pages and opens fuzzy results', async ({ page }) => {
+  for (const route of [
+    '/',
+    '/forloebet',
+    '/kontakt',
+    '/madro-biblioteket/troestespisning',
+    '/blog/50213-modeldetox-og-kropsbillede',
+    '/blog/2',
+    '/404',
+  ]) {
+    await page.goto(route);
+    await expect(
+      page.getByRole('searchbox', { name: 'Søg i artiklerne', exact: true }),
+    ).toBeInViewport();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  }
+  const headerSearch = page.getByRole('search', { name: 'Søg i artikler', exact: true });
+  await headerSearch.getByRole('searchbox').fill('overspisnig');
+  await headerSearch.getByRole('button', { name: 'Søg', exact: true }).click();
+  await expect(page).toHaveURL(/\/blog\?q=overspisnig#archive-search$/);
+  await expect(page.getByLabel('Søg i alle artikler')).toHaveValue('overspisnig');
+  await expect(page.locator('#archive-results')).toContainText('Hjælp til overspisning');
+  await expect(page.locator('#archive-search')).toBeInViewport();
+  await page.getByLabel('Emne', { exact: true }).selectOption('adhd');
+  await expect(page).toHaveURL(/topic=adhd/);
+  await page.reload();
+  await expect(page.getByLabel('Søg i alle artikler')).toHaveValue('overspisnig');
+  await expect(page.getByLabel('Emne', { exact: true })).toHaveValue('adhd');
+  await expect(page.locator('#archive-results')).toContainText('ADHD');
+  await expect(page.locator('#search-count')).toContainText('fundet i hele arkivet');
+  const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(scan.violations).toEqual([]);
 });
 test('booking, checkout and guide have honest working destinations', async ({ page }) => {
   await page.goto('/forloebet');
+  const offer = await page.locator('script[type="application/ld+json"]').evaluate((el) => {
+    const service = JSON.parse(el.textContent || '{}')['@graph'].find(
+      (entry: { '@type': string }) => entry['@type'] === 'Service',
+    );
+    return service.offers;
+  });
+  expect(offer.price).toBe(4499);
+  expect(offer.priceCurrency).toBe('DKK');
+  expect(offer.url).toBe('https://successfuleating.systeme.io/4b00a70d');
   const buy = page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first();
   await expect(buy).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
   const options = page.locator('#priser');
@@ -163,7 +243,6 @@ test.describe('without JavaScript', () => {
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre madstøj');
     await page.locator('.hero a.button').click();
-    await page.getByRole('link', { name: 'Læs om forløbet', exact: true }).click();
     await expect(page).toHaveURL(/forloebet/);
     await expect(
       page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first(),

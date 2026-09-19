@@ -1,27 +1,48 @@
 ---
 import Icon from './Icon.astro';
 import { site, formatPrice } from '../data/site';
+interface Props {
+  body?: boolean;
+  purchase?: boolean;
+}
+const { body = false, purchase = false } = Astro.props;
 ---
 
 <section class="closing-cta">
   <div class="container">
     <span class="eyebrow">DU BEHØVER IKKE HAVE ALLE SVARENE</span>
-    <h2>Det første skridt må gerne være lille.</h2>
+    <h2>
+      {body ? 'Et første skridt mod mindre kropskritik.' : 'Klar til at få støtte til mere madro?'}
+    </h2>
     <p>
-      Du kan starte med hele forløbet inklusive en gratis forsamtale, eller købe en forsamtale først
-      og få beløbet modregnet, hvis du vælger at fortsætte.
+      {body
+        ? 'Tal med Ditte om din situation og mulighederne for et individuelt forløb. Du får pris og rammer, før du beslutter dig.'
+        : 'Start med hele forløbet inklusive en gratis forsamtale. Vurderer vi ved forsamtalen, at det er et dårligt match, får du alle pengene tilbage.'}
     </p>
     <div class="actions">
-      <a class="button" href="/forloebet#priser" data-event="pricing_click" data-location="closing">
-        Se de to muligheder <Icon size={17} />
+      <a
+        class="button"
+        href={body ? '/kontakt' : purchase ? site.checkout : '/forloebet'}
+        data-event={body ? 'contact_click' : purchase ? 'checkout_click' : 'service_click'}
+        data-location="closing"
+      >
+        {body
+          ? 'Tal med Ditte om kropsaccept'
+          : purchase
+            ? `Køb forløbet · ${formatPrice(site.treatmentPrice)}`
+            : 'Se forløbet og pris'}{' '}
+        <Icon size={17} />
       </a>
-      <a class="text-link" href="/kontakt">
-        Skriv til Ditte <Icon size={17} />
-      </a>
+      {!body && (
+        <a class="text-link" href="/forloebet#priser">
+          Vil du starte med en forsamtale? <Icon size={17} />
+        </a>
+      )}
     </div>
     <p class="small">
-      Forløb: {formatPrice(site.treatmentPrice)} · Forsamtale: {formatPrice(site.consultationPrice)}{' '}
-      / {site.consultationMinutes} minutter
+      {body
+        ? 'Individuelle samtaler · Pris oplyses før aftale'
+        : `Forløb: ${formatPrice(site.treatmentPrice)} · Forsamtale: ${formatPrice(site.consultationPrice)} / ${site.consultationMinutes} minutter`}
     </p>
   </div>
 </section>

@@ -60,7 +60,7 @@ import { site, consultation, formatPrice } from '../data/site';
           </p>
         </div>
         <a
-          class="button"
+          class="button button-outline"
           href={consultation.href}
           data-event={
             consultation.online ? 'consultation_booking_click' : 'consultation_request_email_click'
@@ -112,18 +112,18 @@ import { site, consultation, formatPrice } from '../data/site';
     background: var(--sage);
   }
   .purchase-card h3 {
-    font-size: clamp(27px, 3vw, 35px);
+    font-size: clamp(1.6875rem, 3vw, 2.1875rem);
     line-height: 1.15;
   }
   .purchase-price {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: 600;
     color: var(--green);
     line-height: 1.2;
   }
   .purchase-price span {
     display: inline-block;
-    font-size: 15px;
+    font-size: var(--text-body);
     font-weight: 400;
   }
   .purchase-highlight {
@@ -138,7 +138,7 @@ import { site, consultation, formatPrice } from '../data/site';
     margin-top: 3px;
   }
   .purchase-highlight p {
-    font-size: 15px;
+    font-size: var(--text-body);
   }
   .purchase-highlight strong {
     display: block;
@@ -150,7 +150,7 @@ import { site, consultation, formatPrice } from '../data/site';
   }
   .purchase-terms {
     margin-top: 25px;
-    font-size: 14px;
+    font-size: var(--text-small);
     text-align: center;
   }
   .purchase-terms a {

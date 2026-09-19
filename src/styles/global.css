@@ -12,6 +12,12 @@
   --line: #dcded3;
   --serif: 'Fraunces Variable', Georgia, serif;
   --sans: 'DM Sans Variable', Arial, sans-serif;
+  --text-body: 1.125rem;
+  --text-reading: 1.1875rem;
+  --text-lead: 1.25rem;
+  --text-small: 1rem;
+  --text-label: 0.875rem;
+  --text-brand: 0.75rem;
   font-family: var(--sans);
   color: var(--ink);
   background: var(--paper);
@@ -24,8 +30,8 @@
 }
 body {
   margin: 0;
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: var(--text-body);
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -64,16 +70,18 @@ h3 {
   font-family: var(--serif);
   font-weight: 430;
   line-height: 1.13;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 h1 {
-  font-size: clamp(44px, 5.4vw, 76px);
+  font-size: clamp(2.75rem, 5.4vw, 4.75rem);
 }
 h2 {
-  font-size: clamp(34px, 3.5vw, 48px);
+  font-size: clamp(2.125rem, 3.5vw, 3rem);
 }
 h3 {
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 p + p {
   margin-top: 1em;
@@ -100,9 +108,9 @@ select:focus-visible {
   padding-block: 100px;
 }
 .eyebrow {
-  font-size: 11px;
+  font-size: var(--text-label);
   font-weight: 650;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   line-height: 1.5;
   text-transform: uppercase;
   display: block;
@@ -122,14 +130,14 @@ select:focus-visible {
   box-shadow: 0 0 0 5px #76946a12;
 }
 .intro {
-  font-size: 17px;
+  font-size: var(--text-lead);
   line-height: 1.8;
   color: var(--muted);
   max-width: 540px;
 }
 .small {
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: var(--text-small);
+  line-height: 1.75;
 }
 .muted {
   color: var(--muted);
@@ -144,10 +152,12 @@ select:focus-visible {
   padding: 16px 23px;
   background: var(--green);
   color: var(--white);
-  font-size: 14px;
+  font-size: var(--text-small);
   font-weight: 550;
   line-height: 1.4;
   min-height: 53px;
+  max-width: 100%;
+  text-align: center;
   transition:
     background 0.2s,
     transform 0.2s;
@@ -157,7 +167,7 @@ select:focus-visible {
   transform: translateY(-2px);
 }
 .button-small {
-  font-size: 12px;
+  font-size: var(--text-small);
   padding: 12px 18px;
   min-height: 44px;
   gap: 14px;
@@ -182,7 +192,7 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: var(--text-small);
   font-weight: 600;
   padding-bottom: 5px;
   border-bottom: 1px solid currentColor;
@@ -210,15 +220,17 @@ select:focus-visible {
   top: 10px;
 }
 .announcement {
-  height: 34px;
+  min-height: 38px;
+  padding: 6px 20px;
+  flex-wrap: wrap;
   background: var(--green);
   color: #f2f1e7;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 13px;
-  font-size: 10px;
-  letter-spacing: 0.065em;
+  font-size: var(--text-label);
+  letter-spacing: 0.01em;
 }
 .announcement-divider {
   color: #aabfa7;
@@ -231,19 +243,22 @@ select:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .header-inner {
-  height: 92px;
+  min-height: 92px;
+  padding-block: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+  flex-wrap: wrap;
 }
 .wordmark {
   display: inline-flex;
   gap: 12px;
   align-items: center;
   flex-shrink: 0;
+  max-width: 100%;
   font-family: var(--serif);
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 480;
   line-height: 1.12;
   letter-spacing: -1px;
@@ -261,17 +276,18 @@ select:focus-visible {
 .wordmark small {
   display: block;
   font-family: var(--sans);
-  font-size: 7.5px;
+  font-size: var(--text-brand);
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.02em;
   margin-top: 9px;
 }
 .header-inner nav {
   display: flex;
   align-items: center;
-  gap: 31px;
-  font-size: 12px;
+  gap: 24px;
+  font-size: var(--text-small);
   font-weight: 500;
+  flex-wrap: wrap;
 }
 .header-inner nav > a:not(.button) {
   padding-block: 12px;
@@ -300,14 +316,15 @@ select:focus-visible {
 .hero h1 {
   margin-bottom: 24px;
   line-height: 1.08;
+  hyphens: manual;
 }
 .hero h1 em {
   color: var(--rust);
 }
 .hero .intro {
-  max-width: 430px;
-  font-size: 15px;
-  line-height: 1.85;
+  max-width: 52ch;
+  font-size: var(--text-lead);
+  line-height: 1.75;
 }
 .hero .actions {
   gap: 25px;
@@ -319,7 +336,7 @@ select:focus-visible {
   gap: 8px;
   margin-top: 20px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .hero-visual {
   position: relative;
@@ -345,14 +362,15 @@ select:focus-visible {
   gap: 14px;
   box-shadow: 0 6px 24px #253b3210;
   border-radius: 5px;
+  max-width: calc(100% + 20px);
 }
 .portrait-label strong {
-  font-size: 13px;
+  font-size: var(--text-small);
   display: block;
   font-weight: 550;
 }
 .portrait-label span {
-  font-size: 10px;
+  font-size: var(--text-label);
   color: var(--muted);
   display: block;
   margin-top: 3px;
@@ -382,17 +400,17 @@ select:focus-visible {
   box-shadow: 0 0 0 7px var(--paper);
 }
 .hero-stamp span {
-  font-size: 8px;
+  font-size: var(--text-brand);
   font-weight: 600;
-  letter-spacing: 1.4px;
+  letter-spacing: 0.04em;
 }
 .hero-bottom {
   margin-top: 32px;
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: var(--text-label);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -405,7 +423,7 @@ select:focus-visible {
 }
 .trust-inner {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding-block: 25px;
   gap: 20px;
 }
@@ -417,18 +435,19 @@ select:focus-visible {
 }
 .trust-item:not(:last-child) {
   border-right: 1px solid #ced5c6;
+  padding-right: 16px;
 }
 .trust-item svg {
   color: #607451;
 }
 .trust-item strong {
   display: block;
-  font-size: 12px;
+  font-size: var(--text-small);
   font-weight: 550;
 }
 .trust-item span {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: var(--muted);
 }
 .understand-grid {
@@ -441,7 +460,7 @@ select:focus-visible {
   max-width: 480px;
 }
 .understand-grid .intro {
-  font-size: 15px;
+  font-size: var(--text-lead);
   margin-top: 24px;
 }
 .feeling {
@@ -455,19 +474,19 @@ select:focus-visible {
 }
 .feeling .number {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 1.1875rem;
   color: #647457;
 }
 .feeling h3 {
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: var(--text-body);
   letter-spacing: 0;
   font-weight: 550;
   margin-bottom: 8px;
   line-height: 1.5;
 }
 .feeling p {
-  font-size: 13px;
+  font-size: var(--text-body);
   line-height: 1.7;
   color: var(--muted);
 }
@@ -479,8 +498,9 @@ select:focus-visible {
   margin-bottom: 40px;
 }
 .section-heading .intro {
-  max-width: 350px;
-  font-size: 14px;
+  max-width: 40ch;
+  flex: 0 1 40ch;
+  font-size: var(--text-lead);
 }
 .section-heading h2 {
   max-width: 660px;
@@ -493,7 +513,7 @@ select:focus-visible {
 }
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 .course-card {
@@ -510,6 +530,8 @@ select:focus-visible {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .course-icon {
   display: grid;
@@ -528,26 +550,26 @@ select:focus-visible {
   background: var(--sand);
 }
 .course-tag {
-  font-size: 9px;
+  font-size: var(--text-label);
   font-weight: 550;
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 4px 10px;
 }
 .course-card .eyebrow {
-  font-size: 8px;
+  font-size: var(--text-label);
   letter-spacing: 0.11em;
   margin-bottom: 12px;
 }
 .course-card h3 {
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 1.2;
   margin-bottom: 15px;
 }
 .course-card > p {
-  font-size: 13px;
+  font-size: var(--text-body);
   color: var(--muted);
-  line-height: 1.85;
+  line-height: 1.75;
 }
 .checklist {
   padding: 0;
@@ -558,7 +580,7 @@ select:focus-visible {
   display: flex;
   align-items: flex-start;
   gap: 9px;
-  font-size: 12px;
+  font-size: var(--text-body);
   padding: 7px 0;
 }
 .checklist svg {
@@ -572,11 +594,11 @@ select:focus-visible {
   padding-bottom: 0;
   border-top: 1px solid var(--line);
   border-bottom: 0;
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .course-help {
   text-align: center;
-  font-size: 12px;
+  font-size: var(--text-small);
   margin-top: 28px;
   color: var(--muted);
 }
@@ -590,9 +612,9 @@ select:focus-visible {
 .guide-panel {
   background: var(--peach);
   display: grid;
-  grid-template-columns: 0.8fr 1fr;
-  gap: 70px;
-  padding: 65px 75px;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1fr);
+  gap: 50px;
+  padding: 60px;
   align-items: center;
   border-radius: 8px;
   overflow: hidden;
@@ -605,7 +627,7 @@ select:focus-visible {
   min-height: 330px;
 }
 .book-mockup {
-  height: 308px;
+  min-height: 340px;
   width: 228px;
   background: #e9e8d6;
   border-radius: 2px 6px 6px 2px;
@@ -628,11 +650,11 @@ select:focus-visible {
   border-radius: 0 2px 2px 0;
 }
 .book-mockup .eyebrow {
-  font-size: 7px;
+  font-size: var(--text-brand);
   margin-bottom: 22px;
 }
 .book-mockup h3 {
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 1.12;
   letter-spacing: -1px;
 }
@@ -641,7 +663,7 @@ select:focus-visible {
   color: #6c7a59;
 }
 .book-mockup small {
-  font-size: 7px;
+  font-size: var(--text-brand);
   text-align: center;
 }
 .free-badge {
@@ -658,27 +680,27 @@ select:focus-visible {
   align-items: center;
   justify-content: center;
   transform: rotate(10deg);
-  font-size: 11px;
+  font-size: var(--text-label);
   line-height: 1.3;
 }
 .free-badge strong {
   font-family: var(--serif);
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 400;
 }
 .guide-panel h2 {
-  font-size: 41px;
+  font-size: 2.5625rem;
   margin-bottom: 19px;
 }
 .guide-panel .intro {
-  font-size: 14px;
+  font-size: var(--text-lead);
   color: #625f53;
 }
 .guide-panel .actions {
   margin-top: 24px;
 }
 .guide-fineprint {
-  font-size: 10px;
+  font-size: var(--text-small);
   margin-top: 14px;
   color: #666355;
 }
@@ -706,7 +728,7 @@ select:focus-visible {
   position: absolute;
   right: -30px;
   bottom: -24px;
-  font-size: 23px;
+  font-size: 1.4375rem;
   box-shadow: 0 0 0 6px var(--paper);
   transform: rotate(-3deg);
 }
@@ -714,7 +736,7 @@ select:focus-visible {
   margin-bottom: 24px;
 }
 .about-copy .intro {
-  font-size: 14px;
+  font-size: var(--text-lead);
 }
 .about-copy .checklist {
   margin: 18px 0;
@@ -727,13 +749,13 @@ select:focus-visible {
 }
 .quote-mark {
   font-family: var(--serif);
-  font-size: 66px;
+  font-size: 4.125rem;
   line-height: 0.8;
   color: var(--sage-deep);
 }
 .testimonial blockquote {
   font-family: var(--serif);
-  font-size: clamp(25px, 2.7vw, 35px);
+  font-size: clamp(1.5625rem, 2.7vw, 2.1875rem);
   line-height: 1.4;
   font-weight: 350;
   max-width: 850px;
@@ -741,21 +763,21 @@ select:focus-visible {
   letter-spacing: -0.6px;
 }
 .testimonial .quote-author {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .testimonial .quote-note {
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #d3decc;
   margin-top: 7px;
 }
 .testimonial .text-link {
   margin-top: 26px;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: var(--paper);
 }
 .article-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
 }
 .article-illustration {
@@ -769,7 +791,7 @@ select:focus-visible {
 }
 .article-illustration .illustration-word {
   font-family: var(--serif);
-  font-size: 70px;
+  font-size: 4.375rem;
   letter-spacing: -4px;
   font-style: italic;
   position: relative;
@@ -796,23 +818,23 @@ select:focus-visible {
   transition: transform 0.3s;
 }
 .article-card .eyebrow {
-  font-size: 9px;
+  font-size: var(--text-label);
   margin-top: 21px;
   margin-bottom: 10px;
 }
 .article-card h3 {
-  font-size: 25px;
+  font-size: 1.5625rem;
   line-height: 1.25;
 }
 .article-card p {
-  font-size: 12px;
+  font-size: var(--text-body);
   color: var(--muted);
   margin-top: 12px;
 }
 .article-card .text-link {
   margin-top: 17px;
   border: 0;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .faq-section {
   background: #eeefe7;
@@ -826,7 +848,7 @@ select:focus-visible {
   margin-bottom: 20px;
 }
 .faq-intro p {
-  font-size: 14px;
+  font-size: var(--text-body);
   color: var(--muted);
 }
 .faq-intro .text-link {
@@ -842,7 +864,7 @@ select:focus-visible {
   list-style: none;
   padding: 23px 35px 23px 0;
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--text-body);
   font-weight: 500;
   position: relative;
 }
@@ -854,15 +876,15 @@ select:focus-visible {
   position: absolute;
   right: 0;
   top: 20px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 300;
 }
 .faq-list details[open] summary:after {
   content: '−';
 }
 .faq-list details p {
-  font-size: 13px;
-  line-height: 1.85;
+  font-size: var(--text-body);
+  line-height: 1.75;
   color: var(--muted);
   padding: 0 25px 25px 0;
 }
@@ -876,14 +898,14 @@ select:focus-visible {
 .closing-cta p {
   max-width: 540px;
   margin-inline: auto;
-  font-size: 14px;
+  font-size: var(--text-body);
   color: var(--muted);
 }
 .closing-cta .actions {
   justify-content: center;
 }
 .closing-cta .small {
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-top: 14px;
 }
 .site-footer {
@@ -893,16 +915,16 @@ select:focus-visible {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 32px;
   padding-bottom: 55px;
 }
 .footer-brand .wordmark {
-  font-size: 23px;
+  font-size: 1.4375rem;
   gap: 7px;
 }
 .footer-brand > p {
-  font-size: 12px;
+  font-size: var(--text-small);
   color: var(--muted);
   margin-top: 20px;
   line-height: 1.8;
@@ -910,17 +932,17 @@ select:focus-visible {
 .footer-signature {
   display: block;
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-style: italic;
   margin-top: 25px;
 }
 .footer-brand > p.small {
-  font-size: 9px;
+  font-size: var(--text-small);
   margin-top: 5px;
 }
 .footer-grid h2 {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: var(--text-small);
   letter-spacing: 0;
   font-weight: 600;
   margin: 8px 0 22px;
@@ -929,16 +951,17 @@ select:focus-visible {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #50614e;
-  padding-block: 5px;
+  padding-block: 8px;
+  min-height: 44px;
   overflow-wrap: anywhere;
 }
 .footer-grid a:hover {
   color: var(--rust);
 }
 .footer-grid > div:not(:first-child) > p {
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #50614e;
   margin-top: 15px;
   margin-bottom: 10px;
@@ -948,20 +971,22 @@ select:focus-visible {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
   padding-block: 20px;
-  font-size: 9px;
+  font-size: var(--text-label);
   color: #576452;
 }
 .footer-bottom > div {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .page-hero {
   padding: 65px 0 70px;
   border-bottom: 1px solid var(--line);
 }
 .page-hero h1 {
-  font-size: clamp(40px, 4.7vw, 66px);
+  font-size: clamp(2.5rem, 4.7vw, 4.125rem);
   max-width: 880px;
   margin-bottom: 24px;
 }
@@ -969,7 +994,7 @@ select:focus-visible {
   max-width: 650px;
 }
 .breadcrumbs {
-  font-size: 10px;
+  font-size: var(--text-label);
   color: var(--muted);
   display: flex;
   flex-wrap: wrap;
@@ -982,29 +1007,30 @@ select:focus-visible {
 }
 .content-grid {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: minmax(0, 1fr) 340px;
   gap: 80px;
   align-items: start;
 }
 .prose {
-  max-width: 760px;
+  max-width: 65ch;
+  font-size: var(--text-reading);
   overflow-wrap: anywhere;
 }
 .prose h2 {
-  font-size: 34px;
+  font-size: 2.125rem;
   margin: 45px 0 18px;
 }
 .prose h2:first-child {
   margin-top: 0;
 }
 .prose h3 {
-  font-size: 25px;
+  font-size: 1.5625rem;
   margin: 28px 0 15px;
 }
 .prose p,
 .prose li {
-  font-size: 15px;
-  line-height: 1.9;
+  font-size: var(--text-reading);
+  line-height: 1.75;
   color: #52604f;
 }
 .prose a {
@@ -1050,14 +1076,14 @@ select:focus-visible {
   top: 118px;
 }
 .facts-card h2 {
-  font-size: 28px;
+  font-size: 1.75rem;
   margin-bottom: 20px;
 }
 .facts-card dl {
   margin: 0 0 25px;
 }
 .facts-card dt {
-  font-size: 10px;
+  font-size: var(--text-label);
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1065,35 +1091,35 @@ select:focus-visible {
 }
 .facts-card dd {
   margin: 4px 0 0;
-  font-size: 13px;
+  font-size: var(--text-body);
 }
 .facts-card .button {
   width: 100%;
-  font-size: 12px;
+  font-size: var(--text-small);
   gap: 12px;
 }
 .facts-card .small {
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-top: 13px;
 }
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
   margin-top: 40px;
 }
 .step-number {
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: 2.5rem;
   color: #65784f;
   margin-bottom: 12px;
 }
 .steps h3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin-bottom: 14px;
 }
 .steps p {
-  font-size: 13px;
+  font-size: var(--text-body);
   color: var(--muted);
 }
 .callout {
@@ -1103,13 +1129,13 @@ select:focus-visible {
   margin-block: 30px;
 }
 .callout p {
-  font-size: 14px;
+  font-size: var(--text-body);
 }
 .article-byline {
   display: flex;
   align-items: center;
   gap: 13px;
-  font-size: 12px;
+  font-size: var(--text-small);
   color: var(--muted);
   margin-top: 27px;
 }
@@ -1126,7 +1152,7 @@ select:focus-visible {
 }
 .article-byline span {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-label);
   margin-top: 2px;
 }
 .filter-bar {
@@ -1141,7 +1167,7 @@ select:focus-visible {
   min-width: 200px;
 }
 .filter-field label {
-  font-size: 12px;
+  font-size: var(--text-small);
   display: block;
   margin-bottom: 7px;
 }
@@ -1155,16 +1181,16 @@ select:focus-visible {
   color: var(--ink);
 }
 .filter-field select {
-  height: 53px;
+  min-height: 58px;
 }
 .filter-count {
-  font-size: 12px;
+  font-size: var(--text-small);
   color: var(--muted);
   margin-bottom: 20px;
 }
 .archive-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 .archive-item {
@@ -1176,22 +1202,22 @@ select:focus-visible {
   flex-direction: column;
 }
 .archive-item h2 {
-  font-size: 23px;
+  font-size: 1.4375rem;
   line-height: 1.3;
   margin-bottom: 15px;
   letter-spacing: -0.025em;
 }
 .archive-item p {
-  font-size: 12px;
+  font-size: var(--text-body);
   color: var(--muted);
 }
 .archive-item time {
-  font-size: 10px;
+  font-size: var(--text-label);
   color: var(--muted);
   margin-bottom: 13px;
 }
 .archive-item .text-link {
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-top: auto;
   padding-top: 20px;
   border: 0;
@@ -1210,13 +1236,13 @@ select:focus-visible {
 }
 .pagination a,
 .pagination span {
-  min-width: 42px;
-  min-height: 42px;
+  min-width: 48px;
+  min-height: 48px;
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 4px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .pagination [aria-current='page'] {
   background: var(--green);
@@ -1234,11 +1260,11 @@ select:focus-visible {
   padding: 37px;
 }
 .contact-card h2 {
-  font-size: 31px;
+  font-size: 1.9375rem;
   margin: 20px 0 18px;
 }
 .contact-card p {
-  font-size: 14px;
+  font-size: var(--text-body);
   color: var(--muted);
 }
 .contact-card .button {
@@ -1252,7 +1278,7 @@ select:focus-visible {
   background: var(--sage);
 }
 .contact-note {
-  font-size: 12px !important;
+  font-size: var(--text-small);
   margin-top: 20px;
 }
 .simple-page {
@@ -1265,10 +1291,10 @@ select:focus-visible {
   border-radius: 80px 7px 7px 7px;
 }
 .sources {
-  font-size: 12px !important;
+  font-size: var(--text-small);
 }
 .sources li {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .library-feature {
   margin-top: 60px;
@@ -1286,7 +1312,7 @@ select:focus-visible {
     padding-top: 65px;
   }
   .hero h1 {
-    font-size: 80px;
+    font-size: 4.75rem;
   }
 }
 @media (max-width: 1150px) {
@@ -1297,7 +1323,7 @@ select:focus-visible {
     gap: 20px;
   }
   .wordmark {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
   .hero-grid {
     gap: 5%;
@@ -1306,22 +1332,22 @@ select:focus-visible {
     height: 520px;
   }
   .hero h1 {
-    font-size: 61px;
+    font-size: 3.8125rem;
   }
   .hero .actions {
     gap: 17px;
   }
   .hero .text-link {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .course-card {
     padding: 25px;
   }
   .course-tag {
-    font-size: 8px;
+    font-size: var(--text-label);
   }
   .course-card h3 {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
   .guide-panel {
     padding: 55px;
@@ -1332,12 +1358,12 @@ select:focus-visible {
   }
   .content-grid {
     gap: 45px;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: minmax(0, 1fr) 300px;
   }
 }
 @media (max-width: 1000px) {
   .header-inner {
-    height: 80px;
+    min-height: 80px;
   }
   .menu-toggle {
     display: flex;
@@ -1345,7 +1371,7 @@ select:focus-visible {
     gap: 15px;
     background: none;
     border: 0;
-    font-size: 12px;
+    font-size: var(--text-small);
     color: var(--ink);
     padding: 12px 0 12px 12px;
     min-height: 44px;
@@ -1368,7 +1394,7 @@ select:focus-visible {
   .header-inner nav {
     display: none;
     position: absolute;
-    top: 80px;
+    top: 100%;
     left: 0;
     right: 0;
     background: var(--paper);
@@ -1386,7 +1412,7 @@ select:focus-visible {
     margin-top: 12px;
   }
   .hero h1 {
-    font-size: 54px;
+    font-size: 3.375rem;
   }
   .hero-photo {
     height: 490px;
@@ -1398,18 +1424,18 @@ select:focus-visible {
   }
   .hero-stamp {
     right: -15px;
-    width: 86px;
-    height: 86px;
+    width: 100px;
+    height: 100px;
   }
   .hero-stamp span {
-    font-size: 7px;
+    font-size: var(--text-brand);
   }
   .portrait-label {
     left: -20px;
     padding: 14px;
   }
   .portrait-label strong {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .section {
     padding-block: 75px;
@@ -1435,9 +1461,10 @@ select:focus-visible {
   .guide-panel {
     padding: 45px;
     gap: 35px;
+    grid-template-columns: 1fr;
   }
   .guide-panel h2 {
-    font-size: 35px;
+    font-size: 2.1875rem;
   }
   .about-grid {
     gap: 8%;
@@ -1447,7 +1474,7 @@ select:focus-visible {
   }
   .about-caption {
     right: -16px;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .footer-grid {
     grid-template-columns: 1.2fr 1fr;
@@ -1457,14 +1484,15 @@ select:focus-visible {
     display: none;
   }
   .content-grid {
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: minmax(0, 1fr);
     gap: 30px;
   }
   .facts-card {
     padding: 24px;
+    position: static;
   }
   .archive-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 700px) {
@@ -1475,15 +1503,22 @@ select:focus-visible {
     width: calc(100% - 40px);
   }
   .announcement {
-    font-size: 8px;
-    gap: 8px;
-    height: 30px;
+    font-size: var(--text-label);
+    gap: 0 8px;
+    text-align: center;
+  }
+  .announcement span {
+    width: 100%;
+  }
+  .announcement-divider {
+    display: none;
   }
   .header-inner {
-    height: 73px;
+    min-height: 80px;
+    gap: 12px;
   }
   .wordmark {
-    font-size: 23px;
+    font-size: 1.4375rem;
     gap: 7px;
   }
   .brand-icon {
@@ -1493,12 +1528,11 @@ select:focus-visible {
     width: 26px;
   }
   .wordmark small {
-    font-size: 6.7px;
-    letter-spacing: 1.15px;
+    font-size: var(--text-brand);
+    letter-spacing: 0.02em;
     margin-top: 7px;
   }
   .header-inner nav {
-    top: 73px;
     padding-inline: 20px;
   }
   .hero {
@@ -1512,17 +1546,17 @@ select:focus-visible {
     padding: 0;
   }
   .hero .eyebrow {
-    font-size: 9px;
+    font-size: var(--text-label);
     margin-bottom: 20px;
   }
   .hero h1 {
-    font-size: clamp(47px, 10.7vw, 68px);
+    font-size: clamp(2.9375rem, 10.7vw, 4.25rem);
     line-height: 1.06;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.03em;
     margin-bottom: 22px;
   }
   .hero .intro {
-    font-size: 14px;
+    font-size: var(--text-lead);
     max-width: 480px;
   }
   .hero .actions {
@@ -1532,16 +1566,16 @@ select:focus-visible {
     margin-top: 24px;
   }
   .button {
-    font-size: 12px;
+    font-size: var(--text-small);
     padding: 15px 18px;
     gap: 15px;
     min-height: 49px;
   }
   .hero .text-link {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .hero-note {
-    font-size: 10px;
+    font-size: var(--text-small);
     margin-top: 17px;
   }
   .hero-visual {
@@ -1555,24 +1589,25 @@ select:focus-visible {
   .hero-stamp {
     top: 22px;
     right: -9px;
-    width: 85px;
-    height: 85px;
+    width: 100px;
+    height: 100px;
   }
   .portrait-label {
     left: -12px;
     bottom: 18px;
     padding: 15px 18px;
     gap: 10px;
+    max-width: calc(100% + 12px);
   }
   .portrait-label strong {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .portrait-label span {
-    font-size: 9px;
+    font-size: var(--text-label);
   }
   .hero-bottom {
     margin-top: 27px;
-    font-size: 9px;
+    font-size: var(--text-label);
   }
   .trust-inner {
     grid-template-columns: 1fr;
@@ -1589,39 +1624,39 @@ select:focus-visible {
     border-bottom: 1px solid #d6dbcd;
   }
   .trust-item strong {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .trust-item span {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .section {
     padding-block: 59px;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: var(--text-label);
     margin-bottom: 16px;
   }
   h2 {
-    font-size: 36px;
+    font-size: 2.25rem;
     line-height: 1.14;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.025em;
   }
   .understand-grid {
     grid-template-columns: 1fr;
     gap: 35px;
   }
   .understand-grid .intro {
-    font-size: 14px;
+    font-size: var(--text-lead);
     margin-top: 19px;
   }
   .feeling {
     padding-block: 20px;
   }
   .feeling h3 {
-    font-size: 14px;
+    font-size: var(--text-body);
   }
   .feeling p {
-    font-size: 12px;
+    font-size: var(--text-body);
   }
   .section-heading {
     display: block;
@@ -1630,7 +1665,7 @@ select:focus-visible {
   .section-heading .intro {
     margin-top: 20px;
     max-width: 500px;
-    font-size: 13px;
+    font-size: var(--text-lead);
   }
   .section-heading > .text-link {
     margin-top: 20px;
@@ -1646,19 +1681,20 @@ select:focus-visible {
     flex-direction: row;
     align-items: center;
     margin-bottom: 24px;
+    flex-wrap: wrap;
   }
   .course-card .eyebrow {
     min-height: 0;
-    font-size: 8px;
+    font-size: var(--text-label);
   }
   .course-card h3 {
-    font-size: 29px;
+    font-size: 1.8125rem;
   }
   .course-card > p {
-    font-size: 13px;
+    font-size: var(--text-body);
   }
   .course-tag {
-    font-size: 9px;
+    font-size: var(--text-label);
   }
   .course-card .checklist {
     margin-block: 20px;
@@ -1667,7 +1703,7 @@ select:focus-visible {
     padding-top: 20px;
   }
   .course-help {
-    font-size: 11px;
+    font-size: var(--text-small);
     text-align: left;
     margin-top: 22px;
   }
@@ -1677,19 +1713,19 @@ select:focus-visible {
   .guide-panel {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 32px 27px 36px;
+    padding: 32px 20px 36px;
   }
   .guide-art {
-    min-height: 315px;
+    min-height: 365px;
     max-width: 310px;
     width: 100%;
     margin-inline: auto;
   }
   .guide-panel h2 {
-    font-size: 34px;
+    font-size: 2.125rem;
   }
   .guide-panel .intro {
-    font-size: 13px;
+    font-size: var(--text-lead);
   }
   .free-badge {
     right: 0;
@@ -1710,13 +1746,13 @@ select:focus-visible {
     padding: 17px 20px;
   }
   .about-copy .intro {
-    font-size: 14px;
+    font-size: var(--text-lead);
   }
   .testimonial {
     padding-block: 56px;
   }
   .testimonial blockquote {
-    font-size: 27px;
+    font-size: 1.6875rem;
     line-height: 1.5;
     margin-block: 18px 23px;
   }
@@ -1728,13 +1764,13 @@ select:focus-visible {
     height: 215px;
   }
   .article-card h3 {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
   .article-card p {
-    font-size: 13px;
+    font-size: var(--text-body);
   }
   .article-card .eyebrow {
-    font-size: 9px;
+    font-size: var(--text-label);
     margin-top: 17px;
   }
   .faq-grid {
@@ -1742,23 +1778,23 @@ select:focus-visible {
     gap: 30px;
   }
   .faq-intro p {
-    font-size: 13px;
+    font-size: var(--text-body);
   }
   .faq-intro .text-link {
     margin-top: 17px;
   }
   .faq-list summary {
-    font-size: 13px;
+    font-size: var(--text-body);
     padding-block: 21px;
   }
   .faq-list details p {
-    font-size: 12px;
+    font-size: var(--text-body);
   }
   .closing-cta {
     padding-block: 57px;
   }
   .closing-cta p {
-    font-size: 13px;
+    font-size: var(--text-body);
   }
   .closing-cta .actions {
     gap: 20px;
@@ -1789,21 +1825,21 @@ select:focus-visible {
   .footer-bottom {
     flex-direction: column;
     gap: 12px;
-    font-size: 9px;
+    font-size: var(--text-label);
     padding-block: 20px;
   }
   .page-hero {
     padding: 33px 0 45px;
   }
   .breadcrumbs {
-    font-size: 9px;
+    font-size: var(--text-label);
     margin-bottom: 30px;
   }
   .page-hero h1 {
-    font-size: 44px;
+    font-size: 2.75rem;
   }
   .page-hero .intro {
-    font-size: 15px;
+    font-size: var(--text-lead);
   }
   .content-grid {
     display: flex;
@@ -1816,12 +1852,12 @@ select:focus-visible {
     padding: 28px;
   }
   .prose h2 {
-    font-size: 30px;
+    font-size: 1.875rem;
     margin-top: 35px;
   }
   .prose p,
   .prose li {
-    font-size: 14px;
+    font-size: var(--text-body);
   }
   .steps {
     grid-template-columns: 1fr;
@@ -1829,7 +1865,7 @@ select:focus-visible {
   }
   .step-number {
     margin-bottom: 6px;
-    font-size: 35px;
+    font-size: 2.1875rem;
   }
   .steps h3 {
     margin-bottom: 10px;
@@ -1841,7 +1877,7 @@ select:focus-visible {
     padding: 28px;
   }
   .contact-card h2 {
-    font-size: 29px;
+    font-size: 1.8125rem;
   }
   .archive-list {
     grid-template-columns: 1fr;
@@ -1854,19 +1890,47 @@ select:focus-visible {
   }
   .filter-field input,
   .filter-field select {
-    font-size: 16px;
+    font-size: var(--text-body);
   }
   .archive-item {
     padding: 23px;
   }
   .archive-item h2 {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
   .author-photo {
     max-width: 100%;
     max-height: 480px;
     object-fit: cover;
     object-position: center 30%;
+  }
+}
+@media (max-width: 380px) {
+  .header-inner {
+    gap: 8px;
+  }
+  .header-inner .wordmark {
+    font-size: 1.25rem;
+  }
+  .brand-icon {
+    display: none;
+  }
+  .menu-toggle {
+    gap: 8px;
+    padding-left: 8px;
+  }
+  .book-mockup {
+    width: 200px;
+    padding: 20px;
+    transform: rotate(-5deg);
+  }
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-height: 500px) {
+  .site-header {
+    position: relative;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1896,7 +1960,7 @@ select:focus-visible {
   margin-bottom: 35px;
 }
 .topic-links a {
-  font-size: 11px;
+  font-size: var(--text-small);
   border: 1px solid #bbc5b1;
   border-radius: 30px;
   padding: 9px 16px;

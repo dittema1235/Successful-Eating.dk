@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import HeaderSearch from './HeaderSearch.astro';
 const path = Astro.url.pathname;
 ---
 
@@ -16,7 +17,7 @@ const path = Astro.url.pathname;
       </span>
       <span>
         successful eating<span class="brand-dot">.</span>
-        <small>PSYKOLOG DITTE MUNCH-ANDERSEN</small>
+        <small>Psykolog Ditte Munch-Andersen</small>
       </span>
     </a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">
@@ -52,6 +53,7 @@ const path = Astro.url.pathname;
     </nav>
   </div>
 </header>
+<HeaderSearch />
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.querySelector<HTMLElement>('#main-nav');

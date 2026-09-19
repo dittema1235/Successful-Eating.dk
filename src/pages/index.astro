@@ -12,7 +12,7 @@ import { site, formatPrice } from '../data/site';
 
 <Layout
   title="Overspisning og madro | Psykolog Ditte Munch-Andersen"
-  description={`Psykologisk hjælp til overspisning online hos Ditte Munch-Andersen. Forløb til ${formatPrice(site.treatmentPrice)} inkl. forsamtale, eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}.`}
+  description={`Få psykologisk hjælp til overspisning hos Ditte Munch-Andersen. 8 ugers onlineforløb til ${formatPrice(site.treatmentPrice)} inkl. forsamtale. Se indhold, pris og opstart.`}
 >
   <section class="hero">
     <div class="container">
@@ -27,19 +27,20 @@ import { site, formatPrice } from '../data/site';
             til <em>livet.</em>
           </h1>
           <p class="intro">
-            Når mad fylder mere, end du har lyst til, behøver du ikke stå alene. Få psykologisk
-            hjælp til at forstå dine mønstre og finde mere ro omkring maden.
+            Få psykologisk hjælp til overspisning hos Ditte Munch-Andersen. I et otte ugers
+            onlineforløb arbejder vi med dine mønstre og vejen til et roligere forhold til mad.
           </p>
           <div class="actions">
-            <a href="#forloeb" class="button">
-              Find dit forløb <Icon size={17} />
+            <a href="/forloebet" class="button" data-event="service_click" data-location="hero">
+              Se forløbet og pris <Icon size={17} />
             </a>
-            <a href="/gratis-guide" class="text-link" data-event="guide_click" data-location="hero">
-              Begynd med en gratis guide <Icon size={16} />
+            <a href="#forloeb" class="text-link">
+              Find den rette hjælp <Icon size={16} />
             </a>
           </div>
           <p class="hero-note">
-            <Icon name="check" size={14} /> Ingen nye madregler. Plads til hele dig.
+            <Icon name="check" size={18} /> {formatPrice(site.treatmentPrice)} inkl. gratis
+            forsamtale
           </p>
         </div>
         <div class="hero-visual">
