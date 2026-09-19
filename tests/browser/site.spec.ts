@@ -127,14 +127,16 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
     expect(scan.violations, url).toEqual([]);
   }
 });
-test('content and acquisition routes work without JavaScript', async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
-  const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre madstøj');
-  await page.locator('.hero a.button').click();
-  await page.getByRole('link', { name: 'Læs om forløbet', exact: true }).click();
-  await expect(page).toHaveURL(/forloebet/);
-  await expect(page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first()).toBeVisible();
-  await context.close();
+test.describe('without JavaScript', () => {
+  // Keep each project's device settings and avoid a Linux Chromium actionability
+  // race while smooth scrolling with page scripts disabled.
+  test.use({ javaScriptEnabled: false, reducedMotion: 'reduce' });
+  test('content and acquisition routes work without JavaScript', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre madstøj');
+    await page.locator('.hero a.button').click();
+    await page.getByRole('link', { name: 'Læs om forløbet', exact: true }).click();
+    await expect(page).toHaveURL(/forloebet/);
+    await expect(page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first()).toBeVisible();
+  });
 });
