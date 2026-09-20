@@ -178,13 +178,13 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(options).toContainText('4.499 kr. i alt');
   await expect(options.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
     'href',
-    /^mailto:hello@successfuleating.com\?subject=/,
+    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
   );
   await expect(options).toContainText('et klik er ikke en booking');
   await page.goto('/kontakt');
   await expect(page.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
     'href',
-    /^mailto:hello@successfuleating.com\?subject=/,
+    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
   );
   await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
   await page.goto('/terms');
@@ -194,7 +194,7 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(page.locator('main')).not.toContainText('30-minutters');
   await page.goto('/sulteneller');
   const request = page.getByRole('link', { name: 'Bed om guiden via e-mail' });
-  await expect(request).toHaveAttribute('href', /^mailto:hello@successfuleating.com\?subject=/);
+  await expect(request).toHaveAttribute('href', /^mailto:psykolog@dittemunchandersen.dk\?subject=/);
   await expect(page.locator('main')).toContainText('ikke automatisk tilmeldt');
 });
 test('cookie choices are Danish, optional tracking starts denied and stays local', async ({
