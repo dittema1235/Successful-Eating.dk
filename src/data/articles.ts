@@ -70,7 +70,7 @@ export const articles: Article[] = [
     sections: [
       {
         heading: 'Det korte svar',
-        text: 'ADHD kan gøre det vanskeligere at organisere måltider, skifte mellem aktiviteter og håndtere impulser. Nogle oplever også overspisning. Det betyder ikke, at alle med ADHD overspiser, eller at dopamin alene forklarer problemet. Det er relevant at se på både ADHD, spisning og den konkrete hverdag.',
+        text: 'ADHD kan gøre det vanskeligere at organisere måltider, skifte mellem aktiviteter og håndtere impulser. Forskning peger på en øget forekomst af overspisning og binge eating hos personer med ADHD, uden at det er en entydig årsagssammenhæng. Det betyder ikke, at alle med ADHD overspiser, eller at dopamin alene forklarer problemet. Det er relevant at se på både ADHD, spisning og den konkrete hverdag.',
       },
       {
         heading: 'Når planlægning af mad kræver meget',
@@ -97,6 +97,11 @@ export const articles: Article[] = [
       {
         label: 'NICE: Eating disorders – recognition and treatment (NG69)',
         url: 'https://www.nice.org.uk/guidance/ng69',
+      },
+      {
+        label:
+          'Kaisari, Dourish & Higgs (2017): ADHD and disordered eating behaviour – a systematic review, Clinical Psychology Review',
+        url: 'https://www.sciencedirect.com/science/article/pii/S027273581630232X',
       },
     ],
     service: '/forloebet',

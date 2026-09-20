@@ -84,7 +84,7 @@ export const faqs = [
   {
     question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
     answer:
-      'Ja, udfordringer med struktur og impulser kan inddrages i vurderingen af dine behov. Der er ikke et separat ADHD-forløb. Vi afklarer, om behandling af overspisning passer til dig. Behandlingen erstatter ikke ADHD-udredning eller medicinsk behandling.',
+      'Ja, udfordringer med struktur og impulser kan inddrages i vurderingen af dine behov. Jeg har haft mange kvinder med ADHD i forløbet, da ADHD/ADD kan give en øget tendens til overspisning. Der er ikke et separat ADHD-forløb. Vi afklarer, om behandling af overspisning passer til dig. Behandlingen erstatter ikke ADHD-udredning eller medicinsk behandling.',
   },
   {
     question: 'Kan forløbet foregå online?',
