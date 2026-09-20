@@ -2,7 +2,7 @@ export const site = {
   name: 'Successful Eating',
   url: 'https://www.successfuleating.dk',
   person: 'Ditte Munch-Andersen',
-  email: 'hello@successfuleating.com',
+  email: 'psykolog@dittemunchandersen.dk',
   // Confirmed in the detailed report, pages 18 and 44.
   phone: '+45 71 41 59 69',
   address: 'Hovedvagtsstræde 2C',
