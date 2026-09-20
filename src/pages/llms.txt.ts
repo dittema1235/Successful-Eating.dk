@@ -5,7 +5,7 @@ export function GET() {
   return new Response(
     `# Successful Eating
 
-> Dansksproget viden om overspisning og madro samt psykologiske forløb hos klinisk psykolog Ditte Munch-Andersen, cand.psych.aut., uddannet fra Københavns Universitet (2004). Online i Danmark og klinik på Hovedvagtsstræde 2C, 3000 Helsingør. CVR 30642155.
+> Dansksproget viden om overspisning og madro samt psykologiske forløb hos klinisk psykolog Ditte Munch-Andersen, uddannet fra Københavns Universitet i 2004. Online i Danmark og klinik på Hovedvagtsstræde 2C, 3000 Helsingør. CVR 30642155.
 
 ## Tilbud
 - [Behandling af overspisning](https://www.successfuleating.dk/forloebet): Successful Eating. ${formatPrice(site.treatmentPrice)} inklusive en gratis individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, tilbagebetales hele det indbetalte beløb. Alternativt kan en forsamtale på ${site.consultationMinutes} minutter købes for ${formatPrice(site.consultationPrice)}; beløbet modregnes, hvis man efterfølgende vælger forløbet (restbeløb ${formatPrice(site.treatmentPrice - site.consultationPrice)}).
