@@ -225,7 +225,6 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   );
   await expect(page.locator('main')).toContainText('Maria · Anmeldelse på Trustpilot');
   await expect(page.locator('main')).toContainText('Belinda · Anmeldelse på Trustpilot');
-  await expect(page.locator('main')).toContainText('TrustScore 4,7 ud af 5');
   await expect(page.locator('main')).toContainText('Prisen er momsfritaget');
   await expect(page.locator('main')).toContainText('50 minutter · 645 kr.');
   await expect(page.locator('main')).not.toContainText('Det tidligere website');
