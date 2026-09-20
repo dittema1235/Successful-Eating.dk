@@ -747,28 +747,16 @@ select:focus-visible {
   text-align: center;
   padding-block: 74px;
 }
-.quote-mark {
-  font-family: var(--serif);
-  font-size: 4.125rem;
-  line-height: 0.8;
-  color: var(--sage-deep);
+.testimonial h2 {
+  max-width: 760px;
+  margin: 14px auto 20px;
+  color: var(--paper);
 }
-.testimonial blockquote {
-  font-family: var(--serif);
-  font-size: clamp(1.5625rem, 2.7vw, 2.1875rem);
-  line-height: 1.4;
-  font-weight: 350;
-  max-width: 850px;
-  margin: 20px auto 24px;
-  letter-spacing: -0.6px;
-}
-.testimonial .quote-author {
-  font-size: var(--text-small);
-}
-.testimonial .quote-note {
-  font-size: var(--text-small);
+.testimonial .review-intro {
+  max-width: 680px;
+  margin: 0 auto;
   color: #d3decc;
-  margin-top: 7px;
+  font-size: var(--text-lead);
 }
 .testimonial .text-link {
   margin-top: 26px;
@@ -1750,11 +1738,6 @@ select:focus-visible {
   }
   .testimonial {
     padding-block: 56px;
-  }
-  .testimonial blockquote {
-    font-size: 1.6875rem;
-    line-height: 1.5;
-    margin-block: 18px 23px;
   }
   .article-grid {
     grid-template-columns: 1fr;

@@ -142,58 +142,16 @@ import { site, consultation, formatPrice } from '../data/site';
 
   <section class="results-voices" aria-labelledby="participant-heading">
     <div class="container">
-      <div class="voices-heading">
-        <div>
-          <span class="eyebrow">TIDLIGERE DELTAGERE FORTÆLLER</span>
-          <h2 id="participant-heading">Mindre trang. Nye mønstre. Mere madro.</h2>
-        </div>
+      <div class="voices-direct">
+        <span class="eyebrow">UAFHÆNGIGE ANMELDELSER</span>
+        <h2 id="participant-heading">Læs deltagernes erfaringer direkte hos Trustpilot.</h2>
+        <p>
+          På Successful Eatings Trustpilot-profil kan du læse de offentliggjorte anmeldelser i deres
+          fulde ordlyd og se den aktuelle vurdering.
+        </p>
         <a href={site.trustpilot} class="text-link">
           Se vores anmeldelser på Trustpilot <Icon name="northeast" size={15} />
         </a>
-      </div>
-      <div class="voices-grid">
-        <figure class="voice-featured">
-          <div class="review-stars" aria-label="5 ud af 5 stjerner">
-            ★★★★★
-          </div>
-          <blockquote>
-            “Jeg føler, at jeg nu har fået ro om min spisning. Gennem forløbet har jeg ændret mange
-            tanker og er blevet bevidst om mine egne mønstre og vaner. Det her var, hvad der skulle
-            til for at komme væk fra kure og restriktioner.”
-          </blockquote>
-          <figcaption>Belinda · Anmeldelse på Trustpilot</figcaption>
-        </figure>
-        <figure>
-          <div class="review-stars" aria-label="5 ud af 5 stjerner">
-            ★★★★★
-          </div>
-          <blockquote>
-            “Allerede inden for de første par uger kunne jeg mærke en kæmpe forskel i min spisning
-            og ikke mindst en større madro i hovedet.”
-          </blockquote>
-          <figcaption>Maria · Anmeldelse på Trustpilot</figcaption>
-        </figure>
-        <figure>
-          <div class="review-stars" aria-label="5 ud af 5 stjerner">
-            ★★★★★
-          </div>
-          <blockquote>
-            “Jeg kom hurtigt i gang, og mine cravings er nu næsten ikke eksisterende. Jeg har
-            undervejs flere gange været tilbage og lytte til ældre vejledninger og taget masser af
-            noter, som jeg genlæser.”
-          </blockquote>
-          <figcaption>Hanne · Anmeldelse på Trustpilot</figcaption>
-        </figure>
-        <figure>
-          <div class="review-stars" aria-label="5 ud af 5 stjerner">
-            ★★★★★
-          </div>
-          <blockquote>
-            “Her lærer man at ændre sine mønstre og skabe nye på en god og indsigtsfuld måde. Jeg er
-            flere gange blevet overrasket over de indsigter, jeg fik.”
-          </blockquote>
-          <figcaption>Tidligere deltager · Anmeldelse på Trustpilot</figcaption>
-        </figure>
       </div>
     </div>
   </section>
@@ -426,69 +384,19 @@ import { site, consultation, formatPrice } from '../data/site';
     padding-block: clamp(70px, 9vw, 115px);
     background: var(--peach);
   }
-  .voices-heading {
-    display: flex;
-    gap: 35px;
-    align-items: end;
-    justify-content: space-between;
-    margin-bottom: clamp(38px, 5vw, 62px);
+  .voices-direct {
+    max-width: 820px;
   }
-  .voices-heading h2 {
+  .voices-direct h2 {
+    margin-bottom: 20px;
+  }
+  .voices-direct p {
     max-width: 680px;
-  }
-  .voices-heading .text-link {
-    flex: 0 0 auto;
-    margin-bottom: 10px;
-  }
-  .voices-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 18px;
-  }
-  .voices-grid figure {
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    margin: 0;
-    padding: clamp(28px, 4vw, 44px);
-    border: 1px solid #704f3921;
-    border-radius: 8px;
-    background: #fffaf4;
-  }
-  .voices-grid .voice-featured {
-    grid-row: span 3;
-    justify-content: center;
-    background: var(--green);
-  }
-  .voices-grid blockquote {
-    margin: 0;
-    color: var(--green);
-    font-family: var(--serif);
-    font-size: clamp(1.35rem, 2.3vw, 1.85rem);
-    line-height: 1.45;
-  }
-  .voices-grid .voice-featured blockquote {
-    color: var(--white);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    line-height: 1.35;
-  }
-  .voices-grid figcaption {
-    margin-top: auto;
-    padding-top: 28px;
     color: var(--muted);
-    font-size: var(--text-small);
+    font-size: var(--text-lead);
   }
-  .voices-grid .voice-featured figcaption {
-    color: #ffffffb8;
-  }
-  .review-stars {
-    margin-bottom: 25px;
-    color: #007f59;
-    font-size: 1rem;
-    letter-spacing: 0.14em;
-  }
-  .voice-featured .review-stars {
-    color: #f5e1bd;
+  .voices-direct .text-link {
+    margin-top: 25px;
   }
   .results-checklist {
     display: grid;
@@ -581,19 +489,8 @@ import { site, consultation, formatPrice } from '../data/site';
     }
   }
   @media (max-width: 620px) {
-    .results-grid,
-    .voices-grid {
+    .results-grid {
       grid-template-columns: 1fr;
-    }
-    .voices-grid .voice-featured {
-      grid-row: auto;
-    }
-    .voices-heading {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-    .voices-grid figure {
-      min-height: 0;
     }
     .results-hero .actions {
       align-items: flex-start;
