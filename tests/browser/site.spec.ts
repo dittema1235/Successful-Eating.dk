@@ -17,6 +17,14 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
     'Behandling af overspisning online',
   );
   await expect(page.locator('#det-faar-du')).toContainText('4 live gruppesamtaler');
+  await expect(page.locator('.adhd-focus')).toContainText('ADHD er indtænkt i Successful Eating');
+  await expect(page.locator('.adhd-focus')).toContainText('mange kvinder med ADHD/ADD');
+  await expect(page.locator('.adhd-focus')).toContainText('odds for BED cirka fire gange højere');
+  await expect(
+    page.locator('.adhd-focus').getByRole('link', {
+      name: 'Nazar et al. (2016), International Journal of Eating Disorders',
+    }),
+  ).toHaveAttribute('href', 'https://doi.org/10.1002/eat.22643');
   await page.getByRole('link', { name: 'Se pris og tilmelding', exact: true }).click();
   await expect(page.locator('#priser')).toBeInViewport();
   await expect(

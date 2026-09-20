@@ -84,7 +84,12 @@ export const faqs = [
   {
     question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
     answer:
-      'Ja, udfordringer med struktur og impulser kan inddrages i vurderingen af dine behov. Der er ikke et separat ADHD-forløb. Vi afklarer, om behandling af overspisning passer til dig. Behandlingen erstatter ikke ADHD-udredning eller medicinsk behandling.',
+      'Ja. Forskning viser, at ADHD er forbundet med markant øget risiko for BED og andre spiseforstyrrelser. Vanskeligheder med impulskontrol og regulering kan for nogle betyde, at mad bliver den hurtigste vej til at dæmpe uro eller ubehag. Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful Eating, og ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk behandling.',
+    source: {
+      label:
+        'Nazar et al. (2016), International Journal of Eating Disorders – meta-analyse af 12 studier',
+      href: 'https://doi.org/10.1002/eat.22643',
+    },
   },
   {
     question: 'Kan forløbet foregå online?',

@@ -18,8 +18,25 @@ import { faqs } from '../data/site';
         <details>
           <summary>{faq.question}</summary>
           <p>{faq.answer}</p>
+          {'source' in faq && faq.source && (
+            <p class="faq-source">
+              Kilde: <a href={faq.source.href}>{faq.source.label}</a>.
+            </p>
+          )}
         </details>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .faq-source {
+    margin-top: -8px;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .faq-source a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

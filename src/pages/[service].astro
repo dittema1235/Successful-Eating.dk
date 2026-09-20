@@ -220,11 +220,32 @@ const schema = {
               <li>Korte, daglige terapeutiske øvelser, der kan afprøves i din hverdag.</li>
               <li>Materiale til vedligeholdelse og tilbagefaldsforebyggelse efter forløbet.</li>
             </ul>
-            <p>
-              Har du ADHD, kan udfordringer med struktur og impulser indgå i vurderingen. Der er
-              ikke et separat ADHD-forløb. Læs mere om{' '}
-              <a href="/madro-biblioteket/adhd-og-overspisning">ADHD og overspisning</a>.
-            </p>
+            <section class="adhd-focus" aria-labelledby="adhd-focus-heading">
+              <span class="eyebrow">AFPRØVET I PRAKSIS</span>
+              <h2 id="adhd-focus-heading">ADHD er indtænkt i Successful Eating.</h2>
+              <p>
+                Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful
+                Eating. Deres erfaringer og fremskridt er en del af den kliniske erfaring, som
+                forløbets opbygning og struktur er formet af.
+              </p>
+              <p>
+                Forskning viser samtidig en tydelig sammenhæng mellem ADHD og spiseforstyrrelser. I
+                en meta-analyse af 12 studier var odds for BED cirka fire gange højere blandt
+                personer med ADHD. Udfordringer med impulskontrol, struktur og regulering kan derfor
+                inddrages konkret i behandlingen af din overspisning.
+              </p>
+              <p>
+                Successful Eating er et behandlingsforløb for overspisning, hvor ADHD er tænkt ind.
+                Forløbet erstatter ikke en ADHD-udredning eller medicinsk behandling.
+              </p>
+              <p class="adhd-links">
+                <a href="/madro-biblioteket/adhd-og-overspisning">Læs om ADHD og overspisning</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://doi.org/10.1002/eat.22643">
+                  Nazar et al. (2016), International Journal of Eating Disorders
+                </a>
+              </p>
+            </section>
           </>
         )}
         <h2>Pris, indhold og opstart</h2>
@@ -448,6 +469,31 @@ const schema = {
   }
   .treatment-inclusions p {
     color: var(--muted);
+  }
+  .adhd-focus {
+    margin-block: 42px;
+    padding: clamp(28px, 5vw, 46px);
+    border-left: 4px solid var(--sage-deep);
+    border-radius: 0 8px 8px 0;
+    background: var(--sage);
+  }
+  .adhd-focus h2 {
+    margin-top: 10px;
+  }
+  .adhd-focus p:last-child {
+    margin-bottom: 0;
+  }
+  .adhd-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    padding-top: 5px;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .adhd-links a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
   @media (max-width: 1000px) {
     .treatment-hero {
