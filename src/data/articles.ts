@@ -88,6 +88,10 @@ export const articles: Article[] = [
         heading: 'Hjælp, der passer ind i din hverdag',
         text: 'Et relevant forløb begynder med at forstå din situation. Støtten kan blandt andet handle om realistiske aftaler, overskuelige øvelser og at tilpasse rammerne til de udfordringer, du møder. Hvis overspisningen indebærer kontroltab og belastning, bør behovet for særskilt behandling af en spiseforstyrrelse også vurderes.',
       },
+      {
+        heading: 'Hvad andre oplever',
+        text: '»Jeg har fulgt Dittes onlineforløb. Det har virkelig hjulpet mig til at få struktur og gode vaner på min spisning. (adhd)« – Bodil Pilegaard, kommentar delt offentligt på Facebook.',
+      },
     ],
     sources: [
       {
