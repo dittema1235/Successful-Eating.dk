@@ -9,6 +9,16 @@ import { site, consultation, formatPrice } from '../data/site';
       <div>
         <span class="eyebrow">SUCCESSFUL EATING · PRIS & OPSTART</span>
         <h2 id="purchase-heading">To måder at tage det første skridt.</h2>
+        <a
+          class="purchase-trust"
+          href={site.trustpilot}
+          aria-label={`TrustScore ${site.trustpilotScore} ud af 5 på Trustpilot`}
+        >
+          <span aria-hidden="true">★</span>
+          <strong>TrustScore {site.trustpilotScore} ud af 5</strong>
+          <span>på Trustpilot</span>
+          <Icon name="northeast" size={14} />
+        </a>
       </div>
       <p class="intro">
         Begynd med hele forløbet eller med en forsamtale. Begge veje giver plads til at finde ud af,
@@ -93,6 +103,32 @@ import { site, consultation, formatPrice } from '../data/site';
   }
   .section-heading h2 {
     max-width: 600px;
+  }
+  .purchase-trust {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    color: var(--green);
+    font-size: var(--text-small);
+    line-height: 1.4;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+  }
+  .purchase-trust:hover {
+    text-decoration-color: currentColor;
+  }
+  .purchase-trust > span:first-child {
+    color: #007f59;
+    font-size: 1.2rem;
+  }
+  .purchase-trust strong {
+    font-weight: 650;
+  }
+  .purchase-trust > span:not(:first-child) {
+    color: var(--muted);
   }
   .purchase-grid {
     display: grid;

@@ -17,6 +17,8 @@ export const site = {
   treatmentPriceChecked: '2026-09-19',
   login: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',
+  trustpilotScore: '4,7',
+  trustpilotScoreChecked: '2026-09-20',
 };
 export const formatPrice = (amount: number) => `${amount.toLocaleString('da-DK')} kr.`;
 export const treatmentModules = [
