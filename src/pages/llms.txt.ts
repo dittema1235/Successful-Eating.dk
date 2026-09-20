@@ -1,4 +1,4 @@
-import { site, formatPrice } from '../data/site';
+import { site, formatPrice, treatmentModules } from '../data/site';
 import consolidated from '../data/consolidated-articles.json';
 
 export function GET() {
@@ -13,6 +13,9 @@ export function GET() {
 - ADHD/ADD er indtænkt i Successful Eatings opbygning og struktur på baggrund af mange års klinisk erfaring med kvinder med ADHD/ADD. Det er behandling af overspisning og erstatter ikke ADHD-udredning eller medicinsk behandling.
 - [Kontakt](https://www.successfuleating.dk/kontakt): hello@successfuleating.com. Telefon +45 71 41 59 69.
 - [Om Ditte Munch-Andersen](https://www.successfuleating.dk/om-ditte): Faglig baggrund og behandlingsmetode.
+
+## Successful Eatings 8 moduler
+${treatmentModules.map((module, index) => `- ${index + 1}. ${module.title}: ${module.description}`).join('\n')}
 
 ## Viden
 - [Madro-biblioteket](https://www.successfuleating.dk/madro-biblioteket)

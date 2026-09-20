@@ -17,6 +17,12 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
     'Behandling af overspisning online',
   );
   await expect(page.locator('#det-faar-du')).toContainText('4 live gruppesamtaler');
+  const modules = page.locator('#moduler .module-list > li');
+  await expect(modules).toHaveCount(8);
+  await expect(modules.first()).toContainText('Fundamentet');
+  await expect(modules.first()).toContainText('sult- og mæthedssignaler');
+  await expect(modules.last()).toContainText('Fasthold forandringen');
+  await expect(modules.last()).toContainText('de nye mønstre holder');
   await expect(page.locator('.adhd-focus')).toContainText('ADHD er indtænkt i Successful Eating');
   await expect(page.locator('.adhd-focus')).toContainText('mange kvinder med ADHD/ADD');
   await expect(page.locator('.adhd-focus')).toContainText('odds for BED cirka fire gange højere');

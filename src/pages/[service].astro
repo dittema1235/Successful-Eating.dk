@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import PurchaseOptions from '../components/PurchaseOptions.astro';
-import { site, services, formatPrice } from '../data/site';
+import { site, services, formatPrice, treatmentModules } from '../data/site';
 export function getStaticPaths() {
   return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
 }
@@ -47,7 +47,7 @@ const schema = {
   description={
     body
       ? `${service.intro} Online i hele Danmark hos psykolog Ditte Munch-Andersen.`
-      : `Online behandling af overspisning hos psykolog Ditte Munch-Andersen. ${formatPrice(site.treatmentPrice)} inkl. forsamtale. Alle pengene tilbage ved et dårligt match ved forsamtalen.`
+      : `Online behandling af overspisning hos klinisk psykolog Ditte Munch-Andersen: 8 moduler, live gruppebehandling og forsamtale. Pris ${formatPrice(site.treatmentPrice)}`
   }
   schema={schema}
   breadcrumbs={[{ name: service.title, url: `/${service.slug}` }]}
@@ -112,6 +112,7 @@ const schema = {
       <div class="container">
         <nav class="treatment-links" aria-label="Find rundt i forløbet">
           <a href="#det-faar-du">Indhold</a>
+          <a href="#moduler">De 8 moduler</a>
           <a href="#om-forloebet">Er det noget for mig?</a>
           <a href="#priser">Pris & tilmelding</a>
           <a href="#spoergsmaal">Spørgsmål & svar</a>
@@ -132,7 +133,7 @@ const schema = {
           <article>
             <Icon name="book" size={28} />
             <h3>8 psykologiske moduler</h3>
-            <p>Digitale oplæg understøtter arbejdet med tanker, følelser og spisning.</p>
+            <p>Fra kroppens signaler og madtrang til følelser, kropsro og nye mønstre.</p>
           </article>
           <article>
             <Icon name="leaf" size={28} />
@@ -140,6 +141,32 @@ const schema = {
             <p>Korte, daglige øvelser og materiale til at arbejde videre efter forløbet.</p>
           </article>
         </div>
+      </div>
+    </section>
+  )}
+  {!body && (
+    <section class="section module-section" id="moduler" aria-labelledby="module-heading">
+      <div class="container">
+        <div class="module-intro">
+          <span class="eyebrow">TRIN FOR TRIN MOD MERE MADRO</span>
+          <h2 id="module-heading">De 8 moduler i Successful Eating</h2>
+          <p>
+            Du bevæger dig fra at forstå kroppens signaler og dine overspisningsmønstre til at kunne
+            håndtere følelser, tilbagefald og tiden efter forløbet. Modulerne giver retning, mens
+            øvelserne og samtalerne hjælper dig med at omsætte indholdet i din hverdag.
+          </p>
+        </div>
+        <ol class="module-list">
+          {treatmentModules.map((module, index) => (
+            <li>
+              <article>
+                <span class="module-number">Modul {index + 1}</span>
+                <h3>{module.title}</h3>
+                <p>{module.description}</p>
+              </article>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   )}
@@ -470,6 +497,54 @@ const schema = {
   .treatment-inclusions p {
     color: var(--muted);
   }
+  .module-section {
+    background: var(--sand);
+  }
+  .module-intro {
+    max-width: 760px;
+  }
+  .module-intro h2 {
+    margin: 12px 0 18px;
+  }
+  .module-intro p {
+    color: var(--muted);
+    font-size: var(--text-lead);
+  }
+  .module-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 42px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .module-list li {
+    min-width: 0;
+  }
+  .module-list article {
+    height: 100%;
+    padding: clamp(24px, 4vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .module-number {
+    display: block;
+    color: var(--green);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .module-list h3 {
+    margin: 10px 0 12px;
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
+  }
+  .module-list p {
+    margin: 0;
+    color: var(--muted);
+  }
   .adhd-focus {
     margin-block: 42px;
     padding: clamp(28px, 5vw, 46px);
@@ -530,6 +605,10 @@ const schema = {
     }
     .treatment-overview {
       padding-block: 28px 45px;
+    }
+    .module-list {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: 30px;
     }
   }
 </style>

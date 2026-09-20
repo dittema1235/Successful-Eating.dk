@@ -19,6 +19,44 @@ export const site = {
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',
 };
 export const formatPrice = (amount: number) => `${amount.toLocaleString('da-DK')} kr.`;
+export const treatmentModules = [
+  {
+    title: 'Fundamentet',
+    description:
+      'Du genopbygger kontakten til kroppens sult- og mæthedssignaler og får indsigt i, hvornår du spiser uden fysisk sult.',
+  },
+  {
+    title: 'Det afhængige mønster',
+    description:
+      'Du arbejder med den psykiske afhængighed af mad og lærer strategier til at håndtere impulsen til at overspise.',
+  },
+  {
+    title: 'Redskaberne',
+    description:
+      'Du bryder med slankekurstankegangen og de rigide regler, der ofte holder overspisningen fast.',
+  },
+  {
+    title: 'Perspektivskifte',
+    description: 'Du arbejder med at løsne grebet fra slankekure, vægtfokus og madstøj.',
+  },
+  {
+    title: 'Følelser og regulering',
+    description: 'Du lærer at håndtere tristhed, mental træthed og stress uden at ty til mad.',
+  },
+  {
+    title: 'Førstehjælp ved tilbagefald',
+    description:
+      'Du lærer at vende tilbage til dine nye mønstre hurtigt og uden straf, så et tilbagefald ikke bliver en ny spiral.',
+  },
+  {
+    title: 'Forholdet til kroppen',
+    description: 'Du arbejder med at mindske kropslede og finde mere ro i den krop, du har.',
+  },
+  {
+    title: 'Fasthold forandringen',
+    description: 'Du forbereder dig på tiden efter forløbet, så de nye mønstre holder.',
+  },
+] as const;
 const consultationUrl = import.meta.env.PUBLIC_CONSULTATION_BOOKING_URL?.trim();
 if (consultationUrl) {
   const url = new URL(consultationUrl);
