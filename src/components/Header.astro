@@ -31,6 +31,9 @@ const path = Astro.url.pathname;
       >
         Find dit forløb
       </a>
+      <a href="/resultater" aria-current={path === '/resultater' ? 'page' : undefined}>
+        Resultater
+      </a>
       <a
         href="/madro-biblioteket"
         aria-current={

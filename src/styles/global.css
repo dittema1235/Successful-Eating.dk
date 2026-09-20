@@ -1320,7 +1320,7 @@ select:focus-visible {
     width: calc(100% - 72px);
   }
   .header-inner nav {
-    gap: 20px;
+    gap: 18px;
   }
   .wordmark {
     font-size: 1.4375rem;
