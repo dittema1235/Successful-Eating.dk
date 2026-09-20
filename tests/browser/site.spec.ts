@@ -203,9 +203,22 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   await expect(page.locator('main')).toContainText('Mindre kontroltab');
   await expect(page.locator('main')).toContainText('Mindre skyld og selvkritik');
   await expect(page.locator('main')).toContainText('En mere stabil spisning');
-  await expect(page.locator('main')).toContainText('Maria · Tidligere deltager');
+  await expect(page.locator('.results-evidence')).toContainText('78%');
+  await expect(page.locator('.results-evidence')).toContainText('43%');
+  await expect(page.locator('.results-evidence')).toContainText('29%');
+  await expect(page.locator('.results-evidence')).toContainText(
+    'Brugerundersøgelse før/efter Successful Eating (2024)',
+  );
+  await expect(page.locator('main')).toContainText('Maria · Anmeldelse på Trustpilot');
+  await expect(page.locator('main')).toContainText('Belinda · Anmeldelse på Trustpilot');
+  await expect(page.locator('main')).toContainText('Prisen er momsfritaget');
+  await expect(page.locator('main')).toContainText('50 minutter · 645 kr.');
   await expect(page.locator('main')).not.toContainText('Det tidligere website');
   await expect(page.locator('main')).not.toContainText('kontrolgruppe');
+  await expect(page.locator('main')).not.toContainText('7.495 kr.');
+  await expect(page.locator('main')).not.toContainText('12.995 kr.');
+  await expect(page.locator('main')).not.toContainText('Tilmelding åbner snart');
+  await expect(page.locator('main')).not.toContainText('6-måneders');
   await expect(page.getByRole('link', { name: 'Se forløbet og pris' })).toHaveAttribute(
     'href',
     '/forloebet#priser',
