@@ -1,70 +1,390 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import { site, formatPrice } from '../data/site';
 ---
 
 <Layout
-  title="Metode og resultater | Successful Eating"
-  description="Læs om den psykologiske tilgang i Successful Eating, hvad personlige erfaringer kan fortælle, og hvordan vi skelner mellem faglig viden og resultatløfter."
-  breadcrumbs={[{ name: 'Metode og resultater', url: '/resultater' }]}
+  title="Resultater med Successful Eating | Mere madro i hverdagen"
+  description="Se, hvad du arbejder hen imod i Successful Eating: færre overspisninger, mindre madstøj og et mere fleksibelt forhold til mad. 8 ugers onlineforløb med psykolog Ditte Munch-Andersen."
+  breadcrumbs={[{ name: 'Resultater', url: '/resultater' }]}
 >
-  <section class="page-hero">
+  <section class="page-hero tone-sage results-hero">
+    <div class="container results-hero-grid">
+      <div>
+        <nav class="breadcrumbs" aria-label="Brødkrummer">
+          <a href="/">Forside</a>
+          <span>/</span>
+          <span>Resultater</span>
+        </nav>
+        <span class="eyebrow">FRA KONTROLTAB TIL MERE MADRO</span>
+        <h1>
+          Når maden fylder mindre,
+          <br />
+          får <em>livet mere plads.</em>
+        </h1>
+        <p class="intro">
+          Successful Eating hjælper dig med at forstå det, der holder overspisningen i gang, og
+          arbejde konkret med nye måder at møde sult, følelser og madtanker på.
+        </p>
+        <div class="actions">
+          <a
+            href="/forloebet#priser"
+            class="button"
+            data-event="pricing_click"
+            data-location="results_hero"
+          >
+            Se forløbet og pris <Icon size={18} />
+          </a>
+          <a href="#forandring" class="text-link">
+            Se, hvad vi arbejder med <Icon size={17} />
+          </a>
+        </div>
+        <p class="hero-note">8 ugers onlineforløb · Klinisk psykolog · Højst 6 deltagere</p>
+      </div>
+      <figure class="results-person">
+        <img
+          src="/images/ditte-underviser.webp"
+          alt="Psykolog Ditte Munch-Andersen underviser"
+          width="685"
+          height="586"
+        />
+        <figcaption>
+          <strong>Ditte Munch-Andersen</strong>
+          <span>Klinisk psykolog · Mere end 20 års erfaring</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="forandring" aria-labelledby="results-heading">
     <div class="container">
-      <span class="eyebrow">ET ÆRLIGT GRUNDLAG FOR DIT VALG</span>
-      <h1>
-        Faglig metode.
-        <br />
-        <em>Individuelle resultater.</em>
-      </h1>
-      <p class="intro">
-        Du skal kunne vurdere hjælpen på et tydeligt grundlag. Derfor skelner vi mellem faglig
-        viden, personlige erfaringer og dokumentation for effekt.
-      </p>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">DET ARBEJDER DU HEN IMOD</span>
+          <h2 id="results-heading">Mere frihed omkring mad. Mere ro i dig.</h2>
+        </div>
+        <p class="intro">
+          Målet er ikke at spise perfekt. Målet er, at du får bedre mulighed for at forstå dine
+          mønstre og vælge anderledes, når spisningen bliver svær.
+        </p>
+      </div>
+      <div class="results-grid">
+        <article>
+          <Icon name="leaf" size={27} />
+          <h3>Mindre kontroltab</h3>
+          <p>
+            Du arbejder med at opdage dine udløsere tidligere og bryde cirklen omkring overspisning.
+          </p>
+        </article>
+        <article>
+          <Icon name="heart" size={27} />
+          <h3>Mindre skyld og selvkritik</h3>
+          <p>Du øver dig i at møde svære episoder uden at straffe dig selv eller begynde forfra.</p>
+        </article>
+        <article>
+          <Icon name="shield" size={27} />
+          <h3>En mere stabil spisning</h3>
+          <p>Du får redskaber til mere regelmæssighed og færre sort-hvide regler om mad.</p>
+        </article>
+        <article>
+          <Icon name="book" size={27} />
+          <h3>Redskaber, du kan bruge videre</h3>
+          <p>Du lærer at arbejde med tanker, følelser og vaner både under og efter forløbet.</p>
+        </article>
+      </div>
     </div>
   </section>
+
+  <section class="results-quote" aria-labelledby="participant-heading">
+    <div class="container results-quote-grid">
+      <div>
+        <span class="eyebrow">EN DELTAGERS OPLEVELSE</span>
+        <h2 id="participant-heading">Forandringen kan mærkes i hverdagen.</h2>
+      </div>
+      <figure>
+        <blockquote>
+          “Allerede inden for de første par uger kunne jeg mærke en kæmpe forskel i min spisning og
+          ikke mindst en større madro i hovedet.”
+        </blockquote>
+        <figcaption>Maria · Tidligere deltager i Successful Eating</figcaption>
+        <a href={site.trustpilot} class="text-link">
+          Læs flere anmeldelser på Trustpilot <Icon name="northeast" size={15} />
+        </a>
+      </figure>
+    </div>
+  </section>
+
   <section class="section">
-    <div class="container simple-page prose">
-      <h2>Hvad bygger tilgangen på?</h2>
+    <div class="container content-grid">
+      <div class="prose">
+        <span class="eyebrow">SÅDAN SKABER VI FORANDRING</span>
+        <h2>Du skal ikke vinde endnu en kamp mod dig selv.</h2>
+        <p>
+          Overspisning handler sjældent om, at du mangler viden om, hvad du burde spise. Derfor
+          begynder Successful Eating heller ikke med en ny liste over forbud. Vi undersøger det
+          mønster, der opstår før, under og efter en overspisning, så du kan arbejde med det, der
+          faktisk holder dig fast.
+        </p>
+        <p>
+          Tilgangen tager afsæt i kognitiv adfærdsterapi. Du arbejder blandt andet med måltidsrytme,
+          udløsere, alt-eller-intet-tanker, følelsesmæssige situationer og dit forhold til kroppen.
+          De digitale moduler giver dig forståelsen; samtalerne og øvelserne hjælper dig med at
+          omsætte den til din hverdag.
+        </p>
+        <h2>Et forløb med personlig støtte</h2>
+        <ul class="results-checklist">
+          <li>
+            <Icon name="check" size={18} /> Individuel forsamtale med Ditte
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Fire live gruppesamtaler med højst seks deltagere
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Otte psykologiske moduler
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Korte øvelser, du kan bruge i din egen hverdag
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Materiale til at fastholde det, du har lært
+          </li>
+        </ul>
+        <p>
+          Ditte er cand.psych.aut., uddannet fra Københavns Universitet i 2004, og har mere end 20
+          års erfaring som psykolog. Du bliver mødt af en fagperson, som hjælper dig med at se hele
+          din situation – ikke kun det, du har spist.
+        </p>
+        <p>
+          <a href="/om-ditte">Mød Ditte og læs om hendes tilgang</a>.
+        </p>
+      </div>
+      <aside class="facts-card results-offer">
+        <span class="eyebrow">PRIS & TRYGHED</span>
+        <h2>Kom godt fra start.</h2>
+        <p class="results-price">{formatPrice(site.treatmentPrice)}</p>
+        <p>Prisen dækker det otte ugers onlineforløb og en individuel forsamtale.</p>
+        <div class="offer-promise">
+          <Icon name="shield" size={23} />
+          <p>
+            <strong>Et trygt første skridt.</strong> Vurderes forløbet ved forsamtalen at være et
+            dårligt match, får du alle pengene tilbage.
+          </p>
+        </div>
+        <a
+          class="button"
+          href="/forloebet#priser"
+          data-event="pricing_click"
+          data-location="results_offer"
+        >
+          Se pris og tilmelding <Icon size={17} />
+        </a>
+        <a class="text-link" href="/forloebet#om-forloebet">
+          Se hele forløbets indhold <Icon size={16} />
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="results-foundation">
+    <div class="container results-foundation-inner">
+      <div>
+        <span class="eyebrow">ET FAGLIGT FUNDAMENT</span>
+        <h2>Psykologisk behandling med retning.</h2>
+      </div>
       <p>
-        Successful Eating tager afsæt i kognitiv adfærdsterapi og arbejde med de mønstre, som kan
-        vedligeholde overspisning. Behandlingen begynder med en individuel klinisk vurdering.
-        Psykologiske oplæg og øvelser bruges som støtte til den personlige behandlerkontakt.
-      </p>
-      <p>
+        Arbejdet med regelmæssig spisning, udløsere, tanker, følelser og kropsbillede ligger i tråd
+        med centrale elementer i kognitiv behandling af overspisning. Du får en tydelig ramme og
+        støtte til at bruge den i dit eget liv.
         <a href="https://www.nice.org.uk/guidance/ng69/chapter/Recommendations#treating-binge-eating-disorder">
-          NICE's retningslinje om binge eating disorder
-        </a>{' '}
-        beskriver blandt andet kognitive behandlingsformer. En anbefaling af en behandlingsform er
-        ikke i sig selv dokumentation for en bestemt effekt af dette konkrete forløb.
-      </p>
-      <h2>Hvorfor lover vi ikke en bestemt effekt?</h2>
-      <p>
-        Behov, udgangspunkt og resultater varierer. Derfor lover hjemmesiden ikke en bestemt
-        reduktion i overspisninger eller et bestemt vægttab. En klients oplevelse kan give indblik i
-        vedkommendes forløb, men kan ikke forudsige dit resultat.
-      </p>
-      <h2>Om tidligere deltagertal</h2>
-      <p>
-        Det tidligere website viste procenttal fra en deltagerundersøgelse fra 2024. De tal bruges
-        ikke som effektpåstande på dette website, fordi en fyldestgørende metodebeskrivelse ikke er
-        tilgængelig her.
-      </p>
-      <p>
-        For at vurdere en undersøgelse er det blandt andet nødvendigt at kende antal deltagere,
-        svarprocent, spørgsmål, måletidspunkter og frafald. En før- og eftermåling uden
-        kontrolgruppe kan ikke alene dokumentere, at behandlingen forårsagede en ændring.
-      </p>
-      <h2>Hvad betyder det for dig?</h2>
-      <p>
-        Dit valg af hjælp skal tage udgangspunkt i dine behov, en faglig vurdering og tydelige
-        vilkår. Du er velkommen til at spørge om behandlingen og dens begrænsninger, før du
-        beslutter dig.
-      </p>
-      <p>
-        <a href="/forloebet">Læs om behandling af overspisning</a> eller{' '}
-        <a href="/om-ditte">mød Ditte Munch-Andersen</a>.
+          Læs den faglige retningslinje
+        </a>
+        .
       </p>
     </div>
   </section>
-  <CTA />
+
+  <p class="container result-note">
+    Resultater er individuelle og afhænger blandt andet af din situation og deltagelse i forløbet.
+  </p>
+  <CTA purchase />
 </Layout>
+
+<style>
+  .results-hero {
+    overflow: hidden;
+  }
+  .results-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+    gap: clamp(42px, 7vw, 90px);
+    align-items: center;
+  }
+  .results-person {
+    margin: 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 54px #2d3d2921;
+  }
+  .results-person img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.17;
+    object-fit: cover;
+  }
+  .results-person figcaption {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 23px 22px;
+  }
+  .results-person strong {
+    color: var(--green);
+  }
+  .results-person span {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .results-grid article {
+    padding: 30px 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .results-grid :global(svg) {
+    color: #637453;
+  }
+  .results-grid h3 {
+    margin: 23px 0 12px;
+    font-size: 1.4rem;
+  }
+  .results-grid p {
+    color: var(--muted);
+    font-size: var(--text-body);
+    line-height: 1.7;
+  }
+  .results-quote {
+    padding-block: clamp(70px, 9vw, 115px);
+    background: var(--peach);
+  }
+  .results-quote-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+    gap: clamp(45px, 8vw, 110px);
+    align-items: center;
+  }
+  .results-quote h2 {
+    max-width: 470px;
+  }
+  .results-quote figure {
+    margin: 0;
+  }
+  .results-quote blockquote {
+    margin: 0;
+    color: var(--green);
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    line-height: 1.3;
+  }
+  .results-quote figcaption {
+    margin: 25px 0 18px;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .results-checklist {
+    display: grid;
+    gap: 11px;
+    margin-block: 25px 30px;
+    padding: 0;
+    list-style: none;
+  }
+  .results-checklist li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .results-checklist :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    color: #637453;
+  }
+  .results-offer {
+    background: var(--sage);
+  }
+  .results-price {
+    margin-block: 12px;
+    color: var(--green);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+  }
+  .offer-promise {
+    display: flex;
+    gap: 13px;
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .offer-promise :global(svg) {
+    flex: 0 0 auto;
+  }
+  .offer-promise strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .results-offer .text-link {
+    margin-top: 22px;
+  }
+  .results-foundation {
+    padding-block: clamp(55px, 7vw, 85px);
+    background: #eeefe7;
+  }
+  .results-foundation-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: clamp(35px, 7vw, 90px);
+    align-items: center;
+  }
+  .results-foundation p {
+    font-size: var(--text-lead);
+    line-height: 1.75;
+  }
+  .results-foundation a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .result-note {
+    padding-block: 30px;
+    color: var(--muted);
+    font-size: var(--text-small);
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .results-hero-grid,
+    .results-quote-grid,
+    .results-foundation-inner {
+      grid-template-columns: 1fr;
+    }
+    .results-person {
+      max-width: 620px;
+    }
+    .results-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 620px) {
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+    .results-hero .actions {
+      align-items: flex-start;
+    }
+  }
+</style>

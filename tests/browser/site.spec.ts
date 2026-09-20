@@ -197,6 +197,28 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(request).toHaveAttribute('href', /^mailto:psykolog@dittemunchandersen.dk\?subject=/);
   await expect(page.locator('main')).toContainText('ikke automatisk tilmeldt');
 });
+test('results page presents outcomes and a clear path to purchase', async ({ page }) => {
+  await page.goto('/resultater');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Når maden fylder mindre');
+  await expect(page.locator('main')).toContainText('Mindre kontroltab');
+  await expect(page.locator('main')).toContainText('Mindre skyld og selvkritik');
+  await expect(page.locator('main')).toContainText('En mere stabil spisning');
+  await expect(page.locator('main')).toContainText('Maria · Tidligere deltager');
+  await expect(page.locator('main')).not.toContainText('Det tidligere website');
+  await expect(page.locator('main')).not.toContainText('kontrolgruppe');
+  await expect(page.getByRole('link', { name: 'Se forløbet og pris' })).toHaveAttribute(
+    'href',
+    '/forloebet#priser',
+  );
+  await expect(page.locator('.results-offer')).toContainText('4.499 kr.');
+  await expect(page.locator('.closing-cta .button')).toHaveAttribute(
+    'href',
+    'https://successfuleating.systeme.io/4b00a70d',
+  );
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(scan.violations).toEqual([]);
+});
 test('cookie choices are Danish, optional tracking starts denied and stays local', async ({
   page,
 }) => {
@@ -220,6 +242,7 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
     '/forloebet',
     '/kropsglaede',
     '/kontakt',
+    '/resultater',
     '/madro-biblioteket',
     '/sulteneller',
     '/madro-biblioteket/troestespisning',
