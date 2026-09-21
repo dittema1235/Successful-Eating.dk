@@ -741,28 +741,6 @@ select:focus-visible {
 .about-copy .checklist {
   margin: 18px 0;
 }
-.testimonial {
-  background: var(--green);
-  color: var(--paper);
-  text-align: center;
-  padding-block: 74px;
-}
-.testimonial h2 {
-  max-width: 760px;
-  margin: 14px auto 20px;
-  color: var(--paper);
-}
-.testimonial .review-intro {
-  max-width: 680px;
-  margin: 0 auto;
-  color: #d3decc;
-  font-size: var(--text-lead);
-}
-.testimonial .text-link {
-  margin-top: 26px;
-  font-size: var(--text-small);
-  color: var(--paper);
-}
 .article-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1735,9 +1713,6 @@ select:focus-visible {
   }
   .about-copy .intro {
     font-size: var(--text-lead);
-  }
-  .testimonial {
-    padding-block: 56px;
   }
   .article-grid {
     grid-template-columns: 1fr;

@@ -1,0 +1,197 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { selectTestimonials } from '../data/testimonials';
+
+interface Props {
+  ids: string[];
+  tone?: 'paper' | 'sage' | 'green' | 'peach';
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  showResultsLink?: boolean;
+  showTrustpilotLink?: boolean;
+}
+
+const {
+  ids,
+  tone = 'paper',
+  eyebrow = 'DIREKTE FRA TIDLIGERE DELTAGERE',
+  heading = 'Erfaringer med Successful Eating',
+  intro = 'Udtalelserne handler om det, der er centralt i behandlingen: mindre overspisning, færre madregler og et roligere forhold til mad.',
+  showResultsLink = false,
+  showTrustpilotLink = false,
+} = Astro.props;
+const testimonials = selectTestimonials(ids);
+---
+
+<section
+  class={`participant-testimonials tone-${tone}`}
+  aria-labelledby="participant-voices-heading"
+>
+  <div class="container">
+    <div class="participant-heading">
+      <div>
+        <span class="eyebrow">{eyebrow}</span>
+        <h2 id="participant-voices-heading">{heading}</h2>
+      </div>
+      <p>{intro}</p>
+    </div>
+    <div class="participant-grid">
+      {testimonials.map((testimonial) => (
+        <figure>
+          <blockquote>
+            <p>“{testimonial.quote}”</p>
+          </blockquote>
+          <figcaption>
+            <strong>{testimonial.name}</strong>
+            <span>Tidligere deltager i Successful Eating</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="participant-source">
+      Udtalelserne er indsamlet direkte fra tidligere deltagere siden 2014. Successful Eating er
+      løbende udviklet, og deltagernes oplevelser er individuelle.
+    </p>
+    {(showResultsLink || showTrustpilotLink) && (
+      <div class="participant-links">
+        {showResultsLink && (
+          <a href="/resultater" class="text-link">
+            Se metode og flere resultater <Icon size={16} />
+          </a>
+        )}
+        {showTrustpilotLink && (
+          <a href={site.trustpilot} class="text-link">
+            Se også anmeldelser på Trustpilot <Icon name="northeast" size={15} />
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .participant-testimonials {
+    padding-block: clamp(70px, 9vw, 112px);
+    background: var(--paper);
+  }
+  .tone-sage {
+    background: var(--sage);
+  }
+  .tone-peach {
+    background: var(--peach);
+  }
+  .tone-green {
+    background: var(--green);
+    color: var(--paper);
+  }
+  .participant-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.75fr);
+    gap: clamp(28px, 7vw, 90px);
+    align-items: end;
+    margin-bottom: clamp(35px, 5vw, 58px);
+  }
+  .participant-heading h2 {
+    max-width: 720px;
+    margin-top: 13px;
+  }
+  .participant-heading > p {
+    color: var(--muted);
+    font-size: var(--text-lead);
+    line-height: 1.7;
+  }
+  .participant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  figure {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding: clamp(27px, 3.5vw, 38px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  blockquote {
+    margin: 0;
+  }
+  blockquote p {
+    color: var(--green);
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    line-height: 1.55;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    padding-top: 19px;
+    border-top: 1px solid var(--line);
+  }
+  figcaption strong {
+    color: var(--ink);
+  }
+  figcaption span {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .participant-source {
+    max-width: 820px;
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: var(--text-small);
+    line-height: 1.65;
+  }
+  .participant-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    margin-top: 25px;
+  }
+  .tone-green .eyebrow,
+  .tone-green h2,
+  .tone-green .participant-heading > p,
+  .tone-green .participant-source,
+  .tone-green .text-link {
+    color: var(--paper);
+  }
+  .tone-green .participant-heading > p,
+  .tone-green .participant-source {
+    color: #d3decc;
+  }
+  .tone-green figure {
+    border-color: #ffffff32;
+    background: #ffffff0d;
+  }
+  .tone-green blockquote p,
+  .tone-green figcaption strong {
+    color: var(--paper);
+  }
+  .tone-green figcaption {
+    border-top-color: #ffffff32;
+  }
+  .tone-green figcaption span {
+    color: #d3decc;
+  }
+  @media (max-width: 900px) {
+    .participant-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 700px) {
+    .participant-heading,
+    .participant-grid {
+      grid-template-columns: 1fr;
+    }
+    .participant-heading {
+      align-items: start;
+    }
+  }
+</style>

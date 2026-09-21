@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import PurchaseOptions from '../components/PurchaseOptions.astro';
+import ParticipantTestimonials from '../components/ParticipantTestimonials.astro';
 import { site, services, formatPrice, treatmentModules } from '../data/site';
 export function getStaticPaths() {
   return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
@@ -169,6 +170,16 @@ const schema = {
         </ol>
       </div>
     </section>
+  )}
+  {!body && (
+    <ParticipantTestimonials
+      ids={['mai', 'tine', 'christina']}
+      tone="sage"
+      eyebrow="ERFARINGER MED FORLØBET"
+      heading="Når nye mønstre kan mærkes i hverdagen"
+      intro="Tidligere deltagere fortæller om mere frihed i situationer med mad, mindre behov for kure og et forløb, der giver mening."
+      showResultsLink
+    />
   )}
   {!body && <PurchaseOptions />}
   <section class="section" id="om-forloebet">

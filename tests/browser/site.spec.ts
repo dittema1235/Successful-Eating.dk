@@ -223,14 +223,21 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   await expect(page.locator('.results-evidence')).toContainText(
     'Brugerundersøgelse før/efter Successful Eating (2024)',
   );
-  await expect(page.locator('.results-voices')).toContainText(
-    'Læs deltagernes erfaringer direkte hos Trustpilot',
+  await expect(page.locator('.participant-testimonials')).toContainText(
+    'Sådan beskriver tidligere deltagere forandringen',
+  );
+  await expect(page.locator('.participant-testimonials')).toContainText(
+    'voldsomme overspisninger i mange år',
+  );
+  await expect(page.locator('.participant-testimonials')).toContainText(
+    'ændre mit forhold til mad',
   );
   await expect(
     page
-      .locator('.results-voices')
-      .getByRole('link', { name: 'Se vores anmeldelser på Trustpilot' }),
+      .locator('.participant-testimonials')
+      .getByRole('link', { name: 'Se også anmeldelser på Trustpilot' }),
   ).toHaveAttribute('href', 'https://dk.trustpilot.com/review/successfuleating.dk');
+  await expect(page.locator('.participant-testimonials')).not.toContainText('kg');
   await expect(page.locator('main')).toContainText('Prisen er momsfritaget');
   await expect(page.locator('main')).toContainText('50 minutter · 645 kr.');
   await expect(page.locator('main')).not.toContainText('Det tidligere website');

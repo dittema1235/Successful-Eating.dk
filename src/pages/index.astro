@@ -7,6 +7,7 @@ import Articles from '../components/Articles.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import PurchaseOptions from '../components/PurchaseOptions.astro';
+import ParticipantTestimonials from '../components/ParticipantTestimonials.astro';
 import { site, formatPrice } from '../data/site';
 ---
 
@@ -201,19 +202,14 @@ import { site, formatPrice } from '../data/site';
       </div>
     </div>
   </section>
-  <section class="testimonial">
-    <div class="container">
-      <span class="eyebrow">UAFHÆNGIGE ANMELDELSER</span>
-      <h2>Læs erfaringerne direkte hos Trustpilot.</h2>
-      <p class="review-intro">
-        Se de offentliggjorte anmeldelser i deres fulde ordlyd og den aktuelle vurdering på
-        Successful Eatings Trustpilot-profil.
-      </p>
-      <a href={site.trustpilot} class="text-link">
-        Se vores anmeldelser på Trustpilot <Icon name="northeast" size={15} />
-      </a>
-    </div>
-  </section>
+  <ParticipantTestimonials
+    ids={['winnie', 'linda', 'stella']}
+    tone="green"
+    heading="Det siger tidligere deltagere"
+    intro="Tre erfaringer med overspisning, frihed fra madregler og et forandret forhold til mad."
+    showResultsLink
+    showTrustpilotLink
+  />
   <section class="section">
     <div class="container">
       <div class="section-heading">

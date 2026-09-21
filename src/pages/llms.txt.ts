@@ -11,6 +11,7 @@ export function GET() {
 - [Behandling af overspisning](https://www.successfuleating.dk/forloebet): Successful Eating. ${formatPrice(site.treatmentPrice)} inklusive en gratis individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, tilbagebetales hele det indbetalte beløb. Alternativt kan en forsamtale på ${site.consultationMinutes} minutter købes for ${formatPrice(site.consultationPrice)}; beløbet modregnes, hvis man efterfølgende vælger forløbet (restbeløb ${formatPrice(site.treatmentPrice - site.consultationPrice)}).
 - [Kropsaccept](https://www.successfuleating.dk/kropsglaede): Individuel psykologisk behandling med fokus på kropskritik.
 - ADHD/ADD er indtænkt i Successful Eatings opbygning og struktur på baggrund af mange års klinisk erfaring med kvinder med ADHD/ADD. Det er behandling af overspisning og erstatter ikke ADHD-udredning eller medicinsk behandling.
+- [Resultater og deltagererfaringer](https://www.successfuleating.dk/resultater): Resultater fra en brugerundersøgelse før og efter Successful Eating i 2024 samt udtalelser indsamlet direkte fra tidligere deltagere siden 2014.
 - [Anmeldelser på Trustpilot](${site.trustpilot}).
 - [Kontakt](https://www.successfuleating.dk/kontakt): hello@successfuleating.com. Telefon +45 71 41 59 69.
 - [Om Ditte Munch-Andersen](https://www.successfuleating.dk/om-ditte): Faglig baggrund og behandlingsmetode.
