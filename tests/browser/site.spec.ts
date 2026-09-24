@@ -31,7 +31,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
       name: 'Nazar et al. (2016), International Journal of Eating Disorders',
     }),
   ).toHaveAttribute('href', 'https://doi.org/10.1002/eat.22643');
-  await page.getByRole('link', { name: 'Se pris og tilmelding', exact: true }).click();
+  await page.getByRole('link', { name: 'Se pris og gratis forsamtale', exact: true }).click();
   await expect(page.locator('#priser')).toBeInViewport();
   await expect(
     page.locator('#priser').getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }),

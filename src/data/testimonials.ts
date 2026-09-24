@@ -6,6 +6,18 @@ export type ParticipantTestimonial = {
 
 export const participantTestimonials: ParticipantTestimonial[] = [
   {
+    id: 'susanne',
+    name: 'Susanne',
+    quote:
+      'Som 71-årig har jeg endelig, takket være dit system, fået styr på min afhængighed af søde sager',
+  },
+  {
+    id: 'margit',
+    name: 'Margit',
+    quote:
+      'Jeg er simpelthen så glad for, at jeg fik taget mig sammen til at tilmelde mig dette kursus. Det var faktisk min læge, der fortalte mig om det, efter en snak om min spiseforstyrrelse.',
+  },
+  {
     id: 'winnie',
     name: 'Winnie',
     quote:

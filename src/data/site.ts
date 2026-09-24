@@ -118,6 +118,21 @@ export const faqs = [
       'Madro er et hverdagsudtryk for, at mad, spisning og tanker om kroppen fylder mindre og føles mindre konfliktfyldte. Det er ikke en diagnose eller et bestemt tal på vægten. For nogle handler det om færre overspisninger; for andre om mere fleksibilitet og mindre skyld.',
   },
   {
+    question: 'Hvad er madstøj?',
+    answer:
+      'Madstøj er de tanker, regler og den indre kritik om mad, der fylder i hverdagen, også når du ikke er sulten. Det er et hverdagsudtryk og ikke en diagnose.',
+  },
+  {
+    question: 'Er det overspisning, hvis det ikke er store mængder?',
+    answer:
+      'Ja, det kan det være. Overspisning handler ikke kun om store mængder mad på kort tid. Mange oplever også mindre episoder, hvor de ikke kan stoppe, selvom de gerne vil. Om forløbet passer til dig, vurderer vi sammen ved den gratis forsamtale.',
+  },
+  {
+    question: 'Er jeg for gammel til at få hjælp?',
+    answer:
+      'Nej. Forløbet er ikke bygget til en bestemt alder. Det tager udgangspunkt i dine mønstre, dine tanker om mad og din hverdag.',
+  },
+  {
     question: 'Er Successful Eating en slankekur?',
     answer:
       'Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning. Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret resultat. Behandlingen tager udgangspunkt i din situation.',

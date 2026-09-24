@@ -6,11 +6,13 @@ import CTA from '../components/CTA.astro';
 import PurchaseOptions from '../components/PurchaseOptions.astro';
 import ParticipantTestimonials from '../components/ParticipantTestimonials.astro';
 import { site, services, formatPrice, treatmentModules } from '../data/site';
+import { selectTestimonials } from '../data/testimonials';
 export function getStaticPaths() {
   return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
 }
 const { service } = Astro.props;
 const body = service.slug === 'kropsglaede';
+const [heroQuote] = selectTestimonials(['susanne']);
 const title = body
   ? 'Kropsaccept: individuel psykologisk behandling | Successful Eating'
   : 'Behandling af overspisning (BED) online | Successful Eating';
@@ -64,10 +66,11 @@ const schema = {
         <div>
           <span class="eyebrow">{service.tag} · Online i hele Danmark</span>
           <h1>{heading}</h1>
+          {!body && <p class="hero-question">Har overspisning fyldt dit liv i mange år?</p>}
           <p class="intro">
             {body
               ? service.intro
-              : 'Otte uger med psykolog Ditte Munch-Andersen, en lille gruppe og konkrete øvelser. Få støtte til at forstå din overspisning og arbejde mod mere madro.'}
+              : 'Otte ugers psykologisk behandling online med klinisk psykolog Ditte Munch-Andersen. Uanset om det er store mængder mad på kort tid eller mindre episoder, hvor du alligevel ikke kan stoppe, får du forståelse for, hvorfor mønstrene holder fast, og konkrete redskaber til at ændre dem i din hverdag.'}
           </p>
           <div class="actions">
             <a
@@ -76,7 +79,7 @@ const schema = {
               data-event={body ? 'contact_click' : 'pricing_click'}
               data-location={service.slug}
             >
-              {body ? 'Tal med Ditte om kropsaccept' : 'Se pris og tilmelding'} <Icon size={18} />
+              {body ? 'Tal med Ditte om kropsaccept' : 'Se pris og gratis forsamtale'} <Icon size={18} />
             </a>
             <a href={body ? '#om-forloebet' : '#det-faar-du'} class="text-link">
               {body ? 'Læs om behandlingen' : 'Det får du i forløbet'} <Icon size={17} />
@@ -85,8 +88,16 @@ const schema = {
           <p class="hero-note">
             {body
               ? 'Individuelle rammer · Plads til dine spørgsmål'
-              : `${formatPrice(site.treatmentPrice)} inkl. gratis forsamtale · Eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`}
+              : `${formatPrice(site.treatmentPrice)} inkl. gratis forsamtale · Alle pengene tilbage ved et dårligt match · Maks. 6 i gruppen · Eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`}
           </p>
+          {!body && heroQuote && (
+            <figure class="hero-quote">
+              <blockquote>
+                <p>“{heroQuote.quote}”</p>
+              </blockquote>
+              <figcaption>{heroQuote.name}, tidligere deltager</figcaption>
+            </figure>
+          )}
         </div>
         {!body && (
           <figure class="treatment-person">
@@ -108,6 +119,43 @@ const schema = {
       </div>
     </div>
   </section>
+  {!body && (
+    <section class="section recognition" id="genkender-du-det" aria-labelledby="recognition-heading">
+      <div class="container recognition-grid">
+        <div>
+          <span class="eyebrow">ER DET NOGET FOR MIG?</span>
+          <h2 id="recognition-heading">Genkender du det?</h2>
+          <ul class="recognition-list">
+            <li>
+              Du spiser store mængder på kort tid, eller du spiser mindre, men kan alligevel ikke
+              stoppe, selvom du gerne vil. Bagefter fylder skyld og selvkritik.
+            </li>
+            <li>
+              Du har prøvet mange kure og måder at holde igen på, men mønsteret vender tilbage.
+            </li>
+            <li>Madregler og tanker om mad tager meget af din opmærksomhed, også når du ikke spiser.</li>
+            <li>Du er træt af at kæmpe og vil gerne forstå, hvorfor det bliver ved.</li>
+          </ul>
+          <p>
+            Overspisning ser forskellig ud fra kvinde til kvinde. For nogle er det store mængder
+            mad på kort tid. For andre er det slet ikke så meget, men følelsen er den samme: at du
+            ikke kan stoppe, selvom du gerne vil. Kontroltab kan føles på mange måder, også i
+            mindre episoder. Du behøver ikke kunne sætte et navn eller en mængde på for at det er
+            værd at få hjælp.
+          </p>
+        </div>
+        <aside class="recognition-age">
+          <h3>Overspisning har ingen aldersgrænse</h3>
+          <p>
+            Mange kvinder i 50'erne, 60'erne og 70'erne har kæmpet med overspisning i årevis og
+            tænker, at det er for sent at ændre noget. Behandlingen er ikke bygget til en bestemt
+            alder. Den tager udgangspunkt i dine mønstre, dine tanker om mad og din hverdag, og du
+            behøver ikke kunne forklare alt på forhånd.
+          </p>
+        </aside>
+      </div>
+    </section>
+  )}
   {!body && (
     <section class="section treatment-overview" id="det-faar-du" aria-labelledby="overview-heading">
       <div class="container">
@@ -173,11 +221,11 @@ const schema = {
   )}
   {!body && (
     <ParticipantTestimonials
-      ids={['mai', 'tine', 'christina']}
+      ids={['susanne', 'margit', 'winnie', 'tine', 'mai']}
       tone="sage"
       eyebrow="ERFARINGER MED FORLØBET"
-      heading="Når nye mønstre kan mærkes i hverdagen"
-      intro="Tidligere deltagere fortæller om mere frihed i situationer med mad, mindre behov for kure og et forløb, der giver mening."
+      heading="Hvad tidligere deltagere fortæller"
+      intro="Deltagere fortæller om at forstå deres mønstre og få mere ro omkring mad. Oplevelserne er individuelle."
       showResultsLink
     />
   )}
@@ -474,6 +522,68 @@ const schema = {
     text-underline-offset: 4px;
     margin-top: 14px;
   }
+  .hero-question {
+    margin: 0 0 14px;
+    color: var(--green);
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    line-height: 1.3;
+  }
+  .hero-quote {
+    max-width: 640px;
+    margin: 26px 0 0;
+    padding: 4px 0 4px 20px;
+    border-left: 3px solid var(--sage-deep);
+  }
+  .hero-quote blockquote {
+    margin: 0;
+  }
+  .hero-quote blockquote p {
+    margin: 0;
+    color: var(--green);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.5;
+  }
+  .hero-quote figcaption {
+    display: block;
+    padding: 8px 0 0;
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+  .recognition {
+    padding-block: clamp(50px, 6vw, 80px);
+    background: var(--paper);
+  }
+  .recognition-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: start;
+  }
+  .recognition h2 {
+    margin: 12px 0 22px;
+  }
+  .recognition-list {
+    margin: 0 0 22px;
+    padding-left: 1.2em;
+  }
+  .recognition-list li {
+    margin-bottom: 12px;
+  }
+  .recognition-age {
+    padding: clamp(24px, 4vw, 36px);
+    border-left: 4px solid var(--sage-deep);
+    border-radius: 0 8px 8px 0;
+    background: var(--sage);
+  }
+  .recognition-age h3 {
+    margin: 0 0 12px;
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
+  }
+  .recognition-age p:last-child {
+    margin-bottom: 0;
+  }
   .treatment-overview {
     padding-block: 40px 65px;
   }
@@ -582,6 +692,9 @@ const schema = {
     text-underline-offset: 4px;
   }
   @media (max-width: 1000px) {
+    .recognition-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
     .treatment-hero {
       grid-template-columns: minmax(0, 1fr);
     }
