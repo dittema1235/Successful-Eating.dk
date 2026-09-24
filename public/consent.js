@@ -18,14 +18,14 @@ window.silktideConsentManager.init({
     {
       id: 'necessary',
       label: 'Nødvendige indstillinger',
-      description: 'Husker dine valg om privatliv. Kan ikke slås fra.',
+      description: 'Gemmer dit cookievalg i din browser, så siden husker det. Kan ikke slås fra.',
       required: true,
     },
     {
       id: 'analytics',
       label: 'Statistik',
       description:
-        'Tillad statistik, hvis en statistiktjeneste tilsluttes. Der er aktuelt ingen statistik på siden.',
+        'Der er ingen statistik på siden, og dine besøg bliver ikke målt. Hvis en statistiktjeneste senere tilføjes, aktiveres den kun, hvis du siger ja her.',
       defaultValue: false,
       gtag: 'analytics_storage',
     },
@@ -33,7 +33,7 @@ window.silktideConsentManager.init({
       id: 'marketing',
       label: 'Markedsføring',
       description:
-        'Tillad markedsføringscookies, hvis en tjeneste tilsluttes. Der er aktuelt ingen markedsføringspixels.',
+        'Der er ingen markedsføringscookies eller pixels (fx Meta eller Google Ads) på siden. Hvis de senere tilføjes, aktiveres de kun, hvis du siger ja her.',
       defaultValue: false,
       gtag: ['ad_storage', 'ad_user_data', 'ad_personalization'],
     },
@@ -41,7 +41,7 @@ window.silktideConsentManager.init({
   text: {
     prompt: {
       description:
-        '<p>Du bestemmer over dit privatliv. Læs vores <a href="/privatlivspolitik-og-vilkaar">privatlivspolitik</a>.</p>',
+        '<p>Du bestemmer over dit privatliv. Siden bruger ingen statistik- eller markedsføringscookies. Læs vores <a href="/privatliv">privatlivspolitik</a>.</p>',
       acceptAllButtonText: 'Tillad alle',
       acceptAllButtonAccessibleLabel: 'Tillad alle valgfrie cookies',
       rejectNonEssentialButtonText: 'Kun nødvendige',
@@ -52,7 +52,7 @@ window.silktideConsentManager.init({
     preferences: {
       title: 'Dine cookieindstillinger',
       description:
-        '<p>Statistik og markedsføring er som udgangspunkt slået fra. Læs mere i vores <a href="/privatlivspolitik-og-vilkaar">privatlivspolitik</a>.</p>',
+        '<p>Siden indlæser ingen statistik- eller markedsføringstjenester, og dit valg gemmes kun i din browser. Hostingudbyderen kan behandle tekniske oplysninger som IP-adresse og tidspunkt. Sender du kontaktformularen, går dit navn, din e-mail og din besked som e-mail til Ditte via Google Apps Script. Booking (Onlinebooq og Stripe) og tilmelding til den gratis guide (systeme.io) sker hos de tjenester, som modtager de oplysninger, du indtaster dér.</p><p>Læs mere i vores <a href="/privatliv">privatlivspolitik</a>.</p>',
       saveButtonText: 'Gem mine valg',
       saveButtonAccessibleLabel: 'Gem dine cookieindstillinger',
       creditLinkText: 'Samtykkeværktøj fra Silktide',
