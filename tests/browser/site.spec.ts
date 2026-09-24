@@ -312,3 +312,37 @@ test.describe('without JavaScript', () => {
     ).toBeVisible();
   });
 });
+
+test('contact form sends the message to the mail endpoint and confirms', async ({ page }) => {
+  let posted = '';
+  await page.route('https://script.google.com/**', async (route) => {
+    posted = route.request().postData() ?? '';
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: '{"ok":true}',
+    });
+  });
+  await page.goto('/kontakt');
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel('Din besked').fill('Jeg har et spørgsmål om forløbet.');
+  await page.getByRole('button', { name: 'Send besked' }).click();
+  await expect(page.getByRole('status')).toContainText('Tak for din besked');
+  const fields = new URLSearchParams(posted);
+  expect(fields.get('name')).toBe('Test Testesen');
+  expect(fields.get('email')).toBe('test@example.com');
+  expect(fields.get('website')).toBe('');
+});
+
+test('contact form shows the phone number if sending fails', async ({ page }) => {
+  await page.route('https://script.google.com/**', (route) => route.abort());
+  await page.goto('/kontakt');
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel('Din besked').fill('Hej');
+  await page.getByRole('button', { name: 'Send besked' }).click();
+  await expect(page.getByRole('status')).toContainText('Beskeden kunne ikke sendes');
+  await expect(page.getByRole('status')).toContainText('+45 71 41 59 69');
+});
