@@ -201,7 +201,9 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
     'https://dittemunchandersn.onlinebooq.dk/',
   );
   await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
-  await expect(page.locator('main')).toContainText('Vælg Successful Eating, når du booker');
+  await expect(page.locator('main')).toContainText(
+    'Gå ind under Successful Eating- BED behandling',
+  );
   await page.goto('/terms');
   await expect(page.locator('main')).toContainText('50 minutter, 645 kr.');
   await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
