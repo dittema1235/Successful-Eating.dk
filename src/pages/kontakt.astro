@@ -13,86 +13,123 @@ const contactFormUrl =
   description={`Kontakt psykolog Ditte Munch-Andersen. Start med en forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}, som modregnes, hvis du vælger Successful Eating.`}
   breadcrumbs={[{ name: 'Kontakt', url: '/kontakt' }]}
 >
-  <section class="page-hero">
+  <section class="contact-hero">
     <div class="container">
       <nav class="breadcrumbs" aria-label="Brødkrummer">
         <a href="/">Forside</a>
         <span>/</span>
         <span>Kontakt</span>
       </nav>
-      <span class="eyebrow">DET BEGYNDER MED EN SAMTALE</span>
-      <h1>
-        Du er velkommen.
-        <br />
-        Også med alle dine spørgsmål.
-      </h1>
-      <p class="intro">
-        Du behøver ikke vide præcis, hvilken hjælp du har brug for. Vi kan begynde med at finde ud
-        af det sammen.
-      </p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
-        <article class="contact-card contact-main">
-          <Icon name="clock" size={30} />
-          <h2>Begynd med en forsamtale</h2>
-          <p>
-            {site.consultationMinutes} minutter med Ditte til {formatPrice(site.consultationPrice)}{' '}
-            Sammen undersøger I dine behov og vurderer, om Successful Eating passer til dig. Vælger
-            du efterfølgende forløbet, modregnes hele beløbet i prisen på{' '}
-            {formatPrice(site.treatmentPrice)}
+      <div class="contact-hero-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">ET ROLIGT FØRSTE SKRIDT</span>
+          <h1>Start med en forsamtale.</h1>
+          <p class="intro">
+            Du behøver ikke have svarene på forhånd. Sammen med Ditte finder du ud af, om Successful
+            Eating passer til dig.
           </p>
-          {consultation.online && (
-            <p class="contact-important">
-              <strong>Vigtigt:</strong> Gå ind under <u>Successful Eating- BED behandling</u>, vælg{' '}
-              <u>Forsamtale {site.consultationPrice} kroner</u> og betal med det samme. Så
-              registreres din forsamtale rigtigt.
-            </p>
-          )}
           <a
-            class="button"
+            class="button mobile-booking-button"
             href={consultation.href}
             data-event={
               consultation.online
                 ? 'consultation_booking_click'
                 : 'consultation_request_email_click'
             }
-            data-location="contact"
+            data-location="contact_mobile_intro"
           >
             {consultation.online
               ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
               : 'Aftal forsamtale via e-mail'}{' '}
             <Icon name="northeast" size={17} />
           </a>
-          <p class="contact-note">
-            {consultation.online
-              ? 'Du betaler forsamtalen med det samme via Stripe og kan bruge alle almindelige betalingskort. Vælger du forløbet bagefter, får du beløbet som rabat på forløbet.'
-              : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
-          </p>
-          <p class="contact-note">
-            Køber du hele forløbet fra start, er forsamtalen gratis og inkluderet. Du får alle
-            pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.{' '}
-            <a href="/forloebet#priser">Se de to muligheder.</a>
-          </p>
-          <img
-            class="contact-photo"
-            src="/images/klinik-helsingor.webp"
-            alt="Behandlingsrummet i klinikken i Helsingør med to lænestole, et lille bord og grønne planter"
-            width="900"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
+          {consultation.online && (
+            <p class="mobile-booking-hint">
+              Vælg “Successful Eating- BED behandling” og derefter “Forsamtale{' '}
+              {site.consultationPrice} kroner” på bookingsiden.
+            </p>
+          )}
+          <ul class="contact-benefits">
+            <li>
+              <Icon name="check" size={19} /> Samtale med en klinisk psykolog
+            </li>
+            <li>
+              <Icon name="check" size={19} /> Online eller i Helsingør
+            </li>
+            <li>
+              <Icon name="check" size={19} /> Prisen modregnes, hvis du vælger forløbet
+            </li>
+          </ul>
+          <a class="contact-question-link" href="#skriv">
+            Har du et spørgsmål først? Skriv til Ditte <Icon name="arrow" size={18} />
+          </a>
+        </div>
+
+        <article class="booking-card" aria-labelledby="booking-heading">
+          <div class="booking-card-main">
+            <span class="eyebrow">FORSAMTALE MED DITTE</span>
+            <h2 id="booking-heading">Book din forsamtale</h2>
+            <p class="booking-price">
+              <strong>{formatPrice(site.consultationPrice)}</strong>
+              <span>/ {site.consultationMinutes} minutter</span>
+            </p>
+            <p>I undersøger dine behov og aftaler, hvad der er det rette næste skridt.</p>
+            <a
+              class="button"
+              href={consultation.href}
+              data-event={
+                consultation.online
+                  ? 'consultation_booking_click'
+                  : 'consultation_request_email_click'
+              }
+              data-location="contact"
+            >
+              {consultation.online
+                ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
+                : 'Aftal forsamtale via e-mail'}{' '}
+              <Icon name="northeast" size={17} />
+            </a>
+            <p class="booking-note">
+              {consultation.online
+                ? 'Du vælger tid og betaler med betalingskort hos Onlinebooq.'
+                : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
+            </p>
+          </div>
+          {consultation.online && (
+            <div class="booking-steps">
+              <h3>Vælg den rigtige samtale i bookingen</h3>
+              <ol>
+                <li>
+                  Gå ind under <strong>Successful Eating- BED behandling</strong>.
+                </li>
+                <li>
+                  Vælg <strong>Forsamtale {site.consultationPrice} kroner</strong> og betal med det
+                  samme.
+                </li>
+              </ol>
+            </div>
+          )}
         </article>
-        <article class="contact-card" id="skriv">
-          <Icon name="mail" size={30} />
-          <h2>Foretrækker du at skrive?</h2>
-          <p>
-            Send en kort besked med dine praktiske spørgsmål. Jeg svarer normalt inden for 1–2
-            hverdage.
-          </p>
+      </div>
+      <p class="booking-alternative">
+        Vil du begynde med hele forløbet? Forsamtalen er inkluderet uden ekstra betaling. Vurderer
+        Ditte ved samtalen, at forløbet ikke passer til dig, får du hele beløbet tilbage.{' '}
+        <a href="/forloebet#priser">Se begge muligheder</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-section" id="skriv" aria-labelledby="write-heading">
+    <div class="container">
+      <div class="contact-section-heading">
+        <span class="eyebrow">SPØRGSMÅL FØRST?</span>
+        <h2 id="write-heading">Skriv til Ditte</h2>
+        <p>
+          Spørg gerne om det praktiske, før du booker. Ditte svarer normalt inden for 1–2 hverdage.
+        </p>
+      </div>
+      <div class="contact-support-grid">
+        <div class="contact-form-card">
           <form
             class="contact-form"
             data-contact-form
@@ -126,81 +163,249 @@ const contactFormUrl =
               i <a href="/privatliv">privatlivspolitikken</a>.
             </p>
           </form>
-          <p style="margin-top:18px">
-            <a href={`tel:${site.phone.replaceAll(' ', '')}`} data-event="phone_click">
-              Ring: {site.phone}
-            </a>
-          </p>
           <p class="contact-note">
             Undlad CPR-nummer og følsomme helbredsoplysninger i beskeden. Vi aftaler en passende
             ramme, hvis du har brug for at dele mere.
           </p>
-        </article>
-        <article class="contact-card">
-          <Icon name="pin" size={30} />
-          <h2>Vi kan mødes i Helsingør</h2>
-          <p>
-            {site.person}
-            <br />
-            {site.address}
-            <br />
-            {site.city}
-          </p>
-          <a
-            class="text-link"
-            style="margin-top:25px"
-            href="https://www.google.com/maps/search/?api=1&query=Hovedvagtsstr%C3%A6de+2C+3000+Helsing%C3%B8r"
-          >
-            Se vej til klinikken <Icon name="northeast" size={17} />
-          </a>
-          <p class="contact-note">
-            Samtaler efter aftale. Skriv gerne på forhånd, hvis du har spørgsmål om adgangsforhold.
-          </p>
-        </article>
-        <article class="contact-card">
-          <Icon name="globe" size={30} />
-          <h2>Eller online, dér hvor du er</h2>
-          <p>
-            Du kan få hjælp fra hele Danmark. Find et roligt sted med en stabil internetforbindelse,
-            hvor du kan tale uforstyrret.
-          </p>
-          <a class="text-link" style="margin-top:25px" href="/forloebet">
-            Læs om behandlingen <Icon size={17} />
-          </a>
-        </article>
+        </div>
+        <aside class="contact-details" aria-label="Praktiske oplysninger">
+          <img
+            src="/images/klinik-helsingor.webp"
+            alt="Behandlingsrummet i klinikken i Helsingør med to lænestole, et lille bord og grønne planter"
+            width="900"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="contact-details-body">
+            <div class="contact-detail">
+              <Icon name="pin" size={23} />
+              <div>
+                <h3>I klinikken i Helsingør</h3>
+                <address>
+                  {site.person}
+                  <br />
+                  {site.address}
+                  <br />
+                  {site.city}
+                </address>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hovedvagtsstr%C3%A6de+2C+3000+Helsing%C3%B8r">
+                  Se vej til klinikken <Icon name="northeast" size={16} />
+                </a>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <Icon name="globe" size={23} />
+              <div>
+                <h3>Eller online i hele Danmark</h3>
+                <p>Du kan tale med Ditte hjemmefra, hvor du kan sidde uforstyrret.</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <Icon name="clock" size={23} />
+              <div>
+                <h3>Vil du hellere ringe?</h3>
+                <a href={`tel:${site.phone.replaceAll(' ', '')}`} data-event="phone_click">
+                  {site.phone}
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .contact-main .contact-photo {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    margin-top: 28px;
-    border-radius: 7px;
-    object-fit: cover;
-    object-position: center 65%;
+  .contact-hero {
+    padding: 48px 0 76px;
+    border-bottom: 1px solid var(--line);
   }
-  .contact-card .contact-important {
-    margin: 22px 0 0;
-    padding: 14px 18px;
-    border-left: 4px solid var(--rust);
-    border-radius: 0 7px 7px 0;
+  .contact-hero .breadcrumbs {
+    margin-bottom: 38px;
+  }
+  .contact-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(390px, 470px);
+    gap: clamp(38px, 6vw, 100px);
+    align-items: start;
+  }
+  .contact-copy {
+    padding-top: 26px;
+  }
+  .contact-copy h1 {
+    max-width: 12ch;
+    margin-bottom: 25px;
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
+  }
+  .contact-copy .intro {
+    max-width: 48ch;
+  }
+  .mobile-booking-button,
+  .mobile-booking-hint {
+    display: none;
+  }
+  .contact-benefits {
+    display: grid;
+    gap: 14px;
+    margin: 29px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-small);
+    line-height: 1.5;
+  }
+  .contact-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .contact-benefits svg {
+    margin-top: 2px;
+    color: #547762;
+  }
+  .contact-question-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 33px;
+    border-bottom: 1px solid currentColor;
+    color: var(--green);
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .booking-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
     background: var(--white);
-    color: var(--ink);
+    box-shadow: 0 18px 45px #294c3d0b;
+  }
+  .booking-card-main {
+    padding: clamp(25px, 3.5vw, 38px);
+  }
+  .booking-card .eyebrow {
+    margin-bottom: 13px;
+    color: var(--rust);
+  }
+  .booking-card h2 {
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+  }
+  .booking-price {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin: 22px 0 15px;
+    line-height: 1.2;
+  }
+  .booking-price strong {
+    font-size: 2rem;
+    font-weight: 650;
+    color: var(--green);
+  }
+  .booking-price span {
+    color: var(--muted);
     font-size: var(--text-small);
   }
-  .contact-important u {
+  .booking-card-main > p:not(.booking-price):not(.booking-note) {
+    color: var(--muted);
+    font-size: var(--text-small);
+    line-height: 1.65;
+  }
+  .booking-card .button {
+    display: flex;
+    width: 100%;
+    margin-top: 25px;
+  }
+  .booking-card-main > .booking-note {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: var(--text-label);
+    line-height: 1.65;
+  }
+  .booking-steps {
+    padding: 25px clamp(25px, 3.5vw, 38px) 28px;
+    border-top: 1px solid var(--line);
+    background: var(--sage);
+  }
+  .booking-steps h3 {
+    margin-bottom: 12px;
+    font-family: var(--sans);
+    font-size: var(--text-small);
     font-weight: 700;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
+    letter-spacing: 0;
+  }
+  .booking-steps ol {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--muted);
+    font-size: var(--text-label);
+    line-height: 1.6;
+  }
+  .booking-steps li + li {
+    margin-top: 7px;
+  }
+  .booking-steps strong {
+    color: var(--ink);
+  }
+  .booking-alternative {
+    max-width: 800px;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: var(--text-label);
+    line-height: 1.65;
+  }
+  .booking-alternative a,
+  .contact-note a,
+  .contact-detail a {
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .contact-section {
+    padding: 88px 0 105px;
+    background: var(--white);
+    scroll-margin-top: 105px;
+  }
+  .contact-section-heading {
+    max-width: 620px;
+    margin-bottom: 32px;
+  }
+  .contact-section-heading .eyebrow {
+    margin-bottom: 10px;
+  }
+  .contact-section-heading h2 {
+    margin-bottom: 12px;
+  }
+  .contact-section-heading p {
+    color: var(--muted);
+  }
+  .contact-support-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 25px;
+    align-items: start;
+  }
+  .contact-form-card,
+  .contact-details {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+  }
+  .contact-form-card {
+    padding: clamp(25px, 3.5vw, 42px);
+  }
+  .contact-note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: var(--text-label);
+    line-height: 1.6;
   }
   .contact-form {
     display: grid;
     gap: 16px;
-    margin-top: 25px;
   }
   .contact-form label {
     display: grid;
@@ -252,6 +457,116 @@ const contactFormUrl =
   }
   .contact-form-status[data-state='error'] {
     color: var(--rust);
+  }
+  .contact-details img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center 65%;
+  }
+  .contact-details-body {
+    padding: 9px clamp(25px, 3vw, 36px);
+  }
+  .contact-detail {
+    display: grid;
+    grid-template-columns: 23px minmax(0, 1fr);
+    gap: 17px;
+    padding: 22px 0;
+  }
+  .contact-detail + .contact-detail {
+    border-top: 1px solid var(--line);
+  }
+  .contact-detail > svg {
+    margin-top: 3px;
+    color: var(--green);
+  }
+  .contact-detail h3 {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+  }
+  .contact-detail p,
+  .contact-detail address {
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--text-small);
+    font-style: normal;
+    line-height: 1.6;
+  }
+  .contact-detail a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 9px;
+    font-size: var(--text-small);
+  }
+  @media (max-width: 900px) {
+    .contact-hero-grid,
+    .contact-support-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-copy {
+      padding-top: 0;
+    }
+    .contact-copy h1 {
+      max-width: 18ch;
+    }
+    .mobile-booking-button {
+      display: inline-flex;
+      margin-top: 24px;
+    }
+    .mobile-booking-hint {
+      display: block;
+      max-width: 48ch;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: var(--text-label);
+      line-height: 1.5;
+    }
+    .booking-card {
+      max-width: 660px;
+    }
+  }
+  @media (max-width: 600px) {
+    .contact-hero {
+      padding: 32px 0 58px;
+    }
+    .contact-hero .breadcrumbs {
+      margin-bottom: 25px;
+    }
+    .contact-hero-grid {
+      gap: 29px;
+    }
+    .contact-copy h1 {
+      margin-bottom: 16px;
+      font-size: clamp(2.5rem, 10vw, 3.25rem);
+    }
+    .contact-copy .intro {
+      font-size: var(--text-body);
+      line-height: 1.65;
+    }
+    .mobile-booking-button {
+      width: 100%;
+      margin-top: 20px;
+    }
+    .contact-benefits {
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .contact-question-link {
+      margin-top: 23px;
+    }
+    .booking-price {
+      flex-wrap: wrap;
+    }
+    .booking-alternative {
+      margin-top: 22px;
+    }
+    .contact-section {
+      padding: 64px 0 75px;
+    }
+    .contact-section-heading {
+      margin-bottom: 25px;
+    }
   }
 </style>
 

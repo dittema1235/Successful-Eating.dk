@@ -196,14 +196,19 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   );
   await expect(options).toContainText('Du fortsætter til booking og betaling');
   await page.goto('/kontakt');
-  await expect(page.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
-    'href',
-    'https://dittemunchandersn.onlinebooq.dk/',
-  );
-  await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
+  const contactBooking = page.getByRole('link', { name: /Book forsamtale · 645 kr\./ }).first();
+  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersn.onlinebooq.dk/');
+  await expect(page.locator('.booking-price')).toContainText('645 kr.');
+  await expect(page.locator('.booking-price')).toContainText('50 minutter');
   await expect(page.locator('main')).toContainText(
     'Gå ind under Successful Eating- BED behandling',
   );
+  const bookingPosition = await contactBooking.boundingBox();
+  const contactPosition = await page.locator('#skriv').boundingBox();
+  expect(bookingPosition).not.toBeNull();
+  expect(contactPosition).not.toBeNull();
+  expect(bookingPosition!.y).toBeLessThan(page.viewportSize()!.height);
+  expect(bookingPosition!.y).toBeLessThan(contactPosition!.y);
   await page.goto('/terms');
   await expect(page.locator('main')).toContainText('50 minutter, 645 kr.');
   await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
