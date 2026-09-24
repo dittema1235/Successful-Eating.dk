@@ -44,6 +44,12 @@ const contactFormUrl =
             du efterfølgende forløbet, modregnes hele beløbet i prisen på{' '}
             {formatPrice(site.treatmentPrice)}
           </p>
+          {consultation.online && (
+            <p class="contact-important">
+              <strong>Vigtigt:</strong> Vælg <u>Successful Eating</u>, når du booker, så din
+              forsamtale registreres rigtigt.
+            </p>
+          )}
           <a
             class="button"
             href={consultation.href}
@@ -61,7 +67,7 @@ const contactFormUrl =
           </a>
           <p class="contact-note">
             {consultation.online
-              ? 'Du fortsætter til booking og betaling.'
+              ? 'Du betaler forsamtalen med det samme via Stripe og kan bruge alle almindelige betalingskort. Vælger du forløbet bagefter, får du beløbet som rabat på forløbet.'
               : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
           </p>
           <p class="contact-note">
@@ -158,6 +164,20 @@ const contactFormUrl =
 </Layout>
 
 <style>
+  .contact-card .contact-important {
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    border-left: 4px solid var(--rust);
+    border-radius: 0 7px 7px 0;
+    background: var(--white);
+    color: var(--ink);
+    font-size: var(--text-small);
+  }
+  .contact-important u {
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
   .contact-form {
     display: grid;
     gap: 16px;
