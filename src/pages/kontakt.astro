@@ -39,10 +39,10 @@ const contactFormUrl =
           <Icon name="clock" size={30} />
           <h2>Begynd med en forsamtale</h2>
           <p>
-            {site.consultationMinutes} minutter med Ditte til {formatPrice(site.consultationPrice)}.
+            {site.consultationMinutes} minutter med Ditte til {formatPrice(site.consultationPrice)}{' '}
             Sammen undersøger I dine behov og vurderer, om Successful Eating passer til dig. Vælger
-            du efterfølgende forløbet, modregnes hele beløbet i prisen på
-            {formatPrice(site.treatmentPrice)}.
+            du efterfølgende forløbet, modregnes hele beløbet i prisen på{' '}
+            {formatPrice(site.treatmentPrice)}
           </p>
           <a
             class="button"
@@ -66,7 +66,7 @@ const contactFormUrl =
           </p>
           <p class="contact-note">
             Køber du hele forløbet fra start, er forsamtalen gratis og inkluderet. Du får alle
-            pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.
+            pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.{' '}
             <a href="/forloebet#priser">Se de to muligheder.</a>
           </p>
         </article>
@@ -217,6 +217,7 @@ const contactFormUrl =
 </style>
 
 <script>
+  const loadedAt = Date.now();
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   if (form) {
     const status = form.querySelector<HTMLElement>('[data-form-status]')!;
@@ -229,6 +230,7 @@ const contactFormUrl =
       status.textContent = 'Sender …';
       try {
         const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>);
+        body.set('elapsed', String(Date.now() - loadedAt));
         const response = await fetch(form.dataset.endpoint!, { method: 'POST', body });
         const result = await response.json();
         if (!result.ok) throw new Error('rejected');
