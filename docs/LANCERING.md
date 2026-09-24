@@ -14,7 +14,7 @@
 - Root directory: repository-roden (lad feltet være tomt).
 - Framework preset: `Astro` eller `None` med ovenstående build/output. Vælg et **Pages**-projekt, ikke en Worker.
 - Ingen hemmelige miljøvariabler er påkrævet.
-- Valgfri `PUBLIC_CONSULTATION_BOOKING_URL`: verificeret ekstern HTTPS-side til 50 minutters forsamtale til 645 kr. Uden den bruges en tydelig e-mailforespørgsel.
+- Valgfri `PUBLIC_CONSULTATION_BOOKING_URL`: overskriver standardlinket til Onlinebooq (`https://dittemunchandersn.onlinebooq.dk/`) for 50 minutters forsamtale til 645 kr.
 - Valgfri `PUBLIC_GUIDE_SIGNUP_URL`: en verificeret ekstern HTTPS-side til guide/nyhedsbrev. Må ikke pege på sitets egen `/sulteneller`.
 
 Behold det gamle site, mens det nye afprøves på Pages-adressen. En egentlig preview-distribution bør sætte `X-Robots-Tag: noindex` på `*.pages.dev` via hostingkonfiguration; produktionssiderne skal være indekserbare. Canonical peger allerede på det endelige domæne. Bekræft www/apex-redirect én gang på Cloudflare; undgå kæder.
