@@ -57,7 +57,10 @@ export const treatmentModules = [
     description: 'Du forbereder dig på tiden efter forløbet, så de nye mønstre holder.',
   },
 ] as const;
-const consultationUrl = import.meta.env.PUBLIC_CONSULTATION_BOOKING_URL?.trim();
+// Onlinebooq-booking til forsamtalen. PUBLIC_CONSULTATION_BOOKING_URL kan overskrive linket.
+const defaultConsultationUrl = 'https://dittemunchandersn.onlinebooq.dk/';
+const consultationUrl =
+  import.meta.env.PUBLIC_CONSULTATION_BOOKING_URL?.trim() || defaultConsultationUrl;
 if (consultationUrl) {
   const url = new URL(consultationUrl);
   if (
@@ -140,7 +143,7 @@ export const faqs = [
   },
   {
     question: 'Kan jeg starte med en forsamtale?',
-    answer: `Ja. Du kan købe en individuel forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}. Her undersøger vi dine behov og vurderer, om Successful Eating passer til dig. Vælger du efterfølgende forløbet, modregnes hele beløbet i forløbsprisen. Du betaler derfor ${formatPrice(site.treatmentPrice - site.consultationPrice)} mere og ${formatPrice(site.treatmentPrice)} i alt.`,
+    answer: `Ja. Du kan købe en individuel forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)} Her undersøger vi dine behov og vurderer, om Successful Eating passer til dig. Vælger du efterfølgende forløbet, modregnes hele beløbet i forløbsprisen. Du betaler derfor ${formatPrice(site.treatmentPrice - site.consultationPrice)} mere og ${formatPrice(site.treatmentPrice)} i alt.`,
   },
   {
     question: 'Hvad hvis forløbet ikke er det rette match?',
