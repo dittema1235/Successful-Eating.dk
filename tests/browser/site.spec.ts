@@ -190,15 +190,15 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(options).toContainText('645 kr. / 50 minutter');
   await expect(options).toContainText('3.854 kr. mere');
   await expect(options).toContainText('4.499 kr. i alt');
-  await expect(options.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
+  await expect(options.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
     'href',
-    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
+    'https://dittemunchandersn.onlinebooq.dk/',
   );
-  await expect(options).toContainText('et klik er ikke en booking');
+  await expect(options).toContainText('Du fortsætter til booking og betaling');
   await page.goto('/kontakt');
-  await expect(page.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
     'href',
-    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
+    'https://dittemunchandersn.onlinebooq.dk/',
   );
   await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
   await page.goto('/terms');
@@ -334,6 +334,7 @@ test('contact form sends the message to the mail endpoint and confirms', async (
   expect(fields.get('name')).toBe('Test Testesen');
   expect(fields.get('email')).toBe('test@example.com');
   expect(fields.get('website')).toBe('');
+  expect(Number(fields.get('elapsed'))).toBeGreaterThan(0);
 });
 
 test('contact form shows the phone number if sending fails', async ({ page }) => {
