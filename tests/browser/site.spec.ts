@@ -207,9 +207,9 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.854 kr.');
   await expect(page.locator('main')).not.toContainText('30-minutters');
   await page.goto('/sulteneller');
-  const request = page.getByRole('link', { name: 'Bed om guiden via e-mail' });
-  await expect(request).toHaveAttribute('href', /^mailto:psykolog@dittemunchandersen.dk\?subject=/);
-  await expect(page.locator('main')).toContainText('ikke automatisk tilmeldt');
+  const request = page.getByRole('link', { name: 'Ja tak, send mig guiden' });
+  await expect(request).toHaveAttribute('href', /^https:\/\/successfuleating.systeme.io\/public\//);
+  await expect(page.locator('main')).toContainText('guide og e-mails fra Ditte om overspisning');
 });
 test('results page presents outcomes and a clear path to purchase', async ({ page }) => {
   await page.goto('/resultater');

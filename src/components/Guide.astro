@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import GuideSignup from './GuideSignup.astro';
 ---
 
 <section class="guide-section" id="gratis-guide">
@@ -34,16 +35,11 @@ import Icon from './Icon.astro';
           enkle refleksioner og en lille plan til de svære eftermiddage.
         </p>
         <div class="actions">
-          <a
-            href="/gratis-guide"
-            class="button"
-            data-event="guide_click"
-            data-location="guide_section"
-          >
-            Ja tak, jeg vil gerne have guiden <Icon size={17} />
-          </a>
+          <GuideSignup location="guide_section">Ja tak, jeg vil gerne have guiden</GuideSignup>
         </div>
-        <p class="guide-fineprint">En gratis guide · Et lille skridt i dit eget tempo.</p>
+        <p class="guide-fineprint">
+          Gratis guide og e-mails om overspisning. Du kan altid afmelde dig.
+        </p>
       </div>
     </div>
   </div>

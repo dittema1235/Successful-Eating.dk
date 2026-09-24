@@ -1,21 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
-const configured = import.meta.env.PUBLIC_GUIDE_SIGNUP_URL;
-let signup: string | undefined;
-if (configured) {
-  const u = new URL(configured);
-  if (
-    u.protocol !== 'https:' ||
-    (u.hostname === 'www.successfuleating.dk' && u.pathname.replace(/\/$/, '') === '/sulteneller')
-  )
-    throw Error(
-      'PUBLIC_GUIDE_SIGNUP_URL must be an external HTTPS provider URL, not /sulteneller.',
-    );
-  signup = u.href;
-}
-const mail = `mailto:${site.email}?subject=${encodeURIComponent('Jeg vil gerne modtage guiden Sulten – eller bare mentalt træt?')}&body=${encodeURIComponent('Hej Ditte\n\nJeg vil gerne bede om din gratis guide.\n\nVenlig hilsen\n')}`;
+import GuideSignup from '../components/GuideSignup.astro';
 ---
 
 <Layout
@@ -55,20 +41,11 @@ const mail = `mailto:${site.email}?subject=${encodeURIComponent('Jeg vil gerne m
             går på autopilot.
           </p>
           <div class="actions">
-            <a
-              class="button"
-              href={signup || mail}
-              data-event={signup ? 'guide_signup_click' : 'guide_request_email_click'}
-              data-location="sulteneller"
-            >
-              {signup ? 'Hent guiden og tilmeld dig' : 'Bed om guiden via e-mail'}{' '}
-              <Icon name="northeast" size={17} />
-            </a>
+            <GuideSignup location="sulteneller">Ja tak, send mig guiden</GuideSignup>
           </div>
           <p class="guide-fineprint">
-            {signup
-              ? 'Du fortsætter til tilmeldingssiden. Læs samtykket til nyhedsbrevet, før du tilmelder dig. Du kan altid afmelde dig igen.'
-              : 'Din mail åbnes med en kladde til Ditte. Du bliver ikke automatisk tilmeldt et nyhedsbrev ved at bede om guiden.'}
+            Du tilmelder dig den gratis guide og e-mails fra Ditte om overspisning. Du kan altid
+            afmelde dig via linket i hver e-mail.
           </p>
           <a class="text-link" href="/kontakt" style="margin-top:22px">
             Har du spørgsmål? <Icon size={16} />

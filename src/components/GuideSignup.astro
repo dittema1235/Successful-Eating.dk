@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import { guideSignup } from '../data/guide';
+interface Props {
+  location: string;
+}
+const { location } = Astro.props;
+---
+
+<a
+  href={guideSignup.formUrl}
+  class="button"
+  data-guide-signup
+  data-event="guide_signup_click"
+  data-location={location}
+>
+  <slot /> <Icon size={17} />
+</a>

@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
+import GuideSignup from '../components/GuideSignup.astro';
 ---
 
 <Layout
@@ -27,16 +27,9 @@ import { site } from '../data/site';
         autopilot. Et sted at begynde, når du gerne vil forstå din spisning bedre.
       </p>
       <div class="actions">
-        <a
-          class="button"
-          href={site.guide}
-          data-event="guide_signup_click"
-          data-location="guide_page"
-        >
-          Få den gratis guide <Icon name="northeast" size={18} />
-        </a>
+        <GuideSignup location="guide_page">Få den gratis guide</GuideSignup>
       </div>
-      <p class="hero-note">Vælg dit næste skridt på guidens side · Helt gratis</p>
+      <p class="hero-note">Gratis guide og e-mails om overspisning · Du kan altid afmelde dig</p>
     </div>
   </section>
   <section class="section">
@@ -62,18 +55,11 @@ import { site } from '../data/site';
         </p>
         <h2>Sådan får du guiden</h2>
         <p>
-          Tryk på tilmeldingsknappen. På guidens side kan du se, hvordan du får den tilsendt. En
-          eventuel tilmelding til nyhedsbrevet sker særskilt og med tydelig information om, hvad du
-          siger ja til.
+          Tryk på knappen og indtast din e-mail i formularen. Når du tilmelder dig, siger du ja til
+          at modtage guiden og e-mails fra Ditte om overspisning. Du kan altid afmelde dig via
+          linket i hver e-mail.
         </p>
-        <a
-          class="button"
-          href={site.guide}
-          data-event="guide_signup_click"
-          data-location="guide_body"
-        >
-          Ja tak, send mig guiden <Icon name="northeast" size={17} />
-        </a>
+        <GuideSignup location="guide_body">Ja tak, send mig guiden</GuideSignup>
       </div>
       <aside class="facts-card tone-sage">
         <Icon name="leaf" size={35} />

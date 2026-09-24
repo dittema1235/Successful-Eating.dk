@@ -4,6 +4,7 @@ import '@fontsource-variable/fraunces';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import GuidePopup from '../components/GuidePopup.astro';
 import { site } from '../data/site';
 interface Props {
   title: string;
@@ -141,6 +142,7 @@ const graph: Record<string, unknown>[] = [
       <slot />
     </main>
     <Footer />
+    <GuidePopup />
     <script>
       // No network analytics. Only non-personal UI events; consent choices are local.
       // A consented analytics integration can listen for se:conversion. Never send health data.

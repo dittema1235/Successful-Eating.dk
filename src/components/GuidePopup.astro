@@ -1,0 +1,183 @@
+---
+import { guideSignup } from '../data/guide';
+---
+
+<dialog id="guide-popup" class="guide-popup" aria-labelledby="guide-popup-title">
+  <div class="guide-popup-bar">
+    <h2 id="guide-popup-title">Få den gratis guide</h2>
+    <button type="button" data-guide-close aria-label="Luk tilmelding" autofocus>
+      Luk ×
+    </button>
+  </div>
+  <p class="guide-popup-status" role="status" data-guide-status></p>
+  <div class="guide-popup-form" data-guide-form></div>
+  <p class="guide-popup-help">
+    Åbner formularen ikke?{' '}
+    <a href={guideSignup.formUrl} target="_blank" rel="noopener noreferrer">
+      Åbn tilmeldingen i et nyt vindue
+    </a>
+  </p>
+</dialog>
+
+<!-- Inert until requested: each opening gets a fresh embed document, including the
+     provider's load lifecycle and close state. No third-party requests on page load. -->
+<template id="guide-popup-template">
+  <a class="systeme-show-popup-25559807" href="#" hidden>
+    Åbn tilmelding
+  </a>
+  <script is:inline src="/guide-embed.js"></script>
+  <script is:inline id={guideSignup.scriptId} src={guideSignup.scriptUrl}></script>
+</template>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#guide-popup');
+  const template = document.querySelector<HTMLTemplateElement>('#guide-popup-template');
+  const container = document.querySelector<HTMLElement>('[data-guide-form]');
+  const status = document.querySelector<HTMLElement>('[data-guide-status]');
+  if (dialog && template && container && status && typeof dialog.showModal === 'function') {
+    let trigger: HTMLAnchorElement | null = null;
+    let frame: HTMLIFrameElement | null = null;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    let previousOverflow = '';
+    for (const link of document.querySelectorAll('[data-guide-signup]')) {
+      link.setAttribute('aria-haspopup', 'dialog');
+      link.setAttribute('aria-controls', 'guide-popup');
+    }
+    document.addEventListener('click', (event) => {
+      const link = (event.target as Element).closest<HTMLAnchorElement>('[data-guide-signup]');
+      if (
+        !link ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      event.preventDefault();
+      if (dialog.open) return;
+      trigger = link;
+      status.textContent = 'Formularen indlæses …';
+      previousOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      dialog.showModal();
+      frame = document.createElement('iframe');
+      frame.title = 'Tilmelding til guide og e-mails om overspisning';
+      frame.referrerPolicy = 'no-referrer';
+      frame.srcdoc = `<!doctype html><html lang="da"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tilmelding til gratis guide</title><style>body{margin:0;background:#f8f6f0}</style></head><body>${template.innerHTML}</body></html>`;
+      container.replaceChildren(frame);
+      timeout = setTimeout(() => {
+        status.textContent = 'Formularen kunne ikke indlæses. Prøv linket nedenfor.';
+      }, 15000);
+    });
+    dialog.querySelector('[data-guide-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+      clearTimeout(timeout);
+      container.replaceChildren();
+      frame = null;
+      status.textContent = '';
+      document.documentElement.style.overflow = previousOverflow;
+      trigger?.focus({ preventScroll: true });
+    });
+    window.addEventListener('message', (event) => {
+      if (!dialog.open || event.origin !== location.origin || event.source !== frame?.contentWindow)
+        return;
+      if (event.data?.type !== 'se:guide-popup') return;
+      switch (event.data.action) {
+        case 'ready':
+          clearTimeout(timeout);
+          status.textContent = '';
+          break;
+        case 'error':
+          clearTimeout(timeout);
+          status.textContent = 'Formularen kunne ikke indlæses. Prøv linket nedenfor.';
+          break;
+        case 'close':
+          dialog.close();
+          break;
+        case 'submitted':
+          clearTimeout(timeout);
+          status.textContent = 'Tak! Din tilmelding er registreret.';
+          container.replaceChildren();
+          frame = null;
+          break;
+      }
+    });
+  }
+</script>
+
+<style>
+  .guide-popup {
+    width: min(1100px, calc(100vw - 32px));
+    height: min(900px, calc(100dvh - 32px));
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--green);
+  }
+  .guide-popup[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .guide-popup::backdrop {
+    background: #142d24b3;
+  }
+  .guide-popup-bar {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-popup-bar h2 {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 1.125rem;
+  }
+  .guide-popup-bar button {
+    min-width: 64px;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--green);
+    cursor: pointer;
+    font: inherit;
+  }
+  .guide-popup-status:not(:empty) {
+    padding: 12px 20px;
+  }
+  .guide-popup-form {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .guide-popup-form :global(iframe) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .guide-popup-help {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    font-size: var(--text-small);
+  }
+  .guide-popup-help a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 600px) {
+    .guide-popup {
+      width: 100%;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+    }
+  }
+</style>
