@@ -5,7 +5,7 @@ import { site, formatPrice } from '../data/site';
 // Owner clarification supersedes the legacy 30-minute claim for the included consultation.
 const terms = originalTerms
   .replace(
-    'en 30-minutters individuel klinisk forsamtale, som er inkluderet i forløbsprisen',
+    'en 30-minutters individuel klinisk forsamtale, som er inkluderet i forløbsprisen.',
     `en gratis individuel klinisk forsamtale, som er inkluderet i forløbsprisen på ${formatPrice(site.treatmentPrice)}`,
   )
   .replace(
@@ -14,7 +14,7 @@ const terms = originalTerms
   )
   .replace(
     'modregnes de 645 kr. i forløbsprisen.',
-    `modregnes de ${formatPrice(site.consultationPrice)} i forløbsprisen på ${formatPrice(site.treatmentPrice)}. Restbeløbet er dermed ${formatPrice(site.treatmentPrice - site.consultationPrice)}.`,
+    `modregnes de ${formatPrice(site.consultationPrice)} i forløbsprisen på ${formatPrice(site.treatmentPrice)} Restbeløbet er dermed ${formatPrice(site.treatmentPrice - site.consultationPrice)}`,
   );
 ---
 

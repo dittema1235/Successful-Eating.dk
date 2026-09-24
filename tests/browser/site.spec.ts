@@ -190,15 +190,15 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(options).toContainText('645 kr. / 50 minutter');
   await expect(options).toContainText('3.854 kr. mere');
   await expect(options).toContainText('4.499 kr. i alt');
-  await expect(options.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
+  await expect(options.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
     'href',
-    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
+    'https://dittemunchandersn.onlinebooq.dk/',
   );
-  await expect(options).toContainText('et klik er ikke en booking');
+  await expect(options).toContainText('Du fortsætter til booking og betaling');
   await page.goto('/kontakt');
-  await expect(page.getByRole('link', { name: 'Aftal forsamtale via e-mail' })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
     'href',
-    /^mailto:psykolog@dittemunchandersen.dk\?subject=/,
+    'https://dittemunchandersn.onlinebooq.dk/',
   );
   await expect(page.locator('main')).toContainText('50 minutter med Ditte til 645 kr.');
   await page.goto('/terms');
@@ -311,4 +311,39 @@ test.describe('without JavaScript', () => {
       page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first(),
     ).toBeVisible();
   });
+});
+
+test('contact form sends the message to the mail endpoint and confirms', async ({ page }) => {
+  let posted = '';
+  await page.route('https://script.google.com/**', async (route) => {
+    posted = route.request().postData() ?? '';
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: '{"ok":true}',
+    });
+  });
+  await page.goto('/kontakt');
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel('Din besked').fill('Jeg har et spørgsmål om forløbet.');
+  await page.getByRole('button', { name: 'Send besked' }).click();
+  await expect(page.getByRole('status')).toContainText('Tak for din besked');
+  const fields = new URLSearchParams(posted);
+  expect(fields.get('name')).toBe('Test Testesen');
+  expect(fields.get('email')).toBe('test@example.com');
+  expect(fields.get('website')).toBe('');
+  expect(Number(fields.get('elapsed'))).toBeGreaterThan(0);
+});
+
+test('contact form shows the phone number if sending fails', async ({ page }) => {
+  await page.route('https://script.google.com/**', (route) => route.abort());
+  await page.goto('/kontakt');
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel('Din besked').fill('Hej');
+  await page.getByRole('button', { name: 'Send besked' }).click();
+  await expect(page.getByRole('status')).toContainText('Beskeden kunne ikke sendes');
+  await expect(page.getByRole('status')).toContainText('+45 71 41 59 69');
 });
