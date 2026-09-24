@@ -37,9 +37,7 @@ import { site } from '../data/site';
     <div>
       <h2>Lad os tale sammen</h2>
       <a href="/kontakt">Kontakt & forsamtale</a>
-      <a href={`mailto:${site.email}`} data-event="email_click">
-        {site.email}
-      </a>
+      <a href="/kontakt#skriv">Skriv en besked</a>
       {site.phone && <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>}
       <p>
         {site.address}
