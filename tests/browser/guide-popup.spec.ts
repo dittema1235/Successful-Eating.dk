@@ -31,6 +31,7 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
         const form = document.createElement('iframe');
         form.id = 'systemeio-iframe-test';
         form.src = '${guideSignup.formUrl}';
+        form.style.cssText = 'position:fixed;inset:0;width:100%;height:100vh;border:0';
         document.body.append(form);
       };
     `,
@@ -40,11 +41,12 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
     route.fulfill({
       contentType: 'text/html',
       body: `<!doctype html><html lang="da"><title>Tilmelding</title>
-      <label>E-mail<input type="email"></label><button>Nej tak</button>
+      <body style="margin:0;min-height:100vh;display:grid;place-items:center">
+      <main><label>E-mail<input type="email"></label><button>Luk</button></main>
       <script>
         parent.postMessage({ sender: 'systemeio-iframe-test', height: 300 }, '*');
         document.querySelector('button').onclick = () => parent.postMessage({ type: 'funnel_step_25559807_popup_close' }, '*');
-      </script></html>`,
+      </script></body></html>`,
     }),
   );
 
@@ -66,6 +68,13 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
       await expect(dialog).toBeVisible();
       const form = page.frameLocator('#guide-popup iframe').frameLocator('iframe');
       await expect(form.getByLabel('E-mail')).toBeVisible();
+      await expect(dialog).toHaveAttribute('data-guide-state', 'ready');
+      await form.getByLabel('E-mail').focus();
+      await form.getByLabel('E-mail').evaluate(() =>
+        parent.postMessage({ sender: 'systemeio-iframe-test', height: 320 }, '*'),
+      );
+      await page.waitForTimeout(50);
+      await expect(form.getByLabel('E-mail')).toBeFocused();
       await expect(page.locator('[data-guide-status]')).toBeEmpty();
       expect(page.url()).toBe(url);
       expect(await page.evaluate(() => document.documentElement.style.overflow)).toBe('hidden');
@@ -74,7 +83,7 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
         window.postMessage({ type: 'se:guide-popup', action: 'close' }, location.origin),
       );
       await expect(dialog).toBeVisible();
-      await form.getByRole('button', { name: 'Nej tak' }).click();
+      await form.getByRole('button', { name: 'Luk' }).click();
       await expect(dialog).not.toBeVisible();
       await expect(trigger).toBeFocused();
       await expect
@@ -82,13 +91,13 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
         .toBe('');
       await trigger.click();
       await expect(form.getByLabel('E-mail')).toBeVisible();
-      await page.getByRole('button', { name: 'Luk tilmelding' }).click();
+      await page.locator('#guide-popup iframe').focus();
+      await page.keyboard.press('Escape');
       await expect(dialog).not.toBeVisible();
       await expect(trigger).toBeFocused();
       await trigger.click();
       await expect(form.getByLabel('E-mail')).toBeVisible();
-      await page.getByRole('button', { name: 'Luk tilmelding' }).focus();
-      await page.keyboard.press('Escape');
+      await form.getByRole('button', { name: 'Luk' }).click();
       await expect(dialog).not.toBeVisible();
     }
   }
