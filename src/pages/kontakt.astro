@@ -76,6 +76,15 @@ const contactFormUrl =
             pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.{' '}
             <a href="/forloebet#priser">Se de to muligheder.</a>
           </p>
+          <img
+            class="contact-photo"
+            src="/images/klinik-helsingor.webp"
+            alt="Behandlingsrummet i klinikken i Helsingør med to lænestole, et lille bord og grønne planter"
+            width="900"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
         </article>
         <article class="contact-card" id="skriv">
           <Icon name="mail" size={30} />
@@ -165,6 +174,15 @@ const contactFormUrl =
 </Layout>
 
 <style>
+  .contact-main .contact-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    margin-top: 28px;
+    border-radius: 7px;
+    object-fit: cover;
+    object-position: center 65%;
+  }
   .contact-card .contact-important {
     margin: 22px 0 0;
     padding: 14px 18px;
