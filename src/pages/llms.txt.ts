@@ -16,7 +16,7 @@ export function GET() {
 - [Kontakt](https://www.successfuleating.dk/kontakt): hello@successfuleating.com. Telefon +45 71 41 59 69.
 - [Om Ditte Munch-Andersen](https://www.successfuleating.dk/om-ditte): Faglig baggrund og behandlingsmetode.
 
-## Successful Eatings 8 moduler
+## Successful Eatings 8 faser
 ${treatmentModules.map((module, index) => `- ${index + 1}. ${module.title}: ${module.description}`).join('\n')}
 
 ## Viden
