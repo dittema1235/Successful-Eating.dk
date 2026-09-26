@@ -82,7 +82,7 @@ Kontroller Dittes verificerbare uddannelse og professionelle profiler, og forbin
 
 ## Tilmelding og køb
 
-De eksisterende priser og købsveje er fastlagt: 4.499 kr. inklusive gratis forsamtale og fuld tilbagebetaling ved dårligt match ved forsamtalen; alternativt 50 minutter til 645 kr., som modregnes ved efterfølgende deltagelse. Restbeløbet er 3.854 kr.
+De eksisterende priser og købsveje er fastlagt: 4.499 kr. inklusive forsamtale og fuld tilbagebetaling ved dårligt match ved forsamtalen; alternativt 50 minutter til 645 kr., som modregnes ved efterfølgende deltagelse. Restbeløbet er 3.854 kr.
 
 - Tilknyt det verificerede eksterne link til forsamtalen via `PUBLIC_CONSULTATION_BOOKING_URL`. Kontrollér pris, 50 minutter, bekræftelse og den faktiske modregning hos udbyderen.
 - Tilknyt guide/nyhedsbrev via `PUBLIC_GUIDE_SIGNUP_URL`. Kontrollér samtykke, guidelevering, kvittering og afmelding. E-mailforespørgslen er den aktuelle fallback; den må ikke tælles som en tilmelding.
