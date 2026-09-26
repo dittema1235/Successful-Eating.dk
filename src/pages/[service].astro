@@ -48,7 +48,7 @@ const schema = {
   description={
     body
       ? `${service.intro} Online i hele Danmark hos psykolog Ditte Munch-Andersen.`
-      : `Online behandling af overspisning hos klinisk psykolog Ditte Munch-Andersen: 8 moduler, live gruppebehandling og forsamtale. Pris ${formatPrice(site.treatmentPrice)}`
+      : `Online behandling af overspisning hos klinisk psykolog Ditte Munch-Andersen: 8 faser, live gruppebehandling og forsamtale. Pris ${formatPrice(site.treatmentPrice)}`
   }
   schema={schema}
   breadcrumbs={[{ name: service.title, url: `/${service.slug}` }]}
@@ -113,7 +113,7 @@ const schema = {
       <div class="container">
         <nav class="treatment-links" aria-label="Find rundt i forløbet">
           <a href="#det-faar-du">Indhold</a>
-          <a href="#moduler">De 8 moduler</a>
+          <a href="#faser">De 8 faser</a>
           <a href="#om-forloebet">Er det noget for mig?</a>
           <a href="#priser">Pris & tilmelding</a>
           <a href="#spoergsmaal">Spørgsmål & svar</a>
@@ -133,7 +133,7 @@ const schema = {
           </article>
           <article>
             <Icon name="book" size={28} />
-            <h3>8 psykologiske moduler</h3>
+            <h3>8 psykologiske faser</h3>
             <p>Fra kroppens signaler og madtrang til følelser, kropsro og nye mønstre.</p>
           </article>
           <article>
@@ -146,14 +146,14 @@ const schema = {
     </section>
   )}
   {!body && (
-    <section class="section module-section" id="moduler" aria-labelledby="module-heading">
+    <section class="section module-section" id="faser" aria-labelledby="module-heading">
       <div class="container">
         <div class="module-intro">
           <span class="eyebrow">TRIN FOR TRIN MOD MERE MADRO</span>
-          <h2 id="module-heading">De 8 moduler i Successful Eating</h2>
+          <h2 id="module-heading">De 8 faser i Successful Eating</h2>
           <p>
             Du bevæger dig fra at forstå kroppens signaler og dine overspisningsmønstre til at kunne
-            håndtere følelser, tilbagefald og tiden efter forløbet. Modulerne giver retning, mens
+            håndtere følelser, tilbagefald og tiden efter forløbet. Faserne giver retning, mens
             øvelserne og samtalerne hjælper dig med at omsætte indholdet i din hverdag.
           </p>
         </div>
@@ -161,7 +161,7 @@ const schema = {
           {treatmentModules.map((module, index) => (
             <li>
               <article>
-                <span class="module-number">Modul {index + 1}</span>
+                <span class="module-number">Fase {index + 1}</span>
                 <h3>{module.title}</h3>
                 <p>{module.description}</p>
               </article>
@@ -254,7 +254,7 @@ const schema = {
                 Fire live online gruppebehandlinger med højst seks deltagere. Samtalerne optages
                 ikke.
               </li>
-              <li>Otte psykologiske moduler som støtte til behandlingen.</li>
+              <li>Otte psykologiske faser som støtte til behandlingen.</li>
               <li>Korte, daglige terapeutiske øvelser, der kan afprøves i din hverdag.</li>
               <li>Materiale til vedligeholdelse og tilbagefaldsforebyggelse efter forløbet.</li>
             </ul>
