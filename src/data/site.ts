@@ -139,7 +139,7 @@ export const faqs = [
   },
   {
     question: 'Hvad koster et forløb?',
-    answer: `Successful Eating koster ${formatPrice(site.treatmentPrice)} inklusive en gratis individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du alle pengene tilbage. Prisen for et individuelt kropsacceptforløb oplyses før aftale.`,
+    answer: `Successful Eating koster ${formatPrice(site.treatmentPrice)} inklusive en individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du alle pengene tilbage. Prisen for et individuelt kropsacceptforløb oplyses før aftale.`,
   },
   {
     question: 'Kan jeg starte med en forsamtale?',
