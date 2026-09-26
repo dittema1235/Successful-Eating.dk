@@ -10,7 +10,7 @@ De to behandlingsforløb er overspisning/BED og kropsaccept. ADHD indgår som et
 
 ## Mål og brugerrejser
 
-1. Besøgende, der søger behandling: forside/artikel → relevant behandling → forløb til 4.499 kr. inkl. gratis forsamtale → fuld tilbagebetaling, hvis forløbet ved forsamtalen vurderes som et dårligt match.
+1. Besøgende, der søger behandling: forside/artikel → relevant behandling → forløb til 4.499 kr. inkl. forsamtale → fuld tilbagebetaling, hvis forløbet ved forsamtalen vurderes som et dårligt match.
 2. Besøgende, der er i tvivl: problemgenkendelse → metode og faglig profil → 50 minutters forsamtale til 645 kr. → ved efterfølgende deltagelse modregnes 645 kr., så restbeløbet er 3.854 kr.
 3. Besøgende, der vil begynde forsigtigt: viden/guide → `/sulteneller` → e-mailanmodning eller ekstern samtykkestyret tilmelding.
 
