@@ -36,7 +36,7 @@ const schema = {
           priceCurrency: 'DKK',
           url: site.checkout,
           description:
-            'Otte ugers onlineforløb inklusive gratis individuel forsamtale. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.',
+            'Otte ugers behandlingsforløb, hvor en individuel forsamtale er inkluderet. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.',
         },
       }
     : {}),
@@ -85,7 +85,7 @@ const schema = {
           <p class="hero-note">
             {body
               ? 'Individuelle rammer · Plads til dine spørgsmål'
-              : `${formatPrice(site.treatmentPrice)} inkl. gratis forsamtale · Eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`}
+              : `${formatPrice(site.treatmentPrice)} inkl. forsamtale · Eller start med ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`}
           </p>
         </div>
         {!body && (
@@ -296,7 +296,7 @@ const schema = {
         ) : (
           <>
             <p>
-              Forløbet koster {formatPrice(site.treatmentPrice)} inklusive en gratis individuel
+              Forløbet koster {formatPrice(site.treatmentPrice)} inklusive en individuel
               klinisk forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du
               alle pengene tilbage.
             </p>
@@ -388,7 +388,7 @@ const schema = {
         <p class="small muted">
           {body
             ? 'Kontakt Ditte for pris og individuelle rammer.'
-            : 'Gratis forsamtale inkluderet. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.'}
+            : 'Forsamtale inkluderet i forløbet. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.'}
         </p>
       </aside>
     </div>
