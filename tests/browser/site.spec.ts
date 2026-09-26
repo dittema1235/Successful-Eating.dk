@@ -17,7 +17,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
     'Behandling af overspisning online',
   );
   await expect(page.locator('#det-faar-du')).toContainText('4 live gruppesamtaler');
-  const modules = page.locator('#moduler .module-list > li');
+  const modules = page.locator('#faser .module-list > li');
   await expect(modules).toHaveCount(8);
   await expect(modules.first()).toContainText('Fundamentet');
   await expect(modules.first()).toContainText('sult- og mæthedssignaler');
