@@ -120,6 +120,12 @@ const schema = {
         </nav>
         <span class="eyebrow">FAGLIG STØTTE. PLADS TIL DIN HVERDAG.</span>
         <h2 id="overview-heading">Det får du i Successful Eating</h2>
+        <p class="intro">
+          Kernen i forløbet er den personlige kontakt med Ditte: en individuel forsamtale og fire
+          live gruppesamtaler. Ved siden af får du massiv støtte i form af videoundervisning gennem
+          de 8 psykologiske faser – én fase ad gangen, i dit eget tempo – og daglige øvelser. Du har
+          adgang til det hele i 12 uger.
+        </p>
         <div class="treatment-inclusions">
           <article>
             <Icon name="shield" size={28} />
@@ -133,8 +139,11 @@ const schema = {
           </article>
           <article>
             <Icon name="book" size={28} />
-            <h3>8 psykologiske faser</h3>
-            <p>Fra kroppens signaler og madtrang til følelser, kropsro og nye mønstre.</p>
+            <h3>8 psykologiske faser i eget tempo</h3>
+            <p>
+              Fra kroppens signaler og madtrang til følelser og kropsro – du reflekterer kort, før
+              næste fase låses op.
+            </p>
           </article>
           <article>
             <Icon name="leaf" size={28} />
@@ -155,6 +164,11 @@ const schema = {
             Du bevæger dig fra at forstå kroppens signaler og dine overspisningsmønstre til at kunne
             håndtere følelser, tilbagefald og tiden efter forløbet. Faserne giver retning, mens
             øvelserne og samtalerne hjælper dig med at omsætte indholdet i din hverdag.
+          </p>
+          <p>
+            Du arbejder dig igennem én fase ad gangen. Inden du går videre, stopper du kort op og
+            reflekterer over, hvad du har taget med dig – næste fase låses op, når du er klar.
+            Sådan sikrer vi, at det, du lærer, når at sætte sig, før du bygger videre.
           </p>
         </div>
         <ol class="module-list">
@@ -254,9 +268,13 @@ const schema = {
                 Fire live online gruppebehandlinger med højst seks deltagere. Samtalerne optages
                 ikke.
               </li>
-              <li>Otte psykologiske faser som støtte til behandlingen.</li>
+              <li>
+                Otte psykologiske faser i videoundervisning, som du arbejder dig igennem én fase ad
+                gangen – næste fase låses op, når du har reflekteret kort over den forrige.
+              </li>
               <li>Korte, daglige terapeutiske øvelser, der kan afprøves i din hverdag.</li>
-              <li>Materiale til vedligeholdelse og tilbagefaldsforebyggelse efter forløbet.</li>
+              <li>Adgang til alt indhold – video, øvelser og materiale – i 12 uger.</li>
+              <li>Materiale til vedligeholdelse og tilbagefaldsforebyggelse, du kan bruge efter forløbet.</li>
             </ul>
             <section class="adhd-focus" aria-labelledby="adhd-focus-heading">
               <span class="eyebrow">AFPRØVET I PRAKSIS</span>
@@ -316,6 +334,48 @@ const schema = {
             >
               Køb forløbet · {formatPrice(site.treatmentPrice)} <Icon name="northeast" size={17} />
             </a>
+            <div class="inclusion-summary">
+              <div>
+                <h3>Det er med</h3>
+                <ul>
+                  <li>Én individuel klinisk forsamtale (50 min.) med Ditte</li>
+                  <li>4 live online gruppesamtaler (højst 6 deltagere)</li>
+                  <li>Videoundervisning gennem de 8 psykologiske faser</li>
+                  <li>Korte, daglige øvelser og materiale til hverdagen</li>
+                  <li>Adgang til alt indhold (video, øvelser, materiale) i 12 uger</li>
+                  <li>
+                    Materiale til vedligeholdelse og tilbagefaldsforebyggelse, du kan bruge efter
+                    forløbet
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3>Det er ikke med</h3>
+                <ul>
+                  <li>
+                    Individuel, løbende terapi – den fælles behandling foregår i gruppe, ud over
+                    den ene forsamtale
+                  </li>
+                  <li>
+                    Mulighed for at se gruppesamtalerne bagefter – de optages ikke, så det kræver
+                    fremmøde live
+                  </li>
+                  <li>
+                    Fri adgang til alle 8 faser fra dag ét – de låses op én ad gangen, i dit eget
+                    tempo
+                  </li>
+                  <li>
+                    En slankekur, kostplan eller garanti for vægttab – fokus er dit forhold til
+                    mad, ikke et bestemt resultat
+                  </li>
+                  <li>
+                    En ADHD-udredning eller medicinsk/psykiatrisk behandling – forløbet erstatter
+                    ikke dette, selvom ADHD er tænkt ind i strukturen
+                  </li>
+                  <li>Adgang til materialet, efter de 12 uger er gået</li>
+                </ul>
+              </div>
+            </div>
           </>
         )}
         <div class="callout">
@@ -367,6 +427,12 @@ const schema = {
           <dd>{service.tag}</dd>
           <dt>Varighed</dt>
           <dd>{body ? 'Aftales ved den kliniske forsamtale' : '8 uger'}</dd>
+          {!body && (
+            <>
+              <dt>Adgang til materiale</dt>
+              <dd>12 uger, én fase ad gangen</dd>
+            </>
+          )}
           <dt>Samlet pris</dt>
           <dd>
             {body
@@ -580,6 +646,36 @@ const schema = {
   .adhd-links a {
     text-decoration: underline;
     text-underline-offset: 4px;
+  }
+  .inclusion-summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 30px 0;
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--sand);
+  }
+  .inclusion-summary h3 {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+  }
+  .inclusion-summary ul {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+  .inclusion-summary li {
+    margin-bottom: 8px;
+    color: var(--muted);
+  }
+  .inclusion-summary li:last-child {
+    margin-bottom: 0;
+  }
+  @media (max-width: 700px) {
+    .inclusion-summary {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
   @media (max-width: 1000px) {
     .treatment-hero {
