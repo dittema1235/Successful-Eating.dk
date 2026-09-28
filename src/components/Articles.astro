@@ -1,11 +1,16 @@
 ---
 import Icon from './Icon.astro';
-import { articles } from '../data/articles';
-const { limit = articles.length } = Astro.props;
+import { articles, type Article } from '../data/articles';
+interface Props {
+  limit?: number;
+  items?: Article[];
+}
+const { limit, items = articles }: Props = Astro.props;
+const list = items.slice(0, limit ?? items.length);
 ---
 
 <div class="article-grid">
-  {articles.slice(0, limit).map((a) => (
+  {list.map((a) => (
     <article class="article-card">
       <a href={`/madro-biblioteket/${a.slug}`}>
         <div class={`article-illustration tone-${a.tone}`} aria-hidden="true">
