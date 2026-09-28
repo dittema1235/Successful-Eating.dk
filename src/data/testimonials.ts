@@ -45,7 +45,7 @@ export const participantTestimonials: ParticipantTestimonial[] = [
     id: 'tine',
     name: 'Tine',
     quote:
-      'Jeg tror ikke jeg nogensinde får brug for at deltage i andre forløb eller gå på kur igen og det er simpelthen så befriende og lykkeligt 😊',
+      'Jeg tror ikke jeg nogensinde får brug for at deltage i andre forløb igen, og det er simpelthen så befriende og lykkeligt 😊',
   },
 ];
 
