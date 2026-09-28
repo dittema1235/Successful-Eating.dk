@@ -47,6 +47,12 @@ export const participantTestimonials: ParticipantTestimonial[] = [
     quote:
       'Jeg tror ikke jeg nogensinde får brug for at deltage i andre forløb igen, og det er simpelthen så befriende og lykkeligt 😊',
   },
+  {
+    id: 'susanne',
+    name: 'Susanne',
+    quote:
+      'Som 71-årig har jeg endelig, takket være dit system, fået styr på min afhængighed af søde sager',
+  },
 ];
 
 export function selectTestimonials(ids: string[]) {
