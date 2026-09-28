@@ -123,6 +123,21 @@ export const faqs = [
       'Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning. Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret resultat. Behandlingen tager udgangspunkt i din situation.',
   },
   {
+    question: 'Hvad er med i forløbet — og hvad er ikke med?',
+    answer:
+      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, fire live online gruppesamtaler med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser og materiale til hverdagen samt adgang til alt indhold i 12 uger – inklusive materiale til vedligeholdelse og tilbagefaldsforebyggelse, du kan bruge bagefter. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppesamtalerne optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen, og adgangen til materialet ophører, når de 12 uger er gået.',
+  },
+  {
+    question: 'Hvordan låses de næste faser op?',
+    answer:
+      'Du går i gang med én fase ad gangen. Før du fortsætter, reflekterer du kort over, hvad du har lært – det er ikke en test, du kan bestå eller dumpe, men en del af metoden, der sikrer, at indholdet får lov at sætte sig, inden du går videre.',
+  },
+  {
+    question: 'Hvor længe har jeg adgang til materialet?',
+    answer:
+      'Du har adgang til al videoundervisning, øvelser og materiale i 12 uger. Faserne låses op én ad gangen, så du arbejder dig fremad i dit eget tempo og går videre til næste fase, når du er klar.',
+  },
+  {
     question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
     answer:
       'Ja. Forskning viser, at ADHD er forbundet med markant øget risiko for BED og andre spiseforstyrrelser. Vanskeligheder med impulskontrol og regulering kan for nogle betyde, at mad bliver den hurtigste vej til at dæmpe uro eller ubehag. Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful Eating, og ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk behandling.',
