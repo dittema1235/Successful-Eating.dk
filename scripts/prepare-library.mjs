@@ -166,6 +166,10 @@ const entries = [
         'Du må gerne spise tilstrækkeligt og finde bevægelse, der passer til dine muligheder. En generel artikel kan ikke afgøre, hvilken kost eller træning der er relevant for dig. Ved sygdom, medicin eller fysiske begrænsninger skal rådene tilpasses af en relevant fagperson.',
       ],
       [
+        'Vægttab er ikke det, der ser ud til at gøre den største forskel',
+        'Et ensidigt fokus på vægttab kan overskygge det, der ofte betyder mest for helbredet: færre episoder med overspisning. I et stort brasiliansk befolkningsstudie var ugentlig overspisning knyttet til øget risiko for metabolisk syndrom, men denne sammenhæng forsvandt for det samlede syndrom, når der blev taget højde for udgangsvægten – dog forblev overspisning knyttet til forhøjede triglycerider uafhængigt af vægt (Solmi et al., 2021). Et andet studie fandt højere niveauer af betændelsesmarkører som CRP hos personer med overspisningsforstyrrelse sammenlignet med personer med samme grad af overvægt uden overspisningsforstyrrelse (Caldas et al., 2022). Billedet er altså blandet, ikke entydigt: noget af risikoen hænger sammen med vægt, men noget ser ud til at være knyttet til selve mønstret. Behandling af overspisning anbefales derfor som en selvstændig, psykologisk indsats – ikke som et vægttabsprogram (NICE NG69).',
+      ],
+      [
         'Tal om de konkrete symptomer',
         'Hvis du oplever søvnproblemer, ændringer i humør eller andre symptomer, kan din læge hjælpe med at vurdere dem. Psykologisk støtte kan være relevant, hvis kropskritik eller spisemønstre påvirker din trivsel.',
       ],
@@ -188,7 +192,9 @@ for (const entry of entries) {
     body: $('.custom-article-container').html(),
   });
   const extra = entry.slug.startsWith('det-falske')
-    ? '<li><a href="https://www.nice.org.uk/guidance/ng23">NICE: Menopause – identification and management (NG23)</a></li>'
+    ? '<li><a href="https://www.nice.org.uk/guidance/ng23">NICE: Menopause – identification and management (NG23)</a></li>' +
+      '<li><a href="https://doi.org/10.1111/acps.13356">Solmi et al.: Longitudinal association between binge eating and metabolic syndrome, ELSA-Brasil (Acta Psychiatrica Scandinavica, 2021)</a></li>' +
+      '<li><a href="https://doi.org/10.20945/2359-3997000000489">Caldas et al.: Binge eating disorder, depression and systemic inflammatory state in individuals with obesity (Archives of Endocrinology and Metabolism, 2022)</a></li>'
     : '';
   const body =
     entry.sections.map(([h, p]) => `<h2>${h}</h2><p>${p}</p>`).join('') +
