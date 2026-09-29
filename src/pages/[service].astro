@@ -113,6 +113,7 @@ const schema = {
       <div class="container">
         <nav class="treatment-links" aria-label="Find rundt i forløbet">
           <a href="#det-faar-du">Indhold</a>
+          <a href="#gruppen">Gruppen</a>
           <a href="#faser">De 8 faser</a>
           <a href="#om-forloebet">Er det noget for mig?</a>
           <a href="#priser">Pris & tilmelding</a>
@@ -135,7 +136,7 @@ const schema = {
           <article>
             <Icon name="heart" size={28} />
             <h3>4 live gruppesamtaler</h3>
-            <p>Online med højst 6 deltagere. Samtalerne optages ikke.</p>
+            <p>Online på Google Meet i ulige uger, torsdag kl. 17–18.30, med højst 6 deltagere. Løbende optag. Samtalerne optages ikke på video.</p>
           </article>
           <article>
             <Icon name="book" size={28} />
@@ -155,6 +156,49 @@ const schema = {
     </section>
   )}
   {!body && (
+  <section class="section group-section" id="gruppen" aria-labelledby="group-heading">
+    <div class="container group-grid">
+      <div>
+        <span class="eyebrow">GRUPPEN</span>
+        <h2 id="group-heading">Du behøver ikke stå alene med det</h2>
+        <p>
+          Hver anden torsdag mødes gruppen online med Ditte. Vi er højst seks ad gangen, så der er
+          tid og ro til dig, dine spørgsmål og det, der fylder lige nu. Du får fagligt råd fra en
+          psykolog og samtidig selskab af andre, der kender til overspisning indefra.
+        </p>
+        <p>
+          Der er løbende optag, så du behøver ikke vente på et fast holdstart. Gruppen består ikke
+          nødvendigvis af de samme personer hele vejen igennem: Du møder nogle, der lige er begyndt,
+          og nogle, der er kommet længere. Det giver både genkendelse og et konkret indblik i,
+          hvordan vejen kan se ud.
+        </p>
+      </div>
+      <dl class="group-facts">
+        <div>
+          <dt>Hvornår</dt>
+          <dd>Ulige uger, torsdag kl. 17–18.30</dd>
+        </div>
+        <div>
+          <dt>Varighed</dt>
+          <dd>60–90 minutter, tilpasset antal deltagere</dd>
+        </div>
+        <div>
+          <dt>Hvor</dt>
+          <dd>Online på Google Meet</dd>
+        </div>
+        <div>
+          <dt>Hvem</dt>
+          <dd>Højst 6 deltagere ad gangen</dd>
+        </div>
+        <div>
+          <dt>Start</dt>
+          <dd>Løbende optag</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+)}
+{!body && (
     <section class="section module-section" id="faser" aria-labelledby="module-heading">
       <div class="container">
         <div class="module-intro">
@@ -266,8 +310,7 @@ const schema = {
                 match.
               </li>
               <li>
-                Fire live online gruppebehandlinger med højst seks deltagere. Samtalerne optages
-                ikke.
+                Fire live online gruppebehandlinger på Google Meet i ulige uger, torsdag kl. 17–18.30, med højst seks deltagere og løbende optag. Samtalerne optages ikke på video.
               </li>
               <li>
                 Otte psykologiske faser i videoundervisning, som du arbejder dig igennem én fase ad
@@ -432,6 +475,8 @@ const schema = {
             <>
               <dt>Adgang til materiale</dt>
               <dd>12 uger, én fase ad gangen</dd>
+              <dt>Gruppen</dt>
+              <dd>Ulige torsdage kl. 17–18.30 · Google Meet · Løbende optag</dd>
             </>
           )}
           <dt>Samlet pris</dt>
@@ -574,6 +619,57 @@ const schema = {
   }
   .treatment-inclusions p {
     color: var(--muted);
+  }
+  .group-section {
+    background: var(--sage);
+  }
+  .group-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: center;
+  }
+  .group-grid h2 {
+    margin: 12px 0 18px;
+  }
+  .group-grid p {
+    font-size: var(--text-lead);
+  }
+  .group-facts {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .group-facts div {
+    padding-block: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .group-facts div:first-child {
+    padding-top: 0;
+  }
+  .group-facts div:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .group-facts dt {
+    color: var(--green);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .group-facts dd {
+    margin: 4px 0 0;
+    font-size: 1.15rem;
+  }
+  @media (max-width: 1000px) {
+    .group-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
   .module-section {
     background: var(--sand);
