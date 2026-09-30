@@ -422,11 +422,43 @@ const schema = {
           </p>
         </div>
         <h2>Mulighed for tilskud</h2>
-        <p>
-          Der kan være mulighed for tilskud til psykologsamtaler gennem Sygeforsikringen “danmark”
-          eller en privat sundhedsforsikring. Det afhænger blandt andet af dine vilkår og den
-          faglige vurdering. Kontakt din forsikring før tilmelding; tilskud kan ikke garanteres.
-        </p>
+        {body ? (
+          <p>
+            Der kan være mulighed for tilskud til psykologsamtaler gennem Sygeforsikringen “danmark”
+            eller en privat sundhedsforsikring. Det afhænger blandt andet af dine vilkår og den
+            faglige vurdering. Kontakt din forsikring før tilmelding; tilskud kan ikke garanteres.
+          </p>
+        ) : (
+          <Fragment>
+            <p>
+              Hvis du er medlem af Sygeforsikringen “danmark”, kan du have mulighed for tilskud til
+              psykologhjælp. Beløbene ændres af og til, så se de aktuelle satser hos “danmark”:
+              <a
+                href="https://www.sygeforsikring.dk/tilskud/psykologhjaelp"
+                target="_blank"
+                rel="noopener noreferrer">tilskud til psykologhjælp</a
+              >.
+            </p>
+            <p>
+              <strong>Under 26 år:</strong> I 2026 kan du få op til 300 kr. for en individuel samtale og op til
+              100 kr. pr. gruppesession. Med 1 individuel samtale og 4 gruppesessioner svarer det til op til
+              700 kr. i alt.
+            </p>
+            <p>
+              <strong>Over 26 år:</strong> Du kan få tilskud, hvis du også har en af de lidelser, som “danmark”
+              dækker, fx let til moderat angst eller depression (<a
+                href="https://www.sygeforsikring.dk/tilskud/psykologhjaelp/henvisningsaarsager"
+                target="_blank"
+                rel="noopener noreferrer">se de 11 henvisningsårsager</a
+              >). Overspisning alene er ikke på listen. I 2026 er det 200 kr. pr. individuel samtale og op til
+              100 kr. pr. gruppesession.
+            </p>
+            <p>
+              I forsamtalen afklarer vi sammen, om du kan få tilskud. Tilskud kan ikke garanteres, så kontakt
+              gerne “danmark” eller din forsikring inden tilmelding.
+            </p>
+          </Fragment>
+        )}
         <h2>Den rette hjælp til din situation</h2>
         <p>
           {body
