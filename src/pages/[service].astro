@@ -122,34 +122,62 @@ const schema = {
         <span class="eyebrow">FAGLIG STØTTE. PLADS TIL DIN HVERDAG.</span>
         <h2 id="overview-heading">Det får du i Successful Eating</h2>
         <p class="intro">
-          Kernen i forløbet er den personlige kontakt med Ditte: en individuel forsamtale og fire
-          live gruppesamtaler. Ved siden af får du massiv støtte i form af videoundervisning gennem
-          de 8 psykologiske faser – én fase ad gangen, i dit eget tempo – og daglige øvelser. Du har
-          adgang til det hele i 12 uger.
+          Successful Eating er et 8-ugers terapeutisk forløb. Jeg følger dig fra den første
+          forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du med viden og
+          øvelser, der hjælper dig med at træne nye mønstre i dit eget liv.
         </p>
         <div class="treatment-inclusions">
           <article>
             <Icon name="shield" size={28} />
             <h3>Individuel forsamtale</h3>
-            <p>Du og Ditte vurderer sammen, om forløbet passer til dine behov.</p>
+            <p>
+              Vi taler om din situation, de områder du har brug for at arbejde med, og de
+              situationer og triggere, der typisk sætter din overspisning i gang. Sammen vurderer
+              vi, om forløbet er det rigtige for dig.
+            </p>
+            <p>
+              Samtalen varer {site.consultationMinutes} minutter og kan foregå i min klinik i
+              Helsingør eller online.
+            </p>
           </article>
           <article>
             <Icon name="heart" size={28} />
-            <h3>4 live gruppesamtaler</h3>
-            <p>Online på Google Meet i ulige uger, torsdag kl. 17–18.30, med højst 6 deltagere. Løbende optag. Samtalerne optages ikke på video.</p>
+            <h3>4 online gruppeterapier</h3>
+            <p>
+              Hver 14. dag gennem de 8 uger mødes vi til klinisk struktureret gruppebehandling
+              med højst 6 deltagere. Gruppen mødes på Google Meet i ulige uger, torsdag
+              kl. 17–18.30, og har løbende optag.
+            </p>
+            <p>
+              Samtalerne optages ikke. Der føres journal, jeg har tavshedspligt, og det, der
+              deles i gruppen, behandles fortroligt.
+            </p>
           </article>
           <article>
             <Icon name="book" size={28} />
-            <h3>8 psykologiske faser i eget tempo</h3>
+            <h3>Viden og øvelser mellem samtalerne</h3>
             <p>
-              Fra kroppens signaler og madtrang til følelser og kropsro – du reflekterer kort, før
-              næste fase låses op.
+              Ca. 5 timers video i små, overskuelige bidder fordelt over 8 psykologiske faser.
+              Du arbejder med konkrete, daglige øvelser, så du får mulighed for at bruge det,
+              du lærer, i din egen hverdag.
+            </p>
+            <p>
+              Du har adgang til video, øvelser og materiale i 12 uger. Det giver lidt ekstra
+              luft, hvis du bliver syg, får travlt eller har brug for mere tid.
             </p>
           </article>
           <article>
             <Icon name="leaf" size={28} />
-            <h3>Øvelser til hverdagen</h3>
-            <p>Korte, daglige øvelser og materiale til at arbejde videre efter forløbet.</p>
+            <h3>Du bliver fulgt hele vejen</h3>
+            <p>
+              Fra forsamtalen til den sidste gruppeterapi følger jeg dig i arbejdet med dit
+              overspisningsmønster. Mellem terapigangene øver du dig med den viden og de
+              øvelser, der passer til din situation.
+            </p>
+            <p>
+              Kombinationen af terapi, viden og træning gør Successful Eating til et samlet
+              behandlingsforløb over 8 uger.
+            </p>
           </article>
         </div>
       </div>
@@ -233,7 +261,7 @@ const schema = {
       showTrustpilotLink
     />
   )}
-  {!body && <PurchaseOptions />}
+  {!body && <PurchaseOptions explainPrice />}
   <section class="section" id="om-forloebet">
     <div class="container content-grid">
       <div class="prose">
@@ -359,7 +387,7 @@ const schema = {
               Du kan også starte med at købe en forsamtale på {site.consultationMinutes} minutter
               til {formatPrice(site.consultationPrice)} Vælger du efterfølgende at deltage i
               forløbet, modregnes hele beløbet. Du betaler da{' '}
-              {formatPrice(site.treatmentPrice - site.consultationPrice)}
+              {formatPrice(site.treatmentPrice - site.consultationPrice)}{' '}
               mere – {formatPrice(site.treatmentPrice)} i alt. Behandlingen starter efter
               forsamtalen, når vi har vurderet, at den passer til din situation.
             </p>
@@ -421,7 +449,7 @@ const schema = {
             <a href="/kontakt">kontakte Ditte</a> om indhold, opstart og rammer.
           </p>
         </div>
-        <h2>Mulighed for tilskud</h2>
+        <h2 id="tilskud">Mulighed for tilskud</h2>
         {body ? (
           <p>
             Der kan være mulighed for tilskud til psykologsamtaler gennem Sygeforsikringen “danmark”
@@ -630,7 +658,7 @@ const schema = {
   }
   .treatment-inclusions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
     margin-top: 35px;
   }
@@ -644,6 +672,12 @@ const schema = {
   }
   .treatment-inclusions p {
     color: var(--muted);
+  }
+  .treatment-inclusions p + p {
+    margin-top: 12px;
+  }
+  #tilskud {
+    scroll-margin-top: 110px;
   }
   .group-section {
     background: var(--sage);

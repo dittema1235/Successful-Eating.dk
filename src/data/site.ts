@@ -14,6 +14,7 @@ export const site = {
   treatmentPrice: 4499, // Confirmed by owner 2026-09-19; keep one shared source.
   consultationPrice: 645,
   consultationMinutes: 50,
+  psychologistHourlyRate: 1295,
   treatmentPriceChecked: '2026-09-19',
   login: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',

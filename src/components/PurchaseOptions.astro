@@ -1,6 +1,10 @@
 ---
 import Icon from './Icon.astro';
 import { site, consultation, formatPrice } from '../data/site';
+interface Props {
+  explainPrice?: boolean;
+}
+const { explainPrice = false } = Astro.props;
 ---
 
 <section class="section purchase-section" id="priser" aria-labelledby="purchase-heading">
@@ -8,24 +12,64 @@ import { site, consultation, formatPrice } from '../data/site';
     <div class="section-heading">
       <div>
         <span class="eyebrow">SUCCESSFUL EATING · PRIS & OPSTART</span>
-        <h2 id="purchase-heading">To måder at tage det første skridt.</h2>
+        <h2 id="purchase-heading">
+          {explainPrice ? (
+            <>
+              Hvad får du for{' '}
+              <span class="price-together">{formatPrice(site.treatmentPrice)}?</span>
+            </>
+          ) : (
+            'To måder at tage det første skridt.'
+          )}
+        </h2>
         <a class="purchase-trust" href={site.trustpilot}>
           Se vores anmeldelser på Trustpilot
         </a>
       </div>
       <p class="intro">
-        Begynd med hele forløbet eller med en forsamtale. Begge veje giver plads til at finde ud af,
-        om behandlingen passer til dig.
+        {explainPrice
+          ? '“Det er da mange penge.” Det er en helt fair tanke. Når du vurderer, om forløbet giver mening for dig, er det værd at se på, hvad prisen dækker.'
+          : 'Begynd med hele forløbet eller med en forsamtale. Begge veje giver plads til at finde ud af, om behandlingen passer til dig.'}
       </p>
     </div>
+    {explainPrice && (
+      <div class="purchase-context">
+        <div>
+          <h3>8 ugers terapi, viden og træning</h3>
+          <ul>
+            <li>En individuel forsamtale med mig på {site.consultationMinutes} minutter</li>
+            <li>4 online gruppeterapier med højst 6 deltagere</li>
+            <li>Ca. 5 timers video i små bidder og daglige øvelser</li>
+            <li>12 ugers adgang til video, øvelser og materiale</li>
+          </ul>
+          <a class="text-link" href="#det-faar-du">
+            Læs om de fire dele af forløbet <Icon size={17} />
+          </a>
+        </div>
+        <div>
+          <h3>Prisen i perspektiv</h3>
+          <p>
+            Min normale psykologtakst er{' '}
+            <strong>{formatPrice(site.psychologistHourlyRate)} i timen.</strong> I Successful Eating
+            får du et sammenhængende forløb til{' '}
+            <strong>{formatPrice(site.treatmentPrice)} i alt</strong>, hvor forsamtalen og
+            gruppeterapien understøttes af viden og træning mellem samtalerne.
+          </p>
+          <p>
+            <strong>Medlem af Sygeforsikringen “danmark”?</strong> Du kan muligvis få tilskud til
+            psykologbehandlingen. I forsamtalen vurderer vi din situation; det konkrete tilskud
+            afhænger af din situation og dit medlemskab. <a href="#tilskud">Læs om tilskud</a>.
+          </p>
+        </div>
+      </div>
+    )}
     <div class="purchase-grid">
       <article class="purchase-card purchase-primary">
         <span class="eyebrow">FORLØB MED FORSAMTALE</span>
         <h3>Start på Successful Eating</h3>
         <p class="purchase-price">{formatPrice(site.treatmentPrice)}</p>
         <p>
-          Otte ugers psykologisk behandling online. En individuel forsamtale er inkluderet
-          i prisen.
+          Otte ugers psykologisk behandling online. En individuel forsamtale er inkluderet i prisen.
         </p>
         <div class="purchase-highlight">
           <Icon name="shield" size={23} />
@@ -97,6 +141,9 @@ import { site, consultation, formatPrice } from '../data/site';
   .section-heading h2 {
     max-width: 600px;
   }
+  .price-together {
+    white-space: nowrap;
+  }
   .purchase-trust {
     display: inline-flex;
     align-items: center;
@@ -111,6 +158,35 @@ import { site, consultation, formatPrice } from '../data/site';
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 26px;
+  }
+  .purchase-context {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 5vw, 64px);
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .purchase-context h3 {
+    margin-bottom: 16px;
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  }
+  .purchase-context ul {
+    margin: 0 0 20px;
+    padding-left: 1.2em;
+  }
+  .purchase-context li + li {
+    margin-top: 10px;
+  }
+  .purchase-context p + p {
+    margin-top: 18px;
+  }
+  .purchase-context p a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .purchase-context .text-link {
+    font-size: var(--text-small);
   }
   .purchase-card {
     padding: clamp(25px, 3vw, 44px);
@@ -170,6 +246,7 @@ import { site, consultation, formatPrice } from '../data/site';
     text-decoration: underline;
   }
   @media (max-width: 700px) {
+    .purchase-context,
     .purchase-grid {
       grid-template-columns: 1fr;
     }

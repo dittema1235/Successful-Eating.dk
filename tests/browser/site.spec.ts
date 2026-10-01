@@ -16,7 +16,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Behandling af overspisning online',
   );
-  await expect(page.locator('#det-faar-du')).toContainText('4 live gruppesamtaler');
+  await expect(page.locator('#det-faar-du')).toContainText('4 online gruppeterapier');
   const modules = page.locator('#faser .module-list > li');
   await expect(modules).toHaveCount(8);
   await expect(modules.first()).toContainText('Fundamentet');
