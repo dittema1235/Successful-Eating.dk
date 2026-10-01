@@ -35,28 +35,76 @@ const { explainPrice = false } = Astro.props;
     {explainPrice && (
       <div class="purchase-context">
         <div>
-          <h3>8 ugers terapi, viden og træning</h3>
-          <ul>
-            <li>En individuel forsamtale med mig på {site.consultationMinutes} minutter</li>
-            <li>4 online gruppeterapier med højst 6 deltagere</li>
-            <li>Ca. 5 timers video i små bidder og daglige øvelser</li>
-            <li>12 ugers adgang til video, øvelser og materiale</li>
-          </ul>
-          <a class="text-link" href="#det-faar-du">
-            Læs om de fire dele af forløbet <Icon size={17} />
-          </a>
-        </div>
-        <div>
-          <h3>Prisen i perspektiv</h3>
+          <h3>
+            Et omfattende behandlingsforløb til{' '}
+            <span class="price-together">{formatPrice(site.treatmentPrice)}</span>
+          </h3>
           <p>
             Min normale psykologtakst er{' '}
-            <strong>{formatPrice(site.psychologistHourlyRate)} i timen.</strong> Tre individuelle
-            samtaler på hver en time i min klinik koster dermed{' '}
-            <strong>{formatPrice(3 * site.psychologistHourlyRate)}</strong> I Successful Eating får
-            du et sammenhængende forløb til{' '}
-            <strong>{formatPrice(site.treatmentPrice)} i alt</strong>, hvor forsamtalen og
-            gruppeterapien understøttes af viden og træning mellem samtalerne.
+            <strong>{formatPrice(site.psychologistHourlyRate)} i timen.</strong> Successful Eating
+            koster <strong>{formatPrice(site.treatmentPrice)} i alt.</strong>
           </p>
+          <p>
+            Du får <strong>5 terapigange med mig</strong> – én individuel forsamtale og fire
+            gruppeterapigange – plus ca. 5 timers videoundervisning og øvelser, som du arbejder med
+            mellem møderne.
+          </p>
+          <p>
+            I videoerne får du den viden og erfaring, jeg har samlet gennem mere end 20 år som
+            psykolog, og som ligger til grund for den måde, jeg arbejder med overspisning på.
+          </p>
+          <p>
+            Hvis jeg skulle give dig al den viden og undervisning, du får gennem videoerne, i
+            terapirummet, ville det kræve mange ekstra timer. Efter min vurdering svarer indholdets
+            samlede omfang derfor omtrent til <strong>10 individuelle psykologsamtaler</strong>,
+            hvis al undervisning og terapi skulle foregå individuelt.
+          </p>
+          <p>
+            Ved at kombinere individuel samtale, gruppeterapi og videoundervisning kan jeg tilbyde
+            et omfattende behandlingsforløb til en væsentligt lavere pris end et tilsvarende
+            individuelt forløb.
+          </p>
+          <p>
+            Det er kombinationen af viden, træning og terapi, der gør Successful Eating til et
+            samlet behandlingsforløb – til en overkommelig pris.
+          </p>
+        </div>
+        <div class="purchase-details">
+          <div>
+            <h3>8 ugers terapi, viden og træning</h3>
+            <ul>
+              <li>En individuel forsamtale med mig på {site.consultationMinutes} minutter</li>
+              <li>4 online gruppeterapier med højst 6 deltagere</li>
+              <li>Ca. 5 timers video i små bidder og daglige øvelser</li>
+              <li>12 ugers adgang til video, øvelser og materiale</li>
+            </ul>
+            <a class="text-link" href="#det-faar-du">
+              Læs om de fire dele af forløbet <Icon size={17} />
+            </a>
+          </div>
+          <div>
+            <h3>Resultater fra 2024</h3>
+            <p>I brugerundersøgelsen fra 2024 blandt deltagere, der gennemførte forløbet:</p>
+            <ul class="purchase-results">
+              <li>
+                <strong>78 %</strong> havde ingen eller højst én overspisning de sidste 2 uger af
+                forløbet.
+              </li>
+              <li>
+                <strong>43 %</strong> oplevede forbedret psykisk helbred.
+              </li>
+              <li>
+                <strong>29 %</strong> oplevede markant bedre fysisk helbred.
+              </li>
+            </ul>
+            <p class="small">
+              Resultaterne er individuelle.{' '}
+              <a href="/resultater#dokumenterede-resultater">
+                Læs mere om undersøgelsen og resultaterne
+              </a>
+              .
+            </p>
+          </div>
           <p>
             <strong>Medlem af Sygeforsikringen “danmark”?</strong> Du kan muligvis få tilskud til
             psykologbehandlingen. I forsamtalen vurderer vi din situation; det konkrete tilskud
@@ -163,7 +211,7 @@ const { explainPrice = false } = Astro.props;
   }
   .purchase-context {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: clamp(28px, 5vw, 64px);
     padding-bottom: 36px;
     margin-bottom: 36px;
@@ -186,6 +234,14 @@ const { explainPrice = false } = Astro.props;
   .purchase-context p a {
     text-decoration: underline;
     text-underline-offset: 4px;
+  }
+  .purchase-details {
+    display: grid;
+    gap: 28px;
+    align-content: start;
+  }
+  .purchase-context .purchase-results {
+    margin-top: 16px;
   }
   .purchase-context .text-link {
     font-size: var(--text-small);
