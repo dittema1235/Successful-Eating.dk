@@ -50,8 +50,10 @@ const { explainPrice = false } = Astro.props;
           <h3>Prisen i perspektiv</h3>
           <p>
             Min normale psykologtakst er{' '}
-            <strong>{formatPrice(site.psychologistHourlyRate)} i timen.</strong> I Successful Eating
-            får du et sammenhængende forløb til{' '}
+            <strong>{formatPrice(site.psychologistHourlyRate)} i timen.</strong> Tre individuelle
+            samtaler på hver en time i min klinik koster dermed{' '}
+            <strong>{formatPrice(3 * site.psychologistHourlyRate)}</strong> I Successful Eating får
+            du et sammenhængende forløb til{' '}
             <strong>{formatPrice(site.treatmentPrice)} i alt</strong>, hvor forsamtalen og
             gruppeterapien understøttes af viden og træning mellem samtalerne.
           </p>
