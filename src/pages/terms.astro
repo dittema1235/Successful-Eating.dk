@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import originalTerms from '../data/original-terms.html?raw';
 import { site, formatPrice } from '../data/site';
-// Owner clarification supersedes the legacy 30-minute claim for the included consultation.
+// Owner clarifications supersede legacy consultation and continued-access terms.
 const terms = originalTerms
   .replace(
     'en 30-minutters individuel klinisk forsamtale, som er inkluderet i forløbsprisen.',
@@ -15,6 +15,14 @@ const terms = originalTerms
   .replace(
     'modregnes de 645 kr. i forløbsprisen.',
     `modregnes de ${formatPrice(site.consultationPrice)} i forløbsprisen på ${formatPrice(site.treatmentPrice)} Restbeløbet er dermed ${formatPrice(site.treatmentPrice - site.consultationPrice)}`,
+  )
+  .replace(
+    '9. Fortsat adgang og ansvarsbegrænsning',
+    '9. Adgang til materiale og ansvarsbegrænsning',
+  )
+  .replace(
+    'Hvor der gives fortsat adgang til behandlingsfaser efter det aktive forløb (som led i tilbagefaldsforebyggelse og vedligeholdelse), leveres disse, så længe det er muligt for Ditte Munch-Andersen at levere disse inden for normal tilgængelighed og afhængigt af udbyderes levering af platforme mv.',
+    'Du har adgang til alt forløbsmateriale i 12 uger. Derefter udløber adgangen til video, øvelser og øvrigt materiale, herunder materialet om vedligeholdelse og tilbagefaldsforebyggelse. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge efter forløbet.',
   );
 ---
 
@@ -37,7 +45,8 @@ const terms = originalTerms
     <div class="container simple-page">
       <div class="callout">
         <p>
-          Priser og forsamtaler er præciseret 19. september 2026. For denne hjemmesides brug af
+          Priser og forsamtaler er præciseret 19. september 2026. Adgangen til forløbsmaterialet
+          er præciseret 1. oktober 2026. For denne hjemmesides brug af
           cookies og eksterne tjenester gælder også{' '}
           <a class="text-link" href="/privatliv">
             privatlivsoplysningerne

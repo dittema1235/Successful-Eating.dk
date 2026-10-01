@@ -126,7 +126,7 @@ export const faqs = [
   {
     question: 'Hvad er med i forløbet — og hvad er ikke med?',
     answer:
-      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, fire live online gruppesamtaler med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser og materiale til hverdagen samt adgang til alt indhold i 12 uger – inklusive materiale til vedligeholdelse og tilbagefaldsforebyggelse, du kan bruge bagefter. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppesamtalerne optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen, og adgangen til materialet ophører, når de 12 uger er gået.',
+      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, fire live online gruppesamtaler med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser og materiale til hverdagen samt adgang til alt indhold i 12 uger. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge bagefter. Adgangen til alt forløbsmateriale, også materialet om vedligeholdelse og tilbagefaldsforebyggelse, udløber efter 12 uger. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppesamtalerne optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen.',
   },
   {
     question: 'Hvordan låses de næste faser op?',
@@ -136,7 +136,7 @@ export const faqs = [
   {
     question: 'Hvor længe har jeg adgang til materialet?',
     answer:
-      'Du har adgang til al videoundervisning, øvelser og materiale i 12 uger. Faserne låses op én ad gangen, så du arbejder dig fremad i dit eget tempo og går videre til næste fase, når du er klar.',
+      'Du har adgang til al videoundervisning, øvelser og materiale i 12 uger. Derefter udløber adgangen, også til materialet om vedligeholdelse og tilbagefaldsforebyggelse. Under forløbet laver du din egen plan, som du kan bruge bagefter. Faserne låses op én ad gangen, så du arbejder dig fremad i dit eget tempo og går videre til næste fase, når du er klar.',
   },
   {
     question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
