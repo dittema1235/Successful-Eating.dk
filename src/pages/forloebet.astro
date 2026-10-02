@@ -799,57 +799,6 @@ const schema = {
       </div>
     </section>
 
-    <section class="fl-section fl-tone-sage" aria-labelledby="adhd-heading">
-      <div class="fl-container">
-        <div class="fl-adhd-card">
-          <span class="fl-eyebrow">ADHD ER INDTÆNKT</span>
-
-          <h2 id="adhd-heading">ADHD er indtænkt i Successful Eating</h2>
-
-          <p>
-            Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful Eating.
-            Deres erfaringer og fremskridt er en del af den kliniske erfaring, som forløbets
-            opbygning og struktur er formet af.
-          </p>
-
-          <p>
-            Forskning viser samtidig en tydelig sammenhæng mellem ADHD og spiseforstyrrelser. I en
-            meta-analyse af 12 studier var odds for BED cirka fire gange højere blandt personer med
-            ADHD.
-          </p>
-
-          <p>
-            Udfordringer med impulskontrol, struktur og regulering kan derfor inddrages konkret i
-            behandlingen af din overspisning.
-          </p>
-
-          <p>
-            Successful Eating er et behandlingsforløb for overspisning, hvor ADHD er tænkt ind.
-            Forløbet erstatter ikke en ADHD-udredning eller medicinsk behandling.
-          </p>
-
-          <p class="fl-small">
-            Kilde:{' '}
-            <a href="https://doi.org/10.1002/eat.22643">
-              Nazar et al. (2016), International Journal of Eating Disorders
-            </a>{' '}
-            · <a href="/madro-biblioteket/adhd-og-overspisning">Læs om ADHD og overspisning</a>
-          </p>
-
-          <div class="fl-section-cta">
-            <a
-              class="fl-button"
-              href={site.checkout}
-              data-event="checkout_click"
-              data-location="adhd"
-            >
-              Få hjælp til dine mønstre
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="fl-section fl-tone-white" id="om-forloebet" aria-labelledby="fit-heading">
       <div class="fl-container">
         <div class="fl-section-heading">
@@ -1114,9 +1063,7 @@ const schema = {
         <div class="fl-section-heading">
           <span class="fl-eyebrow">DEN RETTE HJÆLP TIL DIN SITUATION</span>
 
-          <h2 id="right-help-heading">
-            Forsamtalen er også en vurdering af, om dette er det rette sted at starte
-          </h2>
+          <h2 id="right-help-heading">Hvem er forløbet ikke til?</h2>
 
           <p>
             Tvangsoverspisning er en spiseforstyrrelsesdiagnose, også kendt som binge eating
@@ -1129,10 +1076,10 @@ const schema = {
           </p>
 
           <p>
-            Har du tegn på bulimi, fx at du fremkalder opkast efter overspisning, eller oplever du
-            perioder med symptomer på anoreksi, er Successful Eating ikke det rette match. Kontakt
-            din egen læge for en vurdering og hjælp til den rette behandling – også hvis du er i
-            tvivl om dine symptomer.
+            Har du tegn på bulimi, fx at du fremkalder opkast efter overspisning, oplever du
+            perioder med symptomer på anoreksi, eller har du en personlighedsforstyrrelse, er
+            Successful Eating ikke det rette match. Kontakt din egen læge for en vurdering og hjælp
+            til den rette behandling – også hvis du er i tvivl om dine symptomer.
           </p>
 
           <p class="fl-small">
@@ -1146,17 +1093,6 @@ const schema = {
             </a>
             . Retningslinjen dokumenterer ikke en bestemt effekt af Successful Eating.
           </p>
-        </div>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="right_help"
-          >
-            Gå videre til forsamtalen
-          </a>
         </div>
       </div>
     </section>
@@ -1832,13 +1768,6 @@ const schema = {
     display: block;
     color: var(--ink);
   }
-  .fl-page .fl-adhd-card {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 55px;
-    background: var(--sage);
-    border-radius: 30px;
-  }
   .fl-page .fl-fit-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2065,8 +1994,7 @@ const schema = {
       width: 100%;
     }
     .fl-page .fl-facts-card,
-    .fl-page .fl-pricing-card,
-    .fl-page .fl-adhd-card {
+    .fl-page .fl-pricing-card {
       padding: 28px;
     }
     .fl-page .fl-price {
