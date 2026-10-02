@@ -28,7 +28,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
     'Successful Eating er ikke det rette tilbud til alle',
   );
   await expect(noMatch).toContainText('en personlighedsforstyrrelse');
-  await expect(noMatch.locator('li')).toHaveCount(6);
+  await expect(noMatch.locator('li')).toHaveCount(4);
   await expect(noMatch.locator('a[href*="systeme.io"], a.fl-button')).toHaveCount(0);
   await expect(
     page.locator('#priser').locator('xpath=preceding-sibling::section[1]'),
