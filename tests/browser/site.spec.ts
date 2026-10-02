@@ -23,9 +23,16 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await expect(modules.first()).toContainText('sult- og mæthedssignaler');
   await expect(modules.last()).toContainText('Fasthold forandringen');
   await expect(modules.last()).toContainText('de nye mønstre holder');
-  await expect(page.locator('[aria-labelledby="right-help-heading"]')).toContainText(
-    'har du en personlighedsforstyrrelse, er Successful Eating ikke det rette match',
+  const noMatch = page.locator('[aria-labelledby="match-heading"]');
+  await expect(noMatch.getByRole('heading', { level: 2 })).toHaveText(
+    'Successful Eating er ikke det rette tilbud til alle',
   );
+  await expect(noMatch).toContainText('en personlighedsforstyrrelse');
+  await expect(noMatch.locator('li')).toHaveCount(6);
+  await expect(noMatch.locator('a[href*="systeme.io"], a.fl-button')).toHaveCount(0);
+  await expect(
+    page.locator('#priser').locator('xpath=preceding-sibling::section[1]'),
+  ).toHaveAttribute('aria-labelledby', 'match-heading');
   await expect(page.locator('#priser')).toBeAttached();
   await expect(
     page.locator('#priser').getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }),
