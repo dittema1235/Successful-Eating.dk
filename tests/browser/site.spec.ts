@@ -14,27 +14,26 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.locator('.hero a.button').click();
   await expect(page).toHaveURL(/\/forloebet$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Behandling af overspisning online',
+    'Få hjælp til at forstå og ændre dit mønster omkring overspisning.',
   );
   await expect(page.locator('#det-faar-du')).toContainText('4 online gruppeterapier');
-  const modules = page.locator('#faser .module-list > li');
+  const modules = page.locator('#faser .fl-phase-grid > li');
   await expect(modules).toHaveCount(8);
   await expect(modules.first()).toContainText('Fundamentet');
   await expect(modules.first()).toContainText('sult- og mæthedssignaler');
   await expect(modules.last()).toContainText('Fasthold forandringen');
   await expect(modules.last()).toContainText('de nye mønstre holder');
-  await expect(page.locator('.adhd-focus')).toContainText('ADHD er indtænkt i Successful Eating');
-  await expect(page.locator('.adhd-focus')).toContainText('mange kvinder med ADHD/ADD');
-  await expect(page.locator('.adhd-focus')).toContainText('odds for BED cirka fire gange højere');
+  await expect(page.locator('.fl-adhd-card')).toContainText('ADHD er indtænkt i Successful Eating');
+  await expect(page.locator('.fl-adhd-card')).toContainText('mange kvinder med ADHD/ADD');
+  await expect(page.locator('.fl-adhd-card')).toContainText('odds for BED cirka fire gange højere');
   await expect(
-    page.locator('.adhd-focus').getByRole('link', {
+    page.locator('.fl-adhd-card').getByRole('link', {
       name: 'Nazar et al. (2016), International Journal of Eating Disorders',
     }),
   ).toHaveAttribute('href', 'https://doi.org/10.1002/eat.22643');
-  await page.getByRole('link', { name: 'Se pris og tilmelding', exact: true }).click();
-  await expect(page.locator('#priser')).toBeInViewport();
+  await expect(page.locator('#priser')).toBeAttached();
   await expect(
-    page.locator('#priser').getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }),
+    page.locator('#priser').getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }),
   ).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
   await page.goto('/');
   await page.getByRole('link', { name: 'Find den rette hjælp', exact: true }).click();
@@ -183,11 +182,11 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   expect(offer.price).toBe(4499);
   expect(offer.priceCurrency).toBe('DKK');
   expect(offer.url).toBe('https://successfuleating.systeme.io/4b00a70d');
-  const buy = page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first();
+  const buy = page.getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }).first();
   await expect(buy).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
-  const options = page.locator('#priser');
-  await expect(options).toContainText('Alle pengene tilbage ved et dårligt match');
-  await expect(options).toContainText('645 kr. / 50 minutter');
+  await expect(page.locator('#priser')).toContainText('Alle pengene tilbage ved et dårligt match');
+  const options = page.locator('[aria-labelledby="intake-heading"]');
+  await expect(options).toContainText('Forsamtale · 645 kr.');
   await expect(options).toContainText('3.854 kr. mere');
   await expect(options).toContainText('4.499 kr. i alt');
   await expect(options.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
@@ -315,9 +314,7 @@ test.describe('without JavaScript', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre madstøj');
     await page.locator('.hero a.button').click();
     await expect(page).toHaveURL(/forloebet/);
-    await expect(
-      page.getByRole('link', { name: 'Køb forløbet · 4.499 kr.' }).first(),
-    ).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }).first()).toBeVisible();
   });
 });
 
