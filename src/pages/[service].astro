@@ -7,7 +7,10 @@ import PurchaseOptions from '../components/PurchaseOptions.astro';
 import ParticipantTestimonials from '../components/ParticipantTestimonials.astro';
 import { site, services, formatPrice, treatmentModules } from '../data/site';
 export function getStaticPaths() {
-  return services.map((service) => ({ params: { service: service.slug }, props: { service } }));
+  // /forloebet har sin egen side i forloebet.astro; denne rute bygger de øvrige behandlingssider.
+  return services
+    .filter((service) => service.slug !== 'forloebet')
+    .map((service) => ({ params: { service: service.slug }, props: { service } }));
 }
 const { service } = Astro.props;
 const body = service.slug === 'kropsglaede';
