@@ -23,14 +23,9 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await expect(modules.first()).toContainText('sult- og mæthedssignaler');
   await expect(modules.last()).toContainText('Fasthold forandringen');
   await expect(modules.last()).toContainText('de nye mønstre holder');
-  await expect(page.locator('.fl-adhd-card')).toContainText('ADHD er indtænkt i Successful Eating');
-  await expect(page.locator('.fl-adhd-card')).toContainText('mange kvinder med ADHD/ADD');
-  await expect(page.locator('.fl-adhd-card')).toContainText('odds for BED cirka fire gange højere');
-  await expect(
-    page.locator('.fl-adhd-card').getByRole('link', {
-      name: 'Nazar et al. (2016), International Journal of Eating Disorders',
-    }),
-  ).toHaveAttribute('href', 'https://doi.org/10.1002/eat.22643');
+  await expect(page.locator('[aria-labelledby="right-help-heading"]')).toContainText(
+    'har du en personlighedsforstyrrelse, er Successful Eating ikke det rette match',
+  );
   await expect(page.locator('#priser')).toBeAttached();
   await expect(
     page.locator('#priser').getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }),
