@@ -10,6 +10,7 @@
     "preview": "astro preview --host 127.0.0.1",
     "test": "node --test tests/*.test.mjs",
     "check:site": "node scripts/check-site.mjs",
+    "audit:simplero": "node scripts/audit-simplero-blog.mjs",
     "test:e2e": "playwright test",
     "import:legacy": "node scripts/import-legacy.mjs",
     "format": "prettier --write src scripts tests public/consent.js *.ts *.mjs"

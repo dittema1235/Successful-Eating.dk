@@ -1,0 +1,34 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  relatedHref: string;
+  relatedLabel: string;
+  location: string;
+}
+
+const { relatedHref, relatedLabel, location } = Astro.props;
+---
+
+<span class="eyebrow">NÅR DU VIL PRØVE DET AF</span>
+<h2>Hvad sker der lige før?</h2>
+<p class="small muted">
+  Du kan godt vide meget om mad og stadig spise på autopilot, når dagen har været lang. I den gratis
+  guide undersøger du sult, mental træthed og det, der sker før spisningen. Du får en lille plan, du
+  kan prøve af.
+</p>
+<a
+  class="button"
+  style="margin-top:23px"
+  href="/gratis-guide/"
+  data-event="guide_page_click"
+  data-location={location}
+>
+  Se den gratis guide <Icon size={17} />
+</a>
+<p class="small muted">
+  Guiden er gratis. Tilmeldingen omfatter også e-mails fra Ditte, som du kan afmelde.
+</p>
+<a class="text-link" style="margin-top:22px" href={relatedHref}>
+  {relatedLabel} <Icon size={16} />
+</a>

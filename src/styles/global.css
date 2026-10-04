@@ -977,6 +977,19 @@ select:focus-visible {
   gap: 80px;
   align-items: start;
 }
+.article-content-section {
+  padding-top: 55px;
+}
+.article-archive-note {
+  border-left: 3px solid var(--sage-deep);
+  padding: 8px 0 8px 18px;
+  margin-bottom: 34px;
+}
+.article-archive-note p {
+  font-size: var(--text-small);
+  line-height: 1.7;
+  color: var(--muted);
+}
 .prose {
   max-width: 65ch;
   font-size: var(--text-reading);
@@ -1839,6 +1852,9 @@ select:focus-visible {
     display: flex;
     flex-direction: column;
     gap: 40px;
+  }
+  .article-content-section {
+    padding-top: 35px;
   }
   .facts-card {
     position: static;

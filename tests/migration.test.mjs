@@ -51,6 +51,18 @@ test('imported content contains no old forms, executable scripts, event handlers
         assert.ok(!name.startsWith('on'), `${p.slug}: ${name}`);
     });
     assert.ok(!/javascript\s*:/i.test(p.body), p.slug);
+    assert.ok(!/simplero\.com\/d\//i.test(p.body), p.slug);
+  }
+});
+test('archive article images are local, meaningful, and exclude tracking pixels', () => {
+  for (const post of posts) {
+    const $ = load(post.body);
+    $('img').each((_, image) => {
+      assert.match($(image).attr('src') || '', /^\/images\/archive\/[^ ]+\.webp$/, post.slug);
+      assert.ok(($(image).attr('alt') || '').length > 10, post.slug);
+      assert.ok(Number($(image).attr('width') || 100) > 16, post.slug);
+      assert.ok(Number($(image).attr('height') || 100) > 16, post.slug);
+    });
   }
 });
 test('flagged legacy claims and weight-focused acquisition links are removed', () => {

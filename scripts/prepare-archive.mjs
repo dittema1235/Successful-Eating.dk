@@ -4,12 +4,15 @@ const posts = JSON.parse(await readFile('src/data/legacy-posts.json', 'utf8'));
 const migrations = JSON.parse(await readFile('src/data/article-migrations.json', 'utf8'));
 const consolidated = JSON.parse(await readFile('src/data/consolidated-articles.json', 'utf8'));
 const overrides = JSON.parse(await readFile('src/data/editorial-overrides.json', 'utf8'));
+const articleMedia = JSON.parse(await readFile('src/data/article-media.json', 'utf8'));
 const overrideMap = new Map(overrides.map((p) => [p.slug, p]));
 if (
   overrideMap.size !== overrides.length ||
   overrides.some((p) => !posts.some((o) => o.slug === p.slug))
 )
   throw Error('Invalid editorial override');
+if (Object.keys(articleMedia).some((slug) => !posts.some((post) => post.slug === slug)))
+  throw Error('Article media mapping refers to an unknown post');
 const redirects = new Map(migrations.map(({ source, target }) => [source, target]));
 const targets = new Set([
   ...consolidated.map(({ slug }) => `/madro-biblioteket/${slug}`),
@@ -22,10 +25,36 @@ for (const { source, target } of migrations) {
 }
 const edits = [];
 const treatment =
-  /forloeb|forløb|\/products|\/cart|checkout|systeme\.io|\/adhd|\/wegovy|slankepsykologen|dittema\.dk/i;
+  /forloeb|forløb|\/products|\/cart|checkout|systeme\.io|simplero\.com\/d\/|\/adhd|\/wegovy|slankepsykologen|dittema\.dk/i;
 for (const post of posts) {
   if (redirects.has('/' + post.slug)) continue;
   const $ = load(post.body, null, false);
+  if (!overrideMap.has(post.slug)) {
+    const imageRules = articleMedia[post.slug];
+    const images = $('img').toArray();
+    if (images.length !== (imageRules?.length || 0))
+      throw Error(`Unmapped imported image in ${post.slug}`);
+    images.forEach((element, index) => {
+      const rule = imageRules[index];
+      if (!rule)
+        $(element).remove(); // Dead tracking pixels and a 16px decorative icon.
+      else
+        $(element)
+          .attr('src', rule.src)
+          .attr('alt', rule.alt)
+          .attr('width', String(rule.width))
+          .attr('height', String(rule.height));
+    });
+  }
+  if (post.slug.startsWith('blog/63884-')) {
+    const oldArticleLinks = $('a[href^="https://simplero.com/d/NJ_OAx3YJD6slNge"]');
+    if (oldArticleLinks.length !== 3) throw Error('Related article link changed in 63884');
+    oldArticleLinks
+      .first()
+      .attr('href', '/blog/63633-bag-hoeflighed-gemmer-der-sig-ofte-angst')
+      .text('(du kan læse her) ');
+    oldArticleLinks.slice(1).remove();
+  }
   // Historical sales language is not the current service. Remove legacy calls to purchase.
   const weight =
     /vaegttab|vægttab|slank|kilo|overvægt/i.test(post.title + ' ' + post.slug) ||

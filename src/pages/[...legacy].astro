@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import ArticleGuideCTA from '../components/ArticleGuideCTA.astro';
 import archived from '../data/archive.json';
 import library from '../data/library-pages.json';
 import { topics } from '../data/topics';
@@ -36,6 +37,9 @@ const schema = {
   title={`${post.title} | Successful Eating`}
   description={post.description}
   schema={schema}
+  ogType="article"
+  publishedTime={post.published}
+  modifiedTime={post.editorialUpdated || post.modified}
   breadcrumbs={[
     { name: 'Artikelarkiv', url: '/blog' },
     { name: post.title, url: `/${post.slug}` },
@@ -70,10 +74,10 @@ const schema = {
         </div>
       </div>
     </header>
-    <div class="section">
+    <div class="section article-content-section">
       <div class="container content-grid">
         <div>
-          <div class="callout" style="margin-top:0">
+          <div class="article-archive-note">
             <p>
               {revisedLibrary
                 ? 'Redaktionelt opdateret med kilder og forslag til videre hjælp. Generel information erstatter ikke en individuel vurdering.'
@@ -92,24 +96,12 @@ const schema = {
             </a>
           </div>
         </div>
-        <aside class="facts-card">
-          <span class="eyebrow">ET NÆSTE SKRIDT</span>
-          <h2>{post.salesCta ? 'Fra forståelse til støtte.' : 'Mere plads til dig.'}</h2>
-          <p class="small muted">
-            {post.salesCta
-              ? 'Få overblik over mulighederne for psykologisk hjælp med udgangspunkt i din situation.'
-              : 'Lær Ditte og hendes faglige tilgang at kende, eller begynd med en gratis guide.'}
-          </p>
-          <a
-            class="button"
-            style="margin-top:23px"
-            href={post.salesCta ? topic.service : '/om-ditte'}
-          >
-            {post.salesCta ? 'Læs om behandlingen' : 'Mød Ditte'} <Icon size={17} />
-          </a>
-          <a class="text-link" style="margin-top:25px" href="/gratis-guide">
-            Læs om den gratis guide <Icon size={16} />
-          </a>
+        <aside class="facts-card tone-sage">
+          <ArticleGuideCTA
+            relatedHref={post.salesCta ? topic.service : '/om-ditte'}
+            relatedLabel={post.salesCta ? 'Læs om behandlingen' : 'Mød Ditte'}
+            location="archive_article"
+          />
         </aside>
       </div>
     </div>
