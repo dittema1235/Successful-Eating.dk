@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import HeaderSearch from './HeaderSearch.astro';
-const path = Astro.url.pathname;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <div class="announcement">
@@ -31,28 +31,28 @@ const path = Astro.url.pathname;
       >
         Find dit forløb
       </a>
-      <a href="/resultater" aria-current={path === '/resultater' ? 'page' : undefined}>
+      <a href="/resultater/" aria-current={path === '/resultater' ? 'page' : undefined}>
         Resultater
       </a>
       <a
-        href="/madro-biblioteket"
+        href="/madro-biblioteket/"
         aria-current={
           path.startsWith('/madro-biblioteket') || path.startsWith('/blog') ? 'page' : undefined
         }
       >
         Madro-biblioteket
       </a>
-      <a href="/gratis-guide" aria-current={path === '/gratis-guide' ? 'page' : undefined}>
+      <a href="/gratis-guide/" aria-current={path === '/gratis-guide' ? 'page' : undefined}>
         Gratis guide
       </a>
-      <a href="/om-ditte" aria-current={path === '/om-ditte' ? 'page' : undefined}>
+      <a href="/om-ditte/" aria-current={path === '/om-ditte' ? 'page' : undefined}>
         Om Ditte
       </a>
-      <a href="/kontakt" aria-current={path === '/kontakt' ? 'page' : undefined}>
+      <a href="/kontakt/" aria-current={path === '/kontakt' ? 'page' : undefined}>
         Kontakt
       </a>
       <a
-        href="/forloebet#priser"
+        href="/forloebet/#priser"
         class="button button-small"
         data-event="pricing_click"
         data-location="header"

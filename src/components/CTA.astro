@@ -22,7 +22,7 @@ const { body = false, purchase = false } = Astro.props;
     <div class="actions">
       <a
         class="button"
-        href={body ? '/kontakt' : purchase ? site.checkout : '/forloebet'}
+        href={body ? '/kontakt/' : purchase ? site.checkout : '/forloebet/'}
         data-event={body ? 'contact_click' : purchase ? 'checkout_click' : 'service_click'}
         data-location="closing"
       >
@@ -34,7 +34,7 @@ const { body = false, purchase = false } = Astro.props;
         <Icon size={17} />
       </a>
       {!body && (
-        <a class="text-link" href="/forloebet#priser">
+        <a class="text-link" href="/forloebet/#priser">
           Vil du starte med en forsamtale? <Icon size={17} />
         </a>
       )}

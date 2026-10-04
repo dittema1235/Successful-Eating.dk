@@ -17,7 +17,7 @@ const title =
 <Layout
   title={title}
   description={`Find artikler om overspisning, madstøj, sukkertrang, kropsbillede og ADHD. Søg i artikelarkivet hos psykolog Ditte Munch-Andersen.${current > 1 ? ` Side ${current}.` : ''}`}
-  breadcrumbs={[{ name: 'Artikelarkiv', url: current === 1 ? '/blog' : `/blog/${current}` }]}
+  breadcrumbs={[{ name: 'Artikelarkiv', url: current === 1 ? '/blog/' : `/blog/${current}/` }]}
 >
   <section class="page-hero">
     <div class="container">
@@ -35,7 +35,7 @@ const title =
       <p class="intro">
         Gå på opdagelse i artikler fra Ditte Munch-Andersens arkiv. Du kan også begynde med de korte
         introduktioner i{' '}
-        <a href="/madro-biblioteket" style="text-decoration:underline">
+        <a href="/madro-biblioteket/" style="text-decoration:underline">
           Madro-biblioteket
         </a>
         .
@@ -46,7 +46,7 @@ const title =
     <div class="container">
       <div class="topic-links">
         {topics.map((t) => (
-          <a href={`/blog/emner/${t.slug}`}>{t.title}</a>
+          <a href={`/blog/emner/${t.slug}/`}>{t.title}</a>
         ))}
       </div>
       <form
@@ -102,7 +102,7 @@ const title =
           .filter((n) => n === 1 || n === page.lastPage || Math.abs(n - current) <= 2)
           .map((n) => (
             <a
-              href={n === 1 ? '/blog' : `/blog/${n}`}
+              href={n === 1 ? '/blog/' : `/blog/${n}/`}
               aria-current={n === current ? 'page' : undefined}
             >
               {n}
@@ -187,7 +187,7 @@ const title =
           article.className = 'archive-item';
           const h = document.createElement('h2'),
             a = document.createElement('a');
-          a.href = '/' + p.slug;
+          a.href = '/' + p.slug + '/';
           a.textContent = p.title;
           h.append(a);
           const description = document.createElement('p');

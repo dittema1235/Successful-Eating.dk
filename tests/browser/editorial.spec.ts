@@ -13,7 +13,7 @@ test('updated editorial articles render sources, attribution and canonical witho
     await expect(page.getByRole('heading', { name: 'Kilder og afgrænsning' })).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      `https://www.successfuleating.dk/${post.slug}`,
+      `https://www.successfuleating.dk/${post.slug}/`,
     );
     const json = await page.locator('script[type="application/ld+json"]').allTextContents();
     const graphs = json.flatMap((t) => {
@@ -32,6 +32,6 @@ test('retired evening introduction returns one permanent redirect to the origina
   const res = await request.get('/madro-biblioteket/overspisning-om-aftenen', { maxRedirects: 0 });
   expect(res.status()).toBe(301);
   const target = res.headers().location;
-  expect(target).toBe('/blog/101752-saadan-stopper-du-med-at-overspise-om');
+  expect(target).toBe('/blog/101752-saadan-stopper-du-med-at-overspise-om/');
   expect((await request.get(target, { maxRedirects: 0 })).status()).toBe(200);
 });

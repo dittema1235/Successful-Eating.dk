@@ -12,7 +12,7 @@ const list = items.slice(0, limit ?? items.length);
 <div class="article-grid">
   {list.map((a) => (
     <article class="article-card">
-      <a href={`/madro-biblioteket/${a.slug}`}>
+      <a href={`/madro-biblioteket/${a.slug}/`}>
         <div class={`article-illustration tone-${a.tone}`} aria-hidden="true">
           <span class="illustration-word">{a.word}</span>
         </div>

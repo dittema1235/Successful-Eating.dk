@@ -5,7 +5,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GuidePopup from '../components/GuidePopup.astro';
-import { site } from '../data/site';
+import { site, pageUrl } from '../data/site';
 interface Props {
   title: string;
   description: string;
@@ -22,15 +22,15 @@ const {
   noindex = false,
   breadcrumbs = [],
 } = Astro.props;
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', site.url).href;
-const personId = `${site.url}/om-ditte#person`;
+const canonical = pageUrl(Astro.url.pathname);
+const personId = `${pageUrl('/om-ditte')}#person`;
 const orgId = `${site.url}/#organization`;
 const graph: Record<string, unknown>[] = [
   {
     '@type': 'Organization',
     '@id': orgId,
     name: site.name,
-    url: site.url,
+    url: pageUrl('/'),
     email: site.email,
     logo: `${site.url}/favicon.svg`,
     founder: { '@id': personId },
@@ -48,7 +48,7 @@ const graph: Record<string, unknown>[] = [
     '@type': 'Person',
     '@id': personId,
     name: site.person,
-    url: `${site.url}/om-ditte`,
+    url: pageUrl('/om-ditte'),
     jobTitle: 'Klinisk psykolog',
     image: `${site.url}/images/ditte-portrait.webp`,
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'Københavns Universitet' },
@@ -61,7 +61,7 @@ const graph: Record<string, unknown>[] = [
   {
     '@type': 'WebSite',
     '@id': `${site.url}/#website`,
-    url: site.url,
+    url: pageUrl('/'),
     name: site.name,
     inLanguage: 'da-DK',
     publisher: { '@id': orgId },
@@ -83,7 +83,7 @@ const graph: Record<string, unknown>[] = [
             '@type': 'ListItem',
             position: i + 1,
             name: b.name,
-            item: new URL(b.url, site.url).href,
+            item: pageUrl(b.url),
           })),
         },
       ]

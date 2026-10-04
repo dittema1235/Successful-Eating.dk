@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, consultation, services, formatPrice } from '../data/site';
+import { site, consultation, services, formatPrice, pageUrl } from '../data/site';
 
 // /forloebet har sin egen side (tidligere genereret af [service].astro).
 // Layout leverer header, footer, popup, cookie-samtykke, canonical/OG og JSON-LD.
@@ -9,13 +9,13 @@ const title = 'Behandling af overspisning (BED) online | Successful Eating';
 const description = `Online behandling af overspisning hos klinisk psykolog Ditte Munch-Andersen. 8 ugers behandling, live gruppebehandling, forsamtale og konkrete øvelser. Pris ${formatPrice(site.treatmentPrice)}`;
 const schema = {
   '@type': 'Service',
-  '@id': `${site.url}/${service.slug}#service`,
+  '@id': `${pageUrl(`/${service.slug}`)}#service`,
   name: 'Successful Eating – behandling af overspisning online',
   description: service.intro,
   provider: { '@id': `${site.url}/#organization` },
   areaServed: { '@type': 'Country', name: 'Danmark' },
   serviceType: 'Kognitiv behandling af overspisning',
-  url: `${site.url}/${service.slug}`,
+  url: pageUrl(`/${service.slug}`),
   offers: {
     '@type': 'Offer',
     price: site.treatmentPrice,
@@ -206,7 +206,7 @@ const schema = {
 
         <p class="fl-result-source">
           Resultaterne er individuelle og dokumenterer ikke et bestemt resultat for den enkelte.{' '}
-          <a href="/resultater#dokumenterede-resultater">
+          <a href="/resultater/#dokumenterede-resultater">
             Læs mere om undersøgelsen og resultaterne.
           </a>
         </p>
@@ -781,7 +781,7 @@ const schema = {
               <strong>Ditte Munch-Andersen</strong> Klinisk psykolog · Uddannet fra Københavns
               Universitet i 2004
               <br />
-              <a href="/om-ditte">Mød din behandler</a>
+              <a href="/om-ditte/">Mød din behandler</a>
             </figcaption>
           </figure>
 
@@ -919,7 +919,7 @@ const schema = {
 
           <p>
             Hvis du er i tvivl om, hvorvidt din situation passer til forløbet, er du velkommen til
-            at <a href="/kontakt">kontakte Ditte</a>, før du tilmelder dig. Forsamtalen er beregnet
+            at <a href="/kontakt/">kontakte Ditte</a>, før du tilmelder dig. Forsamtalen er beregnet
             til at vurdere, om Successful Eating er et godt match inden for målgruppen – ikke til at
             erstatte en udredning eller specialiseret vurdering.
           </p>
@@ -1002,8 +1002,8 @@ const schema = {
         </div>
 
         <p class="fl-small" style="margin-top:22px; text-align:center;">
-          Læs <a href="/terms">handelsbetingelserne</a>, eller <a href="/kontakt">kontakt Ditte</a>,
-          hvis du har spørgsmål.
+          Læs <a href="/terms/">handelsbetingelserne</a>, eller{' '}
+          <a href="/kontakt/">kontakt Ditte</a>, hvis du har spørgsmål.
         </p>
       </div>
     </section>
