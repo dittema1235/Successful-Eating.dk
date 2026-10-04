@@ -38,6 +38,7 @@ const routes = new Map(
 const failures = [];
 const links = new Map();
 const titles = new Map();
+const pageMeta = new Map();
 for (const file of files) {
   const html = await readFile(file, 'utf8'),
     $ = load(html);
@@ -56,10 +57,12 @@ for (const file of files) {
   if (titles.has(title)) failures.push(`${route}: duplicate title with ${titles.get(title)}`);
   else titles.set(title, route);
   const canonical = $('link[rel="canonical"]').attr('href');
-  check(
-    canonical === new URL(route || '/', origin).href,
-    `canonical ${canonical} disagrees with route`,
-  );
+  const expectedCanonical = new URL(route === '/' ? '/' : `${route}/`, origin).href;
+  check(canonical === expectedCanonical, `canonical ${canonical} disagrees with route`);
+  pageMeta.set(route, {
+    canonical,
+    noindex: ($('meta[name="robots"]').attr('content') || '').includes('noindex'),
+  });
   check($('meta[property="og:title"]').attr('content') === title, 'OG title mismatch');
   $('script[type="application/ld+json"]').each((_, e) => {
     try {
@@ -69,7 +72,7 @@ for (const file of files) {
         check(n['@type'] !== 'Product', 'unsupported Product schema');
         if (n['@type'] === 'BlogPosting') {
           const author = n.author?.['@id'];
-          check(author === `${origin}/om-ditte#person`, 'blog author identity');
+          check(author === `${origin}/om-ditte/#person`, 'blog author identity');
           check(
             n.mainEntityOfPage?.['@id'] === `${canonical}#webpage`,
             'mainEntityOfPage mismatch',
@@ -105,36 +108,45 @@ for (const [target, from] of links) {
   }
 }
 for (const r of redirects) {
-  if (
-    r.to.startsWith('/') &&
-    !r.to.endsWith('.xml') &&
-    !routes.has(decodeURIComponent(r.to).split('?')[0].replace(/\/$/, '') || '/') &&
-    !redirectFor(r.to)
-  )
-    failures.push(`Redirect target missing: ${r.from} → ${r.to}`);
+  if (!r.to.startsWith('/') || r.to.endsWith('.xml')) continue;
+  const target = decodeURIComponent(new URL(r.to, origin).pathname).replace(/\/$/, '') || '/';
+  if (!routes.has(target) || redirectFor(r.to))
+    failures.push(`Redirect target is missing or redirects again: ${r.from} → ${r.to}`);
+  else if (!new URL(r.to, origin).pathname.endsWith('/'))
+    failures.push(`Redirect target is not the final URL: ${r.from} → ${r.to}`);
 }
 const sitemap = await readFile('dist/sitemap-0.xml', 'utf8');
 const $s = load(sitemap, { xml: true });
 const sitemapUrls = $s('loc')
   .map((_, e) => $s(e).text())
   .get();
+const sitemapSet = new Set(sitemapUrls);
+if (sitemapSet.size !== sitemapUrls.length) failures.push('Duplicate sitemap URL');
 for (const url of sitemapUrls) {
-  const route = decodeURIComponent(new URL(url).pathname).replace(/\/$/, '') || '/';
-  if (!routes.has(route)) failures.push(`Sitemap route missing: ${route}`);
-  if (route === '/404') failures.push('404 in sitemap');
+  const parsed = new URL(url);
+  const route = decodeURIComponent(parsed.pathname).replace(/\/$/, '') || '/';
+  const page = pageMeta.get(route);
+  if (!page) failures.push(`Sitemap route missing: ${route}`);
+  else if (page.canonical !== url || page.noindex)
+    failures.push(`Sitemap URL is not an indexable canonical page: ${url}`);
+  if (parsed.origin !== origin || !parsed.pathname.endsWith('/'))
+    failures.push(`Sitemap URL redirects or uses the wrong host: ${url}`);
 }
+for (const [route, page] of pageMeta)
+  if (!page.noindex && !sitemapSet.has(page.canonical))
+    failures.push(`Indexable page missing from sitemap: ${route}`);
 for (const route of [
   '/',
   '/forloebet',
   '/kropsglaede',
   '/om-ditte',
   '/resultater',
-  '/sulteneller',
+  '/gratis-guide',
   '/terms',
   '/kontakt',
   '/madro-biblioteket',
 ])
-  if (!sitemapUrls.includes(new URL(route, origin).href))
+  if (!sitemapSet.has(new URL(route === '/' ? '/' : `${route}/`, origin).href))
     failures.push(`Key route missing from sitemap: ${route}`);
 const report = {
   pages: files.length,

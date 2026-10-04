@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import archived from '../data/archive.json';
 import library from '../data/library-pages.json';
 import { topics } from '../data/topics';
-import { site } from '../data/site';
+import { site, pagePath, pageUrl } from '../data/site';
 export function getStaticPaths() {
   return [...archived, ...library].map((post) => ({
     params: { legacy: post.slug },
@@ -14,7 +14,7 @@ export function getStaticPaths() {
 const { post } = Astro.props;
 const revisedLibrary = 'editorialAuthor' in post && post.editorialAuthor;
 const topic = topics.find((t) => t.slug === post.topic)!;
-const url = new URL(`/${post.slug}`, site.url).href;
+const url = pageUrl(`/${post.slug}`);
 const schema = {
   '@type': revisedLibrary ? 'Article' : 'BlogPosting',
   '@id': `${url}#article`,
@@ -22,7 +22,9 @@ const schema = {
   description: post.description,
   mainEntityOfPage: { '@id': `${url}#webpage` },
   url,
-  author: { '@id': revisedLibrary ? `${site.url}/#organization` : `${site.url}/om-ditte#person` },
+  author: {
+    '@id': revisedLibrary ? `${site.url}/#organization` : `${pageUrl('/om-ditte')}#person`,
+  },
   publisher: { '@id': `${site.url}/#organization` },
   inLanguage: 'da-DK',
   ...(post.published ? { datePublished: post.published } : {}),
@@ -37,8 +39,8 @@ const schema = {
   description={post.description}
   schema={schema}
   breadcrumbs={[
-    { name: 'Artikelarkiv', url: '/blog' },
-    { name: post.title, url: `/${post.slug}` },
+    { name: 'Artikelarkiv', url: '/blog/' },
+    { name: post.title, url: `/${post.slug}/` },
   ]}
 >
   <article>
@@ -47,9 +49,9 @@ const schema = {
         <nav class="breadcrumbs" aria-label="Brødkrummer">
           <a href="/">Forside</a>
           <span>/</span>
-          <a href="/blog">Artikelarkiv</a>
+          <a href="/blog/">Artikelarkiv</a>
           <span>/</span>
-          <a href={`/blog/emner/${topic.slug}`}>{topic.title}</a>
+          <a href={`/blog/emner/${topic.slug}/`}>{topic.title}</a>
         </nav>
         <span class="eyebrow">{topic.title}</span>
         <h1>{post.title}</h1>
@@ -57,7 +59,7 @@ const schema = {
           <img src="/images/ditte-portrait-small.webp" width="42" height="42" alt="" />
           <div>
             {revisedLibrary ? 'Redaktion: Successful Eating · Efter en artikel af ' : 'Af '}
-            <a href="/om-ditte">Ditte Munch-Andersen</a>
+            <a href="/om-ditte/">Ditte Munch-Andersen</a>
             <span>
               {post.published
                 ? `Oprindeligt udgivet ${new Date(post.published).toLocaleDateString('da-DK', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Europe/Copenhagen' })}`
@@ -79,7 +81,7 @@ const schema = {
                 ? 'Redaktionelt opdateret med kilder og forslag til videre hjælp. Generel information erstatter ikke en individuel vurdering.'
                 : 'Fra Dittes artikelarkiv. Artiklen afspejler tidspunktet, den blev skrevet på. Ældre tilbud og beskrivelser er ikke nødvendigvis aktuelle.'}{' '}
               Find opdaterede introduktioner i{' '}
-              <a href="/madro-biblioteket" style="text-decoration:underline">
+              <a href="/madro-biblioteket/" style="text-decoration:underline">
                 Madro-biblioteket
               </a>
               .
@@ -87,7 +89,7 @@ const schema = {
           </div>
           <div class="prose" set:html={post.body} />
           <div class="library-feature">
-            <a class="text-link" href={`/blog/emner/${topic.slug}`}>
+            <a class="text-link" href={`/blog/emner/${topic.slug}/`}>
               Mere om {topic.title.toLowerCase()} <Icon size={16} />
             </a>
           </div>
@@ -103,11 +105,11 @@ const schema = {
           <a
             class="button"
             style="margin-top:23px"
-            href={post.salesCta ? topic.service : '/om-ditte'}
+            href={pagePath(post.salesCta ? topic.service : '/om-ditte')}
           >
             {post.salesCta ? 'Læs om behandlingen' : 'Mød Ditte'} <Icon size={17} />
           </a>
-          <a class="text-link" style="margin-top:25px" href="/gratis-guide">
+          <a class="text-link" style="margin-top:25px" href="/gratis-guide/">
             Læs om den gratis guide <Icon size={16} />
           </a>
         </aside>

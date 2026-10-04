@@ -3,12 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import Icon from '../../components/Icon.astro';
 import { articles } from '../../data/articles';
-import { site } from '../../data/site';
+import { site, pagePath, pageUrl } from '../../data/site';
 export function getStaticPaths() {
   return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
 }
 const { article } = Astro.props;
-const url = `${site.url}/madro-biblioteket/${article.slug}`;
+const url = pageUrl(`/madro-biblioteket/${article.slug}`);
 const related = articles.filter((a) => article.related?.includes(a.slug));
 const schema = {
   '@type': 'Article',
@@ -30,8 +30,8 @@ const schema = {
   description={article.description}
   schema={schema}
   breadcrumbs={[
-    { name: 'Madro-biblioteket', url: '/madro-biblioteket' },
-    { name: article.title, url: `/madro-biblioteket/${article.slug}` },
+    { name: 'Madro-biblioteket', url: '/madro-biblioteket/' },
+    { name: article.title, url: `/madro-biblioteket/${article.slug}/` },
   ]}
 >
   <article>
@@ -40,7 +40,7 @@ const schema = {
         <nav class="breadcrumbs" aria-label="Brødkrummer">
           <a href="/">Forside</a>
           <span>/</span>
-          <a href="/madro-biblioteket">Madro-biblioteket</a>
+          <a href="/madro-biblioteket/">Madro-biblioteket</a>
           <span>/</span>
           <span>{article.category}</span>
         </nav>
@@ -77,7 +77,7 @@ const schema = {
           <p class="sources">
             Teksten er generel information og kan ikke erstatte individuel rådgivning, udredning
             eller behandling. Læs om{' '}
-            <a href="/om-ditte">Ditte Munch-Andersen og den faglige tilgang</a>.
+            <a href="/om-ditte/">Ditte Munch-Andersen og den faglige tilgang</a>.
           </p>
           {related.length > 0 && (
             <section>
@@ -85,12 +85,12 @@ const schema = {
               <ul>
                 {related.map((a) => (
                   <li>
-                    <a href={`/madro-biblioteket/${a.slug}`}>{a.title}</a>
+                    <a href={`/madro-biblioteket/${a.slug}/`}>{a.title}</a>
                   </li>
                 ))}
               </ul>
               <p>
-                <a href="/resultater">Læs om behandlingsmetode og resultater</a>.
+                <a href="/resultater/">Læs om behandlingsmetode og resultater</a>.
               </p>
             </section>
           )}
@@ -104,13 +104,13 @@ const schema = {
           <a
             class="button"
             style="margin-top:23px"
-            href="/forloebet#priser"
+            href="/forloebet/#priser"
             data-event="pricing_click"
             data-location="article"
           >
             Se pris & opstart <Icon size={17} />
           </a>
-          <a class="text-link" style="margin-top:24px" href={article.service}>
+          <a class="text-link" style="margin-top:24px" href={pagePath(article.service)}>
             {article.serviceLabel} <Icon size={16} />
           </a>
         </aside>

@@ -77,7 +77,7 @@ test('retired articles disappear from listings/search and have exact, one-hop re
     assert.ok(targets.has(target), `Missing replacement: ${target}`);
     assert.ok(!posts.some((p) => '/' + p.slug === source), source);
     assert.ok(!index.some((p) => '/' + p.slug === source), source);
-    assert.equal(rules.filter((r) => r === `${source} ${target} 301`).length, 1, source);
+    assert.equal(rules.filter((r) => r === `${source} ${target}/ 301`).length, 1, source);
     assert.ok(!migrations.some((m) => m.source === target), `Redirect chain: ${source}`);
   }
   for (const target of targets)
@@ -97,7 +97,7 @@ test('both current offers and every old sitemap URL have a concrete migration de
     '/kropsglaede',
     '/om-ditte',
     '/resultater',
-    '/sulteneller',
+    '/gratis-guide',
     '/terms',
     '/kontakt',
     '/blog',

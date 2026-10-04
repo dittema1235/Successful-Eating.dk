@@ -12,7 +12,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(scan.violations).toEqual([]);
   await page.locator('.hero a.button').click();
-  await expect(page).toHaveURL(/\/forloebet$/);
+  await expect(page).toHaveURL(/\/forloebet\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Få hjælp til at forstå og ændre dit mønster omkring overspisning.',
   );
@@ -43,7 +43,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.getByRole('link', { name: 'Læs om kropsaccept' }).click();
   await expect(page).toHaveURL(/kropsglaede/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre kropskritik');
-  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/kontakt');
+  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/kontakt/');
   await expect(page.locator('.closing-cta')).not.toContainText('4.499');
   expect(errors).toEqual([]);
 });
@@ -111,12 +111,12 @@ test('consolidated articles preserve old links and replace retired search result
   for (const { source, target } of migrations) {
     const response = await request.get(source, { maxRedirects: 0 });
     expect(response.status(), source).toBe(301);
-    expect(response.headers().location, source).toBe(target);
-    const replacement = await request.get(target, { maxRedirects: 0 });
+    expect(response.headers().location, source).toBe(`${target}/`);
+    const replacement = await request.get(`${target}/`, { maxRedirects: 0 });
     expect(replacement.status(), target).toBe(200);
-    expect(await replacement.text()).toContain(`href="https://www.successfuleating.dk${target}"`);
+    expect(await replacement.text()).toContain(`href="https://www.successfuleating.dk${target}/"`);
     expect(sitemap).not.toContain(`https://www.successfuleating.dk${source}<`);
-    expect(sitemap).toContain(`https://www.successfuleating.dk${target}<`);
+    expect(sitemap).toContain(`https://www.successfuleating.dk${target}/<`);
   }
   await page.goto(migrations[0].source);
   await expect(page).toHaveURL(new RegExp(migrations[0].target));
@@ -159,7 +159,7 @@ test('header search is visible across pages and opens fuzzy results', async ({ p
   const headerSearch = page.getByRole('search', { name: 'Søg i artikler', exact: true });
   await headerSearch.getByRole('searchbox').fill('overspisnig');
   await headerSearch.getByRole('button', { name: 'Søg', exact: true }).click();
-  await expect(page).toHaveURL(/\/blog\?q=overspisnig#archive-search$/);
+  await expect(page).toHaveURL(/\/blog\/\?q=overspisnig#archive-search$/);
   await expect(page.getByLabel('Søg i alle artikler')).toHaveValue('overspisnig');
   await expect(page.locator('#archive-results')).toContainText('Hjælp til overspisning');
   await expect(page.locator('#archive-search')).toBeInViewport();
@@ -215,10 +215,12 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
   await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.854 kr.');
   await expect(page.locator('main')).not.toContainText('30-minutters');
-  await page.goto('/sulteneller');
-  const request = page.getByRole('link', { name: 'Ja tak, send mig guiden' });
+  await page.goto('/gratis-guide/');
+  const request = page.getByRole('link', { name: 'Få den gratis guide' });
   await expect(request).toHaveAttribute('href', /^https:\/\/successfuleating.systeme.io\/public\//);
-  await expect(page.locator('main')).toContainText('guide og e-mails fra Ditte om overspisning');
+  await expect(page.locator('main')).toContainText(
+    'modtage guiden og e-mails fra Ditte om overspisning',
+  );
 });
 test('results page presents outcomes and a clear path to purchase', async ({ page }) => {
   await page.goto('/resultater');
@@ -257,7 +259,7 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   await expect(page.locator('main')).not.toContainText('6-måneders');
   await expect(page.getByRole('link', { name: 'Se forløbet og pris' })).toHaveAttribute(
     'href',
-    '/forloebet#priser',
+    '/forloebet/#priser',
   );
   await expect(page.locator('.results-offer')).toContainText('4.499 kr.');
   await expect(page.locator('.closing-cta .button')).toHaveAttribute(
@@ -293,7 +295,7 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
     '/kontakt',
     '/resultater',
     '/madro-biblioteket',
-    '/sulteneller',
+    '/gratis-guide/',
     '/madro-biblioteket/troestespisning',
     '/madro-biblioteket/madro-og-vaegt',
   ]) {

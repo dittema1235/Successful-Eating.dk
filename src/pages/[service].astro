@@ -5,7 +5,7 @@ import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import PurchaseOptions from '../components/PurchaseOptions.astro';
 import ParticipantTestimonials from '../components/ParticipantTestimonials.astro';
-import { site, services, formatPrice, treatmentModules } from '../data/site';
+import { site, services, formatPrice, treatmentModules, pageUrl } from '../data/site';
 export function getStaticPaths() {
   // /forloebet har sin egen side i forloebet.astro; denne rute bygger de øvrige behandlingssider.
   return services
@@ -22,7 +22,7 @@ const heading = body
   : 'Behandling af overspisning online';
 const schema = {
   '@type': 'Service',
-  '@id': `${site.url}/${service.slug}#service`,
+  '@id': `${pageUrl(`/${service.slug}`)}#service`,
   name: body ? service.title : 'Successful Eating – behandling af overspisning online',
   description: service.intro,
   provider: { '@id': `${site.url}/#organization` },
@@ -30,7 +30,7 @@ const schema = {
   serviceType: body
     ? 'Individuel psykologisk behandling med fokus på kropsaccept'
     : 'Kognitiv behandling af overspisning',
-  url: `${site.url}/${service.slug}`,
+  url: pageUrl(`/${service.slug}`),
   ...(!body
     ? {
         offers: {
@@ -74,7 +74,7 @@ const schema = {
           </p>
           <div class="actions">
             <a
-              href={body ? '/kontakt' : '#priser'}
+              href={body ? '/kontakt/' : '#priser'}
               class="button"
               data-event={body ? 'contact_click' : 'pricing_click'}
               data-location={service.slug}
@@ -102,7 +102,7 @@ const schema = {
             <figcaption>
               <strong>Ditte Munch-Andersen</strong>
               <span>Klinisk psykolog · Uddannet fra Københavns Universitet i 2004</span>
-              <a href="/om-ditte">
+              <a href="/om-ditte/">
                 Mød din behandler <Icon size={16} />
               </a>
             </figcaption>
@@ -366,7 +366,7 @@ const schema = {
                 Forløbet erstatter ikke en ADHD-udredning eller medicinsk behandling.
               </p>
               <p class="adhd-links">
-                <a href="/madro-biblioteket/adhd-og-overspisning">Læs om ADHD og overspisning</a>
+                <a href="/madro-biblioteket/adhd-og-overspisning/">Læs om ADHD og overspisning</a>
                 <span aria-hidden="true">·</span>
                 <a href="https://doi.org/10.1002/eat.22643">
                   Nazar et al. (2016), International Journal of Eating Disorders
@@ -453,7 +453,7 @@ const schema = {
         <div class="callout">
           <p>
             <strong>Har du praktiske spørgsmål først?</strong> Du er velkommen til at
-            <a href="/kontakt">kontakte Ditte</a> om indhold, opstart og rammer.
+            <a href="/kontakt/">kontakte Ditte</a> om indhold, opstart og rammer.
           </p>
         </div>
         <h2 id="tilskud">Mulighed for tilskud</h2>
@@ -512,7 +512,7 @@ const schema = {
             NICE's retningslinje for spiseforstyrrelser
           </a>
           . Retningslinjen dokumenterer ikke en bestemt effekt af Successful Eating. Læs om{' '}
-          <a href="/resultater">metode og resultater</a>.
+          <a href="/resultater/">metode og resultater</a>.
         </p>
       </div>
       <aside class="facts-card" aria-label="Kort om tilbuddet">
@@ -521,7 +521,7 @@ const schema = {
         <dl>
           <dt>Behandler</dt>
           <dd>
-            <a href="/om-ditte">Ditte Munch-Andersen, klinisk psykolog</a>
+            <a href="/om-ditte/">Ditte Munch-Andersen, klinisk psykolog</a>
           </dd>
           <dt>Format</dt>
           <dd>
@@ -550,7 +550,7 @@ const schema = {
         </dl>
         <a
           class="button"
-          href={body ? '/kontakt' : site.checkout}
+          href={body ? '/kontakt/' : site.checkout}
           data-event={body ? 'contact_click' : 'checkout_click'}
           data-location="service_facts"
         >

@@ -1,9 +1,11 @@
 ---
 import Icon from './Icon.astro';
+import { pagePath } from '../data/site';
 interface Props {
   post: { slug: string; title: string; description: string; published?: string | null };
 }
 const { post } = Astro.props;
+const href = pagePath(`/${post.slug}`);
 ---
 
 <article class="archive-item">
@@ -18,10 +20,10 @@ const { post } = Astro.props;
     </time>
   )}
   <h2>
-    <a href={`/${post.slug}`}>{post.title}</a>
+    <a href={href}>{post.title}</a>
   </h2>
   <p>{post.description}</p>
-  <a class="text-link" href={`/${post.slug}`}>
+  <a class="text-link" href={href}>
     Læs artiklen <Icon size={15} />
   </a>
 </article>

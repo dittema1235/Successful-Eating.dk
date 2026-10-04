@@ -8,8 +8,7 @@ export const site = {
   address: 'Hovedvagtsstræde 2C',
   city: '3000 Helsingør',
   cvr: '30642155',
-  // Local legacy URL preserved; external opt-in is configured on the landing page.
-  guide: '/sulteneller',
+  guide: '/gratis-guide/',
   checkout: 'https://successfuleating.systeme.io/4b00a70d',
   treatmentPrice: 4499, // Confirmed by owner 2026-09-19; keep one shared source.
   consultationPrice: 645,
@@ -19,6 +18,17 @@ export const site = {
   login: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',
 };
+// HTML pages are served from directory URLs by Cloudflare Pages.
+export function pageUrl(path: string) {
+  const url = new URL(path, site.url);
+  if (url.origin !== site.url) throw new Error('Expected an internal page URL');
+  if (!url.pathname.endsWith('/')) url.pathname += '/';
+  return url.href;
+}
+export function pagePath(path: string) {
+  const url = new URL(pageUrl(path));
+  return `${url.pathname}${url.search}${url.hash}`;
+}
 export const formatPrice = (amount: number) => `${amount.toLocaleString('da-DK')} kr.`;
 export const treatmentModules = [
   {

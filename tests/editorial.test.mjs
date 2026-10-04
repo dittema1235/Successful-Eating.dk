@@ -30,7 +30,7 @@ test('evening introduction consolidates directly into the preserved original art
       .filter(
         (l) =>
           l ===
-          '/madro-biblioteket/overspisning-om-aftenen /blog/101752-saadan-stopper-du-med-at-overspise-om 301',
+          '/madro-biblioteket/overspisning-om-aftenen /blog/101752-saadan-stopper-du-med-at-overspise-om/ 301',
       ).length,
     1,
   );

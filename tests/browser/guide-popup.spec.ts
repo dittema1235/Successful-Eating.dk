@@ -4,6 +4,14 @@ import { guideSignup } from '../../src/data/guide';
 
 // Exercise the same policy Cloudflare applies; the local static server doesn't set it.
 const policy = readFileSync('public/_headers', 'utf8').match(/Content-Security-Policy: (.*)/)![1];
+test('former guide URLs redirect straight to the canonical guide', async ({ request }) => {
+  for (const oldPath of ['/sulteneller', '/sulteneller/']) {
+    const response = await request.get(oldPath, { maxRedirects: 0 });
+    expect(response.status()).toBe(301);
+    expect(response.headers().location).toBe('/gratis-guide/');
+  }
+  expect((await request.get('/gratis-guide/', { maxRedirects: 0 })).status()).toBe(200);
+});
 test.beforeEach(async ({ page }) => {
   await page.route('http://127.0.0.1:4321/**', async (route) => {
     const response = await route.fetch();
@@ -53,7 +61,6 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
   for (const [path, count] of [
     ['/', 1],
     ['/gratis-guide', 2],
-    ['/sulteneller', 1],
   ] as const) {
     const before = requests;
     await page.goto(path);
@@ -70,9 +77,9 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
       await expect(form.getByLabel('E-mail')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-guide-state', 'ready');
       await form.getByLabel('E-mail').focus();
-      await form.getByLabel('E-mail').evaluate(() =>
-        parent.postMessage({ sender: 'systemeio-iframe-test', height: 320 }, '*'),
-      );
+      await form
+        .getByLabel('E-mail')
+        .evaluate(() => parent.postMessage({ sender: 'systemeio-iframe-test', height: 320 }, '*'));
       await page.waitForTimeout(50);
       await expect(form.getByLabel('E-mail')).toBeFocused();
       await expect(page.locator('[data-guide-status]')).toBeEmpty();
@@ -106,8 +113,8 @@ test('guide buttons open on demand, close and reopen under the production CSP', 
 
 test('blocked embed offers a direct fallback and can be dismissed', async ({ page }) => {
   await page.route(guideSignup.scriptUrl, (route) => route.abort());
-  await page.goto('/sulteneller');
-  await page.locator('[data-guide-signup]').click();
+  await page.goto('/gratis-guide/');
+  await page.locator('[data-guide-signup]').first().click();
   await expect(page.getByRole('status')).toContainText('Formularen kunne ikke indlæses');
   const fallback = page.getByRole('link', { name: 'Åbn tilmeldingen i et nyt vindue' });
   await expect(fallback).toHaveAttribute('href', guideSignup.formUrl);
@@ -125,8 +132,8 @@ test.describe('without JavaScript', () => {
         body: '<h1>Tilmelding til guiden</h1>',
       }),
     );
-    await page.goto('/sulteneller');
-    await page.locator('[data-guide-signup]').click();
+    await page.goto('/gratis-guide/');
+    await page.locator('[data-guide-signup]').first().click();
     await expect(page).toHaveURL(guideSignup.formUrl);
     await expect(page.getByRole('heading')).toHaveText('Tilmelding til guiden');
   });
