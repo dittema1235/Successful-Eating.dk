@@ -84,7 +84,7 @@ export const services = [
   {
     slug: 'forloebet',
     eyebrow: 'FOR DIG, DER VIL BRYDE MØNSTRET',
-    title: 'Successful Eating',
+    title: 'Fri fra overspisning',
     intro:
       'Få hjælp til at forstå din overspisning og skabe et roligere forhold til mad. Med psykologiske redskaber, støtte og plads til dig.',
     features: [
@@ -119,14 +119,14 @@ export const faqs = [
       'Madro er et hverdagsudtryk for, at mad, spisning og tanker om kroppen fylder mindre og føles mindre konfliktfyldte. Det er ikke en diagnose eller et bestemt tal på vægten. For nogle handler det om færre overspisninger; for andre om mere fleksibilitet og mindre skyld.',
   },
   {
-    question: 'Er Successful Eating en slankekur?',
+    question: 'Er Fri fra overspisning en slankekur?',
     answer:
       'Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning. Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret resultat. Behandlingen tager udgangspunkt i din situation.',
   },
   {
     question: 'Hvad er med i forløbet — og hvad er ikke med?',
     answer:
-      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, fire live online gruppesamtaler med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser i 8 uger og materiale til hverdagen samt adgang til alt indhold i 12 uger. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge bagefter. Adgangen til alt forløbsmateriale, også materialet om vedligeholdelse og tilbagefaldsforebyggelse, udløber efter 12 uger. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppesamtalerne optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen.',
+      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, gruppeterapi over fire live online mødegange med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser i 8 uger og materiale til hverdagen samt adgang til alt indhold i 12 uger. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge bagefter. Adgangen til alt forløbsmateriale, også materialet om vedligeholdelse og tilbagefaldsforebyggelse, udløber efter 12 uger. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppeterapien optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen.',
   },
   {
     question: 'Hvordan låses de næste faser op?',
@@ -141,7 +141,7 @@ export const faqs = [
   {
     question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
     answer:
-      'Ja. Forskning viser, at ADHD er forbundet med markant øget risiko for BED og andre spiseforstyrrelser. Vanskeligheder med impulskontrol og regulering kan for nogle betyde, at mad bliver den hurtigste vej til at dæmpe uro eller ubehag. Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful Eating, og ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk behandling.',
+      'Ja. Forskning viser, at ADHD er forbundet med markant øget risiko for BED og andre spiseforstyrrelser. Vanskeligheder med impulskontrol og regulering kan for nogle betyde, at mad bliver den hurtigste vej til at dæmpe uro eller ubehag. Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD i mine forløb, og ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk behandling.',
     source: {
       label:
         'Nazar et al. (2016), International Journal of Eating Disorders – meta-analyse af 12 studier',
@@ -155,11 +155,11 @@ export const faqs = [
   },
   {
     question: 'Hvad koster et forløb?',
-    answer: `Successful Eating koster ${formatPrice(site.treatmentPrice)} inklusive en individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du alle pengene tilbage. Prisen for et individuelt kropsacceptforløb oplyses før aftale.`,
+    answer: `Fri fra overspisning koster ${formatPrice(site.treatmentPrice)} inklusive en individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du alle pengene tilbage. Prisen for et individuelt kropsacceptforløb oplyses før aftale.`,
   },
   {
     question: 'Kan jeg starte med en forsamtale?',
-    answer: `Ja. Du kan købe en individuel forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)} Her undersøger vi dine behov og vurderer, om Successful Eating passer til dig. Vælger du efterfølgende forløbet, modregnes hele beløbet i forløbsprisen. Du betaler derfor ${formatPrice(site.treatmentPrice - site.consultationPrice)} mere og ${formatPrice(site.treatmentPrice)} i alt.`,
+    answer: `Ja. Du kan købe en individuel forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)} Her undersøger vi dine behov og vurderer, om Fri fra overspisning passer til dig. Vælger du efterfølgende forløbet, modregnes hele beløbet i forløbsprisen. Du betaler derfor ${formatPrice(site.treatmentPrice - site.consultationPrice)} mere og ${formatPrice(site.treatmentPrice)} i alt.`,
   },
   {
     question: 'Hvad hvis forløbet ikke er det rette match?',
