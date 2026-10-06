@@ -128,15 +128,34 @@ const { explainPrice = false } = Astro.props;
             forsamtalen ikke at passe til dig, får du hele det indbetalte beløb tilbage.
           </p>
         </div>
-        <a
-          class="button"
-          href={site.checkout}
-          data-event="checkout_click"
-          data-location="purchase_options"
-        >
-          Køb forløbet · {formatPrice(site.treatmentPrice)} <Icon name="northeast" size={17} />
-        </a>
-        <p class="small muted">Du fortsætter til betaling hos systeme.io.</p>
+        {
+          explainPrice ? (
+            <a
+              class="button"
+              href={site.checkout}
+              data-event="checkout_click"
+              data-location="purchase_options"
+            >
+              Køb forløbet · {formatPrice(site.treatmentPrice)} <Icon name="northeast" size={17} />
+            </a>
+          ) : (
+            <a
+              class="button"
+              href="/forloebet"
+              data-event="service_click"
+              data-location="purchase_options"
+            >
+              Se forløbet og tilmelding <Icon size={17} />
+            </a>
+          )
+        }
+        <p class="small muted">
+          {
+            explainPrice
+              ? 'Du fortsætter til betaling hos systeme.io.'
+              : 'Du ser indhold, pris og tilmelding på forløbssiden.'
+          }
+        </p>
       </article>
       <article class="purchase-card">
         <span class="eyebrow">FORSAMTALE FØRST</span>
