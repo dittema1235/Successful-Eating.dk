@@ -5,12 +5,12 @@ import { site, consultation, services, formatPrice } from '../data/site';
 // /forloebet har sin egen side (tidligere genereret af [service].astro).
 // Layout leverer header, footer, popup, cookie-samtykke, canonical/OG og JSON-LD.
 const service = services.find((s) => s.slug === 'forloebet')!;
-const title = 'Behandling af overspisning (BED) online | Successful Eating';
-const description = `Online behandling af overspisning hos klinisk psykolog Ditte Munch-Andersen. 8 ugers behandling, live gruppebehandling, forsamtale og konkrete øvelser. Pris ${formatPrice(site.treatmentPrice)}`;
+const title = 'Fri fra overspisning – behandling af BED online | Successful Eating';
+const description = `Fri fra overspisning: 8 ugers psykologisk behandlingsforløb online hos klinisk psykolog Ditte Munch-Andersen med forsamtale, gruppeterapi over fire mødegange og Successful Eating (videoer og øvelser). Pris ${formatPrice(site.treatmentPrice)}`;
 const schema = {
   '@type': 'Service',
   '@id': `${site.url}/${service.slug}#service`,
-  name: 'Successful Eating – behandling af overspisning online',
+  name: 'Fri fra overspisning – behandling af overspisning online',
   description: service.intro,
   provider: { '@id': `${site.url}/#organization` },
   areaServed: { '@type': 'Country', name: 'Danmark' },
@@ -39,20 +39,20 @@ const schema = {
         <nav class="fl-breadcrumbs" aria-label="Brødkrummer">
           <a href="/">Forside</a>
           <span>/</span>
-          <span>Successful Eating</span>
+          <span>Fri fra overspisning</span>
         </nav>
 
         <div class="fl-hero-grid">
           <div class="fl-hero-copy">
             <span class="fl-eyebrow">Overspisning & madstøj · Online i hele Danmark</span>
 
-            <h1 id="hero-heading">
-              Få hjælp til at forstå og ændre dit mønster omkring overspisning.
-            </h1>
+            <h1 id="hero-heading">Fri fra overspisning</h1>
 
             <p class="fl-intro">
-              Otte uger med psykolog Ditte Munch-Andersen, en lille gruppe og konkrete øvelser. Få
-              støtte til at forstå din overspisning og arbejde mod mere madro.
+              <strong>Et 8 ugers psykologisk behandlingsforløb.</strong> Forløbet inkluderer en
+              forsamtale, gruppeterapi over fire mødegange og Successful Eating – navnet på det
+              univers og den metode, jeg har udviklet gennem mange år. Det er her, du finder
+              undervisningen, videoerne og øvelserne, som handler om psykologien bag overspisning.
             </p>
 
             <div class="fl-section-cta">
@@ -113,7 +113,7 @@ const schema = {
 
             <p>
               Du behøver ikke kunne forklare alt på forhånd. I den individuelle forsamtale taler vi
-              om din situation og vurderer sammen, om Successful Eating er det rette match.
+              om din situation og vurderer sammen, om Fri fra overspisning er det rette match.
             </p>
 
             <div class="fl-section-cta">
@@ -131,7 +131,7 @@ const schema = {
           <aside class="fl-facts-card">
             <span class="fl-eyebrow">PRAKTISK & OVERSKUELIGT</span>
 
-            <h3>Successful Eating</h3>
+            <h3>Fri fra overspisning</h3>
 
             <dl>
               <div>
@@ -302,12 +302,13 @@ const schema = {
         <div class="fl-section-heading">
           <span class="fl-eyebrow">FAGLIG STØTTE · PLADS TIL DIN HVERDAG</span>
 
-          <h2 id="overview-heading">Det får du i Successful Eating</h2>
+          <h2 id="overview-heading">Det får du i Fri fra overspisning</h2>
 
           <p class="fl-intro">
-            Successful Eating er et 8-ugers terapeutisk forløb. Jeg følger dig fra den første
-            forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du med viden og
-            øvelser, der hjælper dig med at træne nye mønstre i dit eget liv.
+            Fri fra overspisning er et 8-ugers psykologisk behandlingsforløb. Jeg følger dig fra
+            den første forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du i
+            Successful Eating med viden og øvelser, der hjælper dig med at træne nye mønstre i dit
+            eget liv.
           </p>
         </div>
 
@@ -347,11 +348,12 @@ const schema = {
           <article class="fl-inclusion-card">
             <div class="fl-icon">03</div>
 
-            <h3>Viden og øvelser mellem samtalerne</h3>
+            <h3>Successful Eating: viden og øvelser mellem samtalerne</h3>
 
             <p>
-              Du får ca. 5 timers video i små, overskuelige bidder fordelt over 8 psykologiske
-              faser.
+              Successful Eating er onlinedelen af forløbet, hvor du finder undervisningen,
+              videoerne og øvelserne. Du får ca. 5 timers video i små, overskuelige bidder fordelt
+              over 8 psykologiske faser.
             </p>
 
             <p>
@@ -378,7 +380,7 @@ const schema = {
             </p>
 
             <p>
-              Kombinationen af terapi, viden og træning gør Successful Eating til et samlet
+              Kombinationen af terapi, viden og træning gør Fri fra overspisning til et samlet
               behandlingsforløb over 8 uger. Ved at kombinere individuel samtale, gruppeterapi og
               videoundervisning kan jeg samtidig tilbyde et effektivt og omfattende
               behandlingsforløb til en væsentligt lavere pris end et tilsvarende individuelt forløb.
@@ -803,7 +805,7 @@ const schema = {
             </p>
 
             <p>
-              Successful Eating er udviklet som et samlet otte ugers behandlingsforløb, hvor
+              Fri fra overspisning er udviklet som et samlet otte ugers behandlingsforløb, hvor
               personlig behandlerkontakt, gruppebehandling, viden og træning arbejder sammen.
             </p>
 
@@ -865,7 +867,7 @@ const schema = {
             <p>Indholdet tilpasses efter en vurdering af dine behov.</p>
 
             <p>
-              Ved forsamtalen vurderer vi sammen, om Successful Eating er det rette match for dig.
+              Ved forsamtalen vurderer vi sammen, om Fri fra overspisning er det rette match for dig.
             </p>
           </article>
         </div>
@@ -881,17 +883,17 @@ const schema = {
     <section class="fl-section fl-tone-peach" aria-labelledby="match-heading">
       <div class="fl-container">
         <div class="fl-match-notice">
-          <h2 id="match-heading">Successful Eating er ikke det rette tilbud til alle</h2>
+          <h2 id="match-heading">Fri fra overspisning er ikke det rette tilbud til alle</h2>
 
           <p>
-            Successful Eating er et psykologisk behandlingsforløb målrettet overspisning og
+            Fri fra overspisning er et psykologisk behandlingsforløb målrettet overspisning og
             tvangsoverspisning (BED). Forløbet er udviklet til dig, hvor overspisning er det primære
             problem, du ønsker hjælp til.
           </p>
 
           <p>
             Hvis du allerede har en kendt diagnose eller problematik, som kræver en anden eller mere
-            specialiseret behandling, skal du ikke booke en forsamtale til Successful Eating. Det
+            specialiseret behandling, skal du ikke booke en forsamtale til Fri fra overspisning. Det
             gælder blandt andet, hvis du har:
           </p>
 
@@ -912,7 +914,7 @@ const schema = {
           </ul>
 
           <p>
-            I disse tilfælde vil en forsamtale hos Successful Eating ikke være den rette vej.
+            I disse tilfælde vil en forsamtale til Fri fra overspisning ikke være den rette vej.
             Kontakt i stedet egen læge, din nuværende behandler eller et relevant specialiseret
             behandlingstilbud for at få hjælp til at finde den rette behandling.
           </p>
@@ -920,7 +922,7 @@ const schema = {
           <p>
             Hvis du er i tvivl om, hvorvidt din situation passer til forløbet, er du velkommen til
             at <a href="/kontakt">kontakte Ditte</a>, før du tilmelder dig. Forsamtalen er beregnet
-            til at vurdere, om Successful Eating er et godt match inden for målgruppen – ikke til at
+            til at vurdere, om Fri fra overspisning er et godt match inden for målgruppen – ikke til at
             erstatte en udredning eller specialiseret vurdering.
           </p>
         </div>
@@ -930,13 +932,13 @@ const schema = {
     <section class="fl-section fl-pricing-section" id="priser" aria-labelledby="pricing-heading">
       <div class="fl-container">
         <div class="fl-pricing-intro">
-          <span class="fl-eyebrow">SUCCESSFUL EATING · PRIS & OPSTART</span>
+          <span class="fl-eyebrow">FRI FRA OVERSPISNING · PRIS & OPSTART</span>
 
           <h2 id="pricing-heading">Tilmeld dig nu. Opstarten finder vi sammen.</h2>
 
           <p class="fl-intro">
             Du behøver ikke vælge en bestemt startdato ved tilmelding. Ved forsamtalen finder vi
-            sammen ud af, om Successful Eating passer til dig, og aftaler din opstart ud fra din
+            sammen ud af, om Fri fra overspisning passer til dig, og aftaler din opstart ud fra din
             kalender og de ledige pladser.
           </p>
         </div>
@@ -944,7 +946,7 @@ const schema = {
         <div class="fl-pricing-card">
           <span class="fl-eyebrow">FORLØB MED FORSAMTALE</span>
 
-          <h3>Start på Successful Eating</h3>
+          <h3>Start på Fri fra overspisning</h3>
 
           <div class="fl-price">{formatPrice(site.treatmentPrice)}</div>
 
@@ -1024,10 +1026,10 @@ const schema = {
         <div class="fl-value-card">
           <h3>Forsamtale · {formatPrice(site.consultationPrice)}</h3>
 
-          <p>Her undersøger vi dine behov og vurderer, om Successful Eating passer til dig.</p>
+          <p>Her undersøger vi dine behov og vurderer, om Fri fra overspisning passer til dig.</p>
 
           <p>
-            Hvis du efterfølgende vælger at deltage i Successful Eating, modregnes hele beløbet i
+            Hvis du efterfølgende vælger at deltage i Fri fra overspisning, modregnes hele beløbet i
             forløbsprisen.
           </p>
 
@@ -1164,7 +1166,7 @@ const schema = {
             </details>
 
             <details>
-              <summary>Er Successful Eating en slankekur?</summary>
+              <summary>Er Fri fra overspisning en slankekur?</summary>
               <p>
                 Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning.
                 Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret
@@ -1175,8 +1177,8 @@ const schema = {
             <details>
               <summary>Hvad er med i forløbet?</summary>
               <p>
-                Du får en individuel klinisk forsamtale på 50 minutter, fire live online
-                gruppesamtaler med højst 6 deltagere, videoundervisning gennem de 8 psykologiske
+                Du får en individuel klinisk forsamtale på 50 minutter, gruppeterapi over fire live
+                online mødegange med højst 6 deltagere, videoundervisning gennem de 8 psykologiske
                 faser, korte daglige øvelser i 8 uger og materiale til hverdagen samt adgang til alt
                 indhold i 12 uger.
               </p>
@@ -1226,9 +1228,9 @@ const schema = {
             </details>
 
             <details>
-              <summary>Hvad koster Successful Eating?</summary>
+              <summary>Hvad koster Fri fra overspisning?</summary>
               <p>
-                Successful Eating koster {formatPrice(site.treatmentPrice)} inklusive en individuel
+                Fri fra overspisning koster {formatPrice(site.treatmentPrice)} inklusive en individuel
                 forsamtale.
               </p>
             </details>
@@ -1248,7 +1250,7 @@ const schema = {
               <summary>Hvad hvis forløbet ikke er det rette match?</summary>
               <p>
                 Hvis du køber hele forløbet til {formatPrice(site.treatmentPrice)}, og det ved den
-                inkluderede forsamtale vurderes, at Successful Eating ikke er det rette match for
+                inkluderede forsamtale vurderes, at Fri fra overspisning ikke er det rette match for
                 dig, får du alle pengene tilbage.
               </p>
             </details>
@@ -1273,7 +1275,7 @@ const schema = {
         <h2 id="final-heading">Du behøver ikke kende din startdato endnu.</h2>
 
         <p class="fl-intro">
-          Tilmeld dig Successful Eating. Ved forsamtalen taler vi om din situation, vurderer om
+          Tilmeld dig Fri fra overspisning. Ved forsamtalen taler vi om din situation, vurderer om
           forløbet passer til dig og finder din opstart ud fra din kalender og de ledige pladser.
         </p>
 

@@ -16,14 +16,14 @@ const { service } = Astro.props;
 const body = service.slug === 'kropsglaede';
 const title = body
   ? 'Kropsaccept: individuel psykologisk behandling | Successful Eating'
-  : 'Behandling af overspisning (BED) online | Successful Eating';
+  : 'Fri fra overspisning – behandling af BED online | Successful Eating';
 const heading = body
   ? 'Mindre kropskritik. Mere plads til at være dig.'
   : 'Behandling af overspisning online';
 const schema = {
   '@type': 'Service',
   '@id': `${site.url}/${service.slug}#service`,
-  name: body ? service.title : 'Successful Eating – behandling af overspisning online',
+  name: body ? service.title : 'Fri fra overspisning – behandling af overspisning online',
   description: service.intro,
   provider: { '@id': `${site.url}/#organization` },
   areaServed: { '@type': 'Country', name: 'Danmark' },
@@ -123,11 +123,12 @@ const schema = {
           <a href="#spoergsmaal">Spørgsmål & svar</a>
         </nav>
         <span class="eyebrow">FAGLIG STØTTE. PLADS TIL DIN HVERDAG.</span>
-        <h2 id="overview-heading">Det får du i Successful Eating</h2>
+        <h2 id="overview-heading">Det får du i Fri fra overspisning</h2>
         <p class="intro">
-          Successful Eating er et 8-ugers terapeutisk forløb. Jeg følger dig fra den første
-          forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du med viden og
-          øvelser, der hjælper dig med at træne nye mønstre i dit eget liv.
+          Fri fra overspisning er et 8-ugers psykologisk behandlingsforløb. Jeg følger dig fra den
+          første forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du i
+          Successful Eating med viden og øvelser, der hjælper dig med at træne nye mønstre i dit
+          eget liv.
         </p>
         <div class="treatment-inclusions">
           <article>
@@ -178,7 +179,7 @@ const schema = {
               øvelser, der passer til din situation.
             </p>
             <p>
-              Kombinationen af terapi, viden og træning gør Successful Eating til et samlet
+              Kombinationen af terapi, viden og træning gør Fri fra overspisning til et samlet
               behandlingsforløb over 8 uger.
             </p>
           </article>
@@ -325,7 +326,7 @@ const schema = {
         ) : (
           <>
             <p>
-              Successful Eating er et otte ugers behandlingsforløb med personlig behandlerkontakt.
+              Fri fra overspisning er et otte ugers behandlingsforløb med personlig behandlerkontakt.
               Digitale oplæg og terapeutiske øvelser understøtter arbejdet i samtalerne.
             </p>
             <ul>
@@ -349,10 +350,10 @@ const schema = {
             </ul>
             <section class="adhd-focus" aria-labelledby="adhd-focus-heading">
               <span class="eyebrow">AFPRØVET I PRAKSIS</span>
-              <h2 id="adhd-focus-heading">ADHD er indtænkt i Successful Eating.</h2>
+              <h2 id="adhd-focus-heading">ADHD er indtænkt i Fri fra overspisning.</h2>
               <p>
-                Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD på Successful
-                Eating. Deres erfaringer og fremskridt er en del af den kliniske erfaring, som
+                Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD i mine
+                forløb. Deres erfaringer og fremskridt er en del af den kliniske erfaring, som
                 forløbets opbygning og struktur er formet af.
               </p>
               <p>
@@ -362,7 +363,7 @@ const schema = {
                 inddrages konkret i behandlingen af din overspisning.
               </p>
               <p>
-                Successful Eating er et behandlingsforløb for overspisning, hvor ADHD er tænkt ind.
+                Fri fra overspisning er et behandlingsforløb for overspisning, hvor ADHD er tænkt ind.
                 Forløbet erstatter ikke en ADHD-udredning eller medicinsk behandling.
               </p>
               <p class="adhd-links">
@@ -410,7 +411,7 @@ const schema = {
                 <h3>Det er med</h3>
                 <ul>
                   <li>Én individuel klinisk forsamtale (50 min.) med Ditte</li>
-                  <li>4 live online gruppesamtaler (højst 6 deltagere)</li>
+                  <li>Gruppeterapi over 4 live online mødegange (højst 6 deltagere)</li>
                   <li>Videoundervisning gennem de 8 psykologiske faser</li>
                   <li>Korte, daglige øvelser og materiale til hverdagen</li>
                   <li>Adgang til alt indhold (video, øvelser, materiale) i 12 uger</li>
@@ -429,7 +430,7 @@ const schema = {
                     den ene forsamtale
                   </li>
                   <li>
-                    Mulighed for at se gruppesamtalerne bagefter – de optages ikke, så det kræver
+                    Mulighed for at se gruppeterapien bagefter – den optages ikke, så det kræver
                     fremmøde live
                   </li>
                   <li>
@@ -498,20 +499,20 @@ const schema = {
         <p>
           {body
             ? 'Stærk kropskritik kan indgå i forskellige psykiske vanskeligheder. Derfor begynder behandlingen med en individuel vurdering.'
-            : 'Tvangsoverspisning er en spiseforstyrrelsesdiagnose, også kendt som binge eating disorder (BED). Successful Eating er et behandlingsforløb for overspisning. I forsamtalen vurderer vi sammen dine behov, og om forløbet er det rette match.'}{' '}
+            : 'Tvangsoverspisning er en spiseforstyrrelsesdiagnose, også kendt som binge eating disorder (BED). Fri fra overspisning er et behandlingsforløb for overspisning. I forsamtalen vurderer vi sammen dine behov, og om forløbet er det rette match.'}{' '}
           Hvis anden eller mere specialiseret hjælp er relevant, taler vi om det.
         </p>
         <p>
           {body
             ? 'Har du fysiske symptomer, opkastning, udtalt restriktiv spisning eller er bekymret for dit helbred, bør du også kontakte din egen læge. Generel information kan ikke erstatte en individuel vurdering.'
-            : 'Har du tegn på bulimi, fx at du fremkalder opkast efter overspisning, eller oplever du perioder med symptomer på anoreksi, er Successful Eating ikke det rette match. Her har du brug for mere støtte, end dette forløb giver mulighed for. Kontakt din egen læge for en vurdering og hjælp til den rette behandling – også hvis du er i tvivl om dine symptomer.'}
+            : 'Har du tegn på bulimi, fx at du fremkalder opkast efter overspisning, eller oplever du perioder med symptomer på anoreksi, er Fri fra overspisning ikke det rette match. Her har du brug for mere støtte, end dette forløb giver mulighed for. Kontakt din egen læge for en vurdering og hjælp til den rette behandling – også hvis du er i tvivl om dine symptomer.'}
         </p>
         <p class="sources">
           Fagligt udgangspunkt:{' '}
           <a href="https://www.nice.org.uk/guidance/ng69">
             NICE's retningslinje for spiseforstyrrelser
           </a>
-          . Retningslinjen dokumenterer ikke en bestemt effekt af Successful Eating. Læs om{' '}
+          . Retningslinjen dokumenterer ikke en bestemt effekt af Fri fra overspisning. Læs om{' '}
           <a href="/resultater">metode og resultater</a>.
         </p>
       </div>

@@ -14,7 +14,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.locator('.hero a.button').click();
   await expect(page).toHaveURL(/\/forloebet$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Få hjælp til at forstå og ændre dit mønster omkring overspisning.',
+    'Fri fra overspisning',
   );
   await expect(page.locator('#det-faar-du')).toContainText('4 online gruppeterapier');
   const modules = page.locator('#faser .fl-phase-grid > li');
@@ -25,7 +25,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await expect(modules.last()).toContainText('de nye mønstre holder');
   const noMatch = page.locator('[aria-labelledby="match-heading"]');
   await expect(noMatch.getByRole('heading', { level: 2 })).toHaveText(
-    'Successful Eating er ikke det rette tilbud til alle',
+    'Fri fra overspisning er ikke det rette tilbud til alle',
   );
   await expect(noMatch).toContainText('en personlighedsforstyrrelse');
   await expect(noMatch.locator('li')).toHaveCount(4);
