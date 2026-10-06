@@ -38,6 +38,10 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
     page.locator('#priser').getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }),
   ).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
   await page.goto('/');
+  await expect(
+    page.locator('#priser').getByRole('link', { name: 'Se forløbet og tilmelding' }),
+  ).toHaveAttribute('href', '/forloebet');
+  await expect(page.locator('a[href*="systeme.io/4b00a70d"]')).toHaveCount(0);
   await page.getByRole('link', { name: 'Find den rette hjælp', exact: true }).click();
   await expect(page.locator('#forloeb')).toBeInViewport();
   await page.getByRole('link', { name: 'Læs om kropsaccept' }).click();
