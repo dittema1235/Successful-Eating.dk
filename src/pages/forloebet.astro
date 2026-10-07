@@ -81,13 +81,18 @@ const schema = {
             </div>
           </div>
 
-          <figure class="fl-hero-image">
-            <img
-              src="/images/ditte-underviser.webp"
-              alt="Ditte Munch-Andersen underviser ved en tavle"
-              width="685"
-              height="586"
-            />
+          <figure
+            class="fl-video"
+            data-video-embed
+            data-video-id="jqrcOWRXXxU"
+            data-video-title="Ditte Munch-Andersen om Fri fra overspisning"
+          >
+            <button type="button" class="fl-video-trigger">
+              <img src="/images/ditte-underviser.webp" alt="" width="685" height="586" />
+              <span class="fl-video-play" aria-hidden="true"></span>
+              <span class="fl-video-label">Se videoen: Ditte fortæller om forløbet</span>
+            </button>
+            <figcaption class="fl-video-note">Videoen indlæses fra YouTube, når du trykker afspil.</figcaption>
           </figure>
         </div>
       </div>
@@ -1302,6 +1307,25 @@ const schema = {
   </div>
 </Layout>
 
+<script>
+  document.querySelectorAll<HTMLElement>('[data-video-embed]').forEach((box) => {
+    const id = box.dataset.videoId;
+    const trigger = box.querySelector<HTMLButtonElement>('.fl-video-trigger');
+    if (!id || !trigger) return;
+    trigger.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+      frame.title = box.dataset.videoTitle ?? 'Video';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.className = 'fl-video-frame';
+      trigger.replaceWith(frame);
+      frame.focus();
+    });
+  });
+</script>
+
 <style is:global>
   .fl-page {
     --cream: #f8f6f0;
@@ -2049,6 +2073,91 @@ const schema = {
     .fl-page .fl-price {
       font-size: 3.5rem;
     }
+  }
+  .fl-page .fl-video {
+    margin: 0;
+  }
+  .fl-page .fl-video-trigger {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    border: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: var(--shadow);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .fl-page .fl-video-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .fl-page .fl-video-trigger::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(39, 49, 43, 0.6), rgba(39, 49, 43, 0) 55%);
+  }
+  .fl-page .fl-video-play {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 84px;
+    height: 84px;
+    margin: -42px 0 0 -42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+  }
+  .fl-page .fl-video-play::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -14px 0 0 -8px;
+    border-style: solid;
+    border-width: 14px 0 14px 24px;
+    border-color: transparent transparent transparent var(--accent-dark);
+  }
+  .fl-page .fl-video-trigger:hover .fl-video-play {
+    transform: scale(1.06);
+  }
+  .fl-page .fl-video-trigger:focus-visible {
+    outline: 3px solid var(--accent-dark);
+    outline-offset: 4px;
+  }
+  .fl-page .fl-video-label {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    bottom: 16px;
+    left: 20px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-align: left;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  }
+  .fl-page .fl-video-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 30px;
+    background: var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .fl-page .fl-video-note {
+    margin-top: 12px;
+    font-size: 0.84rem;
+    color: var(--muted);
   }
   /* isolate the pasted design from global.css defaults */
   .fl-page h1,
