@@ -37,7 +37,7 @@ GitHub Pages kan også servere HTML/CSS/JS, men behandler **ikke** Cloudflares `
 ## Indhold og integrationer
 
 - To behandlingssider: `/forloebet` og `/kropsglaede`.
-- 555 historiske blogartikler på deres oprindelige adresser. 10 udpegede indlæg er samlet i 5 nye kildeunderbyggede artikler med individuelle 301-viderestillinger. Alle 565 gamle blogadresser har dermed fortsat et relevant mål. Desuden 6 bevarede biblioteksadresser, 6 emnehubs og søgning.
+- 550 historiske blogartikler på deres oprindelige adresser. 15 udpegede indlæg er samlet med relevante artikler og har individuelle 301-viderestillinger. Alle 565 gamle blogadresser har dermed fortsat et konkret mål; [URL-kortet fra den aktuelle Simplero-sitemap](docs/SIMPLERO-BLOG-MIGRATION.md) dokumenterer hver overførsel. Desuden 6 bevarede biblioteksadresser, 6 emnehubs og søgning.
 - Kontaktoplysninger og eksterne booking-/checkout-links: `src/data/site.ts`.
 - Forløb: **4.499 kr. inklusive en forsamtale**, med fuld tilbagebetaling ved dårligt match ved forsamtalen. Direkte betaling hos det eksisterende systeme.io-checkout. Alternativt: **50 minutters forsamtale til 645 kr.**, som modregnes ved efterfølgende deltagelse (restbeløb 3.854 kr.).
 - Forsamtalen bookes og betales hos Onlinebooq (`https://dittemunchandersn.onlinebooq.dk/`, fast i `src/data/site.ts`). Sæt `PUBLIC_CONSULTATION_BOOKING_URL` for at overskrive linket, fx ved skift af bookingtjeneste. Ingen booking eller betaling simuleres lokalt.
@@ -51,7 +51,7 @@ GitHub Pages kan også servere HTML/CSS/JS, men behandler **ikke** Cloudflares `
 
 Unikke titler, descriptions, canonical, Open Graph, lokale skrifttyper, responsive WebP-billeder, sitemap, robots.txt, stabil Person/Organization-identitet, Service-schema og artikelmetadata er bygget ind. Centrale artikler begynder med korte svar og kildehenvisninger. FAQ er til læserne; der loves hverken rich results eller AI-citationer.
 
-Den næste indholdsrunde er planlagt i [SEO/GEO-arbejdsplanen](docs/SEO-GEO-ARBEJDSPLAN.md), med en screeningsliste for alle 555 tilbageværende artikler.
+Den næste indholdsrunde er planlagt i [SEO/GEO-arbejdsplanen](docs/SEO-GEO-ARBEJDSPLAN.md). Dens screeningsliste er en dateret baseline fra før de seneste fem sammenlægninger; det aktuelle URL-overblik findes i [Simplero-migrationskortet](docs/SIMPLERO-BLOG-MIGRATION.md).
 
 Planen bygger på begge brugerleverede PDF-rapporter fra 19. september 2026. Se [website- og SEO-plan](docs/WEBSITE-PLAN.md), [lancering](docs/LANCERING.md) og [redaktionel gennemgang](docs/REDAKTION.md).
 

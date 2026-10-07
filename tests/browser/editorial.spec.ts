@@ -35,3 +35,21 @@ test('retired evening introduction returns one permanent redirect to the origina
   expect(target).toBe('/blog/101752-saadan-stopper-du-med-at-overspise-om');
   expect((await request.get(target, { maxRedirects: 0 })).status()).toBe(200);
 });
+test('archive and merged article pages make the free guide the primary next step', async ({
+  page,
+}) => {
+  for (const path of [
+    '/blog/117663-adhd-og-madstoej-hos-kvinder-hvorfor-din',
+    '/madro-biblioteket/troestespisning',
+  ]) {
+    await page.goto(path);
+    const article = page.locator('article');
+    const card = article.locator('aside.facts-card');
+    await expect(article.locator('h1')).toHaveCount(1);
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+    await expect(card.locator('a.button')).toHaveAttribute('href', '/gratis-guide/');
+    await expect(card.locator('a.text-link')).toBeVisible();
+    await card.getByRole('link', { name: 'Se den gratis guide' }).click();
+    await expect(page).toHaveURL(/\/gratis-guide\/?$/);
+  }
+});

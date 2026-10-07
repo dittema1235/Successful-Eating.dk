@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
-import Icon from '../../components/Icon.astro';
+import ArticleGuideCTA from '../../components/ArticleGuideCTA.astro';
 import { articles } from '../../data/articles';
 import { site } from '../../data/site';
 export function getStaticPaths() {
@@ -29,6 +28,9 @@ const schema = {
   title={`${article.title} | Successful Eating`}
   description={article.description}
   schema={schema}
+  ogType="article"
+  publishedTime={article.published}
+  modifiedTime={article.updated}
   breadcrumbs={[
     { name: 'Madro-biblioteket', url: '/madro-biblioteket' },
     { name: article.title, url: `/madro-biblioteket/${article.slug}` },
@@ -56,7 +58,7 @@ const schema = {
         </p>
       </div>
     </header>
-    <div class="section">
+    <div class="section article-content-section">
       <div class="container content-grid">
         <div class="prose">
           {article.sections.map((section, index) => (
@@ -95,27 +97,14 @@ const schema = {
             </section>
           )}
         </div>
-        <aside class="facts-card">
-          <span class="eyebrow">FRA VIDEN TIL STØTTE</span>
-          <h2>Du må gerne få hjælp.</h2>
-          <p class="small muted">
-            Hvis du genkender dig selv, kan du begynde med et forløb eller en individuel forsamtale.
-          </p>
-          <a
-            class="button"
-            style="margin-top:23px"
-            href="/forloebet#priser"
-            data-event="pricing_click"
-            data-location="article"
-          >
-            Se pris & opstart <Icon size={17} />
-          </a>
-          <a class="text-link" style="margin-top:24px" href={article.service}>
-            {article.serviceLabel} <Icon size={16} />
-          </a>
+        <aside class="facts-card tone-sage">
+          <ArticleGuideCTA
+            relatedHref={article.service}
+            relatedLabel={article.serviceLabel}
+            location="library_article"
+          />
         </aside>
       </div>
     </div>
   </article>
-  <CTA />
 </Layout>
