@@ -49,10 +49,19 @@ const schema = {
             <h1 id="hero-heading">Fri fra overspisning</h1>
 
             <p class="fl-intro">
-              <strong>Et 8 ugers psykologisk behandlingsforløb.</strong> Forløbet inkluderer en
-              forsamtale, gruppeterapi over fire mødegange og Successful Eating – navnet på det
-              univers og den metode, jeg har udviklet gennem mange år. Det er her, du finder
-              undervisningen, videoerne og øvelserne, som handler om psykologien bag overspisning.
+              <strong>Et 8 ugers psykologisk behandlingsforløb.</strong> Måske har du prøvet mange gange at
+              få styr på din spisning. Du ved godt, hvad du gerne vil gøre. Men alligevel ender du nogle
+              gange med at spise mere, end du havde tænkt dig. Eller med at spise videre, selvom du
+              egentlig gerne vil stoppe.
+            </p>
+
+            <p class="fl-intro">Det er det, vi arbejder med i Fri fra overspisning.</p>
+
+            <p class="fl-intro">
+              Du får en individuel forsamtale med mig, fire gange gruppeterapi og adgang til Successful
+              Eating – det univers og den metode, jeg har udviklet gennem mange år. Her får du viden,
+              videoer og korte øvelser, som hjælper dig med at forstå dine mønstre og arbejde med dem i din
+              egen hverdag.
             </p>
 
             <div class="fl-section-cta">
@@ -67,16 +76,17 @@ const schema = {
             </div>
 
             <p class="fl-hero-note">
-              Inkl. individuel forsamtale · Eller start med en forsamtale på 50 minutter til{' '}
-              {formatPrice(site.consultationPrice)}
+              Inkl. individuel forsamtale på 50 minutter · Eller start med en forsamtale alene til{' '}
+              {formatPrice(site.consultationPrice)}, som modregnes, hvis du efterfølgende tilmelder dig.
             </p>
 
             <div class="fl-capacity-card">
               <strong>Opstart uge 43 · højst 6 deltagere i gruppen</strong>
               <p>
-                Fri fra overspisning er et nyt behandlingsforløb, og jeg ved endnu ikke, om jeg
-                afholder det igen. Gruppen mødes i uge 43, 45, 47 og 49. Når du tilmelder dig,
-                tager vi forsamtalen.
+                Fri fra overspisning er et nyt behandlingsforløb, og jeg afholder gruppen denne ene gang. Jeg
+                ved ikke, hvornår – eller om – jeg afholder den igen. Alle starter samtidig i uge 43, og
+                gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Når du tilmelder dig, starter vi
+                med din individuelle forsamtale.
               </p>
             </div>
           </div>
@@ -104,21 +114,41 @@ const schema = {
           <div class="fl-recognition-copy">
             <span class="fl-eyebrow">MÅSKE KAN DU GENKENDE DET</span>
 
-            <h2 id="recognition-heading">Når overspisning, selvkritik og tanker om mad fylder</h2>
+            <h2 id="recognition-heading">Når overspisning og tanker om mad fylder mere, end du ønsker</h2>
+
+            <p>Måske kender du det.</p>
 
             <p>
-              Hvis overspisning og tanker om mad påvirker din hverdag, kan psykologisk behandling
-              være relevant.
+              Du har egentlig ikke lyst til at spise mere. Men du gør det alligevel. Måske starter det med
+              lidt. Og så fortsætter du.
             </p>
 
             <p>
-              Vi undersøger sammen, hvad der udløser og vedligeholder dine mønstre, og arbejder med
-              kognitive redskaber, som kan bruges i dit eget liv.
+              Eller måske spiser du en stor mængde mad på kort tid og tænker bagefter: Hvorfor gjorde jeg
+              det igen?
             </p>
 
             <p>
-              Du behøver ikke kunne forklare alt på forhånd. I den individuelle forsamtale taler vi
-              om din situation og vurderer sammen, om Fri fra overspisning er det rette match.
+              Overspisning ser ikke nødvendigvis ens ud fra gang til gang. Nogle gange handler det om store
+              mængder mad. Andre gange handler det om en mindre episode, hvor du bare mærker, at du ikke
+              kan stoppe, selvom du gerne vil.
+            </p>
+
+            <p>
+              Og det er ikke kun selve spisningen, der kan fylde. Det kan også være tankerne om mad.
+              Reglerne for, hvad du må og ikke må spise. Skylden bagefter. Forsøgene på at tage dig sammen.
+              Eller alle de beslutninger, du hele tiden skal træffe omkring mad.
+            </p>
+
+            <p>
+              I behandlingen ser vi på, hvad der sætter din overspisning i gang, og hvad der er med til at
+              holde mønsteret fast.
+            </p>
+
+            <p>
+              Du behøver ikke selv kunne forklare præcis, hvad der foregår. Ved den individuelle forsamtale
+              taler vi om din situation og finder sammen ud af, om Fri fra overspisning er det rigtige for
+              dig.
             </p>
 
             <div class="fl-section-cta">
@@ -146,7 +176,7 @@ const schema = {
 
               <div>
                 <dt>Format</dt>
-                <dd>Live online behandling · Maks. 6 i gruppen</dd>
+                <dd>Live online behandling · Højst 6 deltagere i gruppen</dd>
               </div>
 
               <div>
@@ -156,7 +186,7 @@ const schema = {
 
               <div>
                 <dt>Varighed</dt>
-                <dd>8 uger med daglige øvelser og viden</dd>
+                <dd>8 uger med behandling, viden og korte daglige øvelser</dd>
               </div>
 
               <div>
@@ -171,7 +201,7 @@ const schema = {
 
               <div>
                 <dt>Pris</dt>
-                <dd>{formatPrice(site.treatmentPrice)}</dd>
+                <dd>{formatPrice(site.treatmentPrice)} inkl. individuel forsamtale</dd>
               </div>
             </dl>
           </aside>
@@ -236,58 +266,65 @@ const schema = {
       <div class="fl-container">
         <span class="fl-eyebrow">HVAD KAN DU ARBEJDE HEN IMOD?</span>
 
-        <h2 id="transformation-heading">
-          Forestil dig, hvis du kunne få et friere forhold til mad
-        </h2>
+        <h2 id="transformation-heading">Forestil dig, hvis mad ikke fyldte helt så meget</h2>
 
         <p class="fl-intro">
-          Målet er ikke en bestemt vægt eller kropsstørrelse. Målet er, at overspisning, madregler
-          og tankerne om mad ikke længere styrer dig på samme måde.
+          Målet er ikke en bestemt vægt eller kropsstørrelse. Målet er behandling af overspisning og et
+          friere forhold til mad, så mad og spisning ikke bliver ved med at fylde og styre på samme
+          måde. I forløbet arbejder du blandt andet med at:
         </p>
 
         <div class="fl-transformation-list">
           <div class="fl-transformation-item">
             {' '}
-            Du forstår, hvorfor du overspiser – og hvad der konkret udløser dine overspisninger.
+            Forstå, hvad der sætter din overspisning i gang, og hvad der holder den fast
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du får redskaber til at bryde mønsteret og håndtere trangen til at overspise på nye
-            måder.
+            Opdage, hvornår du spiser uden fysisk sult
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du oplever mere kontrol omkring mad i stedet for igen og igen at føle, at du mister
-            kontrollen.
+            Arbejde med de mønstre og regler, der kan være med til at vedligeholde overspisningen
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du kan håndtere svære følelser uden automatisk at bruge mad til at regulere dem.
+            Håndtere trangen til at overspise uden automatisk at handle på den
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du får mindre madstøj og mere frihed til at være til stede i dit liv uden konstant at
-            tænke på mad, spisning eller næste overspisning.
+            Finde andre måder at håndtere svære følelser, mental træthed og stress på
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du lærer at håndtere tilbagefald, så en svær dag ikke behøver udvikle sig til en ny
-            spiral.
+            Få mindre madstøj og mere plads til det, du egentlig gerne vil bruge din tid og energi på
           </div>
 
           <div class="fl-transformation-item">
             {' '}
-            Du står med konkrete strategier, du kan bruge efter forløbet og en plan for, hvordan du
-            fastholder dine nye mønstre.
+            Håndtere tilbagefald, uden at en svær dag bliver starten på en ny spiral
+          </div>
+
+          <div class="fl-transformation-item">
+            {' '}
+            Arbejde med dit forhold til din krop
+          </div>
+
+          <div class="fl-transformation-item">
+            {' '}
+            Fastholde de nye mønstre, også når behandlingsforløbet er slut
           </div>
         </div>
 
-        <p class="fl-intro fl-transformation-closing">Så er du landet det helt rigtige sted.</p>
+        <p class="fl-intro fl-transformation-closing">
+          Det handler altså ikke om, at du skal blive bedre til at kontrollere din spisning. Vi skal
+          arbejde med det, der gør, at du mister kontrollen over den.
+        </p>
 
         <div class="fl-section-cta">
           <a
@@ -310,10 +347,15 @@ const schema = {
           <h2 id="overview-heading">Det får du i Fri fra overspisning</h2>
 
           <p class="fl-intro">
-            Fri fra overspisning er et 8-ugers psykologisk behandlingsforløb. Jeg følger dig fra
-            den første forsamtale til den sidste gruppeterapi. Mellem samtalerne arbejder du i
-            Successful Eating med viden og øvelser, der hjælper dig med at træne nye mønstre i dit
-            eget liv.
+            Fri fra overspisning er et 8 ugers psykologisk behandlingsforløb, hvor de forskellige dele
+            hænger sammen. Du starter med en individuel forsamtale med mig. Derefter arbejder du mellem
+            gruppemøderne med Successful Eating – viden, refleksioner og korte øvelser, som du kan bruge
+            i din egen hverdag. Undervejs mødes vi fire gange til gruppeterapi.
+          </p>
+
+          <p>
+            Så du får ikke bare mere viden om overspisning. Du får mulighed for at arbejde med dine egne
+            mønstre, mens du er i behandling – og for at øve dig på det, du lærer, mellem møderne.
           </p>
         </div>
 
@@ -324,13 +366,14 @@ const schema = {
             <h3>Individuel forsamtale</h3>
 
             <p>
-              Vi taler om din situation, de områder du har brug for at arbejde med, og de
-              situationer og triggere, der typisk sætter din overspisning i gang.
+              Vi starter med at tale om dig. Hvad sker der, når du overspiser? Hvornår sker det? Hvad har
+              du allerede prøvet? Og hvad vil du gerne have hjælp til?
             </p>
 
             <p>
-              Sammen vurderer vi, om forløbet er det rigtige for dig. Samtalen varer 50 minutter og
-              kan foregå i klinikken i Helsingør eller online.
+              Vi ser også på de situationer og mønstre, der typisk hænger sammen med din overspisning.
+              Samtidig vurderer vi sammen, om Fri fra overspisning er det rigtige behandlingsforløb for
+              dig. Samtalen varer 50 minutter og kan foregå i klinikken i Helsingør eller online.
             </p>
           </article>
 
@@ -340,13 +383,18 @@ const schema = {
             <h3>4 online gruppeterapier</h3>
 
             <p>
-              Hver anden torsdag mødes gruppen online til klinisk struktureret gruppebehandling med
-              højst 6 deltagere.
+              Hver anden torsdag mødes vi online til gruppeterapi. I er højst 6 deltagere, og I er de
+              samme gennem alle fire mødegange.
             </p>
 
             <p>
-              Gruppen mødes på Google Meet torsdag kl. 17–18.30 i uge 43, 45, 47 og 49, og
-              samtalerne optages ikke.
+              Det betyder, at du ikke skal begynde forfra med at fortælle din historie hver gang. I lærer
+              hinanden at kende undervejs og følges ad gennem behandlingen.
+            </p>
+
+            <p>
+              Gruppen mødes på Google Meet torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Samtalerne optages
+              ikke.
             </p>
           </article>
 
@@ -356,14 +404,14 @@ const schema = {
             <h3>Successful Eating: viden og øvelser mellem samtalerne</h3>
 
             <p>
-              Successful Eating er onlinedelen af forløbet, hvor du finder undervisningen,
-              videoerne og øvelserne. Du får ca. 5 timers video i små, overskuelige bidder fordelt
-              over 8 psykologiske faser.
+              Successful Eating er onlinedelen af behandlingsforløbet. Her finder du ca. 5 timers
+              videoundervisning fordelt over 8 psykologiske faser.
             </p>
 
             <p>
-              Du arbejder med konkrete, daglige øvelser, så du får mulighed for at bruge det, du
-              lærer, i din egen hverdag.
+              Du arbejder med én fase ad gangen og får korte øvelser, som du kan bruge i din egen hverdag.
+              Det er en vigtig del af behandlingen, fordi det ikke er nok at forstå, hvorfor du overspiser.
+              Du skal også have mulighed for at øve dig på at gøre noget andet.
             </p>
           </article>
 
@@ -373,10 +421,10 @@ const schema = {
             <h3>Du bliver fulgt hele vejen</h3>
 
             <p>
-              Fra forsamtalen til den sidste gruppeterapi følger jeg dig i arbejdet med dit
+              Fra den første forsamtale til den sidste gruppeterapi følger jeg dig i arbejdet med dit
               overspisningsmønster. Du får 5 terapigange med mig – én individuel forsamtale og fire
-              gruppeterapigange – plus ca. 5 timers videoundervisning og øvelser, som du arbejder
-              med mellem møderne.
+              gruppeterapigange. Derudover får du ca. 5 timers videoundervisning og korte øvelser, som du
+              arbejder med mellem møderne.
             </p>
 
             <p>
@@ -412,34 +460,37 @@ const schema = {
           <div>
             <span class="fl-eyebrow">GRUPPEN</span>
 
-            <h2 id="group-heading">Behandling i gruppe, så du ikke står alene med overspisning</h2>
+            <h2 id="group-heading">En lille gruppe, hvor du ikke står alene med overspisningen</h2>
 
             <p>
-              Hver anden torsdag mødes jeg med gruppen online. Jeg er autoriseret psykolog, og I er
-              højst seks deltagere, så der er tid og ro til dig og dine udfordringer med
+              Der er noget særligt ved at arbejde med overspisning sammen med andre, der kender nogle af de
+              samme udfordringer.
+            </p>
+
+            <p>I Fri fra overspisning er I højst 6 deltagere.</p>
+
+            <p>Alle starter samtidig i uge 43, og I følges ad gennem de fire mødegange.</p>
+
+            <p>
+              Jeg leder gruppen som autoriseret psykolog, og fokus er på psykologisk behandling af
               overspisning.
             </p>
 
             <p>
-              Gruppeforløbet er psykologisk behandling af overspisning (BED). Du arbejder med
-              metoder fra kognitiv adfærdsterapi, som skal mindske overspisningsepisoderne og
-              forbedre din trivsel og dit helbred.
+              Du arbejder med dine egne mønstre, samtidig med at du kan spejle dig i andre og opdage, at du
+              langt fra er den eneste, der kæmper med mad og overspisning.
             </p>
 
             <p>
-              Du får faglig behandling af en psykolog og samtidig støtte af andre, der kender
-              overspisning indefra.
+              Du behøver ikke sidde alene med tanken om, at der er noget galt med dig, fordi du ikke bare
+              kan lade være.
             </p>
 
             <p>
-              Jeg har tavshedspligt, og i gruppen er reglen, at alt, der bliver delt i gruppen, er
-              fortroligt.
+              Jeg har tavshedspligt, og alt, hvad der bliver delt i gruppen, er fortroligt.
             </p>
 
-            <p>
-              Gruppen består af de samme deltagere hele vejen igennem. I starter sammen i uge 43
-              og mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49.
-            </p>
+            <p>Gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49.</p>
 
             <div class="fl-section-cta">
               <a
@@ -496,13 +547,16 @@ const schema = {
           <h2 id="phase-heading">De 8 faser i Successful Eating</h2>
 
           <p class="fl-intro">
-            Du bevæger dig fra at forstå kroppens signaler og dine overspisningsmønstre til at kunne
-            håndtere følelser, tilbagefald og tiden efter forløbet.
+            Du arbejder dig gennem 8 psykologiske faser. Vi starter med kroppens signaler og dine
+            overspisningsmønstre og bevæger os videre til blandt andet følelser, tilbagefald,
+            kropsforhold og tiden efter behandlingen.
           </p>
 
           <p>
-            Du arbejder dig igennem én fase ad gangen. Inden du går videre, stopper du kort op og
-            reflekterer over, hvad du har taget med dig. Næste fase låses op, når du er klar.
+            Du arbejder med én fase ad gangen. Når du har arbejdet med en fase, stopper du op og
+            reflekterer over det, du har lært og lagt mærke til. Først derefter låses næste fase op. På
+            den måde skal du ikke bare skynde dig gennem materialet. Du får mulighed for at arbejde med
+            det, du lærer, før du går videre.
           </p>
         </div>
 
@@ -512,8 +566,8 @@ const schema = {
               <span class="fl-phase-number">Fase 1</span>
               <h3>Fundamentet</h3>
               <p>
-                Du genopbygger kontakten til kroppens sult- og mæthedssignaler og får indsigt i,
-                hvornår du spiser uden fysisk sult.
+                Du genopbygger kontakten til kroppens sult- og mæthedssignaler og undersøger, hvornår du
+                spiser uden fysisk sult.
               </p>
             </article>
           </li>
@@ -534,7 +588,7 @@ const schema = {
               <span class="fl-phase-number">Fase 3</span>
               <h3>Redskaberne</h3>
               <p>
-                Du bryder med slankekurstankegangen og de rigide regler, der ofte holder
+                Du arbejder med de rigide regler og den måde at tænke om mad på, som kan være med til at holde
                 overspisningen fast.
               </p>
             </article>
@@ -544,7 +598,10 @@ const schema = {
             <article class="fl-phase-card">
               <span class="fl-phase-number">Fase 4</span>
               <h3>Perspektivskifte</h3>
-              <p>Du arbejder med at løsne grebet fra slankekure, vægtfokus og madstøj.</p>
+              <p>
+                Du arbejder med at løsne grebet fra vægtfokus og madstøj og undersøger, hvordan du kan se
+                anderledes på mad og spisning.
+              </p>
             </article>
           </li>
 
@@ -552,7 +609,10 @@ const schema = {
             <article class="fl-phase-card">
               <span class="fl-phase-number">Fase 5</span>
               <h3>Følelser og regulering</h3>
-              <p>Du lærer at håndtere tristhed, mental træthed og stress uden at ty til mad.</p>
+              <p>
+                Du arbejder med tristhed, mental træthed og stress og med andre måder at håndtere det på end
+                gennem mad.
+              </p>
             </article>
           </li>
 
@@ -561,8 +621,8 @@ const schema = {
               <span class="fl-phase-number">Fase 6</span>
               <h3>Førstehjælp ved tilbagefald</h3>
               <p>
-                Du lærer at vende tilbage til dine nye mønstre hurtigt og uden straf, så et
-                tilbagefald ikke bliver en ny spiral.
+                Du lærer at vende tilbage til dine nye mønstre efter en svær dag, uden straf og uden at gøre
+                ét tilbagefald til en ny spiral.
               </p>
             </article>
           </li>
@@ -571,7 +631,7 @@ const schema = {
             <article class="fl-phase-card">
               <span class="fl-phase-number">Fase 7</span>
               <h3>Forholdet til kroppen</h3>
-              <p>Du arbejder med at mindske kropslede og finde mere ro i den krop, du har.</p>
+              <p>Du arbejder med kropslede og med at finde mere ro i den krop, du har.</p>
             </article>
           </li>
 
@@ -579,7 +639,10 @@ const schema = {
             <article class="fl-phase-card">
               <span class="fl-phase-number">Fase 8</span>
               <h3>Fasthold forandringen</h3>
-              <p>Du forbereder dig på tiden efter forløbet, så de nye mønstre holder.</p>
+              <p>
+                Du forbereder dig på tiden efter behandlingsforløbet og arbejder med, hvordan du kan
+                fastholde de nye mønstre.
+              </p>
             </article>
           </li>
         </ol>
@@ -683,8 +746,8 @@ const schema = {
             <h2 id="value-heading">Et samlet behandlingsforløb – ikke bare mere viden</h2>
 
             <p>
-              Du får personlig behandlerkontakt, gruppebehandling, videoundervisning og konkrete
-              øvelser, der kan afprøves i din hverdag.
+              Du får et behandlingsforløb, hvor personlig behandlerkontakt, gruppeterapi, videoundervisning
+              og konkrete øvelser hænger sammen.
             </p>
 
             <div class="fl-section-cta">
@@ -797,18 +860,29 @@ const schema = {
             <p>Jeg er klinisk psykolog og står bag Successful Eating.</p>
 
             <p>
+              Jeg har arbejdet med psykologien bag overspisning i mange år, og det er også det, jeg har
+              bygget Fri fra overspisning på.
+            </p>
+
+            <p>Min tilgang er ret enkel:</p>
+
+            <p>Jeg tror ikke, du mangler endnu en regel for, hvad du må spise.</p>
+
+            <p>Jeg tror heller ikke, at løsningen er, at du bare skal tage dig mere sammen.</p>
+
+            <p>
+              I stedet skal vi forstå, hvad der sker, når du overspiser – og arbejde med de mønstre, der
+              gør det svært at stoppe.
+            </p>
+
+            <p>
+              Derfor kombinerer jeg psykologisk behandling med viden, konkrete redskaber og træning i din
+              egen hverdag.
+            </p>
+
+            <p>
               Gennem forløbet følger jeg dig fra den første individuelle forsamtale til den sidste
               gruppeterapi.
-            </p>
-
-            <p>
-              Mit fokus er at give dig psykologisk behandling, konkrete redskaber og mulighed for at
-              øve dig i din egen hverdag.
-            </p>
-
-            <p>
-              Fri fra overspisning er udviklet som et samlet otte ugers behandlingsforløb, hvor
-              personlig behandlerkontakt, gruppebehandling, viden og træning arbejder sammen.
             </p>
 
             <div class="fl-section-cta">
@@ -834,8 +908,10 @@ const schema = {
           <h2 id="fit-heading">Dette kan være relevant for dig, hvis…</h2>
 
           <p class="fl-intro">
-            Tilbuddet er til dig, der oplever, at overspisning og tanker om mad påvirker din
-            trivsel.
+            Du oplever, at overspisning eller tanker om mad fylder mere, end du ønsker. Måske har du
+            prøvet at ændre din spisning mange gange. Måske ved du egentlig godt, hvad du gerne vil gøre,
+            men oplever alligevel, at du ender i de samme mønstre igen. Og måske er du nået til et punkt,
+            hvor du ikke har brug for endnu en plan. Du har brug for at forstå, hvad der faktisk foregår.
           </p>
         </div>
 
@@ -845,16 +921,24 @@ const schema = {
 
             <ul>
               <li>
-                Du oplever tilbagevendende overspisning eller føler, at du mister kontrollen over
-                din spisning.
+                Du oplever tilbagevendende overspisning eller føler, at du mister kontrollen over din
+                spisning.
               </li>
 
-              <li>Madregler, skyld eller bekymringer tager meget af din opmærksomhed.</li>
+              <li>Du spiser nogle gange uden egentlig fysisk sult og har svært ved at stoppe igen.</li>
+
+              <li>Mad, spisning, skyld eller regler fylder meget i dine tanker.</li>
 
               <li>
-                Du ønsker støtte til at forstå dine mønstre og afprøve andre måder at håndtere dem
-                på.
+                Du oplever, at svære følelser, stress eller mental træthed kan hænge sammen med din
+                overspisning.
               </li>
+
+              <li>
+                Du ønsker at forstå dine mønstre frem for endnu en gang bare at forsøge at tage dig sammen.
+              </li>
+
+              <li>Du vil gerne have hjælp til at finde en anden måde at håndtere overspisningen på.</li>
             </ul>
           </article>
 
@@ -862,11 +946,12 @@ const schema = {
             <h3>Det arbejder vi med</h3>
 
             <p>
-              Tilgangen tager afsæt i kognitiv adfærdsterapi. Vi ser på samspillet mellem tanker,
-              følelser, handlinger og din hverdag.
+              Tilgangen tager afsæt i kognitiv adfærdsterapi. Vi ser blandt andet på samspillet mellem
+              tanker, følelser, handlinger og din hverdag – og på de mønstre, der kan være med til at
+              vedligeholde overspisningen.
             </p>
 
-            <p>Indholdet tilpasses efter en vurdering af dine behov.</p>
+            <p>Indholdet tager udgangspunkt i dine behov og din situation.</p>
 
             <p>
               Ved forsamtalen vurderer vi sammen, om Fri fra overspisning er det rette match for dig.
@@ -936,12 +1021,12 @@ const schema = {
         <div class="fl-pricing-intro">
           <span class="fl-eyebrow">FRI FRA OVERSPISNING · PRIS & OPSTART</span>
 
-          <h2 id="pricing-heading">Tilmeld dig nu. Vi starter i uge 43.</h2>
+          <h2 id="pricing-heading">Et nyt behandlingsforløb – med opstart i uge 43</h2>
 
           <p class="fl-intro">
-            Fri fra overspisning er et nyt behandlingsforløb med opstart i uge 43, og jeg ved
-            endnu ikke, om jeg afholder det igen. Ved forsamtalen finder vi sammen ud af, om
-            forløbet passer til dig.
+            Fri fra overspisning er et nyt behandlingsforløb, som jeg afholder denne ene gang. Jeg ved ikke,
+            hvornår – eller om – jeg afholder gruppen igen. Så hvis du gerne vil være med i netop denne
+            gruppe, er det nu, du skal tilmelde dig. Alle starter samtidig i uge 43.
           </p>
         </div>
 
@@ -973,10 +1058,11 @@ const schema = {
           </ul>
 
           <div class="fl-capacity-box-large">
-            <strong>Opstart uge 43 · højst 6 deltagere i gruppen</strong>
+            <strong>Opstart uge 43 · torsdag kl. 17–18.30 · Google Meet · højst 6 deltagere</strong>
 
             <p>
-              Når du tilmelder dig, tager vi forsamtalen. Gruppen mødes i uge 43, 45, 47 og 49.
+              Alle starter samtidig. Gruppen mødes i uge 43, 45, 47 og 49. Når du tilmelder dig,
+              starter vi med din individuelle forsamtale.
             </p>
           </div>
 
@@ -1258,11 +1344,15 @@ const schema = {
             <details>
               <summary>Hvornår starter forløbet, og bliver det afholdt igen?</summary>
               <p>
-                Fri fra overspisning er et nyt behandlingsforløb, og opstart er i uge 43. Gruppen
-                mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49 og består af de samme deltagere
-                hele vejen igennem. Jeg har endnu ikke besluttet, om og hvornår jeg afholder det
-                igen, og om det i så fald bliver i samme form. Når du tilmelder dig, tager vi
-                forsamtalen.
+                Fri fra overspisning er et nyt behandlingsforløb med opstart i uge 43. Alle starter
+                samtidig, og gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Der er fire
+                mødegange med gruppeterapi, og gruppen består af de samme deltagere hele vejen
+                igennem.
+              </p>
+              <p>
+                Jeg afholder gruppen denne ene gang. Jeg ved ikke, hvornår – eller om – jeg
+                afholder den igen. Når du tilmelder dig, starter vi med din individuelle
+                forsamtale.
               </p>
               <p>
                 Har du spørgsmål om opstart, er du altid velkommen til at skrive til mig på
@@ -1281,15 +1371,19 @@ const schema = {
         <h2 id="final-heading">Tag første skridt med en forsamtale.</h2>
 
         <p class="fl-intro">
-          Tilmeld dig Fri fra overspisning. Ved forsamtalen taler vi om din situation og vurderer,
-          om forløbet passer til dig. Opstart er i uge 43.
+          Hvis du går og overvejer, om Fri fra overspisning kunne være noget for dig, starter vi
+          med en individuel forsamtale. Her taler vi om din situation, og vi finder sammen ud af,
+          om behandlingsforløbet passer til dig. Du behøver altså ikke vide på forhånd, om det er
+          det rigtige.
         </p>
 
         <div class="fl-final-capacity">
-          <strong>Nyt forløb · opstart uge 43 · højst 6 deltagere i gruppen</strong>
+          <strong>Opstart er i uge 43</strong>
 
           <p>
-            Fri fra overspisning er nyt, og jeg ved endnu ikke, om jeg afholder det igen.
+            Fri fra overspisning er et nyt behandlingsforløb, og jeg afholder gruppen denne ene
+            gang. Jeg ved ikke, hvornår – eller om – jeg afholder den igen. Så hvis du gerne vil
+            være med i denne gruppe, er det nu.
           </p>
         </div>
 
