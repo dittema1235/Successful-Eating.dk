@@ -188,18 +188,18 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   await expect(buy).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
   await expect(page.locator('#priser')).toContainText('Alle pengene tilbage ved et dårligt match');
   const options = page.locator('[aria-labelledby="intake-heading"]');
-  await expect(options).toContainText('Forsamtale · 645 kr.');
-  await expect(options).toContainText('3.854 kr. mere');
+  await expect(options).toContainText('Forsamtale · 1.295 kr.');
+  await expect(options).toContainText('3.204 kr. mere');
   await expect(options).toContainText('4.499 kr. i alt');
-  await expect(options.getByRole('link', { name: /Book forsamtale · 645 kr\./ })).toHaveAttribute(
+  await expect(options.getByRole('link', { name: /Book forsamtale · 1\.295 kr\./ })).toHaveAttribute(
     'href',
     'https://dittemunchandersn.onlinebooq.dk/',
   );
   await expect(options).toContainText('Du fortsætter til booking og betaling');
   await page.goto('/kontakt');
-  const contactBooking = page.getByRole('link', { name: /Book forsamtale · 645 kr\./ }).first();
+  const contactBooking = page.getByRole('link', { name: /Book forsamtale · 1\.295 kr\./ }).first();
   await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersn.onlinebooq.dk/');
-  await expect(page.locator('.booking-price')).toContainText('645 kr.');
+  await expect(page.locator('.booking-price')).toContainText('1.295 kr.');
   await expect(page.locator('.booking-price')).toContainText('50 minutter');
   await expect(page.locator('main')).toContainText(
     'Gå ind under Successful Eating- BED behandling',
@@ -211,9 +211,9 @@ test('booking, checkout and guide have honest working destinations', async ({ pa
   expect(bookingPosition!.y).toBeLessThan(page.viewportSize()!.height);
   expect(bookingPosition!.y).toBeLessThan(contactPosition!.y);
   await page.goto('/terms');
-  await expect(page.locator('main')).toContainText('50 minutter, 645 kr.');
+  await expect(page.locator('main')).toContainText('50 minutter, 1.295 kr.');
   await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
-  await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.854 kr.');
+  await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.204 kr.');
   await expect(page.locator('main')).not.toContainText('30-minutters');
   await page.goto('/sulteneller');
   const request = page.getByRole('link', { name: 'Ja tak, send mig guiden' });
@@ -248,7 +248,7 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   ).toHaveAttribute('href', 'https://dk.trustpilot.com/review/successfuleating.dk');
   await expect(page.locator('.participant-testimonials')).not.toContainText('kg');
   await expect(page.locator('main')).toContainText('Prisen er momsfritaget');
-  await expect(page.locator('main')).toContainText('50 minutter · 645 kr.');
+  await expect(page.locator('main')).toContainText('50 minutter · 1.295 kr.');
   await expect(page.locator('main')).not.toContainText('Det tidligere website');
   await expect(page.locator('main')).not.toContainText('kontrolgruppe');
   await expect(page.locator('main')).not.toContainText('7.495 kr.');

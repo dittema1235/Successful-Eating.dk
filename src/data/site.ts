@@ -12,7 +12,7 @@ export const site = {
   guide: '/sulteneller',
   checkout: 'https://successfuleating.systeme.io/4b00a70d',
   treatmentPrice: 4499, // Confirmed by owner 2026-09-19; keep one shared source.
-  consultationPrice: 645,
+  consultationPrice: 1295,
   consultationMinutes: 50,
   psychologistHourlyRate: 1295,
   treatmentPriceChecked: '2026-09-19',
