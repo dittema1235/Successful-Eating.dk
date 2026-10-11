@@ -127,6 +127,7 @@ for (const route of [
   '/',
   '/forloebet',
   '/kropsglaede',
+  '/individuelt-forloeb',
   '/om-ditte',
   '/resultater',
   '/sulteneller',

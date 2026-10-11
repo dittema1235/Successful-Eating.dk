@@ -1,0 +1,502 @@
+
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site, formatPrice } from '../data/site';
+
+// Klinikken har sit eget site, hvor booking, tider og vilkår ligger.
+const clinicContact = 'https://dittemunchandersen.dk/kontakt/';
+const clinicBed = 'https://dittemunchandersen.dk/behandling-af-bed/';
+const clinicTerms = 'https://dittemunchandersen.dk/priser-og-vilkaar/';
+
+const price = formatPrice(site.consultationPrice);
+const phoneHref = `tel:${site.phone.replaceAll(' ', '')}`;
+
+const title = 'Individuelt forløb: psykolog i Helsingør eller online | Successful Eating';
+const description = `Individuelle samtaler om overspisning hos psykolog Ditte Munch-Andersen. Kom i klinikken i Helsingør eller mød mig online. ${site.consultationMinutes} minutter til ${price}`;
+
+const schema = {
+  '@type': 'Service',
+  '@id': `${site.url}/individuelt-forloeb#service`,
+  name: 'Individuelt forløb: psykologsamtaler om overspisning',
+  description:
+    'Individuelle psykologsamtaler om overspisning, enten i klinikken i Helsingør eller online.',
+  provider: { '@id': `${site.url}/#organization` },
+  areaServed: [
+    { '@type': 'Country', name: 'Danmark' },
+    { '@type': 'City', name: 'Helsingør' },
+  ],
+  serviceType: 'Individuel psykologisk behandling af overspisning',
+  url: `${site.url}/individuelt-forloeb`,
+  offers: {
+    '@type': 'Offer',
+    price: site.consultationPrice,
+    priceCurrency: 'DKK',
+    description: `Én individuel samtale på ${site.consultationMinutes} minutter, i klinikken i Helsingør eller online.`,
+  },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  schema={schema}
+  breadcrumbs={[{ name: 'Individuelt forløb', url: '/individuelt-forloeb' }]}
+>
+  <section class="page-hero tone-sage">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Brødkrummer">
+        <a href="/">Forside</a>
+        <span>/</span>
+        <span>Individuelt forløb</span>
+      </nav>
+      <div class="individual-hero">
+        <div>
+          <span class="eyebrow">INDIVIDUELT FORLØB · I HELSINGØR ELLER ONLINE</span>
+          <h1>
+            Samtaler med mig, én til én.<br />
+            I Helsingør eller online.
+          </h1>
+          <p class="intro">
+            Passer en gruppe ikke til dig? Eller vil du bare gerne have, at vi tager udgangspunkt i
+            dig og din hverdag? Så kan vi mødes, bare os to. Du kan enten komme ind i min klinik i
+            Helsingør eller mødes med mig online, hvor du selv er.
+          </p>
+          <div class="actions">
+            <a
+              class="button"
+              href={clinicContact}
+              target="_blank"
+              rel="noopener"
+              data-event="clinic_site_click"
+              data-location="individual_hero"
+            >
+              Læs mere og book tid på dittemunchandersen.dk <Icon name="northeast" size={17} />
+            </a>
+            <a class="text-link" href="#sadan-foregaar-det">
+              Sådan foregår det <Icon size={17} />
+            </a>
+          </div>
+          <p class="hero-note">
+            {site.consultationMinutes} minutter · {price} · Klinik i Helsingør eller online
+          </p>
+        </div>
+        <div class="where-card">
+          <ul>
+            <li>
+              <span class="where-icon"><Icon name="pin" size={24} /></span>
+              <div>
+                <strong>I klinikken i Helsingør</strong>
+                <span>{site.address}, lige over for stationen</span>
+              </div>
+            </li>
+            <li>
+              <span class="where-icon"><Icon name="globe" size={24} /></span>
+              <div>
+                <strong>Online</strong>
+                <span>Over video, hvor du selv er</span>
+              </div>
+            </li>
+          </ul>
+          <p class="where-price">
+            Samme pris begge steder: <strong>{price}</strong> · {site.consultationMinutes} minutter
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hvor-vi-moedes" aria-labelledby="where-heading">
+    <div class="container">
+      <span class="eyebrow">DU VÆLGER, HVOR VI MØDES</span>
+      <h2 id="where-heading">Kom forbi klinikken, eller mød mig online</h2>
+      <div class="where-grid">
+        <article>
+          <Icon name="pin" size={28} />
+          <h3>I klinikken i Helsingør</h3>
+          <p>
+            Jeg har klinik på {site.address}, {site.city}, lige over for Helsingør Station. Her
+            sidder vi sammen, ansigt til ansigt.
+          </p>
+        </article>
+        <article>
+          <Icon name="globe" size={28} />
+          <h3>Online</h3>
+          <p>
+            Vi mødes over video. Du skal bruge en stabil internetforbindelse og et sted, hvor du
+            kan tale uforstyrret.
+          </p>
+        </article>
+      </div>
+      <p class="where-note">Prisen er den samme, uanset hvor vi mødes.</p>
+    </div>
+  </section>
+
+  <section class="section work-section" aria-labelledby="work-heading">
+    <div class="container work-grid">
+      <div>
+        <span class="eyebrow">DET ARBEJDER VI MED</span>
+        <h2 id="work-heading">Hjælp til overspisning uden løftede pegefingre</h2>
+        <p>
+          Overspisning har været mit særlige fagområde i 20 år. Du behøver ikke have en diagnose for
+          at komme hos mig. Hvis du gang på gang mister kontrollen over maden, eller hvis skam og
+          selvkritik fylder meget, er du velkommen.
+        </p>
+        <p>
+          Hos mig er der ingen løftede pegefingre og ingen slankekure. Først undersøger vi, hvad der
+          holder dig fast i overspisningen. Derefter arbejder vi med at bryde mønstret og finde
+          mere ro.
+        </p>
+        <p>
+          Jeg bruger primært kognitiv adfærdsterapi (KAT). Helt konkret betyder det, at vi ser på
+          dine triggere, tanker, følelser og vaner omkring mad. Sammen finder vi redskaber, der
+          giver mening i din hverdag.
+        </p>
+        <p class="work-note">
+          Behandlingen handler om overspisningen og din trivsel. Den handler ikke om vægttab.
+        </p>
+      </div>
+      <ul class="work-list">
+        <li>
+          <strong>Forstå mønstret</strong>
+          <span>Hvad sker der før, under og efter en overspisning?</span>
+        </li>
+        <li>
+          <strong>Arbejde med skam og selvkritik</strong>
+          <span>Vi leder efter mere hjælpsomme måder at møde de svære tanker og følelser på.</span>
+        </li>
+        <li>
+          <strong>Omsætte indsigt til handling</strong>
+          <span>Vi finder konkrete redskaber, der passer til netop din hverdag.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="sadan-foregaar-det" aria-labelledby="steps-heading">
+    <div class="container">
+      <span class="eyebrow">SÅDAN FOREGÅR DET</span>
+      <h2 id="steps-heading">
+        Fra første spørgsmål
+        <br />
+        til dit næste skridt.
+      </h2>
+      <div class="steps">
+        <div>
+          <div class="step-number">01</div>
+          <h3>Første samtale</h3>
+          <p>
+            Vi får overblik over, hvad du gerne vil have hjælp til. Du behøver ikke have styr på
+            alle svarene, før du kommer.
+          </p>
+        </div>
+        <div>
+          <div class="step-number">02</div>
+          <h3>Vi aftaler rammerne</h3>
+          <p>
+            Vi sætter mål sammen og aftaler, hvordan forløbet skal se ud. Der er ikke et bestemt
+            antal samtaler, der passer til alle. Jeg lover heller ikke et bestemt resultat på
+            forhånd.
+          </p>
+        </div>
+        <div>
+          <div class="step-number">03</div>
+          <h3>Du får redskaber med hjem</h3>
+          <p>
+            Vi finder konkrete redskaber, du kan bruge i din hverdag, og følger op på, hvordan du
+            oplever forløbet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compare-section" aria-labelledby="compare-heading">
+    <div class="container compare-grid">
+      <div>
+        <span class="eyebrow">INDIVIDUELT FORLØB ELLER GRUPPE?</span>
+        <h2 id="compare-heading">Det er to forskellige tilbud</h2>
+      </div>
+      <div>
+        <p>
+          I et individuelt forløb er det kun dig og mig. Vi aftaler rammerne sammen. Fri fra
+          overspisning er et otte ugers behandlingsforløb med gruppeterapi, hvor du også arbejder
+          med videoer og øvelser mellem mødegangene.
+        </p>
+        <p>Er du i tvivl om, hvad der passer til dig, så skriv til mig. Så finder vi ud af det sammen.</p>
+        <div class="actions">
+          <a
+            class="button"
+            href="/forloebet"
+            data-event="service_click"
+            data-location="individual_compare"
+          >
+            Læs om Fri fra overspisning <Icon size={17} />
+          </a>
+          <a class="text-link" href="/kontakt#skriv">
+            Skriv til mig <Icon size={17} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pris" aria-labelledby="price-heading">
+    <div class="container content-grid">
+      <div class="prose">
+        <h2 id="price-heading">Hvad koster det, og hvad med tilskud?</h2>
+        <p>
+          En samtale varer {site.consultationMinutes} minutter og koster {price} Prisen er den
+          samme, uanset om vi mødes i Helsingør eller online.
+        </p>
+        <p>
+          Har du en privat eller arbejdsgiverbetalt sundhedsforsikring med frit psykologvalg, kan
+          forsikringen måske dække hele eller dele af dit forløb hos mig. Få forsikringsselskabet
+          til at godkende det, før vi går i gang.
+        </p>
+        <p>
+          Som medlem af Sygeforsikringen “danmark” kan du i nogle situationer få tilskud. Det
+          afhænger af din medlemsgruppe og din situation. Gå ikke ud fra, at et forløb for
+          overspisning automatisk er dækket.
+        </p>
+        <p>
+          Afbud eller ændring af tid skal ske senest 24 timer før. Ved senere afbud eller
+          udeblivelse betaler du for samtalen. Du kan læse alle vilkår på{' '}
+          <a href={clinicTerms} target="_blank" rel="noopener">dittemunchandersen.dk</a>.
+        </p>
+        <h2>Hvis du har brug for mere end psykologsamtaler</h2>
+        <p>
+          Hvis overspisningen følges af fysiske symptomer, opkastninger, udtalt restriktiv spisning
+          eller alvorlig psykisk mistrivsel, er det vigtigt, at du også kontakter din læge.
+          Psykologsamtaler kan være en del af hjælpen, men de erstatter ikke en lægelig vurdering.
+        </p>
+        <p class="sources">
+          Kilder: Oplysninger om samtaler, pris og vilkår kommer fra dittemunchandersen.dk, se{' '}
+          <a href={clinicBed} target="_blank" rel="noopener">Behandling af BED og overspisning</a>
+          {' '}og{' '}
+          <a href={clinicTerms} target="_blank" rel="noopener">Priser og vilkår</a>.
+        </p>
+      </div>
+      <aside class="facts-card" aria-label="Kort om det individuelle forløb">
+        <span class="eyebrow">PRAKTISK & OVERSKUELIGT</span>
+        <h2>Individuelt forløb</h2>
+        <dl>
+          <dt>Behandler</dt>
+          <dd>
+            <a href="/om-ditte">Ditte Munch-Andersen, klinisk psykolog</a>
+          </dd>
+          <dt>Sted</dt>
+          <dd>Klinikken i Helsingør eller online</dd>
+          <dt>Samtale</dt>
+          <dd>{site.consultationMinutes} minutter</dd>
+          <dt>Pris</dt>
+          <dd>{price} pr. samtale</dd>
+          <dt>Længde</dt>
+          <dd>Aftales sammen med dig</dd>
+          <dt>Afbud</dt>
+          <dd>Senest 24 timer før</dd>
+        </dl>
+        <a
+          class="button"
+          href={clinicContact}
+          target="_blank"
+          rel="noopener"
+          data-event="clinic_site_click"
+          data-location="individual_facts"
+        >
+          Book tid på dittemunchandersen.dk <Icon name="northeast" size={17} />
+        </a>
+        <p class="small muted">Booking, ledige tider og vilkår ligger på min klinikside.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="closing-cta" aria-labelledby="cta-heading">
+    <div class="container">
+      <span class="eyebrow">DU BEHØVER IKKE HAVE ALLE SVARENE</span>
+      <h2 id="cta-heading">Klar til at tage det første skridt?</h2>
+      <p>
+        Book en tid i min kalender på dittemunchandersen.dk. Her vælger du, om du vil komme i
+        klinikken i Helsingør eller mødes med mig online. Vil du hellere tale med mig først, kan du
+        ringe på <a href={phoneHref}>{site.phone}</a>.
+      </p>
+      <div class="actions">
+        <a
+          class="button"
+          href={clinicContact}
+          target="_blank"
+          rel="noopener"
+          data-event="clinic_site_click"
+          data-location="individual_closing"
+        >
+          Gå til dittemunchandersen.dk <Icon name="northeast" size={17} />
+        </a>
+      </div>
+      <p class="small">
+        Klinik i Helsingør eller online · {site.consultationMinutes} minutter · {price}
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .individual-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: center;
+  }
+  .individual-hero h1 {
+    font-size: clamp(2.5rem, 4.1vw, 3.75rem);
+    hyphens: manual;
+    text-wrap: balance;
+  }
+  .where-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 40px 8px 8px 8px;
+    padding: clamp(24px, 3vw, 34px);
+  }
+  .where-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .where-card li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .where-card li:first-child {
+    padding-top: 0;
+  }
+  .where-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--green);
+    flex-shrink: 0;
+  }
+  .where-card li div strong,
+  .where-card li div span {
+    display: block;
+  }
+  .where-card li div span {
+    color: var(--muted);
+    font-size: var(--text-small);
+    line-height: 1.6;
+  }
+  .where-price {
+    margin-top: 18px;
+    font-size: var(--text-small);
+    color: var(--muted);
+  }
+  .where-price strong {
+    color: var(--ink);
+  }
+  .where-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 35px;
+  }
+  .where-grid article {
+    border-top: 2px solid var(--sage-deep);
+    padding-top: 24px;
+  }
+  .where-grid h3 {
+    font-size: 1.5rem;
+    margin: 16px 0 12px;
+  }
+  .where-grid p {
+    color: var(--muted);
+  }
+  .where-note {
+    margin-top: 28px;
+    font-weight: 550;
+  }
+  .work-section {
+    background: var(--sand);
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: center;
+  }
+  .work-grid h2 {
+    margin-bottom: 22px;
+  }
+  .work-grid p {
+    font-size: var(--text-lead);
+  }
+  .work-note {
+    font-weight: 550;
+  }
+  .work-list {
+    list-style: none;
+    margin: 0;
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .work-list li {
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .work-list li:first-child {
+    padding-top: 0;
+  }
+  .work-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .work-list strong {
+    display: block;
+    color: var(--green);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .work-list span {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.1rem;
+  }
+  .compare-section {
+    background: var(--sage);
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: start;
+  }
+  .compare-grid p {
+    font-size: var(--text-lead);
+  }
+  .closing-cta p a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 1000px) {
+    .individual-hero,
+    .work-grid,
+    .compare-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 700px) {
+    .where-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+  }
+</style>

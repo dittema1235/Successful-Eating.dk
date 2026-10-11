@@ -22,7 +22,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await expect(modules.first()).toContainText('Fundamentet');
   await expect(modules.first()).toContainText('sult- og mæthedssignaler');
   await expect(modules.last()).toContainText('Fasthold forandringen');
-  await expect(modules.last()).toContainText('de nye mønstre holder');
+  await expect(modules.last()).toContainText('fastholde de nye mønstre');
   const noMatch = page.locator('[aria-labelledby="match-heading"]');
   await expect(noMatch.getByRole('heading', { level: 2 })).toHaveText(
     'Fri fra overspisning er ikke det rette tilbud til alle',
@@ -290,6 +290,7 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
   for (const url of [
     '/forloebet',
     '/kropsglaede',
+    '/individuelt-forloeb',
     '/kontakt',
     '/resultater',
     '/madro-biblioteket',

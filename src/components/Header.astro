@@ -31,6 +31,12 @@ const path = Astro.url.pathname;
       >
         Find dit forløb
       </a>
+      <a
+        href="/individuelt-forloeb"
+        aria-current={path === '/individuelt-forloeb' ? 'page' : undefined}
+      >
+        Individuelt forløb
+      </a>
       <a href="/resultater" aria-current={path === '/resultater' ? 'page' : undefined}>
         Resultater
       </a>
@@ -82,5 +88,5 @@ const path = Astro.url.pathname;
       toggle.focus();
     }
   });
-  matchMedia('(min-width: 1001px)').addEventListener('change', close);
+  matchMedia('(min-width: 1271px)').addEventListener('change', close);
 </script>
