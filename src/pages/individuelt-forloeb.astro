@@ -1,10 +1,12 @@
+
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { site, formatPrice } from '../data/site';
 
 // Klinikken har sit eget site, hvor booking, tider og vilkår ligger.
-const clinicBooking = 'https://dittemunchandersen.dk/behandling-af-bed/';
+const clinicContact = 'https://dittemunchandersen.dk/kontakt/';
+const clinicBed = 'https://dittemunchandersen.dk/behandling-af-bed/';
 const clinicTerms = 'https://dittemunchandersen.dk/priser-og-vilkaar/';
 
 const price = formatPrice(site.consultationPrice);
@@ -63,7 +65,7 @@ const schema = {
           <div class="actions">
             <a
               class="button"
-              href={clinicBooking}
+              href={clinicContact}
               target="_blank"
               rel="noopener"
               data-event="clinic_site_click"
@@ -270,7 +272,7 @@ const schema = {
         </p>
         <p class="sources">
           Kilder: Oplysninger om samtaler, pris og vilkår kommer fra dittemunchandersen.dk, se{' '}
-          <a href={clinicBooking} target="_blank" rel="noopener">Behandling af BED og overspisning</a>
+          <a href={clinicBed} target="_blank" rel="noopener">Behandling af BED og overspisning</a>
           {' '}og{' '}
           <a href={clinicTerms} target="_blank" rel="noopener">Priser og vilkår</a>.
         </p>
@@ -296,7 +298,7 @@ const schema = {
         </dl>
         <a
           class="button"
-          href={clinicBooking}
+          href={clinicContact}
           target="_blank"
           rel="noopener"
           data-event="clinic_site_click"
@@ -321,7 +323,7 @@ const schema = {
       <div class="actions">
         <a
           class="button"
-          href={clinicBooking}
+          href={clinicContact}
           target="_blank"
           rel="noopener"
           data-event="clinic_site_click"
