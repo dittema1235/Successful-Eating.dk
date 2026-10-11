@@ -290,6 +290,7 @@ test('key pages fit the viewport and pass accessibility checks', async ({ page }
   for (const url of [
     '/forloebet',
     '/kropsglaede',
+    '/individuelt-forloeb',
     '/kontakt',
     '/resultater',
     '/madro-biblioteket',
