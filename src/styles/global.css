@@ -1977,3 +1977,85 @@ select:focus-visible {
   width: 27px;
   height: 27px;
 }
+
+/* Menu: plads til fanen Individuelt forløb. Fra 1001 til 1270 px bruges mobilmenuen,
+   og fra 1291 px strammes afstanden mellem fanerne lidt, så alle fanerne står på én række. */
+@media (min-width: 1001px) and (max-width: 1270px) {
+  .header-inner {
+    min-height: 80px;
+    gap: 28px;
+  }
+  .wordmark {
+    font-size: 1.4375rem;
+    gap: 12px;
+  }
+  .brand-icon {
+    width: 40px;
+  }
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: none;
+    border: 0;
+    font-size: var(--text-small);
+    color: var(--ink);
+    padding: 12px 0 12px 12px;
+    min-height: 44px;
+  }
+  .menu-bars {
+    width: 21px;
+    height: 13px;
+    border-top: 1px solid var(--green);
+    border-bottom: 1px solid var(--green);
+    position: relative;
+  }
+  .menu-bars:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--green);
+  }
+  .header-inner nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 36px 30px;
+    box-shadow: 0 12px 20px #273e330a;
+    align-items: stretch;
+  }
+  .header-inner nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .header-inner nav > a:not(.button) {
+    font-size: var(--text-small);
+  }
+  .header-inner nav .button {
+    margin-top: 12px;
+  }
+  .header-inner nav .button-small {
+    padding: 12px 18px;
+    font-size: var(--text-small);
+  }
+}
+@media (min-width: 1151px) and (max-width: 1270px) {
+  .header-inner nav {
+    padding-inline: 56px;
+  }
+}
+@media (min-width: 1291px) {
+  .header-inner nav {
+    gap: clamp(8px, calc((100vw - 1250px) / 7), 16px);
+  }
+  .header-inner nav > a:not(.button) {
+    font-size: 0.9375rem;
+  }
+}
