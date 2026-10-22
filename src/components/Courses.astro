@@ -7,16 +7,16 @@ import { services } from '../data/site';
   <div class="container">
     <div class="section-heading">
       <div>
-        <span class="eyebrow">DIN VEJ TIL MERE MADRO</span>
+        <span class="eyebrow">VÆLG DEN RAMME, DER PASSER DIG</span>
         <h2>
-          Forskellige behov.
+          Arbejd selvstændigt.
           <br />
-          Samme omsorg for dig.
+          Eller tal med Ditte.
         </h2>
       </div>
       <p class="intro">
-        Du skal ikke passe ned i en bestemt kasse. Find den støtte, der giver mening for dig og dit
-        liv.
+        Successful Eating er et online selvstudieforløb. Individuelle samtaler er et separat
+        tilbud, som du kan købe, hvis du ønsker personlig kontakt.
       </p>
     </div>
     <div class="course-grid">
@@ -45,13 +45,13 @@ import { services } from '../data/site';
             data-event="service_click"
             data-location={s.slug}
           >
-            Læs om {s.slug === 'kropsglaede' ? 'kropsaccept' : 'forløbet'} <Icon size={18} />
+            Læs om {s.slug === 'kropsglaede' ? 'individuel kropsaccept' : 'Successful Eating'} <Icon size={18} />
           </a>
         </article>
       ))}
     </div>
     <p class="course-help">
-      I tvivl om, hvad der passer til dig? <a href="/kontakt">Lad os finde ud af det sammen.</a>
+      Har du spørgsmål til forskellen? <a href="/kontakt">Kontakt Ditte.</a>
     </p>
   </div>
 </section>

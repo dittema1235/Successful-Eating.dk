@@ -1,43 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import originalTerms from '../data/original-terms.html?raw';
 import { site, formatPrice } from '../data/site';
-// Owner clarifications supersede legacy consultation and continued-access terms.
-const terms = originalTerms
-  .replace(
-    'en 30-minutters individuel klinisk forsamtale, som er inkluderet i forløbsprisen.',
-    `en individuel klinisk forsamtale, som er inkluderet i forløbsprisen på ${formatPrice(site.treatmentPrice)}`,
-  )
-  .replace(
-    'B. Selvstændig klinisk forsamtale (645 kr.)',
-    `B. Selvstændig klinisk forsamtale (${site.consultationMinutes} minutter, ${formatPrice(site.consultationPrice)})`,
-  )
-  .replace(
-    'modregnes de 645 kr. i forløbsprisen.',
-    `modregnes de ${formatPrice(site.consultationPrice)} i forløbsprisen på ${formatPrice(site.treatmentPrice)} Restbeløbet er dermed ${formatPrice(site.treatmentPrice - site.consultationPrice)}`,
-  )
-  .replace(
-    '9. Fortsat adgang og ansvarsbegrænsning',
-    '9. Adgang til materiale og ansvarsbegrænsning',
-  )
-  .replace(
-    'Hvor der gives fortsat adgang til behandlingsfaser efter det aktive forløb (som led i tilbagefaldsforebyggelse og vedligeholdelse), leveres disse, så længe det er muligt for Ditte Munch-Andersen at levere disse inden for normal tilgængelighed og afhængigt af udbyderes levering af platforme mv.',
-    'Du har adgang til alt forløbsmateriale i 12 uger. Derefter udløber adgangen til video, øvelser og øvrigt materiale, herunder materialet om vedligeholdelse og tilbagefaldsforebyggelse. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge efter forløbet.',
-  );
+
+// Udgiv først, når checkoutpris, ratebeløb, moms og samtykke til strakslevering er bekræftet.
 ---
 
 <Layout
-  title="Handelsbetingelser | Successful Eating"
-  description="Handelsbetingelser for behandling og ydelser hos psykolog Ditte Munch-Andersen. Læs om betaling, afbud, rettigheder og behandling af personoplysninger."
-  breadcrumbs={[{ name: 'Handelsbetingelser', url: '/terms' }]}
+  title="Handelsbetingelser for Successful Eating | Online selvstudieforløb"
+  description={`Læs vilkår for Successful Eating: online selvstudie til ${formatPrice(site.productPrice)} inkl. moms, livslang adgang, digital levering og særskilt køb af individuelle samtaler.`}
+  breadcrumbs={[{ name: 'Handelsbetingelser', url: '/terms/' }]}
 >
   <section class="page-hero">
     <div class="container">
       <span class="eyebrow">VILKÅR & PRAKTISK INFORMATION</span>
       <h1>Handelsbetingelser</h1>
       <p class="intro">
-        Her finder du vilkårene for ydelser hos psykolog{' '}
-        <span style="white-space: nowrap">{site.person}.</span>
+        Her finder du vilkårene for Successful Eating – online selvstudieforløb og for
+        individuelle samtaler, der købes særskilt.
       </p>
     </div>
   </section>
@@ -45,22 +24,109 @@ const terms = originalTerms
     <div class="container simple-page">
       <div class="callout">
         <p>
-          Priser og forsamtaler er præciseret 19. september 2026. Adgangen til forløbsmaterialet
-          er præciseret 1. oktober 2026. For denne hjemmesides brug af
-          cookies og eksterne tjenester gælder også{' '}
-          <a class="text-link" href="/privatliv">
-            privatlivsoplysningerne
-          </a>
-          . De konkrete priser og betalingsvilkår fremgår før tilmelding.
+          Successful Eating gennemføres på egen hånd. Du køber adgang til digitalt materiale,
+          ikke individuel behandling. Læs også <a href="/privatliv/">om personoplysninger og cookies</a>.
         </p>
       </div>
-      <div class="prose" set:html={terms} />
+      <div class="prose">
+        <h2>1. Udbyder og produkt</h2>
+        <p>
+          Produkter og ydelser udbydes af psykolog <strong>{site.person}</strong>, CVR-nr.
+          {site.cvr}, {site.address}, 1., {site.city}, Danmark. Telefon: {site.phone}.
+          E-mail: <a href={'mailto:' + site.email}>{site.email}</a>.
+        </p>
+        <p>
+          Successful Eating er et <strong>online selvstudieforløb</strong> med videoer og øvelser,
+          bygget op over 58 dage med et fundament og syv moduler. Du gennemfører det på egen hånd.
+          Der er ingen inkluderet individuel vurdering, personlig sparring, gruppeterapi eller
+          psykologsamtaler.
+        </p>
+
+        <h2>2. Pris og betaling</h2>
+        <p>
+          Prisen for Successful Eating er <strong>{formatPrice(site.productPrice)} inkl. moms</strong>.
+          Alle priser er i danske kroner. Individuelle samtaler er ikke inkluderet i prisen og
+          bestilles og betales særskilt.
+        </p>
+        <p>
+          Onlineforløbet købes via systeme.io med de betalingsmuligheder, der vises på købssiden.
+          Hvis der tilbydes ratebetaling, vises hver rates beløb, antallet af rater og den samlede
+          betalingsforpligtelse, før du gennemfører købet. Du er forpligtet til at betale det
+          samlede beløb for den betalingsform, du vælger.
+        </p>
+
+        <h2>3. Digital levering og adgang</h2>
+        <p>
+          Det digitale selvstudie leveres via systeme.io. Du får normalt oplysninger om din adgang
+          på e-mail inden for få minutter efter købet. Adgangen forudsætter en brugerkonto hos
+          systeme.io, som oprettes ved køb.
+        </p>
+        <p>
+          Du har <strong>livslang adgang til onlineforløbets materiale</strong>. De 58 dage beskriver
+          forløbets opbygning, ikke en udløbsdato for adgangen.
+        </p>
+
+        <h2>4. Fortrydelsesret</h2>
+        <p>
+          Som forbruger har du 14 dages fortrydelsesret ved fjernsalg, jf. forbrugeraftaleloven.
+          Fristen regnes fra den dag, aftalen indgås. Vil du fortryde købet, skal du give skriftlig
+          besked inden for fristen til <a href={'mailto:' + site.email}>{site.email}</a>.
+        </p>
+        <p>
+          For digitalt indhold, der leveres inden fristens udløb, kan fortrydelsesretten bortfalde
+          efter forbrugeraftalelovens regler, hvis du inden leveringen udtrykkeligt samtykker til
+          strakslevering og anerkender, at fortrydelsesretten dermed bortfalder. Et eventuelt
+          samtykke skal fremgå tydeligt, når du køber. Uden et sådant samtykke gælder den
+          almindelige fortrydelsesret.
+        </p>
+
+        <h2>5. Individuelle samtaler</h2>
+        <p>
+          Individuelle samtaler med Ditte kan købes separat, i klinikken i Helsingør eller online.
+          De er ikke en del af Successful Eating. Pris, booking og eventuelle særlige vilkår
+          fremgår af <a href="https://dittemunchandersen.dk/priser-og-vilkaar/">klinikkens vilkår</a>
+          og oplyses, før du bestiller en samtale.
+        </p>
+        <p>
+          Afbud eller ændring af en individuel samtale skal ske senest 24 timer før den aftalte
+          tid via e-mail eller telefon/SMS. Ved afbud mindre end 24 timer før samtalen eller ved
+          udeblivelse opkræves fuldt honorar for samtalen, uanset årsag.
+        </p>
+
+        <h2>6. Rettigheder til materialet</h2>
+        <p>
+          Alle rettigheder til det digitale materiale tilhører Ditte Munch-Andersen. Ved køb får du
+          en personlig licens til at bruge materialet. Det må ikke kopieres eller videregives til
+          andre.
+        </p>
+
+        <h2>7. Driftsforstyrrelser</h2>
+        <p>
+          Midlertidige tekniske problemer hos eksterne platforme kan påvirke adgangen. Kontakt
+          Ditte på <a href={'mailto:' + site.email}>{site.email}</a>, hvis du ikke kan tilgå
+          materialet. Den lovede livslange adgang ændres ikke af, at der opstår et midlertidigt
+          nedbrud.
+        </p>
+
+        <h2>8. Personoplysninger</h2>
+        <p>
+          Oplysninger om behandling af persondata og cookies står i
+          <a href="/privatliv/">privatlivspolitikken</a>. Ved særskilt køb af psykologbehandling
+          gælder krav om fortrolighed og journalføring.
+        </p>
+
+        <h2>9. Klageadgang og lovvalg</h2>
+        <p>
+          Aftalen er underlagt dansk ret. Har du spørgsmål eller klager, kan du kontakte Ditte på
+          <a href={'mailto:' + site.email}>{site.email}</a>.
+        </p>
+        <p>
+          Klager over forbrugerkøb kan indbringes for Center for Klageløsning / Nævnenes Hus,
+          Toldboden 2, 8800 Viborg via <a href="https://www.naevneneshus.dk/">naevneneshus.dk</a>.
+          Klager vedrørende autoriseret sundhedsfaglig psykologbehandling kan indgives til
+          Psykolognævnet.
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
-
-<style>
-  .page-hero .intro {
-    max-width: none;
-  }
-</style>

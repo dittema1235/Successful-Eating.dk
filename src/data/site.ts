@@ -1,168 +1,144 @@
 export const site = {
   name: 'Successful Eating',
+  productName: 'Successful Eating – online selvstudieforløb',
+  purchaseCta: 'Start dit Successful Eating-forløb',
   url: 'https://www.successfuleating.dk',
   person: 'Ditte Munch-Andersen',
   email: 'psykolog@dittemunchandersen.dk',
-  // Confirmed in the detailed report, pages 18 and 44.
   phone: '+45 71 41 59 69',
   address: 'Hovedvagtsstræde 2C',
   city: '3000 Helsingør',
   cvr: '30642155',
-  // Local legacy URL preserved; external opt-in is configured on the landing page.
-  guide: '/sulteneller',
-  checkout: 'https://successfuleating.systeme.io/4b00a70d',
-  treatmentPrice: 4499, // Confirmed by owner 2026-09-19; keep one shared source.
+  guide: '/gratis-guide/',
+  checkout: 'https://successfuleating.systeme.io/onlineforloeb',
+  productPrice: 3499,
+  productDays: 58,
   consultationPrice: 1295,
   consultationMinutes: 50,
-  psychologistHourlyRate: 1295,
-  treatmentPriceChecked: '2026-09-19',
-  login: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
+  login: 'https://successfuleating.systeme.io/school/course/successful_eating',
+  legacyLogin: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',
 };
-export const formatPrice = (amount: number) => `${amount.toLocaleString('da-DK')} kr.`;
-export const treatmentModules = [
+
+export const formatPrice = (amount: number) => amount.toLocaleString('da-DK') + ' kr.';
+
+// Draft from the brief and previous course outline. Replace with the owner's final sales copy.
+// The linked Systeme.io course must contain all eight parts before release.
+export const selfStudyModules = [
   {
-    title: 'Fundamentet',
+    title: 'Fundamentet: sult og mæthed',
     description:
-      'Du genopbygger kontakten til kroppens sult- og mæthedssignaler og får indsigt i, hvornår du spiser uden fysisk sult.',
+      'Du begynder med at lægge mærke til sult, mæthed og de situationer, hvor du spiser uden fysisk sult.',
   },
   {
-    title: 'Det afhængige mønster',
+    title: 'Afhængig spisning',
     description:
-      'Du arbejder med den psykiske afhængighed af mad og lærer strategier til at håndtere impulsen til at overspise.',
+      'Du undersøger de impulser og vaner, der kan få dig til at spise videre, selvom du gerne vil stoppe.',
   },
   {
     title: 'Redskaberne',
     description:
-      'Du bryder med slankekurstankegangen og de rigide regler, der ofte holder overspisningen fast.',
+      'Du får konkrete øvelser til at arbejde med spisningen i din egen hverdag.',
   },
   {
     title: 'Perspektivskifte',
-    description: 'Du arbejder med at løsne grebet fra slankekure, vægtfokus og madstøj.',
-  },
-  {
-    title: 'Følelser og regulering',
-    description: 'Du lærer at håndtere tristhed, mental træthed og stress uden at ty til mad.',
-  },
-  {
-    title: 'Førstehjælp ved tilbagefald',
     description:
-      'Du lærer at vende tilbage til dine nye mønstre hurtigt og uden straf, så et tilbagefald ikke bliver en ny spiral.',
+      'Du ser på madregler, slankekure og tanker, der kan holde overspisningen i gang.',
   },
   {
-    title: 'Forholdet til kroppen',
-    description: 'Du arbejder med at mindske kropslede og finde mere ro i den krop, du har.',
+    title: 'Følelser og følelsesregulering',
+    description:
+      'Du arbejder med sammenhængen mellem følelser, mental belastning og spisning.',
   },
   {
-    title: 'Fasthold forandringen',
-    description: 'Du forbereder dig på tiden efter forløbet, så de nye mønstre holder.',
+    title: 'Førstehjælp ved overspisninger',
+    description:
+      'Du øver dig i at komme videre efter en svær episode uden at starte en ny spiral af selvkritik.',
+  },
+  {
+    title: 'Fra kropslede til kropsaccept',
+    description:
+      'Du undersøger forholdet til din krop og finder måder at mindske den plads, kropskritik tager.',
+  },
+  {
+    title: 'Sådan holder du fast i dine nye vaner',
+    description:
+      'Du lægger en plan for at bruge det, du har lært, også efter de 58 dage.',
   },
 ] as const;
-// Onlinebooq-booking til forsamtalen. PUBLIC_CONSULTATION_BOOKING_URL kan overskrive linket.
-const defaultConsultationUrl = 'https://dittemunchandersn.onlinebooq.dk/';
-const consultationUrl =
-  import.meta.env.PUBLIC_CONSULTATION_BOOKING_URL?.trim() || defaultConsultationUrl;
-if (consultationUrl) {
-  const url = new URL(consultationUrl);
-  if (
-    url.protocol !== 'https:' ||
-    url.username ||
-    url.password ||
-    url.hostname === new URL(site.url).hostname
-  )
-    throw new Error(
-      'PUBLIC_CONSULTATION_BOOKING_URL must be a verified external HTTPS booking/payment URL.',
-    );
-}
+
 export const consultation = {
-  online: Boolean(consultationUrl),
-  href:
-    consultationUrl ||
-    `mailto:${site.email}?subject=${encodeURIComponent(`Forespørgsel om forsamtale: ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}`)}&body=${encodeURIComponent('Hej Ditte\n\nJeg vil gerne aftale en forsamtale. Vil du sende mig oplysninger om ledige tider og betaling?\n\nVenlig hilsen\n')}`,
+  online: true,
+  href: 'https://dittemunchandersen.dk/kontakt/',
 };
+
 export const services = [
   {
     slug: 'forloebet',
-    eyebrow: 'FOR DIG, DER VIL BRYDE MØNSTRET',
-    title: 'Fri fra overspisning',
+    eyebrow: 'FOR DIG, DER VIL ARBEJDE SELVSTÆNDIGT',
+    title: 'Successful Eating',
     intro:
-      'Få hjælp til at forstå din overspisning og skabe et roligere forhold til mad. Med psykologiske redskaber, støtte og plads til dig.',
+      'Et online selvstudieforløb over 58 dage med et fundament og syv moduler. Du arbejder på egen hånd og har livslang adgang til materialet.',
     features: [
-      'Psykologisk behandling af overspisning',
-      'Øvelser, du kan tage med ind i hverdagen',
-      'Online – uanset hvor i landet du bor',
+      'Videoer og øvelser, du arbejder med selv',
+      '58 dage med et fundament og syv moduler',
+      'Livslang adgang til onlineforløbets materiale',
     ],
-    tag: 'Overspisning & madstøj',
+    tag: 'Online selvstudieforløb',
     icon: 'leaf',
     tone: 'sage',
   },
   {
     slug: 'kropsglaede',
-    eyebrow: 'MERE OMSORG. MINDRE KROPSKRITIK.',
+    eyebrow: 'SÆRSKILT INDIVIDUEL BEHANDLING',
     title: 'Kropsaccept',
     intro:
-      'Et individuelt behandlingsforløb til dig, der oplever, at skam, selvkritik og tanker om kroppen tager for meget plads.',
+      'Individuelle samtaler med Ditte om kropskritik og selvbillede. Det er et separat tilbud og er ikke inkluderet i Successful Eating.',
     features: [
-      'Individuel klinisk forsamtale',
       'Personlige samtaler med Ditte',
-      'Terapeutiske øvelser mellem samtalerne',
+      'I Helsingør eller online',
+      'Pris og rammer aftales særskilt',
     ],
-    tag: 'Kropsbillede & selvkritik',
+    tag: 'Individuelle samtaler',
     icon: 'heart',
     tone: 'peach',
   },
 ] as const;
+
 export const faqs = [
   {
-    question: 'Hvad er madro?',
+    question: 'Hvad er Successful Eating?',
     answer:
-      'Madro er et hverdagsudtryk for, at mad, spisning og tanker om kroppen fylder mindre og føles mindre konfliktfyldte. Det er ikke en diagnose eller et bestemt tal på vægten. For nogle handler det om færre overspisninger; for andre om mere fleksibilitet og mindre skyld.',
+      'Successful Eating er et online selvstudieforløb. Du arbejder selvstændigt med videoer og øvelser over 58 dage, fra fundamentet gennem syv moduler. Der er ingen live gruppeterapi eller individuelle samtaler i prisen.',
   },
   {
-    question: 'Er Fri fra overspisning en slankekur?',
+    question: 'Hvor længe har jeg adgang?',
     answer:
-      'Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning. Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret resultat. Behandlingen tager udgangspunkt i din situation.',
+      'Du har livslang adgang til onlineforløbets materiale. De 58 dage beskriver forløbets opbygning, ikke en udløbsdato for din adgang.',
   },
   {
-    question: 'Hvad er med i forløbet — og hvad er ikke med?',
+    question: 'Er individuelle samtaler med Ditte inkluderet?',
     answer:
-      'Du får en individuel klinisk forsamtale (50 minutter) med Ditte, gruppeterapi over fire live online mødegange med højst 6 deltagere, videoundervisning gennem de 8 psykologiske faser, korte daglige øvelser i 8 uger og materiale til hverdagen samt adgang til alt indhold i 12 uger. Under forløbet laver du din egen plan til vedligeholdelse og tilbagefaldsforebyggelse, som du kan bruge bagefter. Adgangen til alt forløbsmateriale, også materialet om vedligeholdelse og tilbagefaldsforebyggelse, udløber efter 12 uger. Forløbet er ikke individuel, løbende terapi – den fælles behandling foregår i gruppe ud over den ene forsamtale – og gruppeterapien optages ikke, så det kræver fremmøde live. Det er heller ikke en slankekur, en kostplan eller en garanti for vægttab; fokus er dit forhold til mad, ikke et bestemt resultat. Forløbet erstatter ikke en ADHD-udredning eller medicinsk/psykiatrisk behandling, selvom ADHD er tænkt ind i strukturen.',
+      'Nej. Du gennemfører onlineforløbet på egen hånd. Hvis du ønsker individuelle samtaler med Ditte Munch-Andersen, kan du købe dem separat. De indgår ikke i prisen for Successful Eating.',
   },
   {
-    question: 'Hvordan låses de næste faser op?',
+    question: 'Hvad koster onlineforløbet?',
     answer:
-      'Du går i gang med én fase ad gangen. Før du fortsætter, reflekterer du kort over, hvad du har lært – det er ikke en test, du kan bestå eller dumpe, men en del af metoden, der sikrer, at indholdet får lov at sætte sig, inden du går videre.',
+      'Successful Eating koster ' + formatPrice(site.productPrice) + ' inkl. moms. Den aktuelle betalingsform og det samlede beløb skal fremgå af købssiden, før du beslutter dig.',
   },
   {
-    question: 'Hvor længe har jeg adgang til materialet?',
+    question: 'Er det en slankekur?',
     answer:
-      'Du har adgang til al videoundervisning, øvelser og materiale i 12 uger. Derefter udløber adgangen, også til materialet om vedligeholdelse og tilbagefaldsforebyggelse. Under forløbet laver du din egen plan, som du kan bruge bagefter. Faserne låses op én ad gangen, så du arbejder dig fremad i dit eget tempo og går videre til næste fase, når du er klar.',
+      'Nej. Du arbejder med de mønstre, der kan holde overspisning og madstøj i gang. Der gives ikke en kostplan eller garanti for vægttab. Resultater fra tidligere deltagere kan ikke forudsige dit resultat.',
   },
   {
-    question: 'Kan jeg få hjælp, hvis jeg har ADHD?',
+    question: 'Er selvstudiet relevant ved BED eller andre spiseforstyrrelser?',
     answer:
-      'Ja. Forskning viser, at ADHD er forbundet med markant øget risiko for BED og andre spiseforstyrrelser. Vanskeligheder med impulskontrol og regulering kan for nogle betyde, at mad bliver den hurtigste vej til at dæmpe uro eller ubehag. Jeg har gennem de sidste mange år haft mange kvinder med ADHD/ADD i mine forløb, og ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk behandling.',
-    source: {
-      label:
-        'Nazar et al. (2016), International Journal of Eating Disorders – meta-analyse af 12 studier',
-      href: 'https://doi.org/10.1002/eat.22643',
-    },
+      'Tvangsoverspisning (BED) er en diagnose, som kræver faglig vurdering. Selvstudiet indeholder ikke en individuel vurdering eller behandling. Hvis du fremkalder opkastning, spiser meget restriktivt, har symptomer på anoreksi eller er bekymret for dit helbred, bør du kontakte din egen læge. Du kan også vælge en særskilt individuel samtale for at tale om, hvilken hjælp der passer til dig.',
   },
   {
-    question: 'Kan forløbet foregå online?',
+    question: 'Kan jeg købe en samtale senere?',
     answer:
-      'Ja, du kan deltage online fra hele Danmark. Individuelle samtaler kan også foregå i klinikken på Hovedvagtsstræde 2C i Helsingør. Du har brug for en stabil internetforbindelse og et sted, hvor du kan tale uforstyrret.',
-  },
-  {
-    question: 'Hvad koster et forløb?',
-    answer: `Fri fra overspisning koster ${formatPrice(site.treatmentPrice)} inklusive en individuel forsamtale. Vurderes forløbet ved forsamtalen at være et dårligt match, får du alle pengene tilbage. Prisen for et individuelt kropsacceptforløb oplyses før aftale.`,
-  },
-  {
-    question: 'Kan jeg starte med en forsamtale?',
-    answer: `Ja. Du kan købe en individuel forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)} Her undersøger vi dine behov og vurderer, om Fri fra overspisning passer til dig. Vælger du efterfølgende forløbet, modregnes hele beløbet i forløbsprisen. Du betaler derfor ${formatPrice(site.treatmentPrice - site.consultationPrice)} mere og ${formatPrice(site.treatmentPrice)} i alt.`,
-  },
-  {
-    question: 'Hvad hvis forløbet ikke er det rette match?',
-    answer: `Køber du hele forløbet til ${formatPrice(site.treatmentPrice)}, og vurderes det ved den inkluderede forsamtale at være et dårligt match, får du alle pengene tilbage. Køber du i stedet forsamtalen særskilt til ${formatPrice(site.consultationPrice)}, betaler du for samtalen; beløbet modregnes, hvis du efterfølgende vælger forløbet.`,
+      'Ja. Individuelle samtaler med Ditte er et separat tilbud, som kan aftales uafhængigt af onlineforløbet. Se siden om individuelle samtaler for pris og booking.',
   },
 ];

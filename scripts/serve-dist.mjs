@@ -18,6 +18,7 @@ const types = {
   '.webp': 'image/webp',
   '.jpg': 'image/jpeg',
   '.png': 'image/png',
+  '.mp4': 'video/mp4',
   '.woff2': 'font/woff2',
 };
 http

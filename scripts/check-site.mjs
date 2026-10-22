@@ -66,7 +66,15 @@ for (const file of files) {
       const j = JSON.parse($(e).text());
       check(j['@context'] === 'https://schema.org', 'schema context');
       for (const n of j['@graph'] || []) {
-        check(n['@type'] !== 'Product', 'unsupported Product schema');
+        if (n['@type'] === 'Product') {
+          check(route === '/forloebet', 'Product schema on an unexpected page');
+          check(n.name === 'Successful Eating – online selvstudieforløb', 'Product name mismatch');
+          check(n.offers?.['@type'] === 'Offer', 'Product offer missing');
+          check(n.offers?.price === 3499, 'Product offer price mismatch');
+          check(n.offers?.priceCurrency === 'DKK', 'Product offer currency mismatch');
+          check(n.offers?.priceSpecification?.valueAddedTaxIncluded === true, 'Product offer VAT status missing');
+          check(n.offers?.url === 'https://successfuleating.systeme.io/onlineforloeb', 'Product checkout mismatch');
+        }
         if (n['@type'] === 'BlogPosting') {
           const author = n.author?.['@id'];
           check(author === `${origin}/om-ditte#person`, 'blog author identity');

@@ -5,44 +5,37 @@ interface Props {
   body?: boolean;
   purchase?: boolean;
 }
-const { body = false, purchase = false } = Astro.props;
+const { body = false } = Astro.props;
 ---
 
 <section class="closing-cta">
   <div class="container">
-    <span class="eyebrow">DU BEHØVER IKKE HAVE ALLE SVARENE</span>
-    <h2>
-      {body ? 'Et første skridt mod mindre kropskritik.' : 'Klar til at få støtte til mere madro?'}
-    </h2>
+    <span class="eyebrow">{body ? 'INDIVIDUEL HJÆLP' : 'ET STED AT BEGYNDE'}</span>
+    <h2>{body ? 'Vil du tale med Ditte om din situation?' : 'Klar til at arbejde med dine mønstre?'}</h2>
     <p>
       {body
-        ? 'Tal med Ditte om din situation og mulighederne for et individuelt forløb. Du får pris og rammer, før du beslutter dig.'
-        : 'Start med hele forløbet inklusive en forsamtale. Vurderer vi ved forsamtalen, at det er et dårligt match, får du alle pengene tilbage.'}
+        ? 'Individuelle psykologsamtaler aftales separat. De er ikke inkluderet i Successful Eating.'
+        : 'Successful Eating er et online selvstudieforløb på 58 dage. Du arbejder selvstændigt og har livslang adgang til materialet.'}
     </p>
     <div class="actions">
       <a
         class="button"
-        href={body ? '/kontakt' : purchase ? site.checkout : '/forloebet'}
-        data-event={body ? 'contact_click' : purchase ? 'checkout_click' : 'service_click'}
+        href={body ? '/individuelt-forloeb/' : site.checkout}
+        data-event={body ? 'service_click' : 'checkout_click'}
         data-location="closing"
       >
-        {body
-          ? 'Tal med Ditte om kropsaccept'
-          : purchase
-            ? `Køb forløbet · ${formatPrice(site.treatmentPrice)}`
-            : 'Se forløbet og pris'}{' '}
-        <Icon size={17} />
+        {body ? 'Se individuelle samtaler' : site.purchaseCta} <Icon size={17} />
       </a>
       {!body && (
-        <a class="text-link" href="/forloebet#priser">
-          Vil du starte med en forsamtale? <Icon size={17} />
+        <a class="text-link" href="/forloebet/">
+          Læs om onlineforløbet <Icon size={17} />
         </a>
       )}
     </div>
     <p class="small">
       {body
-        ? 'Individuelle samtaler · Pris oplyses før aftale'
-        : `Forløb: ${formatPrice(site.treatmentPrice)} · Forsamtale: ${formatPrice(site.consultationPrice)} / ${site.consultationMinutes} minutter`}
+        ? 'Samtaler i Helsingør eller online · Pris og booking oplyses særskilt'
+        : formatPrice(site.productPrice) + ' inkl. moms · Livslang adgang · Samtaler er et separat tilkøb'}
     </p>
   </div>
 </section>

@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { site, consultation, formatPrice } from '../data/site';
+import { site, formatPrice } from '../data/site';
+
+const clinicContact = 'https://dittemunchandersen.dk/kontakt/';
 
 // Google Apps Script-webapp, der sender formularens indhold som e-mail til Ditte.
 const contactFormUrl =
@@ -10,7 +12,7 @@ const contactFormUrl =
 
 <Layout
   title="Kontakt psykolog Ditte Munch-Andersen | Successful Eating"
-  description={`Kontakt psykolog Ditte Munch-Andersen. Start med en forsamtale på ${site.consultationMinutes} minutter til ${formatPrice(site.consultationPrice)}, som modregnes, hvis du vælger Fri fra overspisning.`}
+  description="Kontakt Ditte Munch-Andersen om Successful Eating – online selvstudieforløb eller om individuelle samtaler, som kan købes separat."
   breadcrumbs={[{ name: 'Kontakt', url: '/kontakt' }]}
 >
   <section class="contact-hero">
@@ -22,99 +24,61 @@ const contactFormUrl =
       </nav>
       <div class="contact-hero-grid">
         <div class="contact-copy">
-          <span class="eyebrow">ET ROLIGT FØRSTE SKRIDT</span>
-          <h1>Start med en forsamtale.</h1>
+          <span class="eyebrow">SPØRGSMÅL TIL DIT NÆSTE SKRIDT?</span>
+          <h1>Kontakt Ditte.</h1>
           <p class="intro">
-            Du behøver ikke have svarene på forhånd. Sammen med Ditte finder du ud af, om Fri fra
-            overspisning passer til dig.
+            Successful Eating er et online selvstudieforløb, du arbejder med på egen hånd.
+            Hvis du har spørgsmål til indholdet, eller ønsker en individuel samtale, kan du
+            finde den rette vej her.
           </p>
           <a
             class="button mobile-booking-button"
-            href={consultation.href}
-            data-event={
-              consultation.online
-                ? 'consultation_booking_click'
-                : 'consultation_request_email_click'
-            }
+            href="/forloebet/"
+            data-event="service_click"
             data-location="contact_mobile_intro"
           >
-            {consultation.online
-              ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
-              : 'Aftal forsamtale via e-mail'}{' '}
-            <Icon name="northeast" size={17} />
+            Se Successful Eating <Icon size={17} />
           </a>
-          {consultation.online && (
-            <p class="mobile-booking-hint">
-              Vælg “Successful Eating- BED behandling” og derefter “Forsamtale{' '}
-              {site.consultationPrice} kroner” på bookingsiden.
-            </p>
-          )}
           <ul class="contact-benefits">
-            <li>
-              <Icon name="check" size={19} /> Samtale med en klinisk psykolog
-            </li>
-            <li>
-              <Icon name="check" size={19} /> Online eller i Helsingør
-            </li>
-            <li>
-              <Icon name="check" size={19} /> Prisen modregnes, hvis du vælger forløbet
-            </li>
+            <li><Icon name="check" size={19} /> Selvstudie over 58 dage</li>
+            <li><Icon name="check" size={19} /> Livslang adgang til onlineforløbets materiale</li>
+            <li><Icon name="check" size={19} /> Individuelle samtaler købes separat</li>
           </ul>
           <a class="contact-question-link" href="#skriv">
-            Har du et spørgsmål først? Skriv til Ditte <Icon name="arrow" size={18} />
+            Skriv dit spørgsmål til Ditte <Icon name="arrow" size={18} />
           </a>
         </div>
 
         <article class="booking-card" aria-labelledby="booking-heading">
           <div class="booking-card-main">
-            <span class="eyebrow">FORSAMTALE MED DITTE</span>
-            <h2 id="booking-heading">Book din forsamtale</h2>
+            <span class="eyebrow">SEPARAT TILBUD</span>
+            <h2 id="booking-heading">Individuelle samtaler</h2>
             <p class="booking-price">
               <strong>{formatPrice(site.consultationPrice)}</strong>
               <span>/ {site.consultationMinutes} minutter</span>
             </p>
-            <p>I undersøger dine behov og aftaler, hvad der er det rette næste skridt.</p>
+            <p>
+              Tal med Ditte om din situation i klinikken i Helsingør eller online. Samtalen er
+              ikke inkluderet i prisen for Successful Eating.
+            </p>
             <a
               class="button"
-              href={consultation.href}
-              data-event={
-                consultation.online
-                  ? 'consultation_booking_click'
-                  : 'consultation_request_email_click'
-              }
+              href={clinicContact}
+              data-event="clinic_site_click"
               data-location="contact"
             >
-              {consultation.online
-                ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
-                : 'Aftal forsamtale via e-mail'}{' '}
-              <Icon name="northeast" size={17} />
+              Se pris og booking hos klinikken <Icon name="northeast" size={17} />
             </a>
             <p class="booking-note">
-              {consultation.online
-                ? 'Du vælger tid og betaler med betalingskort hos Onlinebooq.'
-                : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
+              Du fortsætter til Dittes klinikside for kontakt og booking. Et klik er ikke en booking.
             </p>
           </div>
-          {consultation.online && (
-            <div class="booking-steps">
-              <h3>Vælg den rigtige samtale i bookingen</h3>
-              <ol>
-                <li>
-                  Gå ind under <strong>Successful Eating- BED behandling</strong>.
-                </li>
-                <li>
-                  Vælg <strong>Forsamtale {site.consultationPrice} kroner</strong> og betal med det
-                  samme.
-                </li>
-              </ol>
-            </div>
-          )}
         </article>
       </div>
       <p class="booking-alternative">
-        Vil du begynde med hele forløbet? Forsamtalen er inkluderet uden ekstra betaling. Vurderer
-        Ditte ved samtalen, at forløbet ikke passer til dig, får du hele beløbet tilbage.{' '}
-        <a href="/forloebet#priser">Se begge muligheder</a>.
+        Vil du arbejde med videoer og øvelser på egen hånd? Successful Eating koster{' '}
+        {formatPrice(site.productPrice)} inkl. moms og giver livslang adgang.
+        <a href="/forloebet/">Læs om onlineforløbet</a>.
       </p>
     </div>
   </section>

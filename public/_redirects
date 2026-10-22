@@ -1,11 +1,11 @@
 # Cloudflare Pages. Exact mappings precede wildcards. Never redirect all 404s.
 /handelsbetingelser /terms 301
-/adhdvenlig /forloebet 301
-/adhd /forloebet 301
-/samtaleforloeb /forloebet 301
-/vaegttabsforloeb1 /forloebet 301
-/vaegttabsforloeb_med_kognitiv_terapii /forloebet 301
-/wegovy /forloebet 301
+/adhdvenlig /madro-biblioteket/adhd-og-overspisning 301
+/adhd /madro-biblioteket/adhd-og-overspisning 301
+/samtaleforloeb /individuelt-forloeb 301
+/vaegttabsforloeb1 /madro-biblioteket/madro-og-vaegt 301
+/vaegttabsforloeb_med_kognitiv_terapii /madro-biblioteket/madro-og-vaegt 301
+/wegovy /madro-biblioteket/madro-og-vaegt 301
 /andre-onlineforloeb /forloebet 301
 /andre-onlineforløb /forloebet 301
 /funnel/70097/adhd-dopamin-menu /sulteneller 301
@@ -56,4 +56,6 @@
 /blog/92036-leder-du-efter-tilfredsstillelse-alle-de /madro-biblioteket/troestespisning 301
 /blog/89451-lise-knaekkede-vaegtkoden /madro-biblioteket/madro-og-vaegt 301
 /blog/89212-hvordan-kristina-fik-success-med-sit /madro-biblioteket/madro-og-vaegt 301
+/blog/52578-hvordan-er-den-nye-workshop /forloebet 301
+/blog/64221-nu-har-jeg-en-frihed-ift-mad-som-jeg /resultater 301
 # END ARTICLE CONSOLIDATION

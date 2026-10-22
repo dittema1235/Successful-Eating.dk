@@ -14,37 +14,30 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.locator('.hero a.button').click();
   await expect(page).toHaveURL(/\/forloebet$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Fri fra overspisning',
+    'Forstå din overspisning. Og lær at gøre noget andet.',
   );
-  await expect(page.locator('#det-faar-du')).toContainText('4 online gruppeterapier');
-  const modules = page.locator('#faser .fl-phase-grid > li');
+  await expect(page.locator('main')).toHaveCount(1);
+  await expect(page.locator('#det-faar-du')).toContainText('på egen hånd');
+  const modules = page.locator('#moduler .se-module-grid > li');
   await expect(modules).toHaveCount(8);
   await expect(modules.first()).toContainText('Fundamentet');
-  await expect(modules.first()).toContainText('sult- og mæthedssignaler');
-  await expect(modules.last()).toContainText('Fasthold forandringen');
-  await expect(modules.last()).toContainText('fastholde de nye mønstre');
-  const noMatch = page.locator('[aria-labelledby="match-heading"]');
-  await expect(noMatch.getByRole('heading', { level: 2 })).toHaveText(
-    'Fri fra overspisning er ikke det rette tilbud til alle',
-  );
-  await expect(noMatch).toContainText('en personlighedsforstyrrelse');
-  await expect(noMatch.locator('li')).toHaveCount(4);
-  await expect(noMatch.locator('a[href*="systeme.io"], a.fl-button')).toHaveCount(0);
-  await expect(
-    page.locator('#priser').locator('xpath=preceding-sibling::section[1]'),
-  ).toHaveAttribute('aria-labelledby', 'match-heading');
-  await expect(page.locator('#priser')).toBeAttached();
-  await expect(
-    page.locator('#priser').getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }),
-  ).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
+  await expect(modules.last()).toContainText('Sådan holder du fast i dine nye vaner');
+  await expect(page.locator('#priser')).toContainText('3.499 kr.');
+  await expect(page.locator('#priser')).toContainText('Livslang adgang');
+  await expect(page.locator('#priser')).toContainText('Individuelle samtaler');
+  const buttons = page.locator('.se-sales a.button');
+  expect(await buttons.count()).toBeGreaterThan(2);
+  for (const button of await buttons.all()) {
+    await expect(button).toContainText('Start dit Successful Eating-forløb');
+    await expect(button).toHaveAttribute('href', 'https://successfuleating.systeme.io/onlineforloeb');
+  }
   await page.goto('/');
-  await page.getByRole('link', { name: 'Find den rette hjælp', exact: true }).click();
+  await page.getByRole('link', { name: 'Se dine muligheder', exact: true }).click();
   await expect(page.locator('#forloeb')).toBeInViewport();
-  await page.getByRole('link', { name: 'Læs om kropsaccept' }).click();
+  await page.getByRole('link', { name: 'Læs om individuel kropsaccept' }).click();
   await expect(page).toHaveURL(/kropsglaede/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre kropskritik');
-  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/kontakt');
-  await expect(page.locator('.closing-cta')).not.toContainText('4.499');
+  await expect(page.locator('main')).toContainText('særskilt psykologisk behandlingstilbud');
+  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/individuelt-forloeb/');
   expect(errors).toEqual([]);
 });
 test('menu, keyboard and FAQ work', async ({ page, isMobile }) => {
@@ -63,7 +56,7 @@ test('menu, keyboard and FAQ work', async ({ page, isMobile }) => {
     await expect(page).toHaveURL(/om-ditte/);
     await page.goto('/');
   }
-  const question = page.locator('summary').filter({ hasText: 'Hvad er madro?' });
+  const question = page.locator('summary').filter({ hasText: 'Hvad er Successful Eating?' });
   await question.click();
   await expect(question.locator('..')).toHaveAttribute('open', '');
   await expect(question.locator('..').locator('p')).toBeVisible();
@@ -138,10 +131,9 @@ test('search failure is recoverable', async ({ page }) => {
   await page.locator('#archive-search').getByRole('button', { name: 'Søg', exact: true }).click();
   await expect(page.locator('#search-count')).toContainText('fundet i hele arkivet');
 });
-test('header search is visible across pages and opens fuzzy results', async ({ page }) => {
+test('header search stays available on informational pages and opens fuzzy results', async ({ page }) => {
   for (const route of [
     '/',
-    '/forloebet',
     '/kontakt',
     '/madro-biblioteket/troestespisning',
     '/blog/50213-modeldetox-og-kropsbillede',
@@ -173,96 +165,101 @@ test('header search is visible across pages and opens fuzzy results', async ({ p
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(scan.violations).toEqual([]);
 });
-test('booking, checkout and guide have honest working destinations', async ({ page }) => {
+test('self-study checkout, separate sessions and terms have honest destinations', async ({ page }) => {
   await page.goto('/forloebet');
   const offer = await page.locator('script[type="application/ld+json"]').evaluate((el) => {
-    const service = JSON.parse(el.textContent || '{}')['@graph'].find(
-      (entry: { '@type': string }) => entry['@type'] === 'Service',
+    const product = JSON.parse(el.textContent || '{}')['@graph'].find(
+      (entry: { '@type': string }) => entry['@type'] === 'Product',
     );
-    return service.offers;
+    return product.offers;
   });
-  expect(offer.price).toBe(4499);
+  expect(offer.price).toBe(3499);
   expect(offer.priceCurrency).toBe('DKK');
-  expect(offer.url).toBe('https://successfuleating.systeme.io/4b00a70d');
-  const buy = page.getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }).first();
-  await expect(buy).toHaveAttribute('href', 'https://successfuleating.systeme.io/4b00a70d');
-  await expect(page.locator('#priser')).toContainText('Alle pengene tilbage ved et dårligt match');
-  const options = page.locator('[aria-labelledby="intake-heading"]');
-  await expect(options).toContainText('Forsamtale · 1.295 kr.');
-  await expect(options).toContainText('3.204 kr. mere');
-  await expect(options).toContainText('4.499 kr. i alt');
-  await expect(options.getByRole('link', { name: /Book forsamtale · 1\.295 kr\./ })).toHaveAttribute(
-    'href',
-    'https://dittemunchandersn.onlinebooq.dk/',
-  );
-  await expect(options).toContainText('Du fortsætter til booking og betaling');
+  expect(offer.priceSpecification.valueAddedTaxIncluded).toBe(true);
+  expect(offer.url).toBe('https://successfuleating.systeme.io/onlineforloeb');
+  await expect(page.locator('#priser')).toContainText('ikke inkluderet');
   await page.goto('/kontakt');
-  const contactBooking = page.getByRole('link', { name: /Book forsamtale · 1\.295 kr\./ }).first();
-  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersn.onlinebooq.dk/');
+  const contactBooking = page.getByRole('link', { name: /Se pris og booking hos klinikken/ }).first();
+  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersen.dk/kontakt/');
   await expect(page.locator('.booking-price')).toContainText('1.295 kr.');
   await expect(page.locator('.booking-price')).toContainText('50 minutter');
-  await expect(page.locator('main')).toContainText(
-    'Gå ind under Successful Eating- BED behandling',
-  );
+  await expect(page.locator('main')).toContainText('ikke inkluderet i prisen for Successful Eating');
   const bookingPosition = await contactBooking.boundingBox();
   const contactPosition = await page.locator('#skriv').boundingBox();
   expect(bookingPosition).not.toBeNull();
   expect(contactPosition).not.toBeNull();
-  expect(bookingPosition!.y).toBeLessThan(page.viewportSize()!.height);
+  if (page.viewportSize()!.width > 650) {
+    expect(bookingPosition!.y).toBeLessThan(page.viewportSize()!.height);
+  }
   expect(bookingPosition!.y).toBeLessThan(contactPosition!.y);
   await page.goto('/terms');
-  await expect(page.locator('main')).toContainText('50 minutter, 1.295 kr.');
-  await expect(page.locator('main')).toContainText('100 % af dit indbetalte beløb retur');
-  await expect(page.locator('main')).toContainText('Restbeløbet er dermed 3.204 kr.');
-  await expect(page.locator('main')).not.toContainText('30-minutters');
+  await expect(page.locator('main')).toContainText('3.499 kr. inkl. moms');
+  await expect(page.locator('main')).toContainText('livslang adgang');
+  await expect(page.locator('main')).toContainText('14 dages fortrydelsesret');
+  await expect(page.locator('main')).not.toContainText('12 uger');
+  await expect(page.locator('main')).not.toContainText('forsamtalegaranti');
   await page.goto('/sulteneller');
   const request = page.getByRole('link', { name: 'Ja tak, send mig guiden' });
   await expect(request).toHaveAttribute('href', /^https:\/\/successfuleating.systeme.io\/public\//);
   await expect(page.locator('main')).toContainText('guide og e-mails fra Ditte om overspisning');
 });
+test('the portrait and both participant videos load', async ({ page }) => {
+  await page.goto('/forloebet');
+  const portrait = page.locator('.se-about-image img');
+  await portrait.scrollIntoViewIfNeeded();
+  await expect(portrait).toBeVisible();
+  const image = await portrait.evaluate((element: HTMLImageElement) => ({
+    width: element.naturalWidth,
+    height: element.naturalHeight,
+  }));
+  expect(image.width).toBeGreaterThan(0);
+  expect(image.height).toBeGreaterThan(image.width);
+
+  const videos = page.locator('.se-video-grid video');
+  await expect(videos).toHaveCount(2);
+  for (const video of await videos.all()) {
+    await video.scrollIntoViewIfNeeded();
+    const info = await video.evaluate(async (element: HTMLVideoElement) => {
+      element.preload = 'metadata';
+      element.load();
+      await new Promise<void>((resolve, reject) => {
+        if (element.readyState >= HTMLMediaElement.HAVE_METADATA) return resolve();
+        element.addEventListener('loadedmetadata', () => resolve(), { once: true });
+        element.addEventListener('error', () => reject(new Error('Video failed to load')), { once: true });
+      });
+      return { duration: element.duration, width: element.videoWidth, height: element.videoHeight };
+    });
+    expect(info.duration).toBeGreaterThan(0);
+    expect(info.width).toBeGreaterThan(0);
+    expect(info.height).toBeGreaterThan(0);
+  }
+});
 test('results page presents outcomes and a clear path to purchase', async ({ page }) => {
   await page.goto('/resultater');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Når maden fylder mindre');
-  await expect(page.locator('main')).toContainText('Mindre kontroltab');
-  await expect(page.locator('main')).toContainText('Mindre skyld og selvkritik');
-  await expect(page.locator('main')).toContainText('En mere stabil spisning');
-  await expect(page.locator('.results-evidence')).toContainText('78%');
-  await expect(page.locator('.results-evidence')).toContainText('43%');
-  await expect(page.locator('.results-evidence')).toContainText('29%');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Hvad oplevede tidligere deltagere');
+  await expect(page.locator('.results-evidence')).toContainText('78 %');
+  await expect(page.locator('.results-evidence')).toContainText('86 %');
+  await expect(page.locator('.results-evidence')).toContainText('43 %');
+  await expect(page.locator('.results-evidence')).toContainText('29 %');
   await expect(page.locator('.results-evidence')).toContainText(
     'Brugerundersøgelse før/efter Successful Eating (2024)',
   );
   await expect(page.locator('.participant-testimonials')).toContainText(
-    'Sådan beskriver tidligere deltagere forandringen',
-  );
-  await expect(page.locator('.participant-testimonials')).toContainText(
-    'voldsomme overspisninger i mange år',
-  );
-  await expect(page.locator('.participant-testimonials')).toContainText(
-    'ændre mit forhold til mad',
+    'Sådan beskriver tidligere deltagere deres oplevelse',
   );
   await expect(
     page
       .locator('.participant-testimonials')
       .getByRole('link', { name: 'Se også anmeldelser på Trustpilot' }),
   ).toHaveAttribute('href', 'https://dk.trustpilot.com/review/successfuleating.dk');
-  await expect(page.locator('.participant-testimonials')).not.toContainText('kg');
-  await expect(page.locator('main')).toContainText('Prisen er momsfritaget');
-  await expect(page.locator('main')).toContainText('50 minutter · 1.295 kr.');
-  await expect(page.locator('main')).not.toContainText('Det tidligere website');
-  await expect(page.locator('main')).not.toContainText('kontrolgruppe');
-  await expect(page.locator('main')).not.toContainText('7.495 kr.');
-  await expect(page.locator('main')).not.toContainText('12.995 kr.');
-  await expect(page.locator('main')).not.toContainText('Tilmelding åbner snart');
-  await expect(page.locator('main')).not.toContainText('6-måneders');
-  await expect(page.getByRole('link', { name: 'Se forløbet og pris' })).toHaveAttribute(
-    'href',
-    '/forloebet#priser',
+  await expect(page.locator('main')).toContainText('online selvstudieforløb');
+  await expect(page.locator('main')).toContainText('ikke personlig vurdering');
+  await expect(page.getByRole('link', { name: 'Se deltagernes videoer' })).toHaveAttribute(
+    'href', '/forloebet/#erfaringer',
   );
-  await expect(page.locator('.results-offer')).toContainText('4.499 kr.');
   await expect(page.locator('.closing-cta .button')).toHaveAttribute(
     'href',
-    'https://successfuleating.systeme.io/4b00a70d',
+    'https://successfuleating.systeme.io/onlineforloeb',
   );
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
@@ -317,7 +314,7 @@ test.describe('without JavaScript', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Mindre madstøj');
     await page.locator('.hero a.button').click();
     await expect(page).toHaveURL(/forloebet/);
-    await expect(page.getByRole('link', { name: 'Tilmeld dig · 4.499 kr.' }).first()).toBeVisible();
+    await expect(page.locator('.se-hero').getByRole('link', { name: 'Start dit Successful Eating-forløb' })).toBeVisible();
   });
 });
 

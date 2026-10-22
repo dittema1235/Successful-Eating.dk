@@ -14,7 +14,7 @@ test('editorial revisions retain original publication dates and expose matching 
     assert.ok(p, o.slug);
     assert.equal(p.published, originals.find((x) => x.slug === o.slug).published);
     assert.equal(p.editorialAuthor, 'Successful Eating');
-    assert.equal(p.editorialUpdated, '2026-09-19');
+    assert.equal(p.editorialUpdated, o.editorialUpdated);
     assert.equal(p.title, o.title);
     assert.equal(index.find((x) => x.slug === o.slug).description, o.description);
     const $ = load(p.body);

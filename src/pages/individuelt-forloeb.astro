@@ -13,7 +13,7 @@ const price = formatPrice(site.consultationPrice);
 const phoneHref = `tel:${site.phone.replaceAll(' ', '')}`;
 
 const title = 'Individuelt forløb: psykolog i Helsingør eller online | Successful Eating';
-const description = `Individuelle samtaler om overspisning hos psykolog Ditte Munch-Andersen. Kom i klinikken i Helsingør eller mød mig online. ${site.consultationMinutes} minutter til ${price}`;
+const description = `Individuelle samtaler om overspisning hos psykolog Ditte Munch-Andersen. Separat fra online selvstudiet Successful Eating. I Helsingør eller online: ${site.consultationMinutes} minutter til ${price}`;
 
 const schema = {
   '@type': 'Service',
@@ -58,9 +58,9 @@ const schema = {
             I Helsingør eller online.
           </h1>
           <p class="intro">
-            Passer en gruppe ikke til dig? Eller vil du bare gerne have, at vi tager udgangspunkt i
-            dig og din hverdag? Så kan vi mødes, bare os to. Du kan enten komme ind i min klinik i
-            Helsingør eller mødes med mig online, hvor du selv er.
+            Har du brug for personlig kontakt om din spisning? Så kan vi mødes, bare os to, i min
+            klinik i Helsingør eller online. Samtalerne er et separat tilbud og er ikke inkluderet
+            i Successful Eating – online selvstudieforløb.
           </p>
           <div class="actions">
             <a
@@ -78,7 +78,7 @@ const schema = {
             </a>
           </div>
           <p class="hero-note">
-            {site.consultationMinutes} minutter · {price} · Klinik i Helsingør eller online
+            Separat fra onlineforløbet · {site.consultationMinutes} minutter · {price}
           </p>
         </div>
         <div class="where-card">
@@ -214,14 +214,15 @@ const schema = {
   <section class="section compare-section" aria-labelledby="compare-heading">
     <div class="container compare-grid">
       <div>
-        <span class="eyebrow">INDIVIDUELT FORLØB ELLER GRUPPE?</span>
+        <span class="eyebrow">INDIVIDUELLE SAMTALER ELLER SELVSTUDIE?</span>
         <h2 id="compare-heading">Det er to forskellige tilbud</h2>
       </div>
       <div>
         <p>
-          I et individuelt forløb er det kun dig og mig. Vi aftaler rammerne sammen. Fri fra
-          overspisning er et otte ugers behandlingsforløb med gruppeterapi, hvor du også arbejder
-          med videoer og øvelser mellem mødegangene.
+          I et individuelt forløb er det kun dig og mig, og vi aftaler rammerne sammen. Successful
+          Eating er derimod et online selvstudieforløb på 58 dage med videoer og øvelser, som du
+          gennemfører på egen hånd. Individuelle samtaler kan købes separat og er ikke med i
+          onlineforløbets pris.
         </p>
         <p>Er du i tvivl om, hvad der passer til dig, så skriv til mig. Så finder vi ud af det sammen.</p>
         <div class="actions">
@@ -231,7 +232,7 @@ const schema = {
             data-event="service_click"
             data-location="individual_compare"
           >
-            Læs om Fri fra overspisning <Icon size={17} />
+            Læs om Successful Eating <Icon size={17} />
           </a>
           <a class="text-link" href="/kontakt#skriv">
             Skriv til mig <Icon size={17} />
@@ -246,7 +247,7 @@ const schema = {
       <div class="prose">
         <h2 id="price-heading">Hvad koster det, og hvad med tilskud?</h2>
         <p>
-          En samtale varer {site.consultationMinutes} minutter og koster {price} Prisen er den
+          En samtale varer {site.consultationMinutes} minutter og koster {price}. Prisen er den
           samme, uanset om vi mødes i Helsingør eller online.
         </p>
         <p>
