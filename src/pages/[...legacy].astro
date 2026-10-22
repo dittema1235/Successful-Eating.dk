@@ -94,21 +94,21 @@ const schema = {
         </div>
         <aside class="facts-card">
           <span class="eyebrow">ET NÆSTE SKRIDT</span>
-          <h2>{post.salesCta ? 'Fra forståelse til støtte.' : 'Mere plads til dig.'}</h2>
+          <h2>{post.salesCta ? 'Begynd med den gratis guide.' : 'Mere plads til dig.'}</h2>
           <p class="small muted">
             {post.salesCta
-              ? 'Få overblik over mulighederne for psykologisk hjælp med udgangspunkt i din situation.'
+              ? 'Få refleksioner om sult, træthed og overspisning. Guiden er gratis og kan være et første skridt.'
               : 'Lær Ditte og hendes faglige tilgang at kende, eller begynd med en gratis guide.'}
           </p>
           <a
             class="button"
             style="margin-top:23px"
-            href={post.salesCta ? topic.service : '/om-ditte'}
+            href={post.salesCta ? '/gratis-guide/' : '/om-ditte/'}
           >
-            {post.salesCta ? 'Læs om behandlingen' : 'Mød Ditte'} <Icon size={17} />
+            {post.salesCta ? 'Få den gratis guide' : 'Mød Ditte'} <Icon size={17} />
           </a>
-          <a class="text-link" style="margin-top:25px" href="/gratis-guide">
-            Læs om den gratis guide <Icon size={16} />
+          <a class="text-link" style="margin-top:25px" href={post.salesCta ? topic.service : '/gratis-guide/'}>
+            {post.salesCta ? 'Se det aktuelle tilbud' : 'Læs om den gratis guide'} <Icon size={16} />
           </a>
         </aside>
       </div>

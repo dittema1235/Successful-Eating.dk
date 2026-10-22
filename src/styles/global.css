@@ -1978,9 +1978,8 @@ select:focus-visible {
   height: 27px;
 }
 
-/* Menu: plads til fanen Individuelt forløb. Fra 1001 til 1270 px bruges mobilmenuen,
-   og fra 1291 px strammes afstanden mellem fanerne lidt, så alle fanerne står på én række. */
-@media (min-width: 1001px) and (max-width: 1270px) {
+/* Hold hele købsknappens tekst synlig i desktopmenuen. */
+@media (min-width: 1001px) and (max-width: 1351px) {
   .header-inner {
     min-height: 80px;
     gap: 28px;
@@ -2046,16 +2045,31 @@ select:focus-visible {
     font-size: var(--text-small);
   }
 }
-@media (min-width: 1151px) and (max-width: 1270px) {
+@media (min-width: 1151px) and (max-width: 1351px) {
   .header-inner nav {
     padding-inline: 56px;
   }
 }
-@media (min-width: 1291px) {
+@media (min-width: 1352px) {
+  .header-inner {
+    flex-wrap: nowrap;
+    gap: 18px;
+  }
+  .wordmark {
+    font-size: 1.4375rem;
+  }
   .header-inner nav {
-    gap: clamp(8px, calc((100vw - 1250px) / 7), 16px);
+    flex-wrap: nowrap;
+    gap: 12px;
   }
   .header-inner nav > a:not(.button) {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  .header-inner nav .button-small {
+    font-size: 0.875rem;
+    padding-inline: 10px;
+    gap: 8px;
+    white-space: nowrap;
   }
 }

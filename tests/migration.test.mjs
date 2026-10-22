@@ -69,6 +69,8 @@ test('retired articles disappear from listings/search and have exact, one-hop re
   const index = JSON.parse(await readFile('public/search-index.json', 'utf8'));
   const rules = (await readFile('public/_redirects', 'utf8')).split('\n').map((l) => l.trim());
   const targets = new Set([
+    '/forloebet',
+    '/resultater',
     ...consolidated.map((p) => '/madro-biblioteket/' + p.slug),
     ...posts.map((p) => '/' + p.slug),
   ]);
@@ -80,11 +82,13 @@ test('retired articles disappear from listings/search and have exact, one-hop re
     assert.equal(rules.filter((r) => r === `${source} ${target} 301`).length, 1, source);
     assert.ok(!migrations.some((m) => m.source === target), `Redirect chain: ${source}`);
   }
-  for (const target of targets)
+  for (const target of targets) {
+    if (target === '/forloebet' || target === '/resultater') continue;
     assert.ok(
       index.some((p) => '/' + p.slug === target),
       target,
     );
+  }
 });
 test('both current offers and every old sitemap URL have a concrete migration destination', async () => {
   const rules = (await readFile('public/_redirects', 'utf8'))

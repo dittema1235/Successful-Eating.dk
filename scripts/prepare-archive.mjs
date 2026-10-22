@@ -12,6 +12,8 @@ if (
   throw Error('Invalid editorial override');
 const redirects = new Map(migrations.map(({ source, target }) => [source, target]));
 const targets = new Set([
+  '/forloebet',
+  '/resultater',
   ...consolidated.map(({ slug }) => `/madro-biblioteket/${slug}`),
   ...posts.filter((p) => !redirects.has('/' + p.slug)).map((p) => '/' + p.slug),
 ]);

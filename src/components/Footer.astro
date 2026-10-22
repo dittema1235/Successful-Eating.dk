@@ -20,9 +20,9 @@ import { site } from '../data/site';
     </div>
     <div>
       <h2>Find din vej</h2>
-      <a href="/forloebet">Fri fra overspisning</a>
+      <a href="/forloebet/">Successful Eating – online selvstudieforløb</a>
       <a href="/kropsglaede">Kropsaccept</a>
-      <a href="/individuelt-forloeb">Individuelt forløb</a>
+      <a href="/individuelt-forloeb/">Individuelle samtaler</a>
       <a href="/resultater">Metode & resultater</a>
       <a href="/gratis-guide">Gratis guide</a>
     </div>
@@ -32,12 +32,15 @@ import { site } from '../data/site';
       <a href="/madro-biblioteket">Madro-biblioteket</a>
       <a href="/blog">Alle artikler</a>
       <a href={site.login}>
-        Log ind på dit forløb <Icon name="northeast" size={13} />
+        Log ind på onlineforløbet <Icon name="northeast" size={13} />
+      </a>
+      <a href={site.legacyLogin}>
+        Tidligere deltagere: log ind <Icon name="northeast" size={13} />
       </a>
     </div>
     <div>
       <h2>Lad os tale sammen</h2>
-      <a href="/kontakt">Kontakt & forsamtale</a>
+      <a href="/kontakt/">Kontakt Ditte</a>
       <a href="/kontakt#skriv">Skriv en besked</a>
       {site.phone && <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>}
       <p>

@@ -18,7 +18,7 @@ const {
   tone = 'paper',
   eyebrow = 'DIREKTE FRA TIDLIGERE DELTAGERE',
   heading = 'Erfaringer med Successful Eating',
-  intro = 'Udtalelserne handler om det, der er centralt i behandlingen: mindre overspisning, færre madregler og et roligere forhold til mad.',
+  intro = 'Tidligere deltagere fortæller om overspisning, madregler og et forandret forhold til mad.',
   showResultsLink = false,
   showTrustpilotLink = false,
 } = Astro.props;
@@ -52,7 +52,7 @@ const testimonials = selectTestimonials(ids);
     </div>
     <p class="participant-source">
       Udtalelserne er indsamlet direkte fra tidligere deltagere siden 2014. Successful Eating er
-      løbende udviklet, og deltagernes oplevelser er individuelle.
+      løbende udviklet og sælges nu som selvstudie. Deltagernes oplevelser er individuelle.
     </p>
     {(showResultsLink || showTrustpilotLink) && (
       <div class="participant-links">

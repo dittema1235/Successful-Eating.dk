@@ -1,28 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, consultation, services, formatPrice } from '../data/site';
+import Icon from '../components/Icon.astro';
+import FAQ from '../components/FAQ.astro';
+import { selectTestimonials } from '../data/testimonials';
+import { site, formatPrice, selfStudyModules } from '../data/site';
 
-// /forloebet har sin egen side (tidligere genereret af [service].astro).
-// Layout leverer header, footer, popup, cookie-samtykke, canonical/OG og JSON-LD.
-const service = services.find((s) => s.slug === 'forloebet')!;
-const title = 'Fri fra overspisning – behandling af BED online | Successful Eating';
-const description = `Fri fra overspisning: 8 ugers psykologisk behandlingsforløb online hos klinisk psykolog Ditte Munch-Andersen med forsamtale, gruppeterapi over fire mødegange og Successful Eating (videoer og øvelser). Pris ${formatPrice(site.treatmentPrice)}`;
+const stories = selectTestimonials(['winnie', 'mai', 'linda', 'stella']);
+const title = 'Successful Eating – online selvstudieforløb på 58 dage';
+const description =
+  'Successful Eating er et online selvstudieforløb om overspisning: 58 dage, et fundament og syv moduler. Livslang adgang til materialet. ' +
+  formatPrice(site.productPrice) + ' inkl. moms.';
+
 const schema = {
-  '@type': 'Service',
-  '@id': `${site.url}/${service.slug}#service`,
-  name: 'Fri fra overspisning – behandling af overspisning online',
-  description: service.intro,
-  provider: { '@id': `${site.url}/#organization` },
-  areaServed: { '@type': 'Country', name: 'Danmark' },
-  serviceType: 'Kognitiv behandling af overspisning',
-  url: `${site.url}/${service.slug}`,
+  '@type': 'Product',
+  '@id': site.url + '/forloebet/#product',
+  name: site.productName,
+  description,
+  category: 'Online selvstudieforløb',
+  brand: { '@type': 'Brand', name: site.name },
+  provider: { '@id': site.url + '/#organization' },
   offers: {
     '@type': 'Offer',
-    price: site.treatmentPrice,
-    priceCurrency: 'DKK',
     url: site.checkout,
-    description:
-      'Otte ugers behandlingsforløb, hvor en individuel forsamtale er inkluderet. Alle pengene tilbage, hvis forløbet ved forsamtalen vurderes at være et dårligt match.',
+    price: site.productPrice,
+    priceCurrency: 'DKK',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: site.productPrice,
+      priceCurrency: 'DKK',
+      valueAddedTaxIncluded: true,
+    },
   },
 };
 ---
@@ -31,2243 +38,461 @@ const schema = {
   title={title}
   description={description}
   schema={schema}
-  breadcrumbs={[{ name: service.title, url: `/${service.slug}` }]}
+  breadcrumbs={[{ name: 'Successful Eating', url: '/forloebet/' }]}
 >
-  <div class="fl-page">
-    <section class="fl-hero" aria-labelledby="hero-heading">
-      <div class="fl-container">
-        <nav class="fl-breadcrumbs" aria-label="Brødkrummer">
-          <a href="/">Forside</a>
-          <span>/</span>
-          <span>Fri fra overspisning</span>
-        </nav>
-
-        <div class="fl-hero-grid">
-          <div class="fl-hero-copy">
-            <span class="fl-eyebrow">Overspisning & madstøj · Online i hele Danmark</span>
-
-            <h1 id="hero-heading">Fri fra overspisning</h1>
-
-            <p class="fl-intro">
-              <strong>Et 8 ugers psykologisk behandlingsforløb.</strong> Måske har du mange gange lovet dig
-              selv, at nu skulle det være slut. Du ved godt, hvad du gerne vil. Men alligevel ender du
-              nogle gange med at spise mere, end du havde tænkt dig. Eller med at spise videre, selvom du
-              egentlig gerne vil stoppe.
-            </p>
-
-            <p class="fl-intro">Det er det, vi arbejder med i Fri fra overspisning.</p>
-
-            <p class="fl-intro">
-              Du får en individuel forsamtale med mig, fire gange gruppeterapi og adgang til Successful
-              Eating – det univers og den metode, jeg har udviklet gennem mange år. Her får du viden,
-              videoer og korte øvelser, som hjælper dig med at forstå dine mønstre og arbejde med dem i din
-              egen hverdag.
-            </p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="hero"
-              >
-                Tilmeld dig · {formatPrice(site.treatmentPrice)}
-              </a>
-            </div>
-
-            <p class="fl-hero-note">
-              Inkl. individuel forsamtale på 50 minutter · Eller start med en forsamtale alene til{' '}
-              {formatPrice(site.consultationPrice)}, som modregnes, hvis du efterfølgende tilmelder dig.
-            </p>
-
-            <div class="fl-capacity-card">
-              <strong>Opstart uge 43 · højst 6 deltagere i gruppen</strong>
-              <p>
-                Fri fra overspisning er et nyt behandlingsforløb, og jeg afholder gruppen denne ene gang. Jeg
-                ved ikke, hvornår – eller om – jeg afholder den igen. Alle starter samtidig i uge 43, og
-                gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Når du tilmelder dig, starter vi
-                med din individuelle forsamtale.
-              </p>
-            </div>
-          </div>
-
-          <figure
-            class="fl-video"
-            data-video-embed
-            data-video-id="6jLXFgJHOM0"
-            data-video-title="Ditte Munch-Andersen om Fri fra overspisning"
-          >
-            <button type="button" class="fl-video-trigger">
-              <img src="/images/ditte-underviser.webp" alt="" width="685" height="586" />
-              <span class="fl-video-play" aria-hidden="true"></span>
-              <span class="fl-video-label">Se videoen: Ditte fortæller om forløbet</span>
-            </button>
-            <figcaption class="fl-video-note">Videoen indlæses fra YouTube, når du trykker afspil.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-white" aria-labelledby="recognition-heading">
-      <div class="fl-container">
-        <div class="fl-recognition-grid">
-          <div class="fl-recognition-copy">
-            <span class="fl-eyebrow">MÅSKE KAN DU GENKENDE DET</span>
-
-            <h2 id="recognition-heading">Når overspisning og tanker om mad fylder mere, end du ønsker</h2>
-
-            <p>Måske kender du det.</p>
-
-            <p>
-              Du har egentlig ikke lyst til at spise mere. Men du gør det alligevel. Måske starter det med
-              lidt. Og så fortsætter du.
-            </p>
-
-            <p>
-              Eller måske spiser du en stor mængde mad på kort tid og tænker bagefter: Hvorfor gjorde jeg
-              det igen?
-            </p>
-
-            <p>
-              Overspisning ser ikke nødvendigvis ens ud fra gang til gang. Nogle gange handler det om store
-              mængder mad. Andre gange handler det om en mindre episode, hvor du bare mærker, at du ikke
-              kan stoppe, selvom du gerne vil.
-            </p>
-
-            <p>
-              Og det er ikke kun selve spisningen, der kan fylde. Det kan også være tankerne om mad.
-              Reglerne for, hvad du må og ikke må spise. Skylden bagefter. Forsøgene på at tage dig sammen.
-              Eller alle de beslutninger, du hele tiden skal træffe omkring mad.
-            </p>
-
-            <p>
-              I behandlingen ser vi på, hvad der sætter din overspisning i gang, og hvad der er med til at
-              holde mønsteret fast.
-            </p>
-
-            <p>
-              Du behøver ikke selv kunne forklare præcis, hvad der foregår. Ved den individuelle forsamtale
-              taler vi om din situation og finder sammen ud af, om Fri fra overspisning er det rigtige for
-              dig.
-            </p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="recognition"
-              >
-                Tag første skridt · {formatPrice(site.treatmentPrice)}
-              </a>
-            </div>
-          </div>
-
-          <aside class="fl-facts-card">
-            <span class="fl-eyebrow">PRAKTISK & OVERSKUELIGT</span>
-
-            <h3>Fri fra overspisning</h3>
-
-            <dl>
-              <div>
-                <dt>Behandler</dt>
-                <dd>Ditte Munch-Andersen, klinisk psykolog</dd>
-              </div>
-
-              <div>
-                <dt>Format</dt>
-                <dd>Live online behandling · Højst 6 deltagere i gruppen</dd>
-              </div>
-
-              <div>
-                <dt>Målgruppe</dt>
-                <dd>Overspisning & madstøj</dd>
-              </div>
-
-              <div>
-                <dt>Varighed</dt>
-                <dd>8 uger med behandling, viden og korte daglige øvelser</dd>
-              </div>
-
-              <div>
-                <dt>Adgang til materiale</dt>
-                <dd>12 uger</dd>
-              </div>
-
-              <div>
-                <dt>Gruppen</dt>
-                <dd>Torsdage kl. 17–18.30 i uge 43, 45, 47 og 49 · Google Meet</dd>
-              </div>
-
-              <div>
-                <dt>Pris</dt>
-                <dd>{formatPrice(site.treatmentPrice)} inkl. individuel forsamtale</dd>
-              </div>
-            </dl>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-sage" aria-labelledby="results-heading">
-      <div class="fl-container">
-        <div class="fl-results-heading">
-          <span class="fl-eyebrow">RESULTATER FRA 2024</span>
-
-          <h2 id="results-heading">Hvad oplevede deltagere, der gennemførte forløbet?</h2>
-
-          <p class="fl-intro">
-            I en brugerundersøgelse fra 2024 blandt deltagere, der gennemførte forløbet, blev der
-            rapporteret konkrete ændringer i overspisning samt psykisk og fysisk helbred.
+  <div class="se-sales">
+    <section class="se-hero" aria-labelledby="sales-heading">
+      <div class="container se-hero-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Brødkrummer">
+            <a href="/">Forside</a><span>/</span><span>Successful Eating</span>
+          </nav>
+          <span class="eyebrow">Successful Eating · online selvstudieforløb</span>
+          <h1 id="sales-heading">Forstå din overspisning. Og lær at gøre noget andet.</h1>
+          <p class="se-lead">
+            Du ved måske allerede en hel del om mad. Alligevel kan du stå i køkkenet om aftenen og
+            mærke, at den plan, du lagde i morges, ikke hjælper.
           </p>
-        </div>
-
-        <div class="fl-result-grid">
-          <article class="fl-result-card">
-            <span class="fl-result-number">78 %</span>
-            <p>havde ingen eller højst én overspisning de sidste 2 uger af forløbet.</p>
-          </article>
-
-          <article class="fl-result-card">
-            <span class="fl-result-number">43 %</span>
-            <p>oplevede forbedret psykisk helbred.</p>
-          </article>
-
-          <article class="fl-result-card">
-            <span class="fl-result-number">29 %</span>
-            <p>oplevede markant bedre fysisk helbred.</p>
-          </article>
-        </div>
-
-        <p class="fl-result-source">
-          Resultaterne er individuelle og dokumenterer ikke et bestemt resultat for den enkelte.{' '}
-          <a href="/resultater#dokumenterede-resultater">
-            Læs mere om undersøgelsen og resultaterne.
-          </a>
-        </p>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="results"
-          >
-            Start dit forløb · {formatPrice(site.treatmentPrice)}
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="fl-section fl-transformation fl-tone-peach"
-      aria-labelledby="transformation-heading"
-    >
-      <div class="fl-container">
-        <span class="fl-eyebrow">HVAD KAN DU ARBEJDE HEN IMOD?</span>
-
-        <h2 id="transformation-heading">Forestil dig, hvis mad ikke fyldte helt så meget</h2>
-
-        <p class="fl-intro">
-          Målet er ikke en bestemt vægt eller kropsstørrelse. Målet er behandling af overspisning og et
-          friere forhold til mad, så mad og spisning ikke bliver ved med at fylde og styre på samme
-          måde. I forløbet arbejder du blandt andet med at:
-        </p>
-
-        <div class="fl-transformation-list">
-          <div class="fl-transformation-item">
-            {' '}
-            Forstå, hvad der sætter din overspisning i gang, og hvad der holder den fast
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Opdage, hvornår du spiser uden fysisk sult
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Arbejde med de mønstre og regler, der kan være med til at vedligeholde overspisningen
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Håndtere trangen til at overspise uden automatisk at handle på den
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Finde andre måder at håndtere svære følelser, mental træthed og stress på
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Få mindre madstøj og mere plads til det, du egentlig gerne vil bruge din tid og energi på
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Håndtere tilbagefald, uden at en svær dag bliver starten på en ny spiral
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Arbejde med dit forhold til din krop
-          </div>
-
-          <div class="fl-transformation-item">
-            {' '}
-            Fastholde de nye mønstre, også når behandlingsforløbet er slut
-          </div>
-        </div>
-
-        <p class="fl-intro fl-transformation-closing">
-          Det handler altså ikke om, at du skal blive bedre til at kontrollere din spisning. Vi skal
-          arbejde med det, der gør, at du mister kontrollen over den.
-        </p>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="transformation"
-          >
-            Få støtte til at skabe nye mønstre
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-white" id="det-faar-du" aria-labelledby="overview-heading">
-      <div class="fl-container">
-        <div class="fl-section-heading">
-          <span class="fl-eyebrow">FAGLIG STØTTE · PLADS TIL DIN HVERDAG</span>
-
-          <h2 id="overview-heading">Det får du i Fri fra overspisning</h2>
-
-          <p class="fl-intro">
-            Fri fra overspisning er et 8 ugers psykologisk behandlingsforløb, hvor de forskellige dele
-            hænger sammen. Du starter med en individuel forsamtale med mig. Derefter arbejder du mellem
-            gruppemøderne med Successful Eating – viden, refleksioner og korte øvelser, som du kan bruge
-            i din egen hverdag. Undervejs mødes vi fire gange til gruppeterapi.
-          </p>
-
           <p>
-            Så du får ikke bare mere viden om overspisning. Du får mulighed for at arbejde med dine egne
-            mønstre, mens du er i behandling – og for at øve dig på det, du lærer, mellem møderne.
+            I Successful Eating bruger du psykologisk viden, videoer og øvelser på egen hånd – i
+            dit eget tempo.
           </p>
-        </div>
-
-        <div class="fl-inclusion-grid">
-          <article class="fl-inclusion-card">
-            <div class="fl-icon">01</div>
-
-            <h3>Individuel forsamtale</h3>
-
-            <p>
-              Vi starter med at tale om dig. Hvad sker der, når du overspiser? Hvornår sker det? Hvad har
-              du allerede prøvet? Og hvad vil du gerne have hjælp til?
-            </p>
-
-            <p>
-              Vi ser også på de situationer og mønstre, der typisk hænger sammen med din overspisning.
-              Samtidig vurderer vi sammen, om Fri fra overspisning er det rigtige behandlingsforløb for
-              dig. Samtalen varer 50 minutter og kan foregå i klinikken i Helsingør eller online.
-            </p>
-          </article>
-
-          <article class="fl-inclusion-card">
-            <div class="fl-icon">02</div>
-
-            <h3>4 online gruppeterapier</h3>
-
-            <p>
-              Hver anden torsdag mødes vi online til gruppeterapi. I er højst 6 deltagere, og I er de
-              samme gennem alle fire mødegange.
-            </p>
-
-            <p>
-              Det betyder, at du ikke skal begynde forfra med at fortælle din historie hver gang. I lærer
-              hinanden at kende undervejs og følges ad gennem behandlingen.
-            </p>
-
-            <p>
-              Gruppen mødes på Google Meet torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Samtalerne optages
-              ikke.
-            </p>
-          </article>
-
-          <article class="fl-inclusion-card">
-            <div class="fl-icon">03</div>
-
-            <h3>Successful Eating: viden og øvelser mellem samtalerne</h3>
-
-            <p>
-              Successful Eating er onlinedelen af behandlingsforløbet. Her finder du ca. 5 timers
-              videoundervisning fordelt over 8 psykologiske faser.
-            </p>
-
-            <p>
-              Du arbejder med én fase ad gangen og får korte øvelser, som du kan bruge i din egen hverdag.
-              Det er en vigtig del af behandlingen, fordi det ikke er nok at forstå, hvorfor du overspiser.
-              Du skal også have mulighed for at øve dig på at gøre noget andet.
-            </p>
-          </article>
-
-          <article class="fl-inclusion-card">
-            <div class="fl-icon">04</div>
-
-            <h3>Du bliver fulgt hele vejen</h3>
-
-            <p>
-              Fra den første forsamtale til den sidste gruppeterapi følger jeg dig i arbejdet med dit
-              overspisningsmønster. Du får 5 terapigange med mig – én individuel forsamtale og fire
-              gruppeterapigange. Derudover får du ca. 5 timers videoundervisning og korte øvelser, som du
-              arbejder med mellem møderne.
-            </p>
-
-            <p>
-              I videoerne får du den viden og erfaring, jeg har samlet gennem mere end 20 år som
-              psykolog, og som ligger til grund for den måde, jeg arbejder med overspisning på.
-            </p>
-
-            <p>
-              Kombinationen af terapi, viden og træning gør Fri fra overspisning til et samlet
-              behandlingsforløb over 8 uger. Ved at kombinere individuel samtale, gruppeterapi og
-              videoundervisning kan jeg samtidig tilbyde et effektivt og omfattende
-              behandlingsforløb til en væsentligt lavere pris end et tilsvarende individuelt forløb.
-            </p>
-          </article>
-        </div>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="overview"
-          >
-            Se pris og tilmelding
+          <a class="button se-purchase-link" href={site.checkout} data-event="checkout_click" data-location="sales_hero">
+            {site.purchaseCta} <Icon size={18} />
           </a>
+          <p class="se-hero-note">
+            {site.productDays} dage · Fundament og syv moduler · Livslang adgang ·{' '}
+            {formatPrice(site.productPrice)} inkl. moms
+          </p>
+          <p class="se-separate">Individuelle samtaler kan tilkøbes separat. De er ikke med i prisen.</p>
+        </div>
+        <div class="se-hero-visual">
+          <img
+            src="/images/ditte-underviser.webp"
+            width="685"
+            height="586"
+            alt="Ditte Munch-Andersen underviser ved en tavle"
+            fetchpriority="high"
+          />
+          <div class="se-hero-caption">
+            <strong>Udviklet af psykolog Ditte Munch-Andersen</strong>
+            <span>Viden, øvelser og plads til at arbejde med dine egne mønstre.</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="fl-section fl-tone-sage" id="gruppen" aria-labelledby="group-heading">
-      <div class="fl-container">
-        <div class="fl-group-grid">
+    <section class="section se-recognition" aria-labelledby="recognition-heading">
+      <div class="container se-two-column">
+        <div>
+          <span class="eyebrow">Måske kan du genkende det</span>
+          <h2 id="recognition-heading">Du har prøvet at tage dig sammen. Det er måske ikke dér, problemet ligger.</h2>
+        </div>
+        <div class="se-reading">
+          <p>
+            Måske spiser du videre, selvom du egentlig gerne vil stoppe. Måske lover du dig selv
+            nye regler bagefter, og så begynder det hele forfra.
+          </p>
+          <p>
+            Det handler sjældent om, at du ikke ved nok om mad. I onlineforløbet undersøger du
+            de tanker, følelser og vaner, der kan holde mønsteret i gang. Når du bedre forstår
+            dem, kan du begynde at øve andre handlinger.
+          </p>
+          <p>
+            Du får ikke en ny liste med forbud. Du får en måde at arbejde konkret med din spisning
+            og din hverdag på.
+          </p>
+        </div>
+      </div>
+      <div class="container se-pattern-grid">
+        <article>
+          <span>01</span>
+          <h3>Før</h3>
+          <p>Hvad sker der i timerne op til, at du spiser mere, end du ønsker?</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Under</h3>
+          <p>Hvilke tanker og impulser gør det svært at stoppe, når du gerne vil?</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Efter</h3>
+          <p>Hvordan kommer du videre uden selvkritik og endnu en streng plan?</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section se-method" id="det-faar-du" aria-labelledby="method-heading">
+      <div class="container se-two-column">
+        <div>
+          <span class="eyebrow">Det får du</span>
+          <h2 id="method-heading">Viden bliver først brugbar, når du arbejder med den.</h2>
+          <p class="se-method-lead">
+            Successful Eating er bygget som et 58-dages selvstudie. Du ser undervisningen, laver
+            øvelserne og afprøver det lærte mellem modulerne.
+          </p>
+          <a class="button se-purchase-link" href={site.checkout} data-event="checkout_click" data-location="sales_method">
+            {site.purchaseCta} <Icon size={18} />
+          </a>
+        </div>
+        <div class="se-inclusions">
           <div>
-            <span class="fl-eyebrow">GRUPPEN</span>
-
-            <h2 id="group-heading">En lille gruppe, hvor du ikke står alene med overspisningen</h2>
-
-            <p>
-              Der er noget særligt ved at arbejde med overspisning sammen med andre, der kender nogle af de
-              samme udfordringer.
-            </p>
-
-            <p>I Fri fra overspisning er I højst 6 deltagere.</p>
-
-            <p>Alle starter samtidig i uge 43, og I følges ad gennem de fire mødegange.</p>
-
-            <p>
-              Jeg leder gruppen som autoriseret psykolog, og fokus er på psykologisk behandling af
-              overspisning.
-            </p>
-
-            <p>
-              Du arbejder med dine egne mønstre, samtidig med at du kan spejle dig i andre og opdage, at du
-              langt fra er den eneste, der kæmper med mad og overspisning.
-            </p>
-
-            <p>
-              Du behøver ikke sidde alene med tanken om, at der er noget galt med dig, fordi du ikke bare
-              kan lade være.
-            </p>
-
-            <p>
-              Jeg har tavshedspligt, og alt, hvad der bliver delt i gruppen, er fortroligt.
-            </p>
-
-            <p>Gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49.</p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="group"
-              >
-                Få en plads i gruppen
-              </a>
+            <Icon name="book" size={25} />
+            <div>
+              <h3>Et fundament og syv moduler</h3>
+              <p>En tydelig rækkefølge, der hjælper dig med at tage ét tema ad gangen.</p>
             </div>
           </div>
-
-          <dl class="fl-group-facts">
+          <div>
+            <Icon name="leaf" size={25} />
             <div>
-              <dt>Hvornår</dt>
-              <dd>Torsdag kl. 17–18.30 i uge 43, 45, 47 og 49</dd>
+              <h3>Videoer og øvelser</h3>
+              <p>Du omsætter viden til små, konkrete handlinger i din egen hverdag.</p>
             </div>
-
+          </div>
+          <div>
+            <Icon name="shield" size={25} />
             <div>
-              <dt>Varighed</dt>
-              <dd>60–90 minutter, tilpasset antal deltagere</dd>
+              <h3>Livslang adgang</h3>
+              <p>Du kan vende tilbage til onlineforløbets materiale efter de 58 dage.</p>
             </div>
-
-            <div>
-              <dt>Hvor</dt>
-              <dd>Online på Google Meet</dd>
-            </div>
-
-            <div>
-              <dt>Hvem</dt>
-              <dd>Højst 6 deltagere</dd>
-            </div>
-
-            <div>
-              <dt>Start</dt>
-              <dd>Uge 43</dd>
-            </div>
-
-            <div>
-              <dt>Optagelse</dt>
-              <dd>Samtalerne optages ikke</dd>
-            </div>
-          </dl>
+          </div>
+          <p class="se-inclusions-note">
+            Forløbet gennemføres på egen hånd. Personlig sparring, gruppeterapi og individuelle
+            samtaler er ikke inkluderet.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="fl-section fl-tone-white" id="faser" aria-labelledby="phase-heading">
-      <div class="fl-container">
-        <div class="fl-phase-intro">
-          <span class="fl-eyebrow">TRIN FOR TRIN MOD MERE MADRO</span>
-
-          <h2 id="phase-heading">De 8 faser i Successful Eating</h2>
-
-          <p class="fl-intro">
-            Du arbejder dig gennem 8 psykologiske faser. Vi starter med kroppens signaler og dine
-            overspisningsmønstre og bevæger os videre til blandt andet følelser, tilbagefald,
-            kropsforhold og tiden efter behandlingen.
-          </p>
-
+    <section class="section se-modules" id="moduler" aria-labelledby="modules-heading">
+      <div class="container">
+        <div class="se-section-heading">
+          <span class="eyebrow">Sådan er forløbet bygget op</span>
+          <h2 id="modules-heading">Fra fundamentet til din plan for tiden efter.</h2>
           <p>
-            Du arbejder med én fase ad gangen. Når du har arbejdet med en fase, stopper du op og
-            reflekterer over det, du har lært og lagt mærke til. Først derefter låses næste fase op. På
-            den måde skal du ikke bare skynde dig gennem materialet. Du får mulighed for at arbejde med
-            det, du lærer, før du går videre.
+            De 58 dage er fordelt på et fundament og syv moduler. Du arbejder med én del ad
+            gangen og kan vende tilbage til materialet senere.
           </p>
         </div>
-
-        <ol class="fl-phase-grid">
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 1</span>
-              <h3>Fundamentet</h3>
-              <p>
-                Du genopbygger kontakten til kroppens sult- og mæthedssignaler og undersøger, hvornår du
-                spiser uden fysisk sult.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 2</span>
-              <h3>Det afhængige mønster</h3>
-              <p>
-                Du arbejder med den psykiske afhængighed af mad og lærer strategier til at håndtere
-                impulsen til at overspise.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 3</span>
-              <h3>Redskaberne</h3>
-              <p>
-                Du arbejder med de rigide regler og den måde at tænke om mad på, som kan være med til at holde
-                overspisningen fast.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 4</span>
-              <h3>Perspektivskifte</h3>
-              <p>
-                Du arbejder med at løsne grebet fra vægtfokus og madstøj og undersøger, hvordan du kan se
-                anderledes på mad og spisning.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 5</span>
-              <h3>Følelser og regulering</h3>
-              <p>
-                Du arbejder med tristhed, mental træthed og stress og med andre måder at håndtere det på end
-                gennem mad.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 6</span>
-              <h3>Førstehjælp ved tilbagefald</h3>
-              <p>
-                Du lærer at vende tilbage til dine nye mønstre efter en svær dag, uden straf og uden at gøre
-                ét tilbagefald til en ny spiral.
-              </p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 7</span>
-              <h3>Forholdet til kroppen</h3>
-              <p>Du arbejder med kropslede og med at finde mere ro i den krop, du har.</p>
-            </article>
-          </li>
-
-          <li>
-            <article class="fl-phase-card">
-              <span class="fl-phase-number">Fase 8</span>
-              <h3>Fasthold forandringen</h3>
-              <p>
-                Du forbereder dig på tiden efter behandlingsforløbet og arbejder med, hvordan du kan
-                fastholde de nye mønstre.
-              </p>
-            </article>
-          </li>
+        <ol class="se-module-grid">
+          {selfStudyModules.map((module, index) => (
+            <li>
+              <span class="se-module-number">{index === 0 ? 'Fundament' : 'Modul ' + index}</span>
+              <h3>{module.title}</h3>
+              <p>{module.description}</p>
+            </li>
+          ))}
         </ol>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="phases"
-          >
-            Arbejd med dine mønstre · {formatPrice(site.treatmentPrice)}
+        <div class="se-inline-action">
+          <p>Du behøver ikke kunne gøre alt anderledes fra dag ét. Du skal have et sted at begynde.</p>
+          <a class="button se-purchase-link" href={site.checkout} data-event="checkout_click" data-location="sales_modules">
+            {site.purchaseCta} <Icon size={18} />
           </a>
         </div>
       </div>
     </section>
 
-    <section class="fl-section fl-tone-sage" aria-labelledby="testimonial-heading">
-      <div class="fl-container">
-        <div class="fl-testimonial-heading">
-          <div>
-            <span class="fl-eyebrow">ERFARINGER MED FORLØBET</span>
-
-            <h2 id="testimonial-heading">Når nye mønstre kan mærkes i hverdagen</h2>
-          </div>
-
+    <section class="section se-results" id="resultater" aria-labelledby="results-heading">
+      <div class="container">
+        <div class="se-section-heading">
+          <span class="eyebrow">Brugerundersøgelse fra 2024</span>
+          <h2 id="results-heading">Hvad oplevede tidligere deltagere?</h2>
           <p>
-            Tidligere deltagere fortæller om mere frihed i situationer med mad, mindre madstøj og et
-            forløb, der giver mening.
+            Tallene kommer fra deltagere, der havde gennemført Successful Eating, og blev målt
+            umiddelbart efter forløbet.
           </p>
         </div>
+        <div class="se-results-grid">
+          <article><strong>78 %</strong><p>havde nul eller højst én episode med overspisning i løbet af en periode på to uger.</p></article>
+          <article><strong>86 %</strong><p>havde tabt sig – op til 6 kg.</p></article>
+          <article><strong>43 %</strong><p>oplevede forbedret psykisk helbred.</p></article>
+          <article><strong>29 %</strong><p>oplevede markant bedre fysisk helbred.</p></article>
+        </div>
+        <p class="se-source">
+          Kilde: Brugerundersøgelse før/efter Successful Eating (2024). Målingerne er foretaget
+          umiddelbart efter forløbet blandt deltagere, der havde gennemført det.
+        </p>
+        <p class="se-source">
+          Tallene beskriver tidligere deltageres svar og er ikke en garanti for et bestemt resultat
+          i det aktuelle selvstudie.
+        </p>
+      </div>
+    </section>
 
-        <div class="fl-testimonial-grid">
-          <figure class="fl-testimonial">
-            <blockquote>
-              “Ferie og sommerhus er nok den største højrisiko jeg kan sætte mig i, fordi hygge er
-              forbundet med madindtag. Det er det stadig, men nu har jeg kontrollen over indtaget og
-              jeg har hygget mig lige meget af den grund”
-            </blockquote>
-
+    <section class="section se-stories" id="erfaringer" aria-labelledby="stories-heading">
+      <div class="container">
+        <div class="se-section-heading">
+          <span class="eyebrow">Deltagernes erfaringer</span>
+          <h2 id="stories-heading">Hvad har andre lagt mærke til?</h2>
+          <p>Deres oplevelser er personlige. Læs og lyt med det forbehold, at din situation er din egen.</p>
+        </div>
+        <div class="se-quote-grid">
+          {stories.map((story) => (
+            <figure>
+              <blockquote>“{story.quote}”</blockquote>
+              <figcaption>{story.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="se-video-grid" aria-label="Videoer fra tidligere deltagere">
+          <figure>
+            <video controls playsinline preload="none" poster="/images/majbritt-testimonial.webp">
+              <source src="/videos/majbritt-testimonial.mp4" type="video/mp4" />
+              Din browser understøtter ikke videoafspilning.
+            </video>
             <figcaption>
-              <strong>Mai</strong>
-              <span>Tidligere deltager i Successful Eating</span>
+              <strong>Majbritt fortæller om sin erfaring</strong>
+              <span>Video fra en tidligere deltager i Successful Eating.</span>
             </figcaption>
           </figure>
-
-          <figure class="fl-testimonial">
-            <blockquote>
-              “Jeg er så glad for, at jeg besluttede mig for dit forløb og synes, det er et super
-              godt materiale, du har lavet. Det giver så meget mening for mig og beskriver nærmest i
-              detaljer, hvordan jeg har det med mad”
-            </blockquote>
-
+          <figure class="se-portrait-video">
+            <video controls playsinline preload="none" poster="/images/louise-testimonial.webp">
+              <source src="/videos/louise-testimonial.mp4" type="video/mp4" />
+              Din browser understøtter ikke videoafspilning.
+            </video>
             <figcaption>
-              <strong>Christina</strong>
-              <span>Tidligere deltager i Successful Eating</span>
-            </figcaption>
-          </figure>
-
-          <figure class="fl-testimonial">
-            <blockquote>
-              “Som 71-årig har jeg endelig, takket være dit system, fået styr på min afhængighed af
-              søde sager”
-            </blockquote>
-
-            <figcaption>
-              <strong>Susanne</strong>
-              <span>Tidligere deltager i Successful Eating</span>
+              <strong>Louise fortæller om sin erfaring</strong>
+              <span>Video fra en tidligere deltager i Successful Eating.</span>
             </figcaption>
           </figure>
         </div>
-
-        <p class="fl-testimonial-source">
-          Udtalelserne er indsamlet direkte fra tidligere deltagere siden 2014. Successful Eating er
-          løbende udviklet, og deltagernes oplevelser er individuelle.
+        <p class="se-source">
+          Udtalelserne stammer fra tidligere udgaver af Successful Eating. Onlineforløbet sælges nu
+          som selvstudie uden inkluderede samtaler.
         </p>
-
-        <p class="fl-testimonial-source">
-          <a href={site.trustpilot}>Se også anmeldelser på Trustpilot</a>
-        </p>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="testimonials"
-          >
-            Skab dine egne erfaringer · {formatPrice(site.treatmentPrice)}
-          </a>
-        </div>
       </div>
     </section>
 
-    <section class="fl-section fl-tone-white" aria-labelledby="value-heading">
-      <div class="fl-container">
-        <div class="fl-value-grid">
-          <div>
-            <span class="fl-eyebrow">DET FÅR DU</span>
-
-            <h2 id="value-heading">Et samlet behandlingsforløb – ikke bare mere viden</h2>
-
-            <p>
-              Du får et behandlingsforløb, hvor personlig behandlerkontakt, gruppeterapi, videoundervisning
-              og konkrete øvelser hænger sammen.
-            </p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="value"
-              >
-                Få adgang til forløbet
-              </a>
-            </div>
-          </div>
-
-          <div class="fl-value-card">
-            <ul class="fl-value-list">
-              <li>Individuel klinisk forsamtale på 50 minutter</li>
-
-              <li>4 live online gruppeterapier</li>
-
-              <li>Højst 6 deltagere i gruppen</li>
-
-              <li>Ca. 5 timers videoundervisning</li>
-
-              <li>8 psykologiske faser</li>
-
-              <li>8 uger med korte, daglige terapeutiske øvelser</li>
-
-              <li>Adgang til video, øvelser og materiale i 12 uger</li>
-
-              <li>Arbejde med vedligeholdelse og tilbagefaldsforebyggelse</li>
-
-              <li>Online deltagelse fra hele Danmark</li>
-            </ul>
-          </div>
+    <section class="section se-about" id="om-ditte" aria-labelledby="about-heading">
+      <div class="container se-about-grid">
+        <div class="se-about-image">
+          <img
+            src="/images/ditte-portrait.webp"
+            srcset="/images/ditte-portrait-small.webp 500w, /images/ditte-portrait.webp 900w"
+            sizes="(max-width: 800px) 88vw, 38vw"
+            width="900"
+            height="1600"
+            loading="lazy"
+            alt="Ditte Munch-Andersen i sin klinik"
+          />
         </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-peach fl-data-proof" aria-labelledby="data-heading">
-      <div class="fl-container">
-        <span class="fl-eyebrow">DOKUMENTEREDE RESULTATER</span>
-
-        <h2 id="data-heading">Tallene fra brugerundersøgelsen</h2>
-
-        <p class="fl-intro">
-          I brugerundersøgelsen fra 2024 blandt deltagere, der gennemførte forløbet:
-        </p>
-
-        <div class="fl-data-grid">
-          <article class="fl-data-card">
-            <strong>78 %</strong>
-            <span>havde ingen eller højst én overspisning de sidste 2 uger af forløbet.</span>
-          </article>
-
-          <article class="fl-data-card">
-            <strong>43 %</strong>
-            <span>oplevede forbedret psykisk helbred.</span>
-          </article>
-
-          <article class="fl-data-card">
-            <strong>29 %</strong>
-            <span>oplevede markant bedre fysisk helbred.</span>
-          </article>
-        </div>
-
-        <p class="fl-small" style="margin-top:25px;">
-          Resultaterne er individuelle. Tallene beskriver undersøgelsesresultaterne og er ikke en
-          garanti for, hvad du selv vil opleve.
-        </p>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="data"
-          >
-            Start dit forløb · {formatPrice(site.treatmentPrice)}
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-white" aria-labelledby="ditte-heading">
-      <div class="fl-container">
-        <div class="fl-ditte-grid">
-          <figure class="fl-ditte-image">
-            <img
-              src="/images/ditte-underviser.webp"
-              alt="Ditte Munch-Andersen underviser ved en tavle"
-              width="685"
-              height="586"
-              loading="lazy"
-            />
-
-            <figcaption class="fl-ditte-caption">
-              <strong>Ditte Munch-Andersen</strong> Klinisk psykolog · Uddannet fra Københavns
-              Universitet i 2004
-              <br />
-              <a href="/om-ditte">Mød din behandler</a>
-            </figcaption>
-          </figure>
-
-          <div>
-            <span class="fl-eyebrow">DIN BEHANDLER</span>
-
-            <h2 id="ditte-heading">Hej, jeg er Ditte</h2>
-
-            <p>Jeg er klinisk psykolog og står bag Successful Eating.</p>
-
-            <p>
-              Jeg har arbejdet med psykologien bag overspisning i mange år, og det er også det, jeg har
-              bygget Fri fra overspisning på.
-            </p>
-
-            <p>Min tilgang er ret enkel:</p>
-
-            <p>Jeg tror ikke, du mangler endnu en regel for, hvad du må spise.</p>
-
-            <p>Jeg tror heller ikke, at løsningen er, at du bare skal tage dig mere sammen.</p>
-
-            <p>
-              I stedet skal vi forstå, hvad der sker, når du overspiser – og arbejde med de mønstre, der
-              gør det svært at stoppe.
-            </p>
-
-            <p>
-              Derfor kombinerer jeg psykologisk behandling med viden, konkrete redskaber og træning i din
-              egen hverdag.
-            </p>
-
-            <p>
-              Gennem forløbet følger jeg dig fra den første individuelle forsamtale til den sidste
-              gruppeterapi.
-            </p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="ditte"
-              >
-                Mød dit behandlingsforløb
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-white" id="om-forloebet" aria-labelledby="fit-heading">
-      <div class="fl-container">
-        <div class="fl-section-heading">
-          <span class="fl-eyebrow">ER DET NOGET FOR DIG?</span>
-
-          <h2 id="fit-heading">Dette kan være relevant for dig, hvis…</h2>
-
-          <p class="fl-intro">
-            Du oplever, at overspisning eller tanker om mad fylder mere, end du ønsker. Måske har du
-            prøvet at ændre din spisning mange gange. Måske ved du egentlig godt, hvad du gerne vil gøre,
-            men oplever alligevel, at du ender i de samme mønstre igen. Og måske er du nået til et punkt,
-            hvor du ikke har brug for endnu en plan. Du har brug for at forstå, hvad der faktisk foregår.
-          </p>
-        </div>
-
-        <div class="fl-fit-grid">
-          <article class="fl-fit-card">
-            <h3>Du kan genkende noget af dette</h3>
-
-            <ul>
-              <li>
-                Du oplever tilbagevendende overspisning eller føler, at du mister kontrollen over din
-                spisning.
-              </li>
-
-              <li>Du spiser nogle gange uden egentlig fysisk sult og har svært ved at stoppe igen.</li>
-
-              <li>Mad, spisning, skyld eller regler fylder meget i dine tanker.</li>
-
-              <li>
-                Du oplever, at svære følelser, stress eller mental træthed kan hænge sammen med din
-                overspisning.
-              </li>
-
-              <li>
-                Du ønsker at forstå dine mønstre frem for endnu en gang bare at forsøge at tage dig sammen.
-              </li>
-
-              <li>Du vil gerne have hjælp til at finde en anden måde at håndtere overspisningen på.</li>
-            </ul>
-          </article>
-
-          <article class="fl-fit-card">
-            <h3>Det arbejder vi med</h3>
-
-            <p>
-              Tilgangen tager afsæt i kognitiv adfærdsterapi. Vi ser blandt andet på samspillet mellem
-              tanker, følelser, handlinger og din hverdag – og på de mønstre, der kan være med til at
-              vedligeholde overspisningen.
-            </p>
-
-            <p>Indholdet tager udgangspunkt i dine behov og din situation.</p>
-
-            <p>
-              Ved forsamtalen vurderer vi sammen, om Fri fra overspisning er det rette match for dig.
-            </p>
-          </article>
-        </div>
-
-        <div class="fl-section-cta">
-          <a class="fl-button" href={site.checkout} data-event="checkout_click" data-location="fit">
-            Tag første skridt · {formatPrice(site.treatmentPrice)}
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-peach" aria-labelledby="match-heading">
-      <div class="fl-container">
-        <div class="fl-match-notice">
-          <h2 id="match-heading">Fri fra overspisning er ikke det rette tilbud til alle</h2>
-
+        <div class="se-reading">
+          <span class="eyebrow">Mennesket bag materialet</span>
+          <h2 id="about-heading">Hej, jeg er Ditte Munch-Andersen.</h2>
           <p>
-            Fri fra overspisning er et psykologisk behandlingsforløb målrettet overspisning og
-            tvangsoverspisning (BED). Forløbet er udviklet til dig, hvor overspisning er det primære
-            problem, du ønsker hjælp til.
+            Jeg er klinisk psykolog og har arbejdet med overspisning og forholdet til mad i mere
+            end 20 år. I Successful Eating har jeg samlet den viden og de øvelser, jeg bruger til
+            at hjælpe mennesker med at forstå mønstre i spisningen.
           </p>
-
           <p>
-            Hvis du allerede har en kendt diagnose eller problematik, som kræver en anden eller mere
-            specialiseret behandling, skal du ikke booke en forsamtale til Fri fra overspisning. Det
-            gælder blandt andet, hvis du har:
+            Du får min undervisning i videoerne. Selve selvstudiet gennemfører du på egen hånd.
+            Hvis du ønsker at tale med mig om din situation, kan du købe individuelle samtaler
+            separat.
           </p>
+          <a href="/om-ditte/" class="text-link">Læs om min faglige baggrund <Icon size={17} /></a>
+        </div>
+      </div>
+    </section>
 
+    <section class="section se-fit" aria-labelledby="fit-heading">
+      <div class="container se-two-column">
+        <div>
+          <span class="eyebrow">Er selvstudiet det rette for dig?</span>
+          <h2 id="fit-heading">Du arbejder selv. Den ramme skal passe til dine behov.</h2>
+        </div>
+        <div class="se-reading">
+          <p>
+            Successful Eating kan være relevant, hvis du vil forstå din overspisning og er klar
+            til at arbejde med videoer og øvelser på egen hånd. Du behøver ikke have alle svar,
+            før du begynder.
+          </p>
+          <p>
+            Har du brug for individuel vurdering, tæt støtte eller behandling, skal du vælge
+            hjælp med personlig kontakt. Tvangsoverspisning (BED) er en diagnose, og selvstudiet
+            erstatter ikke en faglig vurdering.
+          </p>
+          <p>
+            Hvis du fremkalder opkastning, har udtalt restriktiv spisning, oplever symptomer på
+            anoreksi eller er bekymret for dit fysiske helbred, bør du kontakte din egen læge.
+          </p>
+          <a class="text-link" href="/individuelt-forloeb/">
+            Se individuelle samtaler som separat tilbud <Icon size={17} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section se-pricing" id="priser" aria-labelledby="price-heading">
+      <div class="container se-pricing-grid">
+        <div>
+          <span class="eyebrow">Pris og adgang</span>
+          <h2 id="price-heading">Successful Eating for {formatPrice(site.productPrice)} inkl. moms.</h2>
+          <p class="se-lead">
+            Du får et online selvstudieforløb bygget til 58 dage. Materialet er dit at vende
+            tilbage til med livslang adgang.
+          </p>
+          <p>
+            Det er en selvstændig måde at arbejde med din spisning på. Har du brug for samtaler med
+            mig, kan du tilkøbe dem som et separat tilbud.
+          </p>
+        </div>
+        <div class="se-price-card">
+          <span class="eyebrow">Successful Eating · online selvstudieforløb</span>
+          <strong class="se-price">{formatPrice(site.productPrice)}</strong>
+          <span class="se-vat">inkl. moms</span>
           <ul>
-            <li>bulimi eller gentagne episoder med selvfremkaldt opkastning efter overspisning</li>
-
-            <li>anoreksi eller betydelig restriktion af mad</li>
-
-            <li>
-              en personlighedsforstyrrelse, hvor du har behov for behandling målrettet denne
-              problematik
-            </li>
-
-            <li>
-              alvorlig samtidig psykisk sygdom eller betydelige psykiske problemer, som kræver en
-              anden behandlingsramme
-            </li>
+            <li><Icon name="check" size={18} /> 58 dage: fundament og syv moduler</li>
+            <li><Icon name="check" size={18} /> Videoundervisning og øvelser</li>
+            <li><Icon name="check" size={18} /> Livslang adgang til onlineforløbets materiale</li>
           </ul>
-
-          <p>
-            I disse tilfælde vil en forsamtale til Fri fra overspisning ikke være den rette vej.
-            Kontakt i stedet egen læge, din nuværende behandler eller et relevant specialiseret
-            behandlingstilbud for at få hjælp til at finde den rette behandling.
-          </p>
-
-          <p>
-            Hvis du er i tvivl om, hvorvidt din situation passer til forløbet, er du velkommen til
-            at <a href="/kontakt">kontakte Ditte</a>, før du tilmelder dig. Forsamtalen er beregnet
-            til at vurdere, om Fri fra overspisning er et godt match inden for målgruppen – ikke til at
-            erstatte en udredning eller specialiseret vurdering.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-pricing-section" id="priser" aria-labelledby="pricing-heading">
-      <div class="fl-container">
-        <div class="fl-pricing-intro">
-          <span class="fl-eyebrow">FRI FRA OVERSPISNING · PRIS & OPSTART</span>
-
-          <h2 id="pricing-heading">Et nyt behandlingsforløb – med opstart i uge 43</h2>
-
-          <p class="fl-intro">
-            Fri fra overspisning er et nyt behandlingsforløb, som jeg afholder denne ene gang. Jeg ved ikke,
-            hvornår – eller om – jeg afholder gruppen igen. Så hvis du gerne vil være med i netop denne
-            gruppe, er det nu, du skal tilmelde dig. Alle starter samtidig i uge 43.
-          </p>
-        </div>
-
-        <div class="fl-pricing-card">
-          <span class="fl-eyebrow">FORLØB MED FORSAMTALE</span>
-
-          <h3>Start på Fri fra overspisning</h3>
-
-          <div class="fl-price">{formatPrice(site.treatmentPrice)}</div>
-
-          <p class="fl-price-subtitle">
-            8 ugers psykologisk behandling online. En individuel forsamtale er inkluderet.
-          </p>
-
-          <ul class="fl-price-list">
-            <li>Individuel klinisk forsamtale</li>
-
-            <li>4 live online gruppeterapier</li>
-
-            <li>Højst 6 deltagere i gruppen</li>
-
-            <li>Ca. 5 timers videoundervisning</li>
-
-            <li>8 psykologiske faser</li>
-
-            <li>Korte daglige øvelser i 8 uger</li>
-
-            <li>12 ugers adgang til video, øvelser og materiale</li>
-          </ul>
-
-          <div class="fl-capacity-box-large">
-            <strong>Opstart uge 43 · torsdag kl. 17–18.30 · Google Meet · højst 6 deltagere</strong>
-
-            <p>
-              Alle starter samtidig. Gruppen mødes i uge 43, 45, 47 og 49. Når du tilmelder dig,
-              starter vi med din individuelle forsamtale.
-            </p>
-          </div>
-
-          <div class="fl-refund-box">
-            <strong>Alle pengene tilbage ved et dårligt match.</strong>
-
-            <span>
-              Hvis forløbet ved den inkluderede forsamtale vurderes ikke at være det rette match for
-              dig, får du hele det indbetalte beløb tilbage.
-            </span>
-          </div>
-
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="pricing"
-          >
-            Tilmeld dig · {formatPrice(site.treatmentPrice)}
+          <p>Individuelle samtaler, personlig sparring og gruppeterapi er ikke inkluderet.</p>
+          <a class="button se-purchase-link" href={site.checkout} data-event="checkout_click" data-location="sales_price">
+            {site.purchaseCta} <Icon size={18} />
           </a>
-
-          <p class="fl-small" style="margin-top:16px;">
-            Du fortsætter til betaling hos systeme.io.
-          </p>
+          <small>Du fortsætter til den eksterne købsside hos systeme.io.</small>
+          <a href="/terms/" class="se-terms-link">Læs handelsbetingelserne</a>
         </div>
+      </div>
+    </section>
 
-        <p class="fl-small" style="margin-top:22px; text-align:center;">
-          Læs <a href="/terms">handelsbetingelserne</a>, eller <a href="/kontakt">kontakt Ditte</a>,
-          hvis du har spørgsmål.
+    <FAQ />
+
+    <section class="se-final" aria-labelledby="final-heading">
+      <div class="container">
+        <span class="eyebrow">Et sted at begynde</span>
+        <h2 id="final-heading">Du behøver ikke endnu en kur. Du kan begynde med at forstå mønsteret.</h2>
+        <p>
+          Successful Eating giver dig 58 dages struktur og materiale, du kan bruge igen senere.
+          Du arbejder selvstændigt, i det tempo der passer ind i dit liv.
         </p>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-white" aria-labelledby="intake-heading">
-      <div class="fl-container">
-        <div class="fl-section-heading">
-          <span class="fl-eyebrow">VIL DU STARTE MED AT TALE OM DET?</span>
-
-          <h2 id="intake-heading">Du kan også begynde med en individuel forsamtale</h2>
-
-          <p class="fl-intro">
-            Hvis du gerne vil undersøge din situation, før du beslutter dig for hele forløbet, kan
-            du købe en forsamtale på 50 minutter.
-          </p>
-        </div>
-
-        <div class="fl-value-card">
-          <h3>Forsamtale · {formatPrice(site.consultationPrice)}</h3>
-
-          <p>Her undersøger vi dine behov og vurderer, om Fri fra overspisning passer til dig.</p>
-
-          <p>
-            Hvis du efterfølgende vælger at deltage i Fri fra overspisning, modregnes hele beløbet i
-            forløbsprisen.
-          </p>
-
-          <p>
-            Du betaler da {formatPrice(site.treatmentPrice - site.consultationPrice)} mere –{' '}
-            {formatPrice(site.treatmentPrice)} i alt.
-          </p>
-
-          <div class="fl-section-cta">
-            <a
-              class="fl-button"
-              href={consultation.href}
-              data-event={
-                consultation.online
-                  ? 'consultation_booking_click'
-                  : 'consultation_request_email_click'
-              }
-              data-location="intake"
-            >
-              {consultation.online
-                ? `Book forsamtale · ${formatPrice(site.consultationPrice)}`
-                : 'Aftal forsamtale via e-mail'}
-            </a>
-            <p class="fl-small" style="margin-top:16px;">
-              {consultation.online
-                ? 'Du fortsætter til booking og betaling.'
-                : 'Din mail åbnes. Tid og betaling aftales med Ditte; et klik er ikke en booking.'}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-peach" id="tilskud" aria-labelledby="subsidy-heading">
-      <div class="fl-container">
-        <div class="fl-subsidy-grid">
-          <div>
-            <span class="fl-eyebrow">TILSKUD</span>
-
-            <h2 id="subsidy-heading">Er du medlem af Sygeforsikringen “danmark”?</h2>
-
-            <p>
-              Du kan muligvis få tilskud til psykologbehandlingen. Det konkrete tilskud afhænger af
-              din situation og dit medlemskab.
-            </p>
-
-            <p>
-              I forsamtalen afklarer vi sammen, om du kan få tilskud. Tilskud kan ikke garanteres,
-              så kontakt gerne “danmark” eller din forsikring inden tilmelding.
-            </p>
-          </div>
-
-          <div class="fl-subsidy-card">
-            <h3>Satser i 2026</h3>
-
-            <p>
-              <strong>Under 26 år:</strong> Op til 300 kr. for en individuel samtale og op til 100
-              kr. pr. gruppesession. Med 1 individuel samtale og 4 gruppesessioner svarer det til op
-              til 700 kr. i alt.
-            </p>
-
-            <p>
-              <strong>Over 26 år:</strong> Du kan få tilskud, hvis du også har en af de lidelser,
-              som “danmark” dækker (
-              <a
-                href="https://www.sygeforsikring.dk/tilskud/psykologhjaelp/henvisningsaarsager"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                se de 11 henvisningsårsager
-              </a>
-              ). Overspisning alene er ikke på listen. I 2026 er det 200 kr. pr. individuel samtale
-              og op til 100 kr. pr. gruppesession.
-            </p>
-
-            <p class="fl-small">
-              Satserne kan ændre sig. Se de aktuelle satser hos{' '}
-              <a
-                href="https://www.sygeforsikring.dk/tilskud/psykologhjaelp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sygeforsikringen “danmark”
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-
-        <div class="fl-section-cta">
-          <a
-            class="fl-button"
-            href={site.checkout}
-            data-event="checkout_click"
-            data-location="subsidy"
-          >
-            Kom videre til tilmelding
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-section fl-tone-sage" id="spoergsmaal" aria-labelledby="faq-heading">
-      <div class="fl-container">
-        <div class="fl-faq-grid">
-          <div>
-            <span class="fl-eyebrow">DET MÅ DU GERNE SPØRGE OM</span>
-
-            <h2 id="faq-heading">Spørgsmål om behandling og pris</h2>
-
-            <p>Det er naturligt at have spørgsmål, før du tager det første skridt.</p>
-
-            <div class="fl-section-cta">
-              <a
-                class="fl-button"
-                href={site.checkout}
-                data-event="checkout_click"
-                data-location="faq"
-              >
-                Se tilmelding · {formatPrice(site.treatmentPrice)}
-              </a>
-            </div>
-          </div>
-
-          <div class="fl-faq-list">
-            <details>
-              <summary>Hvad er madro?</summary>
-              <p>
-                Madro er et hverdagsudtryk for, at mad, spisning og tanker om kroppen fylder mindre
-                og føles mindre konfliktfyldte. Det er ikke en diagnose eller et bestemt tal på
-                vægten. For nogle handler det om færre overspisninger; for andre om mere
-                fleksibilitet og mindre skyld.
-              </p>
-            </details>
-
-            <details>
-              <summary>Er Fri fra overspisning en slankekur?</summary>
-              <p>
-                Nej. Fokus er dit forhold til mad og de mønstre, der kan vedligeholde overspisning.
-                Der er ikke et løfte om vægttab, en bestemt kropsstørrelse eller et garanteret
-                resultat. Behandlingen tager udgangspunkt i din situation.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvad er med i forløbet?</summary>
-              <p>
-                Du får en individuel klinisk forsamtale på 50 minutter, gruppeterapi over fire live
-                online mødegange med højst 6 deltagere, videoundervisning gennem de 8 psykologiske
-                faser, korte daglige øvelser i 8 uger og materiale til hverdagen samt adgang til alt
-                indhold i 12 uger.
-              </p>
-            </details>
-
-            <details>
-              <summary>Er forløbet individuel terapi?</summary>
-              <p>
-                Nej. Du får én individuel forsamtale. Den fælles behandling foregår i gruppe med
-                højst 6 deltagere. Gruppeterapien foregår live, og samtalerne optages ikke.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvordan låses de næste faser op?</summary>
-              <p>
-                Du går i gang med én fase ad gangen. Før du fortsætter, reflekterer du kort over,
-                hvad du har lært. Det er ikke en test, du kan bestå eller dumpe, men en del af
-                metoden, der skal hjælpe indholdet med at sætte sig.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvor længe har jeg adgang til materialet?</summary>
-              <p>
-                Du har adgang til al videoundervisning, øvelser og materiale i 12 uger. Derefter
-                udløber adgangen, også til materialet om vedligeholdelse og
-                tilbagefaldsforebyggelse.
-              </p>
-            </details>
-
-            <details>
-              <summary>Kan jeg få hjælp, hvis jeg har ADHD?</summary>
-              <p>
-                Ja. ADHD er indtænkt i forløbets opbygning og struktur. Der er ikke et separat
-                ADHD-forløb, og behandlingen erstatter ikke en ADHD-udredning eller medicinsk
-                behandling.
-              </p>
-            </details>
-
-            <details>
-              <summary>Kan forløbet foregå online?</summary>
-              <p>
-                Ja. Du kan deltage online fra hele Danmark. Individuelle samtaler kan også foregå i
-                klinikken på Hovedvagtsstræde 2C i Helsingør.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvad koster Fri fra overspisning?</summary>
-              <p>
-                Fri fra overspisning koster {formatPrice(site.treatmentPrice)} inklusive en individuel
-                forsamtale.
-              </p>
-            </details>
-
-            <details>
-              <summary>Kan jeg starte med en forsamtale?</summary>
-              <p>
-                Ja. Du kan købe en individuel forsamtale på 50 minutter til{' '}
-                {formatPrice(site.consultationPrice)} Hvis du efterfølgende vælger forløbet,
-                modregnes hele beløbet. Du betaler da{' '}
-                {formatPrice(site.treatmentPrice - site.consultationPrice)} mere –{' '}
-                {formatPrice(site.treatmentPrice)} i alt.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvad hvis forløbet ikke er det rette match?</summary>
-              <p>
-                Hvis du køber hele forløbet til {formatPrice(site.treatmentPrice)}, og det ved den
-                inkluderede forsamtale vurderes, at Fri fra overspisning ikke er det rette match for
-                dig, får du alle pengene tilbage.
-              </p>
-            </details>
-
-            <details>
-              <summary>Hvornår starter forløbet, og bliver det afholdt igen?</summary>
-              <p>
-                Fri fra overspisning er et nyt behandlingsforløb med opstart i uge 43. Alle starter
-                samtidig, og gruppen mødes torsdag kl. 17–18.30 i uge 43, 45, 47 og 49. Der er fire
-                mødegange med gruppeterapi, og gruppen består af de samme deltagere hele vejen
-                igennem.
-              </p>
-              <p>
-                Jeg afholder gruppen denne ene gang. Jeg ved ikke, hvornår – eller om – jeg
-                afholder den igen. Når du tilmelder dig, starter vi med din individuelle
-                forsamtale.
-              </p>
-              <p>
-                Har du spørgsmål om opstart, er du altid velkommen til at skrive til mig på
-                <a href="mailto:psykolog@dittemunchandersen.dk">psykolog@dittemunchandersen.dk</a>.
-              </p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="fl-final-cta" aria-labelledby="final-heading">
-      <div class="fl-container">
-        <span class="fl-eyebrow">NÆSTE SKRIDT</span>
-
-        <h2 id="final-heading">Tag første skridt med en forsamtale.</h2>
-
-        <p class="fl-intro">
-          Hvis du går og overvejer, om Fri fra overspisning kunne være noget for dig, starter vi
-          med en individuel forsamtale. Her taler vi om din situation, og vi finder sammen ud af,
-          om behandlingsforløbet passer til dig. Du behøver altså ikke vide på forhånd, om det er
-          det rigtige.
-        </p>
-
-        <div class="fl-final-capacity">
-          <strong>Opstart er i uge 43</strong>
-
-          <p>
-            Fri fra overspisning er et nyt behandlingsforløb, og jeg afholder gruppen denne ene
-            gang. Jeg ved ikke, hvornår – eller om – jeg afholder den igen. Så hvis du gerne vil
-            være med i denne gruppe, er det nu.
-          </p>
-        </div>
-
-        <a class="fl-button" href={site.checkout} data-event="checkout_click" data-location="final">
-          Tilmeld dig · {formatPrice(site.treatmentPrice)}
+        <a class="button se-purchase-link" href={site.checkout} data-event="checkout_click" data-location="sales_final">
+          {site.purchaseCta} <Icon size={18} />
         </a>
-
-        <p class="fl-small" style="margin-top:18px;">
-          Forsamtale inkluderet · Alle pengene tilbage ved et dårligt match vurderet ved
-          forsamtalen.
-        </p>
+        <p class="se-final-note">{formatPrice(site.productPrice)} inkl. moms · Livslang adgang · Samtaler kan tilkøbes separat</p>
       </div>
     </section>
   </div>
 </Layout>
 
-<script>
-  document.querySelectorAll<HTMLElement>('[data-video-embed]').forEach((box) => {
-    const id = box.dataset.videoId;
-    const trigger = box.querySelector<HTMLButtonElement>('.fl-video-trigger');
-    if (!id || !trigger) return;
-    trigger.addEventListener('click', () => {
-      const frame = document.createElement('iframe');
-      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
-      frame.title = box.dataset.videoTitle ?? 'Video';
-      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-      frame.allowFullscreen = true;
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.className = 'fl-video-frame';
-      trigger.replaceWith(frame);
-      frame.focus();
-    });
-  });
-</script>
-
-<style is:global>
-  .fl-page {
-    --cream: #f8f6f0;
-    --cream-dark: #eee9de;
-    --sage: #dfe8dd;
-    --sage-dark: #cad8c8;
-    --peach: #f2ddd0;
-    --peach-light: #f8ebe4;
-    --ink: #27312b;
-    --muted: #5c655f;
-    --white: #ffffff;
-    --line: rgba(39, 49, 43, 0.13);
-    --accent: #536d5b;
-    --accent-dark: #405747;
-    --shadow: 0 18px 50px rgba(39, 49, 43, 0.08);
-    --radius: 24px;
-    --radius-small: 16px;
-    --max: 1160px;
-  }
-  .fl-page,
-  .fl-page * {
-    box-sizing: border-box;
-  }
-  .fl-page {
-    margin: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family:
-      Inter,
-      ui-sans-serif,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      sans-serif;
-    line-height: 1.65;
-    font-size: 17px;
-  }
-  .fl-page img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-  .fl-page a {
-    color: inherit;
-  }
-  .fl-page h1,
-  .fl-page h2,
-  .fl-page h3 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-weight: 400;
-    line-height: 1.12;
-    letter-spacing: -0.025em;
-    margin: 0 0 20px;
-  }
-  .fl-page h1 {
-    font-size: clamp(3rem, 6vw, 5.4rem);
-  }
-  .fl-page h2 {
-    font-size: clamp(2.3rem, 4vw, 3.8rem);
-  }
-  .fl-page h3 {
-    font-size: 1.55rem;
-  }
-  .fl-page p {
-    margin: 0 0 18px;
-  }
-  .fl-page .fl-container {
-    width: min(var(--max), calc(100% - 40px));
-    margin: 0 auto;
-  }
-  .fl-page .fl-section {
-    padding: 110px 0;
-  }
-  .fl-page .fl-tone-sage {
-    background: var(--sage);
-  }
-  .fl-page .fl-tone-peach {
-    background: var(--peach-light);
-  }
-  .fl-page .fl-tone-white {
-    background: var(--white);
-  }
-  .fl-page .fl-eyebrow {
-    display: inline-block;
-    margin-bottom: 18px;
-    color: var(--accent);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .fl-page .fl-intro {
-    max-width: 760px;
-    font-size: 1.2rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-muted {
-    color: var(--muted);
-  }
-  .fl-page .fl-small {
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-height: 54px;
-    padding: 14px 24px;
-    border-radius: 999px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    font-weight: 800;
-    transition:
-      transform 0.2s ease,
-      background 0.2s ease,
-      box-shadow 0.2s ease;
-    box-shadow: 0 8px 24px rgba(64, 87, 71, 0.18);
-  }
-  .fl-page .fl-button:hover {
-    background: var(--accent-dark);
-    transform: translateY(-2px);
-  }
-  .fl-page .fl-button-light {
-    background: var(--white);
-    color: var(--accent-dark);
-  }
-  .fl-page .fl-button-light:hover {
-    background: #f5f5f1;
-  }
-  .fl-page .fl-section-cta {
-    margin-top: 34px;
-  }
-  .fl-page .fl-hero {
-    padding: 34px 0 90px;
-    background: var(--sage);
-  }
-  .fl-page .fl-breadcrumbs {
-    display: flex;
-    gap: 9px;
-    align-items: center;
-    margin-bottom: 55px;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-breadcrumbs a {
-    text-decoration: none;
-  }
-  .fl-page .fl-hero-grid {
+<style>
+  .se-sales { overflow: clip; }
+  .se-sales section[id] { scroll-margin-top: 120px; }
+  .se-sales .button { white-space: normal; }
+  .se-hero { background: var(--sage); padding-block: clamp(48px, 5vw, 76px); }
+  .se-hero-grid, .se-two-column, .se-about-grid, .se-pricing-grid {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: 70px;
-  }
-  .fl-page .fl-hero-copy .fl-intro {
-    font-size: 1.25rem;
-    max-width: 680px;
-  }
-  .fl-page .fl-hero-note {
-    margin-top: 18px;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-hero-image {
-    position: relative;
-  }
-  .fl-page .fl-hero-image img {
-    width: 100%;
-    border-radius: 30px;
-    box-shadow: var(--shadow);
-  }
-  .fl-page .fl-capacity-card {
-    margin-top: 22px;
-    padding: 22px 24px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-small);
-    background: rgba(255, 255, 255, 0.72);
-  }
-  .fl-page .fl-capacity-card strong {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 1rem;
-  }
-  .fl-page .fl-capacity-card p {
-    margin: 0;
-    font-size: 0.94rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-recognition-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-    align-items: start;
-  }
-  .fl-page .fl-recognition-copy p {
-    max-width: 680px;
-  }
-  .fl-page .fl-facts-card {
-    padding: 34px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-  .fl-page .fl-facts-card dl {
-    margin: 0;
-  }
-  .fl-page .fl-facts-card dl div {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .fl-page .fl-facts-card dl div:last-child {
-    border-bottom: 0;
-  }
-  .fl-page .fl-facts-card dt {
-    color: var(--muted);
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .fl-page .fl-facts-card dd {
-    margin: 0;
-    font-weight: 700;
-  }
-  .fl-page .fl-results-heading {
-    max-width: 760px;
-    margin-bottom: 50px;
-  }
-  .fl-page .fl-result-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .fl-page .fl-result-card {
-    padding: 36px;
-    background: var(--white);
-    border-radius: var(--radius);
-  }
-  .fl-page .fl-result-number {
-    display: block;
-    margin-bottom: 12px;
-    color: var(--accent);
-    font-family: Georgia, serif;
-    font-size: 3.8rem;
-    line-height: 1;
-  }
-  .fl-page .fl-result-card p {
-    margin: 0;
-  }
-  .fl-page .fl-result-source {
-    max-width: 780px;
-    margin-top: 26px;
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-transformation {
-    text-align: center;
-  }
-  .fl-page .fl-transformation .fl-intro {
-    margin: 0 auto 45px;
-  }
-  .fl-page .fl-transformation .fl-transformation-closing {
-    margin: 34px auto 0;
-    font-weight: 600;
-  }
-  .fl-page .fl-transformation-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: left;
-  }
-  .fl-page .fl-transformation-item {
-    padding: 24px;
-    border-radius: var(--radius-small);
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid var(--line);
-  }
-  .fl-page .fl-transformation-item::before {
-    content: '✓';
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 800;
-  }
-  .fl-page .fl-section-heading {
-    max-width: 800px;
-    margin-bottom: 50px;
-  }
-  .fl-page .fl-inclusion-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .fl-page .fl-inclusion-card {
-    padding: 32px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--white);
-  }
-  .fl-page .fl-inclusion-card h3 {
-    margin-top: 20px;
-  }
-  .fl-page .fl-icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--sage);
-    color: var(--accent);
-    font-weight: 800;
-  }
-  .fl-page .fl-group-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 70px;
-    align-items: start;
-  }
-  .fl-page .fl-group-facts {
-    margin: 0;
-    padding: 30px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-  .fl-page .fl-group-facts div {
-    padding: 17px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .fl-page .fl-group-facts div:last-child {
-    border-bottom: 0;
-  }
-  .fl-page .fl-group-facts dt {
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .fl-page .fl-group-facts dd {
-    margin: 3px 0 0;
-    font-weight: 700;
-  }
-  .fl-page .fl-phase-intro {
-    max-width: 800px;
-    margin-bottom: 55px;
-  }
-  .fl-page .fl-phase-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    counter-reset: phases;
-  }
-  .fl-page .fl-phase-card {
-    position: relative;
-    padding: 32px;
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-  }
-  .fl-page .fl-phase-number {
-    display: inline-block;
-    margin-bottom: 14px;
-    color: var(--accent);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .fl-page .fl-phase-card h3 {
-    margin-bottom: 10px;
-  }
-  .fl-page .fl-testimonial-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 40px;
-    margin-bottom: 45px;
-  }
-  .fl-page .fl-testimonial-heading p {
-    max-width: 440px;
-    margin: 0;
-    color: var(--muted);
-  }
-  .fl-page .fl-testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .fl-page .fl-testimonial {
-    margin: 0;
-    padding: 34px;
-    background: var(--white);
-    border-radius: var(--radius);
-    min-height: 100%;
-  }
-  .fl-page .fl-testimonial blockquote {
-    margin: 0 0 28px;
-    font-family: Georgia, serif;
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-  .fl-page .fl-testimonial figcaption strong,
-  .fl-page .fl-testimonial figcaption span {
-    display: block;
-  }
-  .fl-page .fl-testimonial figcaption span {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  .fl-page .fl-testimonial-source {
-    margin-top: 25px;
-    color: var(--muted);
-    font-size: 0.84rem;
-  }
-  .fl-page .fl-value-grid {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 70px;
-    align-items: start;
-  }
-  .fl-page .fl-value-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .fl-page .fl-value-list li {
-    position: relative;
-    padding: 18px 0 18px 32px;
-    border-bottom: 1px solid var(--line);
-  }
-  .fl-page .fl-value-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 18px;
-    color: var(--accent);
-    font-weight: 900;
-  }
-  .fl-page .fl-value-card {
-    padding: 38px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-  .fl-page .fl-data-proof {
-    text-align: center;
-  }
-  .fl-page .fl-data-proof .fl-intro {
-    margin: 0 auto 45px;
-  }
-  .fl-page .fl-data-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .fl-page .fl-data-card {
-    padding: 38px 25px;
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-  }
-  .fl-page .fl-data-card strong {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--accent);
-    font-family: Georgia, serif;
-    font-size: 3.5rem;
-    line-height: 1;
-  }
-  .fl-page .fl-ditte-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 70px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: clamp(38px, 6vw, 92px);
     align-items: center;
   }
-  .fl-page .fl-ditte-image img {
-    width: 100%;
-    border-radius: var(--radius);
-  }
-  .fl-page .fl-ditte-caption {
-    padding-top: 14px;
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
-  .fl-page .fl-ditte-caption strong {
-    display: block;
-    color: var(--ink);
-  }
-  .fl-page .fl-fit-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-  }
-  .fl-page .fl-fit-card {
-    padding: 35px;
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-  }
-  .fl-page .fl-fit-card ul {
-    margin: 20px 0 0;
-    padding-left: 20px;
-  }
-  .fl-page .fl-fit-card li {
-    margin-bottom: 12px;
-  }
-  .fl-page .fl-match-notice {
-    max-width: 800px;
-  }
-  .fl-page .fl-match-notice ul {
-    margin: 0 0 20px;
-    padding-left: 22px;
-  }
-  .fl-page .fl-match-notice li {
-    margin-bottom: 12px;
-  }
-  .fl-page .fl-pricing-section {
-    background: var(--sage);
-  }
-  .fl-page .fl-pricing-intro {
-    max-width: 780px;
-    margin-bottom: 50px;
-  }
-  .fl-page .fl-pricing-card {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 48px;
-    background: var(--white);
-    border-radius: 30px;
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .fl-page .fl-price {
-    margin: 8px 0 10px;
-    font-family: Georgia, serif;
-    font-size: 4.4rem;
-    line-height: 1;
-  }
-  .fl-page .fl-price-subtitle {
-    color: var(--muted);
-  }
-  .fl-page .fl-price-list {
-    max-width: 520px;
-    margin: 32px auto;
-    padding: 0;
-    list-style: none;
-    text-align: left;
-  }
-  .fl-page .fl-price-list li {
-    padding: 13px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .fl-page .fl-price-list li::before {
-    content: '✓';
-    margin-right: 10px;
-    color: var(--accent);
-    font-weight: 900;
-  }
-  .fl-page .fl-refund-box {
-    margin: 28px 0;
-    padding: 22px;
-    background: var(--peach-light);
-    border-radius: var(--radius-small);
-    text-align: left;
-  }
-  .fl-page .fl-refund-box strong {
-    display: block;
-    margin-bottom: 5px;
-  }
-  .fl-page .fl-capacity-box-large {
-    margin: 28px 0;
-    padding: 24px;
-    background: var(--sage);
-    border-radius: var(--radius-small);
-    text-align: left;
-  }
-  .fl-page .fl-capacity-box-large strong {
-    display: block;
-    margin-bottom: 7px;
-  }
-  .fl-page .fl-capacity-box-large p {
-    margin: 0;
-    color: var(--muted);
-  }
-  .fl-page .fl-subsidy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-  }
-  .fl-page .fl-subsidy-card {
-    padding: 34px;
-    background: var(--white);
-    border-radius: var(--radius);
-  }
-  .fl-page .fl-subsidy-card h3 {
-    margin-top: 0;
-  }
-  .fl-page .fl-faq-grid {
-    display: grid;
-    grid-template-columns: 0.75fr 1.25fr;
-    gap: 70px;
-    align-items: start;
-  }
-  .fl-page .fl-faq-list {
-    border-top: 1px solid var(--line);
-  }
-  .fl-page details {
-    border-bottom: 1px solid var(--line);
-    padding: 4px 0;
-  }
-  .fl-page summary {
-    cursor: pointer;
-    list-style: none;
-    padding: 22px 42px 22px 0;
-    position: relative;
-    font-weight: 800;
-  }
-  .fl-page summary::-webkit-details-marker {
-    display: none;
-  }
-  .fl-page summary::after {
-    content: '+';
-    position: absolute;
-    right: 0;
-    top: 17px;
-    font-size: 1.7rem;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .fl-page details[open] summary::after {
-    content: '−';
-  }
-  .fl-page details p {
-    max-width: 850px;
-    padding: 0 0 22px;
-    color: var(--muted);
-  }
-  .fl-page .fl-final-cta {
-    text-align: center;
-    padding: 120px 0;
-    background: var(--peach-light);
-  }
-  .fl-page .fl-final-cta .fl-intro {
-    margin: 0 auto 30px;
-  }
-  .fl-page .fl-final-capacity {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 22px;
-    border-radius: var(--radius-small);
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid var(--line);
-  }
-  .fl-page .fl-final-capacity strong {
-    display: block;
-    margin-bottom: 5px;
-  }
-  .fl-page .fl-final-capacity p {
-    margin: 0;
-    color: var(--muted);
-  }
+  .se-hero .breadcrumbs { margin-bottom: 28px; }
+  .se-hero .eyebrow { margin-bottom: 12px; }
+  .se-hero h1 { max-width: 770px; font-size: clamp(2.7rem, 4.4vw, 4.5rem); overflow-wrap: normal; hyphens: none; }
+  .se-hero p { max-width: 650px; }
+  .se-lead { color: var(--ink); font-size: clamp(1.18rem, 1.7vw, 1.4rem); line-height: 1.65; }
+  .se-hero .se-lead { margin-top: 24px; }
+  .se-purchase-link { margin-top: 24px; }
+  .se-hero-note, .se-separate { font-size: .94rem; line-height: 1.5; }
+  .se-hero-note { margin-top: 19px; font-weight: 650; }
+  .se-separate { margin-top: 6px; color: var(--muted); }
+  .se-hero-visual { position: relative; align-self: stretch; display: grid; align-content: center; }
+  .se-hero-visual img { width: 100%; border-radius: 22px; aspect-ratio: 1 / .92; object-fit: cover; }
+  .se-hero-caption { background: var(--white); border-radius: 16px; padding: 20px 24px; margin: -44px 24px 0; position: relative; box-shadow: 0 12px 35px #294c3d18; line-height: 1.4; }
+  .se-hero-caption strong, .se-hero-caption span { display: block; }
+  .se-hero-caption span { color: var(--muted); font-size: .94rem; margin-top: 5px; }
+  .se-two-column { align-items: start; }
+  .se-two-column h2 { max-width: 620px; }
+  .se-reading { max-width: 670px; }
+  .se-reading p { line-height: 1.8; }
+  .se-reading h2 { margin-bottom: 24px; }
+  .se-pattern-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 58px; }
+  .se-pattern-grid article, .se-module-grid li { border: 1px solid var(--line); border-radius: 18px; padding: 27px; background: var(--white); }
+  .se-pattern-grid article span, .se-module-number { color: var(--rust); font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .se-pattern-grid h3 { margin: 12px 0; }
+  .se-method { background: var(--paper); }
+  .se-method-lead { margin-top: 26px; max-width: 580px; }
+  .se-inclusions { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: clamp(25px, 4vw, 42px); }
+  .se-inclusions > div { display: flex; gap: 18px; padding-block: 18px; }
+  .se-inclusions > div + div { border-top: 1px solid var(--line); }
+  .se-inclusions svg { color: var(--green); margin-top: 3px; }
+  .se-inclusions h3 { font-family: var(--sans); font-size: 1.13rem; font-weight: 700; letter-spacing: 0; }
+  .se-inclusions p { color: var(--muted); font-size: .98rem; line-height: 1.6; margin-top: 4px; }
+  .se-inclusions .se-inclusions-note { border-top: 1px solid var(--line); margin-top: 13px; padding-top: 22px; color: var(--ink); }
+  .se-modules { background: var(--sand); }
+  .se-section-heading { max-width: 800px; margin-bottom: 48px; }
+  .se-section-heading p { color: var(--muted); max-width: 700px; margin-top: 22px; }
+  .se-module-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .se-module-grid h3 { margin: 14px 0 11px; font-size: 1.38rem; }
+  .se-module-grid p { color: var(--muted); line-height: 1.65; }
+  .se-inline-action { display: flex; gap: 30px; justify-content: space-between; align-items: center; margin-top: 38px; }
+  .se-inline-action p { max-width: 600px; }
+  .se-inline-action .button { flex-shrink: 0; margin-top: 0; }
+  .se-results { background: var(--green); color: var(--white); }
+  .se-results .se-section-heading p, .se-results .se-source { color: #eef2e9; }
+  .se-results-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; }
+  .se-results-grid article { border: 1px solid #ffffff55; border-radius: 18px; padding: 26px; }
+  .se-results-grid strong { display: block; font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.9rem); font-weight: 500; line-height: 1; }
+  .se-results-grid p { margin-top: 18px; line-height: 1.55; }
+  .se-source { font-size: .92rem; line-height: 1.6; margin-top: 26px; max-width: 850px; }
+  .se-source + .se-source { margin-top: 9px; }
+  .se-stories { background: var(--peach); }
+  .se-quote-grid, .se-video-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+  .se-quote-grid figure, .se-video-grid figure { margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .se-quote-grid figure { padding: 28px; display: flex; flex-direction: column; justify-content: space-between; }
+  .se-quote-grid blockquote { margin: 0; font-family: var(--serif); font-size: 1.24rem; line-height: 1.55; }
+  .se-quote-grid figcaption { margin-top: 24px; font-weight: 700; }
+  .se-video-grid { margin-top: 24px; align-items: start; }
+  .se-video-grid video { display: block; width: 100%; max-height: 470px; background: #111; object-fit: contain; }
+  .se-video-grid figure:first-child video { aspect-ratio: 16 / 9; }
+  .se-video-grid .se-portrait-video video { aspect-ratio: 16 / 9; }
+  .se-video-grid figcaption { padding: 20px 25px 25px; line-height: 1.45; }
+  .se-video-grid figcaption strong, .se-video-grid figcaption span { display: block; }
+  .se-video-grid figcaption span { font-size: .92rem; color: var(--muted); margin-top: 5px; }
+  .se-about { background: var(--white); }
+  .se-about-grid { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); }
+  .se-about-image { max-width: 430px; margin-inline: auto; }
+  .se-about-image img { width: 100%; height: auto; border-radius: 20px; }
+  .se-about .text-link, .se-fit .text-link { margin-top: 24px; }
+  .se-fit { background: var(--sage); }
+  .se-pricing { background: var(--sand); }
+  .se-pricing-grid { align-items: start; }
+  .se-pricing .se-lead { margin-top: 28px; }
+  .se-price-card { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: clamp(26px,4vw,46px); box-shadow: 0 22px 55px #294c3d12; }
+  .se-price { font-family: var(--serif); font-size: clamp(3rem,5vw,4.6rem); line-height: 1; font-weight: 520; display: block; }
+  .se-vat { color: var(--muted); display: block; margin-top: 7px; }
+  .se-price-card ul { list-style: none; padding: 24px 0; margin: 24px 0; border-block: 1px solid var(--line); }
+  .se-price-card li { display: flex; gap: 12px; align-items: flex-start; padding-block: 7px; }
+  .se-price-card li svg { margin-top: 5px; color: var(--green); }
+  .se-price-card p { font-size: .95rem; color: var(--muted); }
+  .se-price-card .button { width: 100%; margin-top: 23px; }
+  .se-price-card small, .se-terms-link { display: block; font-size: .87rem; line-height: 1.5; text-align: center; margin-top: 12px; color: var(--muted); }
+  .se-terms-link { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .se-final { background: var(--green); color: var(--white); padding-block: clamp(75px,10vw,130px); text-align: center; }
+  .se-final .container { max-width: 850px; }
+  .se-final h2 { max-width: 800px; margin-inline: auto; }
+  .se-final p { margin: 23px auto 0; max-width: 650px; }
+  .se-final .button { background: var(--white); border-color: var(--white); color: var(--green); }
+  .se-final .button:hover { background: var(--sage); }
+  .se-final-note { font-size: .9rem; opacity: .9; }
   @media (max-width: 900px) {
-    .fl-page .fl-section {
-      padding: 80px 0;
-    }
-    .fl-page .fl-hero-grid,
-    .fl-page .fl-recognition-grid,
-    .fl-page .fl-group-grid,
-    .fl-page .fl-value-grid,
-    .fl-page .fl-ditte-grid,
-    .fl-page .fl-subsidy-grid,
-    .fl-page .fl-faq-grid {
-      grid-template-columns: 1fr;
-    }
-    .fl-page .fl-hero-grid {
-      gap: 45px;
-    }
-    .fl-page .fl-hero {
-      padding-bottom: 70px;
-    }
-    .fl-page .fl-result-grid,
-    .fl-page .fl-testimonial-grid,
-    .fl-page .fl-data-grid {
-      grid-template-columns: 1fr;
-    }
-    .fl-page .fl-inclusion-grid,
-    .fl-page .fl-phase-grid,
-    .fl-page .fl-fit-grid,
-    .fl-page .fl-transformation-list {
-      grid-template-columns: 1fr;
-    }
-    .fl-page .fl-testimonial-heading {
-      display: block;
-    }
-    .fl-page .fl-testimonial-heading p {
-      margin-top: 20px;
-    }
+    .se-hero-grid, .se-two-column, .se-about-grid, .se-pricing-grid { grid-template-columns: 1fr; }
+    .se-hero-visual { max-width: 620px; }
+    .se-results-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .se-hero .breadcrumbs { margin-bottom: 24px; }
   }
-  @media (max-width: 600px) {
-    .fl-page {
-      font-size: 16px;
-    }
-    .fl-page .fl-container {
-      width: min(var(--max), calc(100% - 28px));
-    }
-    .fl-page h1 {
-      font-size: 2.8rem;
-    }
-    .fl-page h2 {
-      font-size: 2.35rem;
-    }
-    .fl-page .fl-section {
-      padding: 65px 0;
-    }
-    .fl-page .fl-hero {
-      padding-top: 24px;
-    }
-    .fl-page .fl-breadcrumbs {
-      margin-bottom: 35px;
-    }
-    .fl-page .fl-button {
-      width: 100%;
-    }
-    .fl-page .fl-facts-card,
-    .fl-page .fl-pricing-card {
-      padding: 28px;
-    }
-    .fl-page .fl-price {
-      font-size: 3.5rem;
-    }
-  }
-  .fl-page .fl-video {
-    margin: 0;
-  }
-  .fl-page .fl-video-trigger {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    padding: 0;
-    border: 0;
-    border-radius: 30px;
-    overflow: hidden;
-    background: var(--ink);
-    box-shadow: var(--shadow);
-    color: #fff;
-    font: inherit;
-    cursor: pointer;
-  }
-  .fl-page .fl-video-trigger img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-  .fl-page .fl-video-trigger::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(39, 49, 43, 0.6), rgba(39, 49, 43, 0) 55%);
-  }
-  .fl-page .fl-video-play {
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    width: 84px;
-    height: 84px;
-    margin: -42px 0 0 -42px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-    transition: transform 0.2s ease;
-  }
-  .fl-page .fl-video-play::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -14px 0 0 -8px;
-    border-style: solid;
-    border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent var(--accent-dark);
-  }
-  .fl-page .fl-video-trigger:hover .fl-video-play {
-    transform: scale(1.06);
-  }
-  .fl-page .fl-video-trigger:focus-visible {
-    outline: 3px solid var(--accent-dark);
-    outline-offset: 4px;
-  }
-  .fl-page .fl-video-label {
-    position: absolute;
-    z-index: 1;
-    right: 20px;
-    bottom: 16px;
-    left: 20px;
-    font-size: 0.95rem;
-    font-weight: 800;
-    text-align: left;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  }
-  .fl-page .fl-video-frame {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0;
-    border-radius: 30px;
-    background: var(--ink);
-    box-shadow: var(--shadow);
-  }
-  .fl-page .fl-video-note {
-    margin-top: 12px;
-    font-size: 0.84rem;
-    color: var(--muted);
-  }
-  /* isolate the pasted design from global.css defaults */
-  .fl-page h1,
-  .fl-page h2,
-  .fl-page h3 {
-    hyphens: manual;
-    overflow-wrap: normal;
-  }
-  .fl-page a {
-    text-decoration: underline;
-  }
-  .fl-page .fl-button,
-  .fl-page .fl-breadcrumbs a {
-    text-decoration: none;
-  }
-  .fl-page .fl-ditte-caption a {
-    display: inline-block;
-    margin-top: 8px;
+  @media (max-width: 650px) {
+    .se-hero { padding-block: 32px 58px; }
+    .se-hero .se-lead { margin-top: 18px; }
+    .se-hero h1 { font-size: clamp(2.55rem, 10vw, 3.6rem); }
+    .se-pattern-grid, .se-module-grid, .se-quote-grid, .se-video-grid, .se-results-grid { grid-template-columns: 1fr; }
+    .se-pattern-grid { margin-top: 35px; }
+    .se-inline-action { flex-direction: column; align-items: stretch; }
+    .se-inline-action .button { width: 100%; }
+    .se-hero .button, .se-final .button { width: 100%; }
+    .se-hero-visual img { aspect-ratio: 4 / 3; }
+    .se-hero-caption { margin-inline: 14px; padding: 17px; }
+    .se-video-grid .se-portrait-video video { aspect-ratio: 9 / 14; }
   }
 </style>

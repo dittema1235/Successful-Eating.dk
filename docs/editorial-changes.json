@@ -121,5 +121,15 @@
     "slug": "blog/89212-hvordan-kristina-fik-success-med-sit",
     "change": "Kort resultatkampagne samlet med vægtguide. Følelsesmæssig spisning omtales uden at generalisere en kundes vægttab.",
     "redirect": "/madro-biblioteket/madro-og-vaegt"
+  },
+  {
+    "slug": "blog/52578-hvordan-er-den-nye-workshop",
+    "change": "Artiklen beskriver en udgået 12-ugers Zoom-workshop med gruppesparring. Den aktuelle produktside beskriver selvstudiet uden denne støtte.",
+    "redirect": "/forloebet"
+  },
+  {
+    "slug": "blog/64221-nu-har-jeg-en-frihed-ift-mad-som-jeg",
+    "change": "Udtalelsen handler om en tidligere 12-ugers gruppeworkshop. Resultatsiden samler aktuelle kildeangivelser og tydeligt markerede erfaringer fra tidligere deltagere.",
+    "redirect": "/resultater"
   }
 ]

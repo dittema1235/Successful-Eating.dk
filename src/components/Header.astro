@@ -1,11 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import HeaderSearch from './HeaderSearch.astro';
-const path = Astro.url.pathname;
+import { site } from '../data/site';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <div class="announcement">
-  <span>Psykologisk hjælp til overspisning</span>
+  <span>Viden og øvelser om overspisning</span>
   <span class="announcement-divider">·</span>
   <span>Online i hele Danmark</span>
 </div>
@@ -26,16 +27,16 @@ const path = Astro.url.pathname;
     </button>
     <nav id="main-nav" aria-label="Hovednavigation">
       <a
-        href="/#forloeb"
-        aria-current={['/forloebet', '/kropsglaede'].includes(path) ? 'page' : undefined}
+        href="/forloebet/"
+        aria-current={path === '/forloebet' ? 'page' : undefined}
       >
-        Find dit forløb
+        Onlineforløbet
       </a>
       <a
         href="/individuelt-forloeb"
         aria-current={path === '/individuelt-forloeb' ? 'page' : undefined}
       >
-        Individuelt forløb
+        Individuelle samtaler
       </a>
       <a href="/resultater" aria-current={path === '/resultater' ? 'page' : undefined}>
         Resultater
@@ -58,17 +59,17 @@ const path = Astro.url.pathname;
         Kontakt
       </a>
       <a
-        href="/forloebet#priser"
+        href={site.checkout}
         class="button button-small"
-        data-event="pricing_click"
+        data-event="checkout_click"
         data-location="header"
       >
-        Se pris & opstart <Icon size={16} />
+        {site.purchaseCta} <Icon size={16} />
       </a>
     </nav>
   </div>
 </header>
-<HeaderSearch />
+{path !== '/forloebet' && <HeaderSearch />}
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.querySelector<HTMLElement>('#main-nav');
@@ -88,5 +89,5 @@ const path = Astro.url.pathname;
       toggle.focus();
     }
   });
-  matchMedia('(min-width: 1271px)').addEventListener('change', close);
+  matchMedia('(min-width: 1352px)').addEventListener('change', close);
 </script>
