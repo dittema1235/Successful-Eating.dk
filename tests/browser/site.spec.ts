@@ -350,13 +350,15 @@ test('contact form sends the message to the mail endpoint and confirms', async (
   await page.getByLabel('Dit navn').fill('Test Testesen');
   await page.getByLabel('Din e-mail').fill('test@example.com');
   await page.getByLabel('Din besked').fill('Jeg har et spørgsmål om forløbet.');
-  await page.getByRole('button', { name: 'Send besked' }).click();
+  await page.getByRole('button', { name: /Send, og/ }).click();
   await expect(page.getByRole('status')).toContainText('Tak for din besked');
   const fields = new URLSearchParams(posted);
   expect(fields.get('name')).toBe('Test Testesen');
   expect(fields.get('email')).toBe('test@example.com');
   expect(fields.get('website')).toBe('');
   expect(Number(fields.get('elapsed'))).toBeGreaterThan(0);
+  expect(fields.get('contactpref')).toBe('mail');
+  expect(fields.get('message')).toContain('Jeg har et spørgsmål om forløbet.');
 });
 
 test('contact form shows the phone number if sending fails', async ({ page }) => {
@@ -365,7 +367,31 @@ test('contact form shows the phone number if sending fails', async ({ page }) =>
   await page.getByLabel('Dit navn').fill('Test Testesen');
   await page.getByLabel('Din e-mail').fill('test@example.com');
   await page.getByLabel('Din besked').fill('Hej');
-  await page.getByRole('button', { name: 'Send besked' }).click();
+  await page.getByRole('button', { name: /Send, og/ }).click();
   await expect(page.getByRole('status')).toContainText('Beskeden kunne ikke sendes');
   await expect(page.getByRole('status')).toContainText('+45 71 41 59 69');
+});
+
+test('contact form can ask for a call and sends the phone number', async ({ page }) => {
+  let posted = '';
+  await page.route('https://script.google.com/**', async (route) => {
+    posted = route.request().postData() ?? '';
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: '{"ok":true}',
+    });
+  });
+  await page.goto('/kontakt');
+  await page.getByRole('radio', { name: 'Ring mig op' }).check();
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel(/Dit telefonnummer/).fill('12 34 56 78');
+  await page.getByRole('button', { name: /Send, og/ }).click();
+  await expect(page.getByRole('status')).toContainText('Jeg ringer til dig');
+  const fields = new URLSearchParams(posted);
+  expect(fields.get('contactpref')).toBe('ring');
+  expect(fields.get('phone')).toBe('12 34 56 78');
+  expect(fields.get('message')).toContain('Telefon: 12 34 56 78');
 });
