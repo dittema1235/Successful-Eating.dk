@@ -203,6 +203,23 @@ test('self-study checkout, separate sessions and terms have honest destinations'
   await expect(request).toHaveAttribute('href', /^https:\/\/successfuleating.systeme.io\/public\//);
   await expect(page.locator('main')).toContainText('guide og e-mails fra Ditte om overspisning');
 });
+
+test('contact form lets visitors choose a call or a mail reply', async ({ page }) => {
+  await page.goto('/kontakt');
+  const form = page.locator('[data-contact-form]');
+  const phone = form.locator('input[name="phone"]');
+  const message = form.locator('textarea[name="message"]');
+  const submit = form.getByRole('button', { name: /Send, og/ });
+  await expect(form.getByRole('radio', { name: 'Skriv til mig på mail' })).toBeChecked();
+  await expect(submit).toContainText('få svar på mail');
+  expect(await phone.evaluate((el: HTMLInputElement) => el.required)).toBe(false);
+  expect(await message.evaluate((el: HTMLTextAreaElement) => el.required)).toBe(true);
+  await form.getByRole('radio', { name: 'Ring mig op' }).check();
+  await expect(submit).toContainText('bliv ringet op');
+  expect(await phone.evaluate((el: HTMLInputElement) => el.required)).toBe(true);
+  expect(await message.evaluate((el: HTMLTextAreaElement) => el.required)).toBe(false);
+  await expect(page.locator('main')).not.toContainText('samme dag');
+});
 test('the portrait and both participant videos load', async ({ page }) => {
   await page.goto('/forloebet');
   const portrait = page.locator('.se-about-image img');
