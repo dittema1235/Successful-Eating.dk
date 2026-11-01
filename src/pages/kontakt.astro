@@ -63,14 +63,17 @@ const contactFormUrl =
             </p>
             <a
               class="button"
-              href={clinicContact}
+              href={clinicContact + '#kontaktformular'}
               data-event="clinic_site_click"
               data-location="contact"
             >
-              Se pris og booking hos klinikken <Icon name="northeast" size={17} />
+              Bed Ditte ringe dig op <Icon name="northeast" size={17} />
             </a>
             <p class="booking-note">
-              Du fortsætter til Dittes klinikside for kontakt og booking. Et klik er ikke en booking.
+              Du fortsætter til Dittes klinikside, hvor du kan bede om et opkald eller få svar på mail.
+            </p>
+            <p class="booking-note">
+              Vil du hellere skrive? <a href="#skriv">Brug formularen længere nede</a>, så kan vi maile.
             </p>
           </div>
         </article>
@@ -87,9 +90,9 @@ const contactFormUrl =
     <div class="container">
       <div class="contact-section-heading">
         <span class="eyebrow">SPØRGSMÅL FØRST?</span>
-        <h2 id="write-heading">Skriv til Ditte</h2>
+        <h2 id="write-heading">Skriv til Ditte, eller bed om et opkald</h2>
         <p>
-          Spørg gerne om det praktiske, før du booker. Ditte svarer normalt inden for 1–2 hverdage.
+          Spørg gerne om det praktiske, før du går i gang. Du kan skrive en besked eller bede om at blive ringet op. Ditte svarer normalt på mails inden for 1–2 hverdage.
         </p>
       </div>
       <div class="contact-support-grid">
@@ -100,6 +103,17 @@ const contactFormUrl =
             data-endpoint={contactFormUrl}
             data-phone={site.phone}
           >
+            <fieldset class="contact-choice">
+              <legend>Hvad passer dig bedst?</legend>
+              <label>
+                <input type="radio" name="contactpref" value="call" />
+                Ring mig op
+              </label>
+              <label>
+                <input type="radio" name="contactpref" value="mail" checked />
+                Skriv til mig på mail
+              </label>
+            </fieldset>
             <label>
               Dit navn
               <input type="text" name="name" autocomplete="name" required maxlength="200" />
@@ -109,8 +123,25 @@ const contactFormUrl =
               <input type="email" name="email" autocomplete="email" required maxlength="200" />
             </label>
             <label>
-              Din besked
-              <textarea name="message" rows="6" required maxlength="5000"></textarea>
+              <span>
+                Dit telefonnummer
+                <span class="contact-optional" data-optional-for="mail">(valgfrit)</span>
+              </span>
+              <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                inputmode="tel"
+                maxlength="40"
+                data-required-for="call"
+              />
+            </label>
+            <label>
+              <span>
+                Din besked
+                <span class="contact-optional" data-optional-for="call" hidden>(valgfrit)</span>
+              </span>
+              <textarea name="message" rows="6" required maxlength="5000" data-required-for="mail"></textarea>
             </label>
             <div class="contact-form-trap" aria-hidden="true">
               <label>
@@ -119,11 +150,11 @@ const contactFormUrl =
               </label>
             </div>
             <button class="button" type="submit">
-              Send besked <Icon name="northeast" size={17} />
+              <span data-button-label>Send, og få svar på mail</span> <Icon name="northeast" size={17} />
             </button>
             <p class="contact-form-status" role="status" aria-live="polite" data-form-status></p>
             <p class="contact-note">
-              Når du sender formularen, sendes din besked som e-mail via Google til Ditte. Læs mere
+              Når du sender formularen, sendes dine oplysninger som e-mail via Google til Ditte. Læs mere
               i <a href="/privatliv">privatlivspolitikken</a>.
             </p>
           </form>
@@ -397,6 +428,45 @@ const contactFormUrl =
     outline: 3px solid var(--rust);
     outline-offset: 5px;
   }
+  .contact-choice {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+  }
+  .contact-choice legend {
+    padding: 0;
+    margin-bottom: 4px;
+    font-size: var(--text-label);
+    font-weight: 550;
+    color: var(--ink);
+  }
+  .contact-form .contact-choice label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 450;
+    cursor: pointer;
+  }
+  .contact-form .contact-choice input[type='radio'] {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    accent-color: var(--rust);
+  }
+  .contact-form .contact-choice input[type='radio']:focus-visible {
+    outline: 3px solid var(--rust);
+    outline-offset: 3px;
+  }
+  .contact-optional {
+    margin-inline-start: 0.35em;
+    font-weight: 450;
+    color: var(--muted);
+  }
   .contact-form-trap {
     position: absolute;
     left: -10000px;
@@ -540,21 +610,60 @@ const contactFormUrl =
   if (form) {
     const status = form.querySelector<HTMLElement>('[data-form-status]')!;
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const buttonLabel = button.querySelector<HTMLElement>('[data-button-label]')!;
+    const labels = { call: 'Send, og bliv ringet op', mail: 'Send, og få svar på mail' };
+    const choice = (): 'call' | 'mail' =>
+      form.querySelector<HTMLInputElement>('input[name="contactpref"]:checked')?.value === 'call'
+        ? 'call'
+        : 'mail';
+    const update = () => {
+      const current = choice();
+      form
+        .querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-required-for]')
+        .forEach((field) => {
+          field.required = field.dataset.requiredFor === current;
+        });
+      form.querySelectorAll<HTMLElement>('[data-optional-for]').forEach((note) => {
+        note.hidden = note.dataset.optionalFor !== current;
+      });
+      buttonLabel.textContent = labels[current];
+    };
+    form.addEventListener('change', (event) => {
+      if ((event.target as HTMLInputElement).name === 'contactpref') update();
+    });
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
+      const current = choice();
+      const data = new FormData(form);
+      const phone = String(data.get('phone') ?? '').trim();
+      const text = String(data.get('message') ?? '').trim();
+      const lines = [
+        current === 'call'
+          ? 'Henvendelse fra successfuleating.dk. Vedkommende vil gerne ringes op.'
+          : 'Henvendelse fra successfuleating.dk. Vedkommende vil gerne have svar på mail.',
+      ];
+      if (phone) lines.push(`Telefon: ${phone}`);
+      if (text) lines.push('', text);
       button.disabled = true;
       status.dataset.state = 'pending';
       status.textContent = 'Sender …';
       try {
-        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>);
+        const body = new URLSearchParams(data as unknown as Record<string, string>);
+        body.set('phone', phone);
+        body.set('contactpref', current === 'call' ? 'ring' : 'mail');
+        body.set('message', lines.join('\n'));
         body.set('elapsed', String(Date.now() - loadedAt));
         const response = await fetch(form.dataset.endpoint!, { method: 'POST', body });
         const result = await response.json();
         if (!result.ok) throw new Error('rejected');
         form.reset();
+        update();
         status.dataset.state = 'success';
-        status.textContent = 'Tak for din besked. Jeg svarer normalt inden for 1–2 hverdage.';
+        status.textContent =
+          current === 'call'
+            ? 'Tak, din besked er sendt. Jeg ringer til dig.'
+            : 'Tak for din besked. Jeg svarer normalt inden for 1–2 hverdage.';
       } catch {
         status.dataset.state = 'error';
         status.textContent = `Beskeden kunne ikke sendes. Prøv igen, eller ring på ${form.dataset.phone}.`;
@@ -562,5 +671,6 @@ const contactFormUrl =
         button.disabled = false;
       }
     });
+    update();
   }
 </script>

@@ -179,8 +179,8 @@ test('self-study checkout, separate sessions and terms have honest destinations'
   expect(offer.url).toBe('https://successfuleating.systeme.io/onlineforloeb');
   await expect(page.locator('#priser')).toContainText('ikke inkluderet');
   await page.goto('/kontakt');
-  const contactBooking = page.getByRole('link', { name: /Se pris og booking hos klinikken/ }).first();
-  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersen.dk/kontakt/');
+  const contactBooking = page.getByRole('link', { name: /Bed Ditte ringe dig op/ }).first();
+  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersen.dk/kontakt/#kontaktformular');
   await expect(page.locator('.booking-price')).toContainText('1.295 kr.');
   await expect(page.locator('.booking-price')).toContainText('50 minutter');
   await expect(page.locator('main')).toContainText('ikke inkluderet i prisen for Successful Eating');
@@ -202,6 +202,23 @@ test('self-study checkout, separate sessions and terms have honest destinations'
   const request = page.getByRole('link', { name: 'Ja tak, send mig guiden' });
   await expect(request).toHaveAttribute('href', /^https:\/\/successfuleating.systeme.io\/public\//);
   await expect(page.locator('main')).toContainText('guide og e-mails fra Ditte om overspisning');
+});
+
+test('contact form lets visitors choose a call or a mail reply', async ({ page }) => {
+  await page.goto('/kontakt');
+  const form = page.locator('[data-contact-form]');
+  const phone = form.locator('input[name="phone"]');
+  const message = form.locator('textarea[name="message"]');
+  const submit = form.getByRole('button', { name: /Send, og/ });
+  await expect(form.getByRole('radio', { name: 'Skriv til mig på mail' })).toBeChecked();
+  await expect(submit).toContainText('få svar på mail');
+  expect(await phone.evaluate((el: HTMLInputElement) => el.required)).toBe(false);
+  expect(await message.evaluate((el: HTMLTextAreaElement) => el.required)).toBe(true);
+  await form.getByRole('radio', { name: 'Ring mig op' }).check();
+  await expect(submit).toContainText('bliv ringet op');
+  expect(await phone.evaluate((el: HTMLInputElement) => el.required)).toBe(true);
+  expect(await message.evaluate((el: HTMLTextAreaElement) => el.required)).toBe(false);
+  await expect(page.locator('main')).not.toContainText('samme dag');
 });
 test('the portrait and both participant videos load', async ({ page }) => {
   await page.goto('/forloebet');
@@ -333,13 +350,15 @@ test('contact form sends the message to the mail endpoint and confirms', async (
   await page.getByLabel('Dit navn').fill('Test Testesen');
   await page.getByLabel('Din e-mail').fill('test@example.com');
   await page.getByLabel('Din besked').fill('Jeg har et spørgsmål om forløbet.');
-  await page.getByRole('button', { name: 'Send besked' }).click();
+  await page.getByRole('button', { name: /Send, og/ }).click();
   await expect(page.getByRole('status')).toContainText('Tak for din besked');
   const fields = new URLSearchParams(posted);
   expect(fields.get('name')).toBe('Test Testesen');
   expect(fields.get('email')).toBe('test@example.com');
   expect(fields.get('website')).toBe('');
   expect(Number(fields.get('elapsed'))).toBeGreaterThan(0);
+  expect(fields.get('contactpref')).toBe('mail');
+  expect(fields.get('message')).toContain('Jeg har et spørgsmål om forløbet.');
 });
 
 test('contact form shows the phone number if sending fails', async ({ page }) => {
@@ -348,7 +367,31 @@ test('contact form shows the phone number if sending fails', async ({ page }) =>
   await page.getByLabel('Dit navn').fill('Test Testesen');
   await page.getByLabel('Din e-mail').fill('test@example.com');
   await page.getByLabel('Din besked').fill('Hej');
-  await page.getByRole('button', { name: 'Send besked' }).click();
+  await page.getByRole('button', { name: /Send, og/ }).click();
   await expect(page.getByRole('status')).toContainText('Beskeden kunne ikke sendes');
   await expect(page.getByRole('status')).toContainText('+45 71 41 59 69');
+});
+
+test('contact form can ask for a call and sends the phone number', async ({ page }) => {
+  let posted = '';
+  await page.route('https://script.google.com/**', async (route) => {
+    posted = route.request().postData() ?? '';
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: '{"ok":true}',
+    });
+  });
+  await page.goto('/kontakt');
+  await page.getByRole('radio', { name: 'Ring mig op' }).check();
+  await page.getByLabel('Dit navn').fill('Test Testesen');
+  await page.getByLabel('Din e-mail').fill('test@example.com');
+  await page.getByLabel(/Dit telefonnummer/).fill('12 34 56 78');
+  await page.getByRole('button', { name: /Send, og/ }).click();
+  await expect(page.getByRole('status')).toContainText('Jeg ringer til dig');
+  const fields = new URLSearchParams(posted);
+  expect(fields.get('contactpref')).toBe('ring');
+  expect(fields.get('phone')).toBe('12 34 56 78');
+  expect(fields.get('message')).toContain('Telefon: 12 34 56 78');
 });

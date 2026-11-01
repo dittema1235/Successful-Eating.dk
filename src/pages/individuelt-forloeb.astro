@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { site, formatPrice } from '../data/site';
 
-// Klinikken har sit eget site, hvor booking, tider og vilkår ligger.
+// Klinikken har sit eget site, hvor kontakt, tider og vilkår ligger.
 const clinicContact = 'https://dittemunchandersen.dk/kontakt/';
 const clinicBed = 'https://dittemunchandersen.dk/behandling-af-bed/';
 const clinicTerms = 'https://dittemunchandersen.dk/priser-og-vilkaar/';
@@ -71,7 +71,7 @@ const schema = {
               data-event="clinic_site_click"
               data-location="individual_hero"
             >
-              Læs mere og book tid på dittemunchandersen.dk <Icon name="northeast" size={17} />
+              Læs mere og bed om et opkald på dittemunchandersen.dk <Icon name="northeast" size={17} />
             </a>
             <a class="text-link" href="#sadan-foregaar-det">
               Sådan foregår det <Icon size={17} />
@@ -305,9 +305,9 @@ const schema = {
           data-event="clinic_site_click"
           data-location="individual_facts"
         >
-          Book tid på dittemunchandersen.dk <Icon name="northeast" size={17} />
+          Bed om et opkald på dittemunchandersen.dk <Icon name="northeast" size={17} />
         </a>
-        <p class="small muted">Booking, ledige tider og vilkår ligger på min klinikside.</p>
+        <p class="small muted">Kontakt, pris og vilkår ligger på min klinikside. Du kan bede om et opkald eller skrive til mig.</p>
       </aside>
     </div>
   </section>
@@ -317,7 +317,7 @@ const schema = {
       <span class="eyebrow">DU BEHØVER IKKE HAVE ALLE SVARENE</span>
       <h2 id="cta-heading">Klar til at tage det første skridt?</h2>
       <p>
-        Book en tid i min kalender på dittemunchandersen.dk. Her vælger du, om du vil komme i
+        Bed om et opkald på dittemunchandersen.dk, eller skriv til mig dér. Her aftaler vi, om du vil komme i
         klinikken i Helsingør eller mødes med mig online. Vil du hellere tale med mig først, kan du
         ringe på <a href={phoneHref}>{site.phone}</a>.
       </p>
