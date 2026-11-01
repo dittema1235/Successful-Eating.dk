@@ -15,7 +15,7 @@ export const site = {
   productDays: 58,
   consultationPrice: 1295,
   consultationMinutes: 50,
-  login: 'https://successfuleating.systeme.io/school/course/successful_eating',
+  login: 'https://dittemunchandersen.systeme.io/school/course/successful_eating',
   legacyLogin: 'https://secure.simplero.com/login?account_id=797&site_id=6660',
   trustpilot: 'https://dk.trustpilot.com/review/successfuleating.dk',
 };
