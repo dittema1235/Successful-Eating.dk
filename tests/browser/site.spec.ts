@@ -179,8 +179,8 @@ test('self-study checkout, separate sessions and terms have honest destinations'
   expect(offer.url).toBe('https://successfuleating.systeme.io/onlineforloeb');
   await expect(page.locator('#priser')).toContainText('ikke inkluderet');
   await page.goto('/kontakt');
-  const contactBooking = page.getByRole('link', { name: /Se pris og booking hos klinikken/ }).first();
-  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersen.dk/kontakt/');
+  const contactBooking = page.getByRole('link', { name: /Bed Ditte ringe dig op/ }).first();
+  await expect(contactBooking).toHaveAttribute('href', 'https://dittemunchandersen.dk/kontakt/#kontaktformular');
   await expect(page.locator('.booking-price')).toContainText('1.295 kr.');
   await expect(page.locator('.booking-price')).toContainText('50 minutter');
   await expect(page.locator('main')).toContainText('ikke inkluderet i prisen for Successful Eating');
