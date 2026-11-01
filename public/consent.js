@@ -52,7 +52,7 @@ window.silktideConsentManager.init({
     preferences: {
       title: 'Dine cookieindstillinger',
       description:
-        '<p>Siden indlæser ingen statistik- eller markedsføringstjenester, og dit valg gemmes kun i din browser. Hostingudbyderen kan behandle tekniske oplysninger som IP-adresse og tidspunkt. Sender du kontaktformularen, går dit navn, din e-mail og din besked som e-mail til Ditte via Google Apps Script. Booking (Onlinebooq og Stripe) og tilmelding til den gratis guide (systeme.io) sker hos de tjenester, som modtager de oplysninger, du indtaster dér.</p><p>Læs mere i vores <a href="/privatliv">privatlivspolitik</a>.</p>',
+        '<p>Siden indlæser ingen statistik- eller markedsføringstjenester, og dit valg gemmes kun i din browser. Hostingudbyderen kan behandle tekniske oplysninger som IP-adresse og tidspunkt. Sender du kontaktformularen, går dit navn, din e-mail og din besked som e-mail til Ditte via Google Apps Script. Køb (systeme.io og den valgte betalingsløsning) og tilmelding til den gratis guide (systeme.io) sker hos de tjenester, som modtager de oplysninger, du indtaster dér.</p><p>Læs mere i vores <a href="/privatliv">privatlivspolitik</a>.</p>',
       saveButtonText: 'Gem mine valg',
       saveButtonAccessibleLabel: 'Gem dine cookieindstillinger',
       creditLinkText: 'Samtykkeværktøj fra Silktide',
