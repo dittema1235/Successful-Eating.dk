@@ -344,9 +344,10 @@ select:focus-visible {
 }
 .hero-photo {
   width: 100%;
-  height: 544px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 35%;
+  object-position: 50% 20%;
   border-radius: 130px 8px 8px 8px;
   filter: saturate(0.77);
 }
@@ -1271,9 +1272,6 @@ select:focus-visible {
   display: none !important;
 }
 @media (min-width: 1450px) {
-  .hero-photo {
-    height: 600px;
-  }
   .hero {
     padding-top: 65px;
   }
@@ -1293,9 +1291,6 @@ select:focus-visible {
   }
   .hero-grid {
     gap: 5%;
-  }
-  .hero-photo {
-    height: 520px;
   }
   .hero h1 {
     font-size: 3.8125rem;
@@ -1415,9 +1410,6 @@ select:focus-visible {
   }
   .hero h1 {
     font-size: 3.375rem;
-  }
-  .hero-photo {
-    height: 490px;
   }
   .hero .actions {
     align-items: flex-start;
@@ -1584,9 +1576,8 @@ select:focus-visible {
     margin: 0 8px 0 12px;
   }
   .hero-photo {
-    height: 420px;
     border-radius: 100px 7px 7px 7px;
-    object-position: 50% 32%;
+    object-position: 50% 20%;
   }
   .hero-stamp {
     top: 22px;
