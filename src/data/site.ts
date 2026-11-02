@@ -139,6 +139,6 @@ export const faqs = [
   {
     question: 'Kan jeg købe en samtale senere?',
     answer:
-      'Ja. Individuelle samtaler med Ditte er et separat tilbud, som kan aftales uafhængigt af onlineforløbet. Se siden om individuelle samtaler for pris og for at bede om et opkald.',
+      'Ja. Individuelle samtaler med Ditte er et separat tilbud, som kan aftales uafhængigt af onlineforløbet. Se siden om individuelle samtaler for pris og for at booke tid.',
   },
 ];
