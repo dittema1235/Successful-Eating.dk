@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import CTA from '../components/CTA.astro';
-import { site, formatPrice } from '../data/site';
+import { site, formatPrice, bodyCourse } from '../data/site';
 
 export function getStaticPaths() {
   return [{ params: { service: 'kropsglaede' } }];
@@ -46,11 +46,17 @@ const schema = {
           </p>
           <p>
             Samtalerne er et særskilt psykologisk behandlingstilbud. De er ikke inkluderet i
-            Successful Eating – online selvstudieforløb.
+            onlineforløbene Successful Eating og Bliv glad for din krop.
           </p>
           <a class="button" href={clinicContact + '#kontaktformular'} data-event="clinic_site_click" data-location="body_hero">
             Book tid <Icon name="northeast" size={17} />
           </a>
+          <p class="body-alt">
+            Vil du hellere arbejde på egen hånd?{' '}
+            <a href={'/' + bodyCourse.slug + '/'} data-event="service_click" data-location="body_hero_course">
+              Se onlineforløbet Bliv glad for din krop
+            </a>.
+          </p>
         </div>
         <img
           src="/images/ditte-portrait.webp"
@@ -82,9 +88,11 @@ const schema = {
           særskilte tilbud, før du beslutter dig.
         </p>
         <p>
-          Hvis du hellere vil begynde med psykologisk viden og øvelser på egen hånd, kan du læse
-          om <a href="/forloebet/">Successful Eating – online selvstudieforløb</a>. Det koster{' '}
-          {formatPrice(site.productPrice)} inkl. moms og indeholder ikke individuelle samtaler.
+          Hvis du hellere vil begynde med viden og øvelser på egen hånd, kan du læse om{' '}
+          <a href={'/' + bodyCourse.slug + '/'}>Bliv glad for din krop</a>, et onlineforløb om
+          kropsaccept til {formatPrice(bodyCourse.price)} inkl. moms. Fylder spisningen mest, kan du
+          se <a href="/forloebet/">Successful Eating – online selvstudieforløb</a> til{' '}
+          {formatPrice(site.productPrice)} inkl. moms. Ingen af dem indeholder individuelle samtaler.
         </p>
       </div>
     </div>
@@ -104,14 +112,15 @@ const schema = {
         </a>
       </article>
       <article>
-        <span class="eyebrow">ONLINE SELVSTUDIE</span>
+        <span class="eyebrow">ONLINEFORLØB OM KROPSACCEPT</span>
         <h2>En ramme, hvor du arbejder selv.</h2>
         <p>
-          Successful Eating er bygget som 58 dages videoer og øvelser med livslang adgang til
-          materialet. Samtaler kan tilkøbes, men er ikke en del af selvstudiet.
+          Bliv glad for din krop består af seks moduler over seks uger med 9 videoer og 15
+          øvelser. Du har livslang adgang til materialet. Samtaler er ikke med i prisen, men kan
+          bestilles separat.
         </p>
-        <a href="/forloebet/" class="text-link">
-          Læs om Successful Eating <Icon size={17} />
+        <a href={'/' + bodyCourse.slug + '/'} class="text-link" data-event="service_click" data-location="body_choice_course">
+          Læs om Bliv glad for din krop <Icon size={17} />
         </a>
       </article>
     </div>
@@ -126,6 +135,7 @@ const schema = {
   .body-hero .intro { margin-top: 27px; max-width: 640px; }
   .body-hero p:not(.intro) { margin-top: 18px; max-width: 650px; }
   .body-hero .button { margin-top: 28px; }
+  .body-hero .body-alt a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
   .body-hero img { width: 100%; max-width: 420px; border-radius: 20px; justify-self: center; }
   .body-content { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(35px,7vw,100px); }
   .body-choice { background: var(--sage); }
