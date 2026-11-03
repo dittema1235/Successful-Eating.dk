@@ -1,8 +1,13 @@
 ---
 import Icon from './Icon.astro';
 import HeaderSearch from './HeaderSearch.astro';
-import { site } from '../data/site';
+import { site, bodyCourse } from '../data/site';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+// På salgssiden for Bliv glad for din krop går knappen i headeren til dét forløb.
+const cta =
+  path === '/' + bodyCourse.slug
+    ? { href: bodyCourse.checkout, label: bodyCourse.purchaseCta }
+    : { href: site.checkout, label: site.purchaseCta };
 ---
 
 <div class="announcement">
@@ -59,12 +64,12 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         Kontakt
       </a>
       <a
-        href={site.checkout}
+        href={cta.href}
         class="button button-small"
         data-event="checkout_click"
         data-location="header"
       >
-        {site.purchaseCta} <Icon size={16} />
+        {cta.label} <Icon size={16} />
       </a>
     </nav>
   </div>
