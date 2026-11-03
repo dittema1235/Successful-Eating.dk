@@ -72,6 +72,18 @@ export const consultation = {
   href: 'https://dittemunchandersen.dk/kontakt/',
 };
 
+// Bliv glad for din krop – onlineforløb om kropsaccept (salgsside: /bliv-glad-for-din-krop).
+export const bodyCourse = {
+  slug: 'bliv-glad-for-din-krop',
+  name: 'Bliv glad for din krop',
+  productName: 'Bliv glad for din krop – onlineforløb',
+  purchaseCta: 'Start Bliv glad for din krop',
+  price: 3200,
+  // TODO før udgivelse: skift til købslinket for Bliv glad for din krop (systeme.io).
+  // Indtil da peger knapperne på kontaktsiden, så ingen havner på et forkert produkt.
+  checkout: '/kontakt',
+};
+
 export const services = [
   {
     slug: 'forloebet',
@@ -85,21 +97,23 @@ export const services = [
       'Livslang adgang til onlineforløbets materiale',
     ],
     tag: 'Online selvstudieforløb',
+    linkLabel: 'Læs om Successful Eating',
     icon: 'leaf',
     tone: 'sage',
   },
   {
-    slug: 'kropsglaede',
-    eyebrow: 'SÆRSKILT INDIVIDUEL BEHANDLING',
-    title: 'Kropsaccept',
+    slug: bodyCourse.slug,
+    eyebrow: 'FOR DIG, DER VIL SLIPPE KROPSKRITIKKEN',
+    title: bodyCourse.name,
     intro:
-      'Individuelle samtaler med Ditte om kropskritik og selvbillede. Det er et separat tilbud og er ikke inkluderet i Successful Eating.',
+      'Et onlineforløb om kropsaccept over seks uger med seks moduler. Du arbejder på egen hånd og har livslang adgang til materialet.',
     features: [
-      'Personlige samtaler med Ditte',
-      'I Helsingør eller online',
-      'Pris og rammer aftales særskilt',
+      'Seks moduler, ét nyt hver 7. dag',
+      'Værktøjer fra kognitiv terapi',
+      'Livslang adgang til materialet',
     ],
-    tag: 'Individuelle samtaler',
+    tag: 'Onlineforløb',
+    linkLabel: 'Læs om Bliv glad for din krop',
     icon: 'heart',
     tone: 'peach',
   },
