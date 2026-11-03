@@ -29,7 +29,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   expect(await buttons.count()).toBeGreaterThan(2);
   for (const button of await buttons.all()) {
     await expect(button).toContainText('Start dit Successful Eating-forløb');
-    await expect(button).toHaveAttribute('href', 'https://successfuleating.systeme.io/onlineforloeb');
+    await expect(button).toHaveAttribute('href', 'https://dittemunchandersen.systeme.io/onlineforloeb');
   }
   await page.goto('/');
   await page.getByRole('link', { name: 'Se dine muligheder', exact: true }).click();
@@ -176,7 +176,7 @@ test('self-study checkout, separate sessions and terms have honest destinations'
   expect(offer.price).toBe(3499);
   expect(offer.priceCurrency).toBe('DKK');
   expect(offer.priceSpecification.valueAddedTaxIncluded).toBe(true);
-  expect(offer.url).toBe('https://successfuleating.systeme.io/onlineforloeb');
+  expect(offer.url).toBe('https://dittemunchandersen.systeme.io/onlineforloeb');
   await expect(page.locator('#priser')).toContainText('ikke inkluderet');
   await page.goto('/kontakt');
   const contactBooking = page.getByRole('link', { name: /Bed Ditte ringe dig op/ }).first();
@@ -276,7 +276,7 @@ test('results page presents outcomes and a clear path to purchase', async ({ pag
   );
   await expect(page.locator('.closing-cta .button')).toHaveAttribute(
     'href',
-    'https://successfuleating.systeme.io/onlineforloeb',
+    'https://dittemunchandersen.systeme.io/onlineforloeb',
   );
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
