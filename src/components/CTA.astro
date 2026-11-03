@@ -14,7 +14,7 @@ const { body = false } = Astro.props;
     <h2>{body ? 'Vil du tale med Ditte om din situation?' : 'Klar til at arbejde med dine mønstre?'}</h2>
     <p>
       {body
-        ? 'Individuelle psykologsamtaler aftales separat. De er ikke inkluderet i onlineforløbet Bliv glad for din krop.'
+        ? 'Individuelle psykologsamtaler aftales separat. De er ikke inkluderet i Successful Eating.'
         : 'Successful Eating er et online selvstudieforløb på 58 dage. Du arbejder selvstændigt og har livslang adgang til materialet.'}
     </p>
     <div class="actions">
@@ -26,14 +26,11 @@ const { body = false } = Astro.props;
       >
         {body ? 'Se individuelle samtaler' : site.purchaseCta} <Icon size={17} />
       </a>
-      <a
-        class="text-link"
-        href={body ? '/bliv-glad-for-din-krop/' : '/forloebet/'}
-        data-event={body ? 'service_click' : undefined}
-        data-location={body ? 'closing_course' : undefined}
-      >
-        {body ? 'Eller læs om Bliv glad for din krop' : 'Læs om onlineforløbet'} <Icon size={17} />
-      </a>
+      {!body && (
+        <a class="text-link" href="/forloebet/">
+          Læs om onlineforløbet <Icon size={17} />
+        </a>
+      )}
     </div>
     <p class="small">
       {body

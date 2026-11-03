@@ -35,7 +35,7 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.getByRole('link', { name: 'Se dine muligheder', exact: true }).click();
   await expect(page.locator('#forloeb')).toBeInViewport();
   await page.getByRole('link', { name: 'Læs om Bliv glad for din krop' }).click();
-  await expect(page).toHaveURL(/\/bliv-glad-for-din-krop$/);
+  await expect(page).toHaveURL(/\/kropsglaede$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Slip kropskritikken. Uden først at skulle ændre din krop.',
   );
@@ -47,10 +47,6 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   for (const button of await bodyButtons.all()) {
     await expect(button).toContainText('Start Bliv glad for din krop');
   }
-  await page.goto('/kropsglaede');
-  await expect(page).toHaveURL(/kropsglaede/);
-  await expect(page.locator('main')).toContainText('særskilt psykologisk behandlingstilbud');
-  await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/individuelt-forloeb/');
   expect(errors).toEqual([]);
 });
 test('menu, keyboard and FAQ work', async ({ page, isMobile }) => {
@@ -316,7 +312,6 @@ test('cookie choices are Danish, optional tracking starts denied and stays local
 test('key pages fit the viewport and pass accessibility checks', async ({ page }) => {
   for (const url of [
     '/forloebet',
-    '/bliv-glad-for-din-krop',
     '/kropsglaede',
     '/individuelt-forloeb',
     '/kontakt',

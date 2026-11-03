@@ -1,149 +1,696 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import CTA from '../components/CTA.astro';
 import { site, formatPrice, bodyCourse } from '../data/site';
 
+// Salgssiden for onlineforløbet Bliv glad for din krop ligger på /kropsglaede.
 export function getStaticPaths() {
   return [{ params: { service: 'kropsglaede' } }];
 }
 
-const clinicContact = 'https://dittemunchandersen.dk/kontakt/';
-const title = 'Kropsaccept: individuelle psykologsamtaler | Successful Eating';
+const title = 'Bliv glad for din krop – onlineforløb om kropsaccept';
 const description =
-  'Tal med klinisk psykolog Ditte Munch-Andersen om kropskritik og selvbillede. Individuelle samtaler i Helsingør eller online er et separat tilbud.';
+  'Bliv glad for din krop er et onlineforløb om kropsaccept: seks moduler over seks uger med 9 videoer og 15 øvelser. Livslang adgang. ' +
+  formatPrice(bodyCourse.price) +
+  ' inkl. moms. Af psykolog Ditte Munch-Andersen.';
+
 const schema = {
-  '@type': 'Service',
-  '@id': site.url + '/kropsglaede/#service',
-  name: 'Individuelle psykologsamtaler om kropsaccept',
+  '@type': 'Course',
+  '@id': site.url + '/kropsglaede/#course',
+  name: bodyCourse.productName,
   description,
-  serviceType: 'Individuel psykologisk behandling',
+  inLanguage: 'da-DK',
   provider: { '@id': site.url + '/#organization' },
-  areaServed: { '@type': 'Country', name: 'Danmark' },
-  url: site.url + '/kropsglaede/',
+  offers: {
+    '@type': 'Offer',
+    url: new URL(bodyCourse.checkout, site.url).href,
+    price: bodyCourse.price,
+    priceCurrency: 'DKK',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: bodyCourse.price,
+      priceCurrency: 'DKK',
+      valueAddedTaxIncluded: true,
+    },
+  },
 };
+
+// Indhold, antal og varigheder er hentet fra selve kurset i Simplero (3. nov. 2026):
+// Start her + 6 moduler, 34 lektioner, 9 videoer (i alt 3 t 53 min), 15 øvelser.
+const modules = [
+  {
+    title: 'Om kropsbilledet',
+    description:
+      'Du finder frem til, hvor skoen trykker. Hvordan blev dit kropsbillede til, og hvilke perioder og episoder har formet dit forhold til din krop? Bagefter ser du på dine værdier og på, hvad du vil vælge aktivt fra nu af.',
+    meta: '2 videoer · 36 min. · 2 øvelser',
+    exercises: ['Vær detektiv på dine kropsidealer og dit kropsbillede', 'Find dine værdier'],
+  },
+  {
+    title: 'Sikkerhedsadfærd',
+    description:
+      'Alt det, du gør for at skjule det, du ikke bryder dig om. Du lærer at spotte din adfærd, opdager dine triggere og øver dig i at gøre noget nyt. Og du tager fat på selvsnakken, altså den måde, du mobber din krop på.',
+    meta: '2 videoer · 1 t 5 min. · 4 øvelser',
+    exercises: [
+      'Lav en liste over din sikkerhedsadfærd',
+      'Opdag dine triggere',
+      'Byg din plan',
+      'Test teori A mod teori B',
+    ],
+  },
+  {
+    title: 'Bliv den bedste ven for din krop',
+    description:
+      'I de første moduler lærer du at holde op med at mobbe din krop. Nu fylder du på med gode oplevelser. For helt ærligt: En god ven gør mere end bare at lade være med at kritisere dig non-stop.',
+    meta: '1 video · 13 min. · 3 øvelser og en ideliste',
+    exercises: ['Styrk din relation og dyrk dine værdier', 'Date dig selv (med ideliste til aktiviteter)'],
+  },
+  {
+    title: 'Afmonter dine “sandheder” om dit udseende',
+    description:
+      'Måske har du nogle “sandheder” med dig. “Hvis jeg tager med til den fest, vil alle lægge mærke til min krop og dømme mig.” “Hvis han ser mig nøgen, vil han aldrig tænde på mig igen.” “Hvis jeg stopper med at kritisere mine fejl, mister jeg al motivation.” Du lærer at opdage de tanker, der sætter kropsskammen i gang, og at arbejde med dine antagelser, regler og katastrofetanker.',
+    meta: '2 videoer · 1 t 8 min. · 2 øvelser',
+    exercises: [
+      'Gå til dine antagelser og find en ny og mere hensigtsmæssig selvsnak',
+      'Arbejd videre med dine planer fra modul 2',
+    ],
+  },
+  {
+    title: 'God kommunikation',
+    description:
+      'Indimellem er der nogen, der kommenterer din krop eller overskrider dine grænser. Her arbejder vi med kommunikation og grænsesætning, så du ved, hvad du kan sige.',
+    meta: '1 video · 33 min. · 2 øvelser',
+    exercises: [
+      'Forbered gode svar på ubehagelige spørgsmål',
+      'Når du føler dig grænseoverskredet, og har lyst til at sige fra',
+    ],
+  },
+  {
+    title: 'Sådan gør du fremover',
+    description:
+      'Har du haft et anspændt forhold til din krop i mange år, kan det være let at falde tilbage i de gamle vaner. Derfor lægger du en plan for, hvad du vil arbejde med fremover, og hvordan du holder fast på den lange bane.',
+    meta: '1 video · 18 min. · 2 øvelser',
+    exercises: ['3 måneders plan', 'Tilbagefaldsplan'],
+  },
+];
+
+const stories = [
+  {
+    name: 'Louise',
+    quote:
+      'For første gang i mit liv kan jeg tage et billede uden at granske alle mine ‘fejl’. Det er en frihed, jeg ikke troede var mulig.',
+  },
+  {
+    name: 'Maria',
+    quote:
+      'Jeg har kæmpet med mit kropsbillede i årevis, men det her forløb har hjulpet mig med at se min krop på en ny måde. Det føles som en kæmpe lettelse!',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Hvad får jeg helt præcist?',
+    answer:
+      'En velkomst, hvor du får overblik over forløbet, og derefter seks moduler. I alt er der 9 videoer på knap fire timer og 15 øvelser. Hvert modul bygger videre på det forrige, og du får adgang til ét nyt modul hver 7. dag.',
+  },
+  {
+    question: 'Hvad skal jeg bruge for at komme i gang?',
+    answer:
+      'Du kan downloade og printe øvelserne, eller du kan bruge en helt almindelig notesbog. Jeg anbefaler, at du laver øvelserne for at få det fulde udbytte af forløbet.',
+  },
+  {
+    question: 'Hvor lang tid tager det?',
+    answer:
+      'Forløbet er bygget over seks uger, hvor ét nyt modul åbner hver 7. dag. Videoerne varer knap fire timer i alt, og øvelserne kommer oveni. Forløbet er dit, så du kan tage det i dit eget tempo, også efter de seks uger.',
+  },
+  {
+    question: 'Hvor længe har jeg adgang?',
+    answer:
+      'Du har livslang adgang til forløbets materiale. De seks uger beskriver, hvordan forløbet er bygget op, og ikke hvornår din adgang udløber.',
+  },
+  {
+    question: 'Skal jeg tabe mig for at få noget ud af det?',
+    answer:
+      'Nej. Forløbet handler ikke om vægt. Der er ingen kostplan og ingen vægtmål. Det handler om dit forhold til din krop.',
+  },
+  {
+    question: 'Er forløbet en erstatning for psykologisk behandling?',
+    answer:
+      'Nej. Bliv glad for din krop er et onlineforløb, du gennemfører selv. Det indeholder ingen individuel vurdering eller behandling. Har du det rigtig svært, kan du bestille individuelle samtaler eller tale med din egen læge.',
+  },
+  {
+    question: 'Er samtaler med Ditte med i prisen?',
+    answer:
+      'Nej. Individuelle samtaler om kropsaccept er et separat tilbud, som du kan bestille, hvis du ønsker personlig kontakt.',
+  },
+  {
+    question: 'Hvad koster forløbet?',
+    answer:
+      'Bliv glad for din krop koster ' +
+      formatPrice(bodyCourse.price) +
+      ' inkl. moms. Det samlede beløb og betalingsformen kan du se på købssiden, før du beslutter dig.',
+  },
+];
 ---
 
 <Layout
   title={title}
   description={description}
   schema={schema}
-  breadcrumbs={[{ name: 'Kropsaccept', url: '/kropsglaede/' }]}
+  breadcrumbs={[{ name: 'Bliv glad for din krop', url: '/kropsglaede/' }]}
 >
-  <section class="page-hero tone-peach">
-    <div class="container">
-      <nav class="breadcrumbs" aria-label="Brødkrummer">
-        <a href="/">Forside</a><span>/</span><span>Kropsaccept</span>
-      </nav>
-      <div class="body-hero">
+  <div class="bk-sales">
+    <section class="bk-hero" aria-labelledby="body-heading">
+      <div class="container bk-hero-grid">
         <div>
-          <span class="eyebrow">INDIVIDUELLE SAMTALER · SEPARAT TILBUD</span>
-          <h1>Mindre kropskritik. Mere plads til at være dig.</h1>
-          <p class="intro">
-            Hvis tanker om krop, vægt og udseende fylder for meget, kan vi arbejde med det sammen.
-            Et individuelt forløb tager udgangspunkt i din situation, i min klinik i Helsingør
-            eller online.
+          <nav class="breadcrumbs" aria-label="Brødkrummer">
+            <a href="/">Forside</a><span>/</span><span>Bliv glad for din krop</span>
+          </nav>
+          <span class="eyebrow">Bliv glad for din krop · onlineforløb</span>
+          <h1 id="body-heading">Slip kropskritikken. Uden først at skulle ændre din krop.</h1>
+          <p class="bk-lead">
+            Du kender stemmen. Den, der har en mening, hver gang du ser dig i spejlet. Den, der får
+            dig til at vælge tøj, der skjuler, og til at sige nej til billeder.
           </p>
           <p>
-            Samtalerne er et særskilt psykologisk behandlingstilbud. De er ikke inkluderet i
-            onlineforløbet Bliv glad for din krop.
+            Hvad nu hvis vejen ud ikke er at ændre din krop, men at ændre dit forhold til den? Det
+            arbejder vi med i Bliv glad for din krop.
           </p>
-          <a class="button" href={clinicContact + '#kontaktformular'} data-event="clinic_site_click" data-location="body_hero">
-            Book tid <Icon name="northeast" size={17} />
+          <a
+            class="button bk-purchase-link"
+            href={bodyCourse.checkout}
+            data-event="checkout_click"
+            data-location="body_hero"
+          >
+            {bodyCourse.purchaseCta} <Icon size={18} />
           </a>
-          <p class="body-alt">
-            Vil du hellere arbejde på egen hånd?{' '}
-            <a href={'/' + bodyCourse.slug + '/'} data-event="service_click" data-location="body_hero_course">
-              Se onlineforløbet Bliv glad for din krop
-            </a>.
+          <p class="bk-hero-note">
+            Seks uger · 9 videoer · 15 øvelser · Livslang adgang · {formatPrice(bodyCourse.price)} inkl. moms
+          </p>
+          <p class="bk-separate">
+            Individuelle samtaler om kropsaccept bestiller du separat. De er ikke med i prisen.
           </p>
         </div>
-        <img
-          src="/images/ditte-portrait.webp"
-          srcset="/images/ditte-portrait-small.webp 500w, /images/ditte-portrait.webp 900w"
-          sizes="(max-width: 820px) 85vw, 36vw"
-          width="900"
-          height="1600"
-          alt="Klinisk psykolog Ditte Munch-Andersen"
-        />
+        <div class="bk-hero-visual">
+          <img
+            src="/images/ditte-portrait-hero.webp"
+            srcset="/images/ditte-portrait-hero-small.webp 500w, /images/ditte-portrait-hero.webp 888w"
+            sizes="(max-width: 900px) 90vw, 46vw"
+            width="888"
+            height="1110"
+            alt="Psykolog Ditte Munch-Andersen smiler til kameraet"
+            fetchpriority="high"
+          />
+          <div class="bk-hero-caption">
+            <strong>Udviklet af psykolog Ditte Munch-Andersen</strong>
+            <span>Seks moduler, der hjælper dig med at slippe skam, kropskritik og usikkerhed.</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container body-content">
-      <div>
-        <span class="eyebrow">DET KAN VI TALE OM</span>
-        <h2>Når kritik af kroppen tager plads fra hverdagen.</h2>
+    <section class="section bk-recognition" aria-labelledby="recognition-heading">
+      <div class="container bk-two-column">
+        <div>
+          <span class="eyebrow">Måske kender du det</span>
+          <h2 id="recognition-heading">Du har prøvet at gøre noget ved det. Det føles aldrig helt nok.</h2>
+        </div>
+        <div class="bk-reading">
+          <p>
+            Måske har du brugt mange år på at kæmpe med dit kropsbillede. Tankerne om, hvordan du ser
+            ud. Om, hvad andre mon tænker. Om, hvad du burde gøre for at få det bedre.
+          </p>
+          <p>
+            Måske har du prøvet at ændre din krop. Med kure, med træning eller med tøj, der skjuler
+            det, du ikke kan lide. Og alligevel er det aldrig helt nok.
+          </p>
+          <p>
+            Hvad hvis det ikke er din krop, der er problemet? Men den måde, du ser på den?
+          </p>
+        </div>
       </div>
-      <div class="prose">
-        <p>
-          Kropskritik kan gøre det svært at være til stede i sociale situationer, vælge tøj,
-          bevæge sig frit eller mærke egne behov. Den kan også hænge sammen med gentagne forsøg
-          på at styre spisning og vægt.
-        </p>
-        <p>
-          I individuelle samtaler undersøger vi, hvordan det ser ud for dig, og hvilke mønstre
-          der er hjælpsomme at arbejde med. Rammer, antal samtaler og pris aftales som del af det
-          særskilte tilbud, før du beslutter dig.
-        </p>
-        <p>
-          Hvis du hellere vil begynde med viden og øvelser på egen hånd, kan du læse om{' '}
-          <a href={'/' + bodyCourse.slug + '/'}>Bliv glad for din krop</a>, et onlineforløb om
-          kropsaccept til {formatPrice(bodyCourse.price)} inkl. moms. Individuelle samtaler er ikke
-          med i prisen.
-        </p>
+      <div class="container bk-pattern-grid">
+        <article>
+          <span>01</span>
+          <h3>Når du ser dig selv</h3>
+          <p>Hvad lægger du først mærke til i spejlet? Og hvad sker der i dig bagefter?</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Når du skjuler dig</h3>
+          <p>
+            Tøj, der skal gemme. Billeder, du undgår. Situationer, du siger nej til. Hvad koster det
+            dig?
+          </p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Når andre siger noget</h3>
+          <p>
+            En kommentar kan hænge ved i flere dage. Hvordan kan du stå fast uden at falde sammen?
+          </p>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section body-choice">
-    <div class="container body-choice-grid">
-      <article>
-        <span class="eyebrow">INDIVIDUELLE SAMTALER</span>
-        <h2>En ramme med personlig kontakt.</h2>
-        <p>
-          Vi mødes én til én og kan tage udgangspunkt i det, der fylder hos dig. Du kan vælge
-          klinikken i Helsingør eller en samtale online.
+    <section class="section bk-method" id="det-faar-du" aria-labelledby="method-heading">
+      <div class="container bk-two-column">
+        <div>
+          <span class="eyebrow">Tilgangen</span>
+          <h2 id="method-heading">Kropsaccept handler ikke om at give op. Det handler om frihed.</h2>
+          <p class="bk-method-lead">
+            Måske tænker du, at roen først kommer, den dag din krop har ændret sig. I forløbet
+            kigger vi på den tanke. Og på, hvad den har kostet dig undervejs.
+          </p>
+          <p class="bk-method-lead">
+            Tanken er, at du arbejder dig frem til, at du ikke bare har sluttet fred med din krop,
+            men også kan mærke glæde ved den.
+          </p>
+          <p class="bk-method-lead">
+            Jeg har arbejdet med forholdet til mad, krop og selvværd i mere end 20 år. Øvelserne i
+            forløbet er værktøjer fra kognitiv terapi, som jeg bruger sammen med mine klienter.
+          </p>
+          <a
+            class="button bk-purchase-link"
+            href={bodyCourse.checkout}
+            data-event="checkout_click"
+            data-location="body_method"
+          >
+            {bodyCourse.purchaseCta} <Icon size={18} />
+          </a>
+        </div>
+        <div class="bk-inclusions">
+          <span class="eyebrow bk-inclusions-title">Det får du, når du køber</span>
+          <div>
+            <Icon name="book" size={25} />
+            <div>
+              <h3>9 videoer, knap fire timers undervisning</h3>
+              <p>
+                Fordelt på seks moduler. Du får undervisning i, hvordan kropsbilledet opstår,
+                hvordan du arbejder med sikkerhedsadfærd og negative tanker, og hvordan du holder
+                fast bagefter.
+              </p>
+            </div>
+          </div>
+          <div>
+            <Icon name="heart" size={25} />
+            <div>
+              <h3>15 øvelser, så du får brugt det, du lærer</h3>
+              <p>
+                Du kan downloade og printe dem eller bruge en almindelig notesbog. Jeg anbefaler, at
+                du laver øvelserne for at få det fulde udbytte.
+              </p>
+            </div>
+          </div>
+          <div>
+            <Icon name="clock" size={25} />
+            <div>
+              <h3>Start her og seks moduler over seks uger</h3>
+              <p>
+                Du begynder med en velkomst og et overblik over forløbet. Derefter får du adgang til
+                ét nyt modul hver 7. dag. Hvert modul bygger videre på det forrige.
+              </p>
+            </div>
+          </div>
+          <div>
+            <Icon name="shield" size={25} />
+            <div>
+              <h3>Dit eget tempo og livslang adgang</h3>
+              <p>
+                Forløbet er dit. Du kan gå tilbage til videoer og øvelser, når du har brug for det,
+                også efter de seks uger.
+              </p>
+            </div>
+          </div>
+          <p class="bk-inclusions-note">
+            Forløbet gennemfører du på egen hånd. Individuelle samtaler med mig er ikke
+            inkluderet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bk-modules" id="moduler" aria-labelledby="modules-heading">
+      <div class="container">
+        <div class="bk-section-heading">
+          <span class="eyebrow">Sådan er forløbet bygget op</span>
+          <h2 id="modules-heading">Fra tankerne om din krop til din plan for tiden efter.</h2>
+          <p>
+            Seks moduler, ét ad gangen. Du arbejder med ét tema, før det næste åbner. Hvert modul
+            består af en kort introduktion, en eller to videoer og øvelser.
+          </p>
+        </div>
+        <div class="bk-start">
+          <span class="bk-module-number">Start her</span>
+          <p>
+            Før det første modul får du en velkomst, en gennemgang af programmets opbygning og en
+            oversigt over, hvad du får brug for.
+          </p>
+        </div>
+        <ol class="bk-module-grid">
+          {
+            modules.map((module, index) => (
+              <li>
+                <span class="bk-module-number">Modul {index + 1}</span>
+                <h3>{module.title}</h3>
+                <p>{module.description}</p>
+                <p class="bk-module-meta">{module.meta}</p>
+                <div class="bk-module-exercises">
+                  <span>Øvelser, blandt andet</span>
+                  <ul>
+                    {module.exercises.map((exercise) => (
+                      <li>{exercise}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="bk-inline-action">
+          <p>Du behøver ikke have det hele på plads fra dag ét. Du skal bare i gang.</p>
+          <a
+            class="button bk-purchase-link"
+            href={bodyCourse.checkout}
+            data-event="checkout_click"
+            data-location="body_modules"
+          >
+            {bodyCourse.purchaseCta} <Icon size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bk-stories" id="erfaringer" aria-labelledby="stories-heading">
+      <div class="container">
+        <div class="bk-section-heading">
+          <span class="eyebrow">Deltagernes erfaringer</span>
+          <h2 id="stories-heading">Hvad siger tidligere deltagere?</h2>
+          <p>Deres oplevelser er personlige. Din situation er din egen.</p>
+        </div>
+        <div class="bk-quote-grid">
+          {
+            stories.map((story) => (
+              <figure>
+                <blockquote>“{story.quote}”</blockquote>
+                <figcaption>
+                  {story.name}
+                  <span>Deltager på Bliv glad for din krop</span>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+        <p class="bk-source">
+          Udtalelserne er hentet fra den tidligere salgsside for forløbet.
         </p>
-        <a href="/individuelt-forloeb/" class="text-link">
-          Læs om individuelle samtaler <Icon size={17} />
+      </div>
+    </section>
+
+    <section class="section bk-about" id="om-ditte" aria-labelledby="about-heading">
+      <div class="container bk-about-grid">
+        <div class="bk-about-image">
+          <img
+            src="/images/ditte-portrait.webp"
+            srcset="/images/ditte-portrait-small.webp 500w, /images/ditte-portrait.webp 900w"
+            sizes="(max-width: 800px) 88vw, 38vw"
+            width="900"
+            height="1600"
+            loading="lazy"
+            alt="Psykolog Ditte Munch-Andersen"
+          />
+        </div>
+        <div class="bk-reading">
+          <span class="eyebrow">Mennesket bag forløbet</span>
+          <h2 id="about-heading">Hej, jeg er Ditte.</h2>
+          <p>
+            Jeg er psykolog og har i mere end 20 år arbejdet med forholdet til mad, krop og
+            selvværd. Ikke med slankekure eller hurtige løsninger, men med metoder fra kognitiv
+            terapi.
+          </p>
+          <p>
+            Jeg har set, hvor meget tankerne om kroppen kan fylde i en hverdag. Og jeg ved, hvor
+            stor en lettelse det kan være at slippe dem.
+          </p>
+          <ul class="checklist">
+            <li>
+              <Icon name="check" size={16} /> Cand.psych.aut., uddannet fra Københavns Universitet i
+              2004
+            </li>
+            <li>
+              <Icon name="check" size={16} /> MCT Institute® Registered – 2-årig international
+              efteruddannelse i Metakognitiv Terapi fra The Metacognitive Therapy Institute (MCTI®)
+              v. prof. Adrian Wells
+            </li>
+            <li>
+              <Icon name="check" size={16} /> 2-årig efteruddannelse i Kognitiv Adfærdsterapi (KAT),
+              Selskab for Adfærds- og Kognitiv Terapi (SAKT)
+            </li>
+          </ul>
+          <a href="/om-ditte/" class="text-link">Læs om min faglige baggrund <Icon size={17} /></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bk-fit" aria-labelledby="fit-heading">
+      <div class="container bk-two-column">
+        <div>
+          <span class="eyebrow">Er forløbet noget for dig?</span>
+          <h2 id="fit-heading">Det kan du forvente. Og det kan du ikke.</h2>
+        </div>
+        <div class="bk-reading">
+          <p>
+            Bliv glad for din krop er til dig, der gerne vil arbejde med kropskritik og selvbillede
+            på egen hånd og i et tempo, der passer til dit liv. Du behøver ikke have alle svar,
+            før du begynder.
+          </p>
+          <p>
+            Jeg kan ikke love dig et bestemt resultat. Forskningen peger på, at indsatser, der
+            udelukkende arbejder med kropsbilledet, i gennemsnit kan give en lille til moderat
+            forbedring. Det viser en samlet gennemgang af 62 afprøvninger med i alt 3.846
+            deltagere. Efter korrektion for skævheder i studierne var effekten stadig pålidelig,
+            men lille.<sup><a href="#kilde-1" aria-label="Se kilde 1">1</a></sup> Gennemgangen
+            handler om den slags indsatser i almindelighed og ikke om netop dette forløb.
+          </p>
+          <p>
+            Forløbet er ikke behandling og erstatter ikke en faglig vurdering. Der er hverken
+            kostplan eller vægtmål. Hvis du fremkalder opkastning, spiser meget restriktivt, har
+            symptomer på anoreksi eller er bekymret for dit helbred, så tal med din egen læge.
+          </p>
+          <p>
+            Vil du hellere tale med mig, kan du{' '}
+            <a href="/individuelt-forloeb/">bestille individuelle samtaler</a>.
+          </p>
+          <p class="bk-source" id="kilde-1">
+            <sup>1</sup> Kilde: Alleva, J.M., Sheeran, P., Webb, T.L. m.fl. (2015). A meta-analytic
+            review of stand-alone interventions to improve body image. <i>PLoS ONE, 10</i>(9),
+            e0139177.{' '}
+            <a href="https://doi.org/10.1371/journal.pone.0139177" rel="noopener">
+              doi.org/10.1371/journal.pone.0139177
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bk-pricing" id="priser" aria-labelledby="price-heading">
+      <div class="container bk-pricing-grid">
+        <div>
+          <span class="eyebrow">Pris og adgang</span>
+          <h2 id="price-heading">Bliv glad for din krop for {formatPrice(bodyCourse.price)} inkl. moms.</h2>
+          <p class="bk-lead">
+            Seks uger, seks moduler og livslang adgang. Du betaler én gang, og materialet er dit at
+            vende tilbage til.
+          </p>
+          <p>
+            Har du brug for at tale med mig, kan du bestille individuelle samtaler som et separat
+            tilbud.
+          </p>
+        </div>
+        <div class="bk-price-card">
+          <span class="eyebrow">Bliv glad for din krop · onlineforløb</span>
+          <strong class="bk-price">{formatPrice(bodyCourse.price)}</strong>
+          <span class="bk-vat">inkl. moms</span>
+          <ul>
+            <li><Icon name="check" size={18} /> 9 videoer, knap fire timers undervisning</li>
+            <li><Icon name="check" size={18} /> 15 øvelser, der kan printes eller laves i en notesbog</li>
+            <li><Icon name="check" size={18} /> Seks uger: ét nyt modul hver 7. dag</li>
+            <li><Icon name="check" size={18} /> Livslang adgang til materialet</li>
+          </ul>
+          <p>Individuelle samtaler er ikke inkluderet.</p>
+          <a
+            class="button bk-purchase-link"
+            href={bodyCourse.checkout}
+            data-event="checkout_click"
+            data-location="body_price"
+          >
+            {bodyCourse.purchaseCta} <Icon size={18} />
+          </a>
+          <small>Du fortsætter til en ekstern købsside.</small>
+          <a href="/terms/" class="bk-terms-link">Læs handelsbetingelserne</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="spoergsmaal">
+      <div class="container faq-grid">
+        <div class="faq-intro">
+          <span class="eyebrow">Det må du gerne spørge om</span>
+          <h2>Spørgsmål om Bliv glad for din krop</h2>
+          <p>Her er svarene på det, de fleste vil vide, før de beslutter sig.</p>
+          <a href="/kontakt" class="text-link">Spørg Ditte <Icon size={17} /></a>
+        </div>
+        <div class="faq-list">
+          {
+            faqs.map((faq) => (
+              <details>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bk-final" aria-labelledby="final-heading">
+      <div class="container">
+        <span class="eyebrow">Et sted at begynde</span>
+        <h2 id="final-heading">Du behøver ikke vente med at få det bedre i din krop. Du kan begynde i dag.</h2>
+        <p>
+          Forestil dig, hvordan det ville føles at slippe den konstante kropskritik. Det er det,
+          du øver dig i gennem seks uger.
+        </p>
+        <a
+          class="button bk-purchase-link"
+          href={bodyCourse.checkout}
+          data-event="checkout_click"
+          data-location="body_final"
+        >
+          {bodyCourse.purchaseCta} <Icon size={18} />
         </a>
-      </article>
-      <article>
-        <span class="eyebrow">ONLINEFORLØB OM KROPSACCEPT</span>
-        <h2>En ramme, hvor du arbejder selv.</h2>
-        <p>
-          Bliv glad for din krop består af seks moduler over seks uger med 9 videoer og 15
-          øvelser. Du har livslang adgang til materialet. Samtaler er ikke med i prisen, men kan
-          bestilles separat.
+        <p class="bk-final-note">
+          {formatPrice(bodyCourse.price)} inkl. moms · Livslang adgang · Samtaler bestilles separat
         </p>
-        <a href={'/' + bodyCourse.slug + '/'} class="text-link" data-event="service_click" data-location="body_choice_course">
-          Læs om Bliv glad for din krop <Icon size={17} />
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <CTA body />
+      </div>
+    </section>
+  </div>
 </Layout>
 
 <style>
-  .body-hero { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap: clamp(35px,6vw,85px); align-items: center; }
-  .body-hero h1 { max-width: 720px; }
-  .body-hero .intro { margin-top: 27px; max-width: 640px; }
-  .body-hero p:not(.intro) { margin-top: 18px; max-width: 650px; }
-  .body-hero .button { margin-top: 28px; }
-  .body-hero .body-alt a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-  .body-hero img { width: 100%; max-width: 420px; border-radius: 20px; justify-self: center; }
-  .body-content { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(35px,7vw,100px); }
-  .body-choice { background: var(--sage); }
-  .body-choice-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
-  .body-choice article { background: var(--white); border: 1px solid var(--line); border-radius: 20px; padding: clamp(25px,4vw,42px); }
-  .body-choice article p { margin-top: 20px; }
-  .body-choice .text-link { margin-top: 24px; }
-  @media (max-width: 820px) {
-    .body-hero, .body-content, .body-choice-grid { grid-template-columns: 1fr; }
-    .body-hero img { justify-self: start; }
+  .bk-sales { overflow: clip; }
+  .bk-sales section[id] { scroll-margin-top: 120px; }
+  .bk-sales .button { white-space: normal; }
+  .bk-hero { background: var(--peach); padding-block: clamp(48px, 5vw, 76px); }
+  .bk-hero-grid, .bk-two-column, .bk-about-grid, .bk-pricing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: clamp(38px, 6vw, 92px);
+    align-items: center;
+  }
+  .bk-hero .breadcrumbs { margin-bottom: 28px; }
+  .bk-hero .eyebrow { margin-bottom: 12px; }
+  .bk-hero h1 { max-width: 770px; font-size: clamp(2.7rem, 4.4vw, 4.5rem); overflow-wrap: normal; hyphens: none; }
+  .bk-hero p { max-width: 650px; }
+  .bk-lead { color: var(--ink); font-size: clamp(1.18rem, 1.7vw, 1.4rem); line-height: 1.65; }
+  .bk-hero .bk-lead { margin-top: 24px; }
+  .bk-purchase-link { margin-top: 24px; }
+  .bk-hero-note, .bk-separate { font-size: .94rem; line-height: 1.5; }
+  .bk-hero-note { margin-top: 19px; font-weight: 650; }
+  .bk-separate { margin-top: 6px; color: var(--muted); }
+  .bk-hero-visual { position: relative; align-self: stretch; display: grid; align-content: center; }
+  .bk-hero-visual img { width: 100%; border-radius: 22px; aspect-ratio: 1 / .92; object-fit: cover; object-position: center 22%; }
+  .bk-hero-caption { background: var(--white); border-radius: 16px; padding: 20px 24px; margin: -44px 24px 0; position: relative; box-shadow: 0 12px 35px #294c3d18; line-height: 1.4; }
+  .bk-hero-caption strong, .bk-hero-caption span { display: block; }
+  .bk-hero-caption span { color: var(--muted); font-size: .94rem; margin-top: 5px; }
+  .bk-two-column { align-items: start; }
+  .bk-two-column h2 { max-width: 620px; }
+  .bk-reading { max-width: 670px; }
+  .bk-reading p { line-height: 1.8; }
+  .bk-reading h2 { margin-bottom: 24px; }
+  .bk-reading a:not(.text-link) { text-decoration: underline; text-underline-offset: 3px; }
+  .bk-reading sup a { text-decoration: none; padding-inline: 2px; }
+  .bk-pattern-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 58px; }
+  .bk-pattern-grid article, .bk-module-grid > li { border: 1px solid var(--line); border-radius: 18px; padding: 27px; background: var(--white); }
+  .bk-pattern-grid article span, .bk-module-number { color: var(--rust); font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .bk-pattern-grid h3 { margin: 12px 0; }
+  .bk-method { background: var(--paper); }
+  .bk-method-lead { margin-top: 26px; max-width: 580px; }
+  .bk-method-lead + .bk-method-lead { margin-top: 16px; }
+  .bk-inclusions { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: clamp(25px, 4vw, 42px); }
+  .bk-inclusions > div { display: flex; gap: 18px; padding-block: 18px; }
+  .bk-inclusions > div + div { border-top: 1px solid var(--line); }
+  .bk-inclusions svg { color: var(--green); margin-top: 3px; }
+  .bk-inclusions h3 { font-family: var(--sans); font-size: 1.13rem; font-weight: 700; letter-spacing: 0; }
+  .bk-inclusions p { color: var(--muted); font-size: .98rem; line-height: 1.6; margin-top: 4px; }
+  .bk-inclusions .bk-inclusions-note { border-top: 1px solid var(--line); margin-top: 13px; padding-top: 22px; color: var(--ink); }
+  .bk-modules { background: var(--sand); }
+  .bk-section-heading { max-width: 800px; margin-bottom: 48px; }
+  .bk-section-heading p { color: var(--muted); max-width: 700px; margin-top: 22px; }
+  .bk-module-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .bk-module-grid h3 { margin: 14px 0 11px; font-size: 1.38rem; }
+  .bk-module-grid p { color: var(--muted); line-height: 1.65; }
+  .bk-module-grid > li { display: flex; flex-direction: column; }
+  .bk-module-grid .bk-module-meta { margin-top: 18px; color: var(--green); font-size: .94rem; font-weight: 700; }
+  .bk-module-exercises { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .bk-module-exercises > span { color: var(--muted); font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .bk-module-exercises ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .bk-module-exercises li { position: relative; padding-left: 20px; font-size: .96rem; line-height: 1.55; color: var(--ink); padding-block: 2px; }
+  .bk-module-exercises li:before { content: ''; position: absolute; left: 2px; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--sage-deep); }
+  .bk-start { background: var(--white); border: 1px dashed var(--sage-deep); border-radius: 18px; padding: 22px 27px; margin-bottom: 18px; }
+  .bk-start p { color: var(--muted); margin-top: 6px; line-height: 1.65; }
+  .bk-inclusions-title { display: block; margin-bottom: 6px; }
+  .bk-inline-action { display: flex; gap: 30px; justify-content: space-between; align-items: center; margin-top: 38px; }
+  .bk-inline-action p { max-width: 600px; }
+  .bk-inline-action .button { flex-shrink: 0; margin-top: 0; }
+  .bk-stories { background: var(--sage); }
+  .bk-quote-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+  .bk-quote-grid figure { margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; }
+  .bk-quote-grid blockquote { margin: 0; font-family: var(--serif); font-size: 1.24rem; line-height: 1.55; }
+  .bk-quote-grid figcaption { margin-top: 24px; font-weight: 700; }
+  .bk-quote-grid figcaption span { display: block; font-weight: 400; font-size: .92rem; color: var(--muted); margin-top: 3px; }
+  .bk-source { font-size: .92rem; line-height: 1.6; margin-top: 26px; max-width: 850px; color: var(--muted); }
+  .bk-about { background: var(--white); }
+  .bk-about-grid { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); }
+  .bk-about-image { max-width: 430px; margin-inline: auto; }
+  .bk-about-image img { width: 100%; height: auto; border-radius: 20px; }
+  .bk-about .checklist { margin-top: 22px; }
+  .bk-about .text-link, .bk-fit .text-link { margin-top: 24px; }
+  .bk-fit { background: var(--paper); }
+  .bk-pricing { background: var(--sand); }
+  .bk-pricing-grid { align-items: start; }
+  .bk-pricing .bk-lead { margin-top: 28px; }
+  .bk-price-card { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: clamp(26px,4vw,46px); box-shadow: 0 22px 55px #294c3d12; }
+  .bk-price { font-family: var(--serif); font-size: clamp(3rem,5vw,4.6rem); line-height: 1; font-weight: 520; display: block; }
+  .bk-vat { color: var(--muted); display: block; margin-top: 7px; }
+  .bk-price-card ul { list-style: none; padding: 24px 0; margin: 24px 0; border-block: 1px solid var(--line); }
+  .bk-price-card li { display: flex; gap: 12px; align-items: flex-start; padding-block: 7px; }
+  .bk-price-card li svg { margin-top: 5px; color: var(--green); }
+  .bk-price-card p { font-size: .95rem; color: var(--muted); }
+  .bk-price-card .button { width: 100%; margin-top: 23px; }
+  .bk-price-card small, .bk-terms-link { display: block; font-size: .87rem; line-height: 1.5; text-align: center; margin-top: 12px; color: var(--muted); }
+  .bk-terms-link { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .bk-final { background: var(--green); color: var(--white); padding-block: clamp(75px,10vw,130px); text-align: center; }
+  .bk-final .container { max-width: 850px; }
+  .bk-final h2 { max-width: 800px; margin-inline: auto; }
+  .bk-final p { margin: 23px auto 0; max-width: 650px; }
+  .bk-final .button { background: var(--white); border-color: var(--white); color: var(--green); }
+  .bk-final .button:hover { background: var(--sage); }
+  .bk-final-note { font-size: .9rem; opacity: .9; }
+  @media (max-width: 900px) {
+    .bk-hero-grid, .bk-two-column, .bk-about-grid, .bk-pricing-grid { grid-template-columns: 1fr; }
+    .bk-hero-visual { max-width: 620px; }
+    .bk-hero .breadcrumbs { margin-bottom: 24px; }
+  }
+  @media (max-width: 650px) {
+    .bk-hero { padding-block: 32px 58px; }
+    .bk-hero .bk-lead { margin-top: 18px; }
+    .bk-hero h1 { font-size: clamp(2.55rem, 10vw, 3.6rem); }
+    .bk-pattern-grid, .bk-module-grid, .bk-quote-grid { grid-template-columns: 1fr; }
+    .bk-pattern-grid { margin-top: 35px; }
+    .bk-inline-action { flex-direction: column; align-items: stretch; }
+    .bk-inline-action .button { width: 100%; }
+    .bk-hero .button, .bk-final .button { width: 100%; }
+    .bk-hero-visual img { aspect-ratio: 4 / 3; }
+    .bk-hero-caption { margin-inline: 14px; padding: 17px; }
   }
 </style>
