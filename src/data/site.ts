@@ -10,7 +10,7 @@ export const site = {
   city: '3000 Helsingør',
   cvr: '30642155',
   guide: '/gratis-guide/',
-  checkout: 'https://successfuleating.systeme.io/onlineforloeb',
+  checkout: 'https://dittemunchandersen.systeme.io/onlineforloeb',
   productPrice: 3499,
   productDays: 58,
   consultationPrice: 1295,
