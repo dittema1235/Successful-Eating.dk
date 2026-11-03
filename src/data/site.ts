@@ -72,9 +72,9 @@ export const consultation = {
   href: 'https://dittemunchandersen.dk/kontakt/',
 };
 
-// Bliv glad for din krop – onlineforløb om kropsaccept (salgsside: /bliv-glad-for-din-krop).
+// Bliv glad for din krop – onlineforløb om kropsaccept (salgsside: /kropsglaede).
 export const bodyCourse = {
-  slug: 'bliv-glad-for-din-krop',
+  slug: 'kropsglaede',
   name: 'Bliv glad for din krop',
   productName: 'Bliv glad for din krop – onlineforløb',
   purchaseCta: 'Start Bliv glad for din krop',
