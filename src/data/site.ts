@@ -77,7 +77,7 @@ export const bodyCourse = {
   slug: 'kropsglaede',
   name: 'Bliv glad for din krop',
   productName: 'Bliv glad for din krop – onlineforløb',
-  purchaseCta: 'Start Bliv glad for din krop',
+  purchaseCta: 'Få adgang til Bliv glad for din krop',
   price: 3200,
   checkout: 'https://dittemunchandersen.systeme.io/22129240',
 };
