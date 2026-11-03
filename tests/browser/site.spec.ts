@@ -45,8 +45,11 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   const bodyButtons = page.locator('.bk-sales a.button');
   expect(await bodyButtons.count()).toBeGreaterThan(2);
   for (const button of await bodyButtons.all()) {
-    await expect(button).toContainText('Start Bliv glad for din krop');
+    await expect(button).toContainText('Få adgang til Bliv glad for din krop');
   }
+  const headerButton = page.locator('header a.button-small');
+  await expect(headerButton).toContainText('Få adgang til Bliv glad for din krop');
+  await expect(headerButton).toHaveAttribute('href', await bodyButtons.first().getAttribute('href') || '');
   expect(errors).toEqual([]);
 });
 test('menu, keyboard and FAQ work', async ({ page, isMobile }) => {
