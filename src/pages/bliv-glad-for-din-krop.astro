@@ -5,7 +5,7 @@ import { site, formatPrice, bodyCourse } from '../data/site';
 
 const title = 'Bliv glad for din krop – onlineforløb om kropsaccept';
 const description =
-  'Bliv glad for din krop er et onlineforløb om kropsaccept: seks moduler over seks uger og livslang adgang. ' +
+  'Bliv glad for din krop er et onlineforløb om kropsaccept: seks moduler over seks uger med 9 videoer og 15 øvelser. Livslang adgang. ' +
   formatPrice(bodyCourse.price) +
   ' inkl. moms. Af psykolog Ditte Munch-Andersen.';
 
@@ -30,36 +30,61 @@ const schema = {
   },
 };
 
+// Indhold, antal og varigheder er hentet fra selve kurset i Simplero (3. nov. 2026):
+// Start her + 6 moduler, 34 lektioner, 9 videoer (i alt 3 t 53 min), 15 øvelser.
 const modules = [
   {
-    title: 'Hvordan dit kropsbillede blev skabt',
+    title: 'Om kropsbilledet',
     description:
-      'Du finder frem til de episoder, der har formet dit forhold til din krop. Og så begynder du at slippe dem.',
+      'Du finder frem til, hvor skoen trykker. Hvordan blev dit kropsbillede til, og hvilke perioder og episoder har formet dit forhold til din krop? Bagefter ser du på dine værdier og på, hvad du vil vælge aktivt fra nu af.',
+    meta: '2 videoer · 36 min. · 2 øvelser',
+    exercises: ['Vær detektiv på dine kropsidealer og dit kropsbillede', 'Find dine værdier'],
   },
   {
-    title: 'Skjuler du din krop?',
+    title: 'Sikkerhedsadfærd',
     description:
-      'Du ser på de strategier, du bruger for at skjule din krop, og på hvad de egentlig gør ved dig. Så kan du begynde at slippe dem.',
+      'Alt det, du gør for at skjule det, du ikke bryder dig om. Du lærer at spotte din adfærd, opdager dine triggere og øver dig i at gøre noget nyt. Og du tager fat på selvsnakken, altså den måde, du mobber din krop på.',
+    meta: '2 videoer · 1 t 5 min. · 4 øvelser',
+    exercises: [
+      'Lav en liste over din sikkerhedsadfærd',
+      'Opdag dine triggere',
+      'Byg din plan',
+      'Test teori A mod teori B',
+    ],
   },
   {
-    title: 'Bliv din krops bedste ven',
+    title: 'Bliv den bedste ven for din krop',
     description:
-      'Du øver dig i at stoppe den negative selvsnak og i at tale til dig selv med omsorg. Som du ville tale til en ven.',
+      'I de første moduler lærer du at holde op med at mobbe din krop. Nu fylder du på med gode oplevelser. For helt ærligt: En god ven gør mere end bare at lade være med at kritisere dig non-stop.',
+    meta: '1 video · 13 min. · 3 øvelser og en ideliste',
+    exercises: ['Styrk din relation og dyrk dine værdier', 'Date dig selv (med ideliste til aktiviteter)'],
   },
   {
-    title: 'Afmonter dine “sandheder” om din krop',
+    title: 'Afmonter dine “sandheder” om dit udseende',
     description:
-      'Du lærer at få øje på de tanker, der sætter kropsskammen i gang, og at undersøge dem i stedet for bare at tro på dem.',
+      'Måske har du nogle “sandheder” med dig. “Hvis jeg tager med til den fest, vil alle lægge mærke til min krop og dømme mig.” “Hvis han ser mig nøgen, vil han aldrig tænde på mig igen.” “Hvis jeg stopper med at kritisere mine fejl, mister jeg al motivation.” Du lærer at opdage de tanker, der sætter kropsskammen i gang, og at arbejde med dine antagelser, regler og katastrofetanker.',
+    meta: '2 videoer · 1 t 8 min. · 2 øvelser',
+    exercises: [
+      'Gå til dine antagelser og find en ny og mere hensigtsmæssig selvsnak',
+      'Arbejd videre med dine planer fra modul 2',
+    ],
   },
   {
-    title: 'Når andre kommenterer din krop',
+    title: 'God kommunikation',
     description:
-      'Du bliver tryggere ved at sætte grænser og stå fast, når andre har meninger om din krop.',
+      'Indimellem er der nogen, der kommenterer din krop eller overskrider dine grænser. Her arbejder vi med kommunikation og grænsesætning, så du ved, hvad du kan sige.',
+    meta: '1 video · 33 min. · 2 øvelser',
+    exercises: [
+      'Forbered gode svar på ubehagelige spørgsmål',
+      'Når du føler dig grænseoverskredet, og har lyst til at sige fra',
+    ],
   },
   {
-    title: 'Sådan holder du fast',
+    title: 'Sådan gør du fremover',
     description:
-      'Du lægger en plan, så du ikke glider tilbage i de gamle mønstre, og finder en ny og mere venlig vej videre.',
+      'Har du haft et anspændt forhold til din krop i mange år, kan det være let at falde tilbage i de gamle vaner. Derfor lægger du en plan for, hvad du vil arbejde med fremover, og hvordan du holder fast på den lange bane.',
+    meta: '1 video · 18 min. · 2 øvelser',
+    exercises: ['3 måneders plan', 'Tilbagefaldsplan'],
   },
 ];
 
@@ -78,9 +103,19 @@ const stories = [
 
 const faqs = [
   {
-    question: 'Hvad er Bliv glad for din krop?',
+    question: 'Hvad får jeg helt præcist?',
     answer:
-      'Et onlineforløb om kropsaccept over seks uger. Du får adgang til ét nyt modul hver 7. dag og arbejder på egen hånd. Hvert modul bygger videre på det forrige.',
+      'En velkomst, hvor du får overblik over forløbet, og derefter seks moduler. I alt er der 9 videoer på knap fire timer og 15 øvelser. Hvert modul bygger videre på det forrige, og du får adgang til ét nyt modul hver 7. dag.',
+  },
+  {
+    question: 'Hvad skal jeg bruge for at komme i gang?',
+    answer:
+      'Du kan downloade og printe øvelserne, eller du kan bruge en helt almindelig notesbog. Jeg anbefaler, at du laver øvelserne for at få det fulde udbytte af forløbet.',
+  },
+  {
+    question: 'Hvor lang tid tager det?',
+    answer:
+      'Forløbet er bygget over seks uger, hvor ét nyt modul åbner hver 7. dag. Videoerne varer knap fire timer i alt, og øvelserne kommer oveni. Forløbet er dit, så du kan tage det i dit eget tempo, også efter de seks uger.',
   },
   {
     question: 'Hvor længe har jeg adgang?',
@@ -144,7 +179,7 @@ const faqs = [
             {bodyCourse.purchaseCta} <Icon size={18} />
           </a>
           <p class="bk-hero-note">
-            Seks uger · Seks moduler · Livslang adgang · {formatPrice(bodyCourse.price)} inkl. moms
+            Seks uger · 9 videoer · 15 øvelser · Livslang adgang · {formatPrice(bodyCourse.price)} inkl. moms
           </p>
           <p class="bk-separate">
             Individuelle samtaler om kropsaccept bestiller du separat. De er ikke med i prisen.
@@ -222,6 +257,10 @@ const faqs = [
             kigger vi på den tanke. Og på, hvad den har kostet dig undervejs.
           </p>
           <p class="bk-method-lead">
+            Tanken er, at du arbejder dig frem til, at du ikke bare har sluttet fred med din krop,
+            men også kan mærke glæde ved den.
+          </p>
+          <p class="bk-method-lead">
             Jeg har arbejdet med forholdet til mad, krop og selvværd i mere end 20 år. Øvelserne i
             forløbet er værktøjer fra kognitiv terapi, som jeg bruger sammen med mine klienter.
           </p>
@@ -235,33 +274,45 @@ const faqs = [
           </a>
         </div>
         <div class="bk-inclusions">
+          <span class="eyebrow bk-inclusions-title">Det får du, når du køber</span>
           <div>
-            <Icon name="clock" size={25} />
+            <Icon name="book" size={25} />
             <div>
-              <h3>Seks uger, seks moduler</h3>
+              <h3>9 videoer, knap fire timers undervisning</h3>
               <p>
-                Du får adgang til ét nyt modul hver 7. dag. Hvert modul bygger videre på det
-                forrige, så du arbejder dig gradvist gennem de tanker og vaner, der står i vejen.
+                Fordelt på seks moduler. Du får undervisning i, hvordan kropsbilledet opstår,
+                hvordan du arbejder med sikkerhedsadfærd og negative tanker, og hvordan du holder
+                fast bagefter.
               </p>
             </div>
           </div>
           <div>
             <Icon name="heart" size={25} />
             <div>
-              <h3>Konkrete værktøjer og strategier</h3>
+              <h3>15 øvelser, så du får brugt det, du lærer</h3>
               <p>
-                Du får noget at gøre, ikke kun noget at forstå. Til selvsnakken, til skammen og til
-                de situationer, hvor andre har meninger om din krop.
+                Du kan downloade og printe dem eller bruge en almindelig notesbog. Jeg anbefaler, at
+                du laver øvelserne for at få det fulde udbytte.
+              </p>
+            </div>
+          </div>
+          <div>
+            <Icon name="clock" size={25} />
+            <div>
+              <h3>Start her og seks moduler over seks uger</h3>
+              <p>
+                Du begynder med en velkomst og et overblik over forløbet. Derefter får du adgang til
+                ét nyt modul hver 7. dag. Hvert modul bygger videre på det forrige.
               </p>
             </div>
           </div>
           <div>
             <Icon name="shield" size={25} />
             <div>
-              <h3>Livslang adgang</h3>
+              <h3>Dit eget tempo og livslang adgang</h3>
               <p>
-                Kropsaccept er ikke noget, du bliver færdig med på seks uger. Materialet er dit
-                bagefter, og du kan tage det frem igen, når du har brug for det.
+                Forløbet er dit. Du kan gå tilbage til videoer og øvelser, når du har brug for det,
+                også efter de seks uger.
               </p>
             </div>
           </div>
@@ -279,7 +330,15 @@ const faqs = [
           <span class="eyebrow">Sådan er forløbet bygget op</span>
           <h2 id="modules-heading">Fra tankerne om din krop til din plan for tiden efter.</h2>
           <p>
-            Seks moduler, ét ad gangen. Du arbejder med ét tema, før det næste åbner.
+            Seks moduler, ét ad gangen. Du arbejder med ét tema, før det næste åbner. Hvert modul
+            består af en kort introduktion, en eller to videoer og øvelser.
+          </p>
+        </div>
+        <div class="bk-start">
+          <span class="bk-module-number">Start her</span>
+          <p>
+            Før det første modul får du en velkomst, en gennemgang af programmets opbygning og en
+            oversigt over, hvad du får brug for.
           </p>
         </div>
         <ol class="bk-module-grid">
@@ -289,6 +348,15 @@ const faqs = [
                 <span class="bk-module-number">Modul {index + 1}</span>
                 <h3>{module.title}</h3>
                 <p>{module.description}</p>
+                <p class="bk-module-meta">{module.meta}</p>
+                <div class="bk-module-exercises">
+                  <span>Øvelser, blandt andet</span>
+                  <ul>
+                    {module.exercises.map((exercise) => (
+                      <li>{exercise}</li>
+                    ))}
+                  </ul>
+                </div>
               </li>
             ))
           }
@@ -440,8 +508,9 @@ const faqs = [
           <strong class="bk-price">{formatPrice(bodyCourse.price)}</strong>
           <span class="bk-vat">inkl. moms</span>
           <ul>
+            <li><Icon name="check" size={18} /> 9 videoer, knap fire timers undervisning</li>
+            <li><Icon name="check" size={18} /> 15 øvelser, der kan printes eller laves i en notesbog</li>
             <li><Icon name="check" size={18} /> Seks uger: ét nyt modul hver 7. dag</li>
-            <li><Icon name="check" size={18} /> Værktøjer og strategier til dagligdagen</li>
             <li><Icon name="check" size={18} /> Livslang adgang til materialet</li>
           </ul>
           <p>Individuelle samtaler er ikke inkluderet.</p>
@@ -538,7 +607,7 @@ const faqs = [
   .bk-reading a:not(.text-link) { text-decoration: underline; text-underline-offset: 3px; }
   .bk-reading sup a { text-decoration: none; padding-inline: 2px; }
   .bk-pattern-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 58px; }
-  .bk-pattern-grid article, .bk-module-grid li { border: 1px solid var(--line); border-radius: 18px; padding: 27px; background: var(--white); }
+  .bk-pattern-grid article, .bk-module-grid > li { border: 1px solid var(--line); border-radius: 18px; padding: 27px; background: var(--white); }
   .bk-pattern-grid article span, .bk-module-number { color: var(--rust); font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .bk-pattern-grid h3 { margin: 12px 0; }
   .bk-method { background: var(--paper); }
@@ -557,6 +626,16 @@ const faqs = [
   .bk-module-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
   .bk-module-grid h3 { margin: 14px 0 11px; font-size: 1.38rem; }
   .bk-module-grid p { color: var(--muted); line-height: 1.65; }
+  .bk-module-grid > li { display: flex; flex-direction: column; }
+  .bk-module-grid .bk-module-meta { margin-top: 18px; color: var(--green); font-size: .94rem; font-weight: 700; }
+  .bk-module-exercises { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .bk-module-exercises > span { color: var(--muted); font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .bk-module-exercises ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .bk-module-exercises li { position: relative; padding-left: 20px; font-size: .96rem; line-height: 1.55; color: var(--ink); padding-block: 2px; }
+  .bk-module-exercises li:before { content: ''; position: absolute; left: 2px; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--sage-deep); }
+  .bk-start { background: var(--white); border: 1px dashed var(--sage-deep); border-radius: 18px; padding: 22px 27px; margin-bottom: 18px; }
+  .bk-start p { color: var(--muted); margin-top: 6px; line-height: 1.65; }
+  .bk-inclusions-title { display: block; margin-bottom: 6px; }
   .bk-inline-action { display: flex; gap: 30px; justify-content: space-between; align-items: center; margin-top: 38px; }
   .bk-inline-action p { max-width: 600px; }
   .bk-inline-action .button { flex-shrink: 0; margin-top: 0; }
