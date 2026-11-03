@@ -106,6 +106,30 @@ const stories = [
   },
 ];
 
+// Fire gratis blogindlæg om kropsbillede (uden henvisning til andre forløb eller vægttab).
+const reads = [
+  {
+    href: '/blog/50565-hvordan-vil-det-vaere-at-hade-din-krop/',
+    title: 'Når du er hård ved din krop: begynd med mindre kropskritik',
+    text: 'Du behøver ikke elske din krop for at tage vare på den. Et mere neutralt sprog og ét lille hverdagsvalg, når kritikken fylder.',
+  },
+  {
+    href: '/blog/50294-du-behoever-ikke-at-elske-din-krop/',
+    title: 'Du behøver ikke at elske din krop',
+    text: 'Ikke som en start i hvert fald. Om hvorfor små, realistiske skridt ofte virker bedre end at forsøge at elske sin krop.',
+  },
+  {
+    href: '/blog/50433-har-du-et-problem-med-din-krop-eller-med/',
+    title: 'Har du et problem med din krop - eller med dine tanker?',
+    text: 'Hvad hvis det, du gerne vil ændre, slet ikke behøver at ændre sig, før du kan være tilfreds?',
+  },
+  {
+    href: '/blog/54908-man-maa-vaelge-sine-kampe/',
+    title: 'Man må vælge sine kampe',
+    text: 'Hvad er et normalt kropsbillede? Og hvornår begynder det, du ikke kan lide ved dig selv, at fylde for meget?',
+  },
+];
+
 const faqs = [
   {
     question: 'Hvad får jeg helt præcist?',
@@ -552,6 +576,34 @@ const faqs = [
       </div>
     </section>
 
+    <section class="section bk-reads" id="laes-mere" aria-labelledby="reads-heading">
+      <div class="container">
+        <div class="bk-section-heading">
+          <span class="eyebrow">Gratis at læse</span>
+          <h2 id="reads-heading">Læs mere om kropsbillede</h2>
+          <p>
+            Vil du have en fornemmelse af, hvordan jeg tænker, før du beslutter dig? Her er fire
+            indlæg fra min blog.
+          </p>
+        </div>
+        <ul class="bk-read-grid">
+          {
+            reads.map((read) => (
+              <li>
+                <h3>
+                  <a href={read.href}>{read.title}</a>
+                </h3>
+                <p>{read.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <a href="/blog/emner/kropsbillede/" class="text-link bk-reads-all">
+          Se alle indlæg om kropsbillede <Icon size={17} />
+        </a>
+      </div>
+    </section>
+
     <section class="bk-final" aria-labelledby="final-heading">
       <div class="container">
         <span class="eyebrow">Et sted at begynde</span>
@@ -669,6 +721,13 @@ const faqs = [
   .bk-price-card .button { width: 100%; margin-top: 23px; }
   .bk-price-card small, .bk-terms-link { display: block; font-size: .87rem; line-height: 1.5; text-align: center; margin-top: 12px; color: var(--muted); }
   .bk-terms-link { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .bk-reads { background: var(--white); }
+  .bk-read-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .bk-read-grid > li { border: 1px solid var(--line); border-radius: 18px; padding: 27px; background: var(--paper); }
+  .bk-read-grid h3 { margin: 0 0 11px; font-size: 1.3rem; }
+  .bk-read-grid h3 a { text-decoration: underline; text-underline-offset: 3px; }
+  .bk-read-grid p { color: var(--muted); line-height: 1.65; }
+  .bk-reads-all { margin-top: 30px; }
   .bk-final { background: var(--green); color: var(--white); padding-block: clamp(75px,10vw,130px); text-align: center; }
   .bk-final .container { max-width: 850px; }
   .bk-final h2 { max-width: 800px; margin-inline: auto; }
@@ -685,7 +744,7 @@ const faqs = [
     .bk-hero { padding-block: 32px 58px; }
     .bk-hero .bk-lead { margin-top: 18px; }
     .bk-hero h1 { font-size: clamp(2.55rem, 10vw, 3.6rem); }
-    .bk-pattern-grid, .bk-module-grid, .bk-quote-grid { grid-template-columns: 1fr; }
+    .bk-pattern-grid, .bk-module-grid, .bk-quote-grid, .bk-read-grid { grid-template-columns: 1fr; }
     .bk-pattern-grid { margin-top: 35px; }
     .bk-inline-action { flex-direction: column; align-items: stretch; }
     .bk-inline-action .button { width: 100%; }
