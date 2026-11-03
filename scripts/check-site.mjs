@@ -73,7 +73,7 @@ for (const file of files) {
           check(n.offers?.price === 3499, 'Product offer price mismatch');
           check(n.offers?.priceCurrency === 'DKK', 'Product offer currency mismatch');
           check(n.offers?.priceSpecification?.valueAddedTaxIncluded === true, 'Product offer VAT status missing');
-          check(n.offers?.url === 'https://successfuleating.systeme.io/onlineforloeb', 'Product checkout mismatch');
+          check(n.offers?.url === 'https://dittemunchandersen.systeme.io/onlineforloeb', 'Product checkout mismatch');
         }
         if (n['@type'] === 'BlogPosting') {
           const author = n.author?.['@id'];
