@@ -108,8 +108,8 @@ export const services = [
     intro:
       'Et onlineforløb om kropsaccept over seks uger med seks moduler. Du arbejder på egen hånd og har livslang adgang til materialet.',
     features: [
+      '9 videoer og 15 øvelser',
       'Seks moduler, ét nyt hver 7. dag',
-      'Værktøjer fra kognitiv terapi',
       'Livslang adgang til materialet',
     ],
     tag: 'Onlineforløb',
