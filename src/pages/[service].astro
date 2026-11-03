@@ -479,35 +479,62 @@ const faqs = [
       <div class="container bk-two-column">
         <div>
           <span class="eyebrow">Er forløbet noget for dig?</span>
-          <h2 id="fit-heading">Det kan du forvente. Og det kan du ikke.</h2>
+          <h2 id="fit-heading">Til dig, der er træt af at kæmpe mod din krop.</h2>
         </div>
         <div class="bk-reading">
+          <p class="bk-lead">
+            Bliv glad for din krop er til dig, der gerne vil have mere ro i hovedet og mere frihed
+            i hverdagen. Du behøver ikke have alle svar, før du begynder. Du skal bare have lyst
+            til at prøve noget andet end det, du plejer.
+          </p>
+          <p>Forløbet passer til dig, der:</p>
+          <ul class="checklist">
+            <li>
+              <Icon name="check" size={16} /> vil holde op med at kritisere din krop, men ikke ved
+              hvordan
+            </li>
+            <li><Icon name="check" size={16} /> helst vil arbejde på egen hånd og i dit eget tempo</li>
+            <li><Icon name="check" size={16} /> er træt af kure, vægtmål og kostplaner</li>
+            <li><Icon name="check" size={16} /> vil have øvelser, du kan bruge i din hverdag</li>
+          </ul>
           <p>
-            Bliv glad for din krop er til dig, der gerne vil arbejde med kropskritik og selvbillede
-            på egen hånd og i et tempo, der passer til dit liv. Du behøver ikke have alle svar,
-            før du begynder.
+            I løbet af de seks moduler lærer du at spotte de tanker, der sætter kropskritikken i
+            gang. Du øver dig i at gøre noget andet, og du laver en plan for de dage, hvor spejlet
+            driller igen.
           </p>
           <p>
-            Jeg kan ikke love dig et bestemt resultat. Forskningen peger på, at indsatser, der
-            udelukkende arbejder med kropsbilledet, i gennemsnit kan give en lille til moderat
-            forbedring. Det viser en samlet gennemgang af 62 afprøvninger med i alt 3.846
-            deltagere. Efter korrektion for skævheder i studierne var effekten stadig pålidelig,
-            men lille.<sup><a href="#kilde-1" aria-label="Se kilde 1">1</a></sup> Gennemgangen
-            handler om den slags indsatser i almindelighed og ikke om netop dette forløb.
+            Metoden kommer fra kognitiv terapi. Forskning i selvstændige forløb om kropsbilledet
+            viser, at de kan forbedre det, og at øvelser, hvor man arbejder med sine tanker om
+            kroppen, hænger sammen med bedre resultater.<sup
+              ><a href="#kilde-1" aria-label="Se kilde 1">1</a></sup
+            >
           </p>
           <p>
-            Forløbet er ikke behandling og erstatter ikke en faglig vurdering. Der er hverken
-            kostplan eller vægtmål. Hvis du fremkalder opkastning, spiser meget restriktivt, har
-            symptomer på anoreksi eller er bekymret for dit helbred, så tal med din egen læge.
+            Jeg kan ikke love dig et bestemt resultat, for det er forskelligt, hvad der virker for
+            hvem. Men der er hverken kostplan eller vægtmål. Her handler det om dit forhold til din
+            krop.
           </p>
-          <p>
-            Vil du hellere tale med mig, kan du{' '}
+          <a
+            class="button bk-purchase-link"
+            href={bodyCourse.checkout}
+            data-event="checkout_click"
+            data-location="body_fit"
+          >
+            {bodyCourse.purchaseCta} <Icon size={18} />
+          </a>
+          <p class="bk-note">
+            Forløbet er et selvstudieforløb og ikke behandling. Er du bekymret for dit helbred,
+            fremkalder du opkastning, spiser du meget restriktivt, eller har du symptomer på
+            anoreksi, så tal med din egen læge. Vil du hellere tale med mig, kan du{' '}
             <a href="/individuelt-forloeb/">bestille individuelle samtaler</a>.
           </p>
           <p class="bk-source" id="kilde-1">
             <sup>1</sup> Kilde: Alleva, J.M., Sheeran, P., Webb, T.L. m.fl. (2015). A meta-analytic
             review of stand-alone interventions to improve body image. <i>PLoS ONE, 10</i>(9),
-            e0139177.{' '}
+            e0139177. Gennemgangen omfatter 62 afprøvninger med i alt 3.846 deltagere. Forbedringen
+            var i gennemsnit lille til moderat, og efter korrektion for skævheder i studierne var
+            den lille, men pålidelig. Den handler om den slags forløb i almindelighed og ikke om
+            netop dette forløb.{' '}
             <a href="https://doi.org/10.1371/journal.pone.0139177" rel="noopener">
               doi.org/10.1371/journal.pone.0139177
             </a>
@@ -707,6 +734,9 @@ const faqs = [
   .bk-about-image img { width: 100%; height: auto; border-radius: 20px; }
   .bk-about .checklist { margin-top: 22px; }
   .bk-about .text-link, .bk-fit .text-link { margin-top: 24px; }
+  .bk-fit .checklist { margin: 6px 0 22px; }
+  .bk-fit .bk-reading a.button { text-decoration: none; }
+  .bk-fit .bk-note { font-size: .94rem; line-height: 1.7; color: var(--muted); margin-top: 28px; }
   .bk-fit { background: var(--paper); }
   .bk-pricing { background: var(--sand); }
   .bk-pricing-grid { align-items: start; }
@@ -748,7 +778,7 @@ const faqs = [
     .bk-pattern-grid { margin-top: 35px; }
     .bk-inline-action { flex-direction: column; align-items: stretch; }
     .bk-inline-action .button { width: 100%; }
-    .bk-hero .button, .bk-final .button { width: 100%; }
+    .bk-hero .button, .bk-final .button, .bk-fit .button { width: 100%; }
     .bk-hero-visual img { aspect-ratio: 4 / 3; }
     .bk-hero-caption { margin-inline: 14px; padding: 17px; }
   }
