@@ -1,4 +1,4 @@
-import { site, formatPrice, selfStudyModules } from '../data/site';
+import { site, formatPrice, selfStudyModules, bodyCourse } from '../data/site';
 import consolidated from '../data/consolidated-articles.json';
 
 export function GET() {
@@ -9,6 +9,7 @@ export function GET() {
 
 ## Aktuelt tilbud
 - [Successful Eating – online selvstudieforløb](${site.url}/forloebet/): Et selvstudie over ${site.productDays} dage med et fundament og syv moduler, videoer og øvelser. ${formatPrice(site.productPrice)} inkl. moms og livslang adgang til materialet. Du arbejder på egen hånd; individuel vurdering, sparring, gruppeterapi og samtaler er ikke inkluderet.
+- [Bliv glad for din krop – onlineforløb](${site.url}/bliv-glad-for-din-krop/): Et onlineforløb om kropsaccept over seks uger med seks moduler, 9 videoer og 15 øvelser. ${formatPrice(bodyCourse.price)} inkl. moms og livslang adgang til materialet. Du arbejder på egen hånd; individuelle samtaler er ikke inkluderet.
 - [Individuelle samtaler](${site.url}/individuelt-forloeb/): Et separat tilbud hos Ditte Munch-Andersen, i Helsingør eller online. En samtale på ${site.consultationMinutes} minutter koster ${formatPrice(site.consultationPrice)}. Samtaler er ikke en del af onlineforløbets pris.
 - [Kropsaccept](${site.url}/kropsglaede/): Særskilte individuelle samtaler med fokus på kropskritik.
 - [Resultater og deltagererfaringer](${site.url}/resultater/): Brugerundersøgelsen fra 2024 og udtalelser fra tidligere deltagere. Resultaterne er målt umiddelbart efter tidligere forløb og kan ikke forudsige udfaldet af det aktuelle selvstudie.

@@ -7,16 +7,16 @@ import { services } from '../data/site';
   <div class="container">
     <div class="section-heading">
       <div>
-        <span class="eyebrow">VÆLG DEN RAMME, DER PASSER DIG</span>
+        <span class="eyebrow">VÆLG DET, DER PASSER TIL DIG</span>
         <h2>
-          Arbejd selvstændigt.
+          Begynd med din spisning.
           <br />
-          Eller tal med Ditte.
+          Eller med din krop.
         </h2>
       </div>
       <p class="intro">
-        Successful Eating er et online selvstudieforløb. Individuelle samtaler er et separat
-        tilbud, som du kan købe, hvis du ønsker personlig kontakt.
+        Successful Eating og Bliv glad for din krop er onlineforløb, du gennemfører på egen hånd.
+        Vil du hellere tale med Ditte, kan du bestille individuelle samtaler som et separat tilbud.
       </p>
     </div>
     <div class="course-grid">
@@ -45,13 +45,14 @@ import { services } from '../data/site';
             data-event="service_click"
             data-location={s.slug}
           >
-            Læs om {s.slug === 'kropsglaede' ? 'individuel kropsaccept' : 'Successful Eating'} <Icon size={18} />
+            {s.linkLabel} <Icon size={18} />
           </a>
         </article>
       ))}
     </div>
     <p class="course-help">
-      Har du spørgsmål til forskellen? <a href="/kontakt">Kontakt Ditte.</a>
+      Har du spørgsmål til forskellen? <a href="/kontakt">Kontakt Ditte</a> eller se{' '}
+      <a href="/individuelt-forloeb/">individuelle samtaler</a>.
     </p>
   </div>
 </section>
