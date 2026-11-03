@@ -34,7 +34,20 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Se dine muligheder', exact: true }).click();
   await expect(page.locator('#forloeb')).toBeInViewport();
-  await page.getByRole('link', { name: 'Læs om individuel kropsaccept' }).click();
+  await page.getByRole('link', { name: 'Læs om Bliv glad for din krop' }).click();
+  await expect(page).toHaveURL(/\/bliv-glad-for-din-krop$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Slip kropskritikken. Uden først at skulle ændre din krop.',
+  );
+  await expect(page.locator('#moduler .bk-module-grid > li')).toHaveCount(6);
+  await expect(page.locator('#priser')).toContainText('3.200 kr.');
+  await expect(page.locator('#priser')).toContainText('Livslang adgang');
+  const bodyButtons = page.locator('.bk-sales a.button');
+  expect(await bodyButtons.count()).toBeGreaterThan(2);
+  for (const button of await bodyButtons.all()) {
+    await expect(button).toContainText('Start Bliv glad for din krop');
+  }
+  await page.goto('/kropsglaede');
   await expect(page).toHaveURL(/kropsglaede/);
   await expect(page.locator('main')).toContainText('særskilt psykologisk behandlingstilbud');
   await expect(page.locator('.closing-cta .button')).toHaveAttribute('href', '/individuelt-forloeb/');
@@ -303,6 +316,7 @@ test('cookie choices are Danish, optional tracking starts denied and stays local
 test('key pages fit the viewport and pass accessibility checks', async ({ page }) => {
   for (const url of [
     '/forloebet',
+    '/bliv-glad-for-din-krop',
     '/kropsglaede',
     '/individuelt-forloeb',
     '/kontakt',
