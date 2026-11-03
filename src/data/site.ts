@@ -79,9 +79,7 @@ export const bodyCourse = {
   productName: 'Bliv glad for din krop – onlineforløb',
   purchaseCta: 'Start Bliv glad for din krop',
   price: 3200,
-  // TODO før udgivelse: skift til købslinket for Bliv glad for din krop (systeme.io).
-  // Indtil da peger knapperne på kontaktsiden, så ingen havner på et forkert produkt.
-  checkout: '/kontakt',
+  checkout: 'https://dittemunchandersen.systeme.io/22129240',
 };
 
 export const services = [
