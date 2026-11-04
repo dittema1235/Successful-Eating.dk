@@ -14,6 +14,37 @@ export function getStaticPaths() {
 const { post } = Astro.props;
 const revisedLibrary = 'editorialAuthor' in post && post.editorialAuthor;
 const topic = topics.find((t) => t.slug === post.topic)!;
+// Kropsbillede-artiklerne, der henviser til onlineforløbet Bliv glad for din krop
+// i stedet for den gratis guide (guiden hører til Successful Eating-forløbet).
+const bodyCoursePosts = [
+  'blog/50565-hvordan-vil-det-vaere-at-hade-din-krop',
+  'blog/50294-du-behoever-ikke-at-elske-din-krop',
+  'blog/50433-har-du-et-problem-med-din-krop-eller-med',
+  'blog/54908-man-maa-vaelge-sine-kampe',
+];
+const nextStep = bodyCoursePosts.includes(post.slug)
+  ? {
+      title: 'Bliv glad for din krop.',
+      text: 'Et onlineforløb over seks uger med undervisning og konkrete øvelser, så du kan arbejde med kropskritik på egen hånd og i dit eget tempo.',
+      button: 'Se forløbet',
+      href: '/kropsglaede/',
+      link: null,
+    }
+  : post.salesCta
+    ? {
+        title: 'Begynd med den gratis guide.',
+        text: 'Få refleksioner om sult, træthed og overspisning. Guiden er gratis og kan være et første skridt.',
+        button: 'Få den gratis guide',
+        href: '/gratis-guide/',
+        link: { label: 'Se det aktuelle tilbud', href: topic.service },
+      }
+    : {
+        title: 'Mere plads til dig.',
+        text: 'Lær Ditte og hendes faglige tilgang at kende, eller begynd med en gratis guide.',
+        button: 'Mød Ditte',
+        href: '/om-ditte/',
+        link: { label: 'Læs om den gratis guide', href: '/gratis-guide/' },
+      };
 const url = new URL(`/${post.slug}`, site.url).href;
 const schema = {
   '@type': revisedLibrary ? 'Article' : 'BlogPosting',
@@ -94,22 +125,18 @@ const schema = {
         </div>
         <aside class="facts-card">
           <span class="eyebrow">ET NÆSTE SKRIDT</span>
-          <h2>{post.salesCta ? 'Begynd med den gratis guide.' : 'Mere plads til dig.'}</h2>
-          <p class="small muted">
-            {post.salesCta
-              ? 'Få refleksioner om sult, træthed og overspisning. Guiden er gratis og kan være et første skridt.'
-              : 'Lær Ditte og hendes faglige tilgang at kende, eller begynd med en gratis guide.'}
-          </p>
-          <a
-            class="button"
-            style="margin-top:23px"
-            href={post.salesCta ? '/gratis-guide/' : '/om-ditte/'}
-          >
-            {post.salesCta ? 'Få den gratis guide' : 'Mød Ditte'} <Icon size={17} />
+          <h2>{nextStep.title}</h2>
+          <p class="small muted">{nextStep.text}</p>
+          <a class="button" style="margin-top:23px" href={nextStep.href}>
+            {nextStep.button} <Icon size={17} />
           </a>
-          <a class="text-link" style="margin-top:25px" href={post.salesCta ? topic.service : '/gratis-guide/'}>
-            {post.salesCta ? 'Se det aktuelle tilbud' : 'Læs om den gratis guide'} <Icon size={16} />
-          </a>
+          {
+            nextStep.link && (
+              <a class="text-link" style="margin-top:25px" href={nextStep.link.href}>
+                {nextStep.link.label} <Icon size={16} />
+              </a>
+            )
+          }
         </aside>
       </div>
     </div>
