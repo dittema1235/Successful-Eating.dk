@@ -104,10 +104,10 @@ export const services = [
     eyebrow: 'FOR DIG, DER VIL SLIPPE KROPSKRITIKKEN',
     title: bodyCourse.name,
     intro:
-      'Et onlineforløb om kropsaccept over seks uger med seks moduler. Du arbejder på egen hånd og har livslang adgang til materialet.',
+      'Et onlineforløb om kropsaccept med seks moduler. Du arbejder på egen hånd og har livslang adgang til materialet.',
     features: [
       '9 videoer og 15 øvelser',
-      'Seks moduler, ét nyt hver 7. dag',
+      'Adgang til alle moduler med det samme',
       'Livslang adgang til materialet',
     ],
     tag: 'Onlineforløb',
