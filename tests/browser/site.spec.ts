@@ -37,16 +37,16 @@ test('homepage, course journey and accessible layout', async ({ page }) => {
   await page.getByRole('link', { name: 'Læs om Bliv glad for din krop' }).click();
   await expect(page).toHaveURL(/\/kropsglaede$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Slip kropskritikken. Uden først at skulle ændre din krop.',
+    'Få et friere forhold til din krop – og brug livet på noget andet end at kritisere den',
   );
-  await expect(page.locator('#moduler .bk-module-grid > li')).toHaveCount(6);
   await expect(page.locator('#priser')).toContainText('3.200 kr.');
   await expect(page.locator('#priser')).toContainText('Livslang adgang');
   const bodyButtons = page.locator('.bk-sales a.button');
-  expect(await bodyButtons.count()).toBeGreaterThan(2);
+  expect(await bodyButtons.count()).toBeGreaterThan(10);
   for (const button of await bodyButtons.all()) {
-    await expect(button).toContainText('Få adgang til Bliv glad for din krop');
+    await expect(button).toHaveAttribute('href', 'https://dittemunchandersen.systeme.io/22129240');
   }
+  await expect(page.locator('.bk-sales')).not.toContainText('Successful Eating');
   const headerButton = page.locator('header a.button-small');
   await expect(headerButton).toContainText('Få adgang til Bliv glad for din krop');
   await expect(headerButton).toHaveAttribute('href', await bodyButtons.first().getAttribute('href') || '');
