@@ -1,6 +1,10 @@
 ---
 import Icon from './Icon.astro';
 import { services } from '../data/site';
+
+// Nyhedsbrevet om kropsaccept (systeme.io-formular), åbnes i en ny fane.
+const newsletterUrl =
+  'https://dittemunchandersen.systeme.io/public/464928619ba77b9c64e53086ac1092f280868e01/show';
 ---
 
 <section class="section courses-section" id="forloeb">
@@ -52,7 +56,9 @@ import { services } from '../data/site';
     </div>
     <p class="course-help">
       Har du spørgsmål til forskellen? <a href="/kontakt">Kontakt Ditte</a> eller se{' '}
-      <a href="/individuelt-forloeb/">individuelle samtaler</a>.
+      <a href="/individuelt-forloeb/">individuelle samtaler</a>.{' '}
+      Vil du høre mere om Bliv glad for din krop?{' '}
+      <a href={newsletterUrl} target="_blank" rel="noopener noreferrer">Tilmeld dig nyhedsbrevet</a>.
     </p>
   </div>
 </section>
