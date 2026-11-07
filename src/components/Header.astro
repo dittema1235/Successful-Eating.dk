@@ -38,6 +38,12 @@ const cta =
         Onlineforløbet
       </a>
       <a
+        href={'/' + bodyCourse.slug + '/'}
+        aria-current={path === '/' + bodyCourse.slug ? 'page' : undefined}
+      >
+        Bliv glad for din krop
+      </a>
+      <a
         href="/individuelt-forloeb"
         aria-current={path === '/individuelt-forloeb' ? 'page' : undefined}
       >
