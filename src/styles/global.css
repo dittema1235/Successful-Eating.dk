@@ -2064,3 +2064,16 @@ select:focus-visible {
     white-space: nowrap;
   }
 }
+
+/* Headeren på desktop: lidt tættere navigation, så der er plads til punktet Kropsaccept på én linje. */
+@media (min-width: 1352px) {
+  .header-inner nav {
+    gap: 8px;
+  }
+  .header-inner nav > a:not(.button) {
+    font-size: 0.8125rem;
+  }
+  .header-inner nav .button-small {
+    font-size: 0.8125rem;
+  }
+}
